@@ -1,0 +1,80 @@
+{% extends 'inc/theme/base.inc.html' %}
+{% load static %}
+{% load i18n %}
+{% load bootstrap5 %}
+{% block title %}{% trans 'Assignments'|capfirst %}{% endblock %}
+
+
+{% block content %}
+
+
+<div>
+    <div class="row">
+        <div class="col-sm-8">
+            <h2 class="mt-4">{% trans 'Create Job Assignment' %}</h2>
+            <ol class="breadcrumb mb-4">
+                <li class="breadcrumb-item">{% trans 'home' %}</li>
+                <li class="breadcrumb-item">{% trans 'Jobs' %}</li>
+                <li class="breadcrumb-item">{% trans 'Assignments' %}</li>
+                <li class="breadcrumb-item">{% trans 'Create' %}</li>
+            </ol>
+        </div>
+
+        <div class="col-sm-4 d-flex align-items-center justify-content-sm-end">
+            
+        </div>
+    </div>
+
+
+
+    <div class="card mb-4  my-shadow">
+        <div class="card-header">
+            Job Assignment Form
+        </div>
+
+        <form action="" method="post">
+            {% csrf_token %}
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-sm-6">
+                        {% bootstrap_field form.job %}
+                    </div>
+                    <div class="col-sm-6">
+                        {% bootstrap_field form.employee %}
+                    </div>
+                    <div class="col-sm-6">
+                        {% bootstrap_field form.date %}
+                    </div>
+                    <div class="col-sm-3">
+                        {% bootstrap_field form.start_time %}
+                    </div>
+                    <div class="col-sm-3">
+                        {% bootstrap_field form.finish_time %}
+                    </div>
+
+                </div>
+                <div class="mt-1">
+                    <button type="submit" name="action" value="save" class="btn btn-primary btn-block">Save</button>
+                    <button type="submit" name="action" value="save_and_add_another" class="btn btn-primary btn-block mx-1">Save & Create Another</button>        
+                </div>   
+            </div>
+
+        </form>
+
+    </div>
+
+
+</div>
+
+
+<script>
+    $(document).ready(function () {
+        $("#id_date").prop('type', 'date');
+        $("#id_start_time, #id_finish_time").prop('type', 'time');
+        // Get today's date in the format yyyy-mm-dd
+        var today = new Date().toISOString().split('T')[0];
+        $('#id_date').attr('min', today);
+    })
+</script>
+
+{% endblock content %}

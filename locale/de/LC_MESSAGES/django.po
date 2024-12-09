@@ -1,0 +1,815 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-11-29 18:09+0500\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+#: .\software\settings.py:70
+msgid "English"
+msgstr ""
+
+#: .\software\settings.py:71
+msgid "German"
+msgstr ""
+
+
+msgid "Welcome to my site."
+msgstr "Willkommen auf meiner Website."
+
+msgid "How are you"
+msgstr "Wie geht es dir"
+
+
+msgid "dashboard"
+msgstr "dashboard"
+
+msgid "home"
+msgstr "startseite"
+
+msgid "groups"
+msgstr "gruppen"
+
+msgid "customers"
+msgstr "kunden"
+
+msgid "interface"
+msgstr "oberfläche"
+
+msgid "layouts"
+msgstr "layouts"
+
+msgid "pages"
+msgstr "seiten"
+
+msgid "addons"
+msgstr "erweiterungen"
+
+msgid "charts"
+msgstr "diagramme"
+
+msgid "tables"
+msgstr "tabellen"
+
+msgid "logged in as"
+msgstr "angemeldet als"
+
+msgid "start bootstrap"
+msgstr "start bootstrap"
+
+msgid "all devices"
+msgstr "alle geräte"
+
+msgid "All Devices"
+msgstr "Alle Geräte"
+
+
+msgid "devices"
+msgstr "geräte"
+
+msgid "Devices"
+msgstr "Geräte"
+
+
+msgid "Device(s)"
+msgstr "Gerät(e)"
+
+
+msgid "entries per page"
+msgstr "eintrag pro seite"
+
+msgid "search..."
+msgstr "suchen..."
+
+msgid "device"
+msgstr "gerät"
+
+msgid "Device"
+msgstr "Gerät"
+
+msgid "name"
+msgstr "name"
+
+msgid "type"
+msgstr "typ"
+
+msgid "location"
+msgstr "standort"
+
+msgid "IP address"
+msgstr "IP-adresse"
+
+msgid "customer"
+msgstr "kunde"
+
+msgid "created at"
+msgstr "erstellt am"
+
+msgid "Created At"
+msgstr "Erstellt Am"
+
+
+msgid "options"
+msgstr "optionen"
+
+msgid "mirror"
+msgstr "spiegel"
+
+msgid "Mirror"
+msgstr "Spiegel"
+
+msgid "Mobile"
+msgstr "Mobil"
+
+msgid "device name"
+msgstr "Gerätename"
+
+msgid "Device name"
+msgstr "Gerätename"
+
+msgid "Device Name"
+msgstr "Gerätename"
+
+msgid "create device"
+msgstr "Gerät erstellen"
+
+msgid "Create Device"
+msgstr "Gerät Erstellen"
+
+msgid "Edit Device"
+msgstr "Gerät bearbeiten"
+
+msgid "Delete Device"
+msgstr "Gerät löschen"
+
+msgid "View Device"
+msgstr "Gerät anzeigen"
+
+msgid "Select Customer"
+msgstr "Kunden auswählen"
+
+msgid "Add Device Details"
+msgstr "Gerätedetails hinzufügen"
+
+msgid "Review Info"
+msgstr "Informationen überprüfen"
+
+msgid "Finish Setup"
+msgstr "Einrichtung abschließen"
+
+msgid "ID"
+msgstr "ID"
+
+msgid "Name"
+msgstr "Name"
+
+msgid "Email"
+msgstr "E-Mail"
+
+msgid "Date Joined"
+msgstr "Beitrittsdatum"
+
+msgid "View Profile"
+msgstr "Profil anzeigen"
+
+msgid "Select & move next"
+msgstr "Auswählen und weiter"
+
+msgid "Customer"
+msgstr "Kunde"
+
+msgid "Select different customer"
+msgstr "Anderen Kunden auswählen"
+
+msgid "Device Details"
+msgstr "Gerätedetails"
+
+msgid "Location"
+msgstr "Standort"
+
+msgid "Type"
+msgstr "Typ"
+
+msgid "Mirror Configuration"
+msgstr "Spiegelkonfiguration"
+
+msgid "General settings"
+msgstr "Allgemeine Einstellungen"
+
+msgid "Raspberry"
+msgstr "Himbeere"
+
+msgid "Vertical url"
+msgstr "Vertikale URL"
+
+msgid "Horizontal url"
+msgstr "Horizontale URL"
+
+msgid "Show logo"
+msgstr "Logo anzeigen"
+
+msgid "Rotation"
+msgstr "Rotation"
+
+msgid "Language"
+msgstr "Sprache"
+
+msgid "Resolution"
+msgstr "Auflösung"
+
+msgid "Password"
+msgstr "Passwort"
+
+msgid "Animations"
+msgstr "Animationen"
+
+msgid "Screen"
+msgstr "Bildschirm"
+
+msgid "LED"
+msgstr "LED"
+
+msgid "LED pattern"
+msgstr "LED-Muster"
+
+msgid "Wifi settings"
+msgstr "WLAN-Einstellungen"
+
+msgid "SSID"
+msgstr "SSID"
+
+msgid "Passphrase"
+msgstr "Passphrase"
+
+msgid "Device type"
+msgstr "Gerätetyp"
+
+msgid "Hotspot settings"
+msgstr "Hotspot-Einstellungen"
+
+msgid "Smarthome network"
+msgstr "Smarthome-Netzwerk"
+
+msgid "Adapter"
+msgstr "Adapter"
+
+msgid "Select option"
+msgstr "Option auswählen"
+
+msgid "Channel"
+msgstr "Kanal"
+
+msgid "Channel 5G"
+msgstr "Kanal 5G"
+
+msgid "Complete the profile before creating the device"
+msgstr "Vervollständigen Sie das Profil, bevor Sie das Gerät erstellen"
+
+msgid "Space & special characters are not allowed"
+msgstr "Leerzeichen und Sonderzeichen sind nicht erlaubt"
+
+msgid "Maximum characters limit is"
+msgstr "Die maximale Zeichenbegrenzung beträgt"
+
+msgid "Device with this name & Customer already exists"
+msgstr "Ein Gerät mit diesem Namen und Kunden existiert bereits"
+
+msgid "Limit reached for this device type"
+msgstr "Das Limit für diesen Gerätetyp wurde erreicht"
+
+msgid "Please fix above error(s) to continue the process"
+msgstr "Bitte beheben Sie die obigen Fehler, um den Prozess fortzusetzen"
+
+
+msgid "create"
+msgstr "erstellen"
+
+msgid "Create"
+msgstr "Erstellen"
+
+
+msgid "edit"
+msgstr "bearbeiten"
+
+msgid "Edit"
+msgstr "Bearbeiten"
+
+msgid "This field is uneditable"
+msgstr "Dieses Feld kann nicht bearbeitet werden"
+
+msgid "horizontal"
+msgstr "waag(e)recht"
+
+msgid "vertical"
+msgstr "vertikale"
+
+msgid "This field is editable on mirror screen"
+msgstr "Dieses Feld kann auf dem Spiegelbildschirm bearbeitet werden"
+
+msgid "Next"
+msgstr "Nächste"
+
+msgid "updating device"
+msgstr "gerät wird aktualisiert"
+
+
+msgid "creating device"
+msgstr "gerät erstellen"
+
+
+msgid "The device has been updated successfully"
+msgstr "Das Gerät wurde erfolgreich aktualisiert"
+
+msgid "The device has been created successfully"
+msgstr "Das Gerät wurde erfolgreich erstellt"
+
+msgid "Edit device details"
+msgstr "Gerätedetails bearbeiten"
+
+msgid "Customer is required"
+msgstr "Kunde ist erforderlich"
+
+msgid "Customer does not exist"
+msgstr "Kunde existiert nicht"
+
+msgid "Invalid request"
+msgstr "Ungültige Anfrage"
+
+msgid "Are you sure? Device will be permanently deleted!"
+msgstr "Bist du sicher? Das Gerät wird endgültig gelöscht!"
+
+
+msgid "Status"
+msgstr "Status"
+
+msgid "Active"
+msgstr "Aktiv"
+
+msgid "Inactive"
+msgstr "Inaktiv"
+
+msgid "Deleted"
+msgstr "Gelöscht"
+
+msgid "Device \"{}\" has been deleted successfully!"
+msgstr "Gerät \"{}\" wurde erfolgreich gelöscht!"
+
+msgid "Device has been deleted successfully!"
+msgstr "Gerät wurde erfolgreich gelöscht!"
+
+#Customers section 
+
+#All customers
+
+msgid "all customers"
+msgstr "alle Kunden"
+
+msgid "Are you sure? Customer will be permanently deleted!"
+msgstr "Sind Sie sicher? Der Kunde wird dauerhaft gelöscht!"
+
+msgid "Edit Profile"
+msgstr "Profil bearbeiten"
+
+msgid "Delete Profile"
+msgstr "Profil löschen"
+
+msgid "Create Customer"
+msgstr "Kunde erstellen"
+
+
+#Customer detail
+
+msgid "Profile Details"
+msgstr "Profildetails"
+
+msgid "Network Settings"
+msgstr "Netzwerkeinstellungen"
+
+msgid "Device Limits"
+msgstr "Gerätebegrenzungen"
+
+msgid "Device List"
+msgstr "Geräteliste"
+
+msgid "Owned Devices"
+msgstr "Eigene Geräte"
+
+msgid "Date of birth"
+msgstr "Geburtsdatum"
+
+msgid "Last Login"
+msgstr "Letzte Anmeldung"
+
+msgid "Address"
+msgstr "Adresse"
+
+msgid "Network Range"
+msgstr "Netzbereich"
+
+msgid "Network Address"
+msgstr "Netzwerkadresse"
+
+msgid "OpenVPN Container IP"
+msgstr "OpenVPN-Container-IP"
+
+msgid "VPN Port"
+msgstr "VPN-Port"
+
+msgid "Allowed limit"
+msgstr "Zulässige Grenze"
+
+msgid "Devices created"
+msgstr "Geräte erstellt"
+
+msgid "Remaining devices"
+msgstr "Verbleibende Geräte"
+
+#Create Customer
+
+msgid "House Number"
+msgstr "Hausnummer"
+
+msgid "House no."
+msgstr "Hausnummer"
+
+msgid "City"
+msgstr "Stadt"
+
+msgid "Country"
+msgstr "Land"
+
+msgid "ZIP Code"
+msgstr "PLZ"
+
+msgid "Profile Picture"
+msgstr "Profilbild"
+
+msgid "Phone Number"
+msgstr "Telefonnummer"
+
+msgid "Gender"
+msgstr "Geschlecht"
+
+msgid "Date of Birth"
+msgstr "Geburtsdatum"
+
+msgid "Male"
+msgstr "Männlich"
+
+msgid "Female"
+msgstr "Weiblich"
+
+
+msgid "Save Customer"
+msgstr "Kunde Speichern"
+
+msgid "Personal Details"
+msgstr "Persönliche Daten"
+
+msgid "Customer profile has been created successfully!"
+msgstr "Das Kundenprofil wurde erfolgreich erstellt!"
+
+msgid "Edit Customer"
+msgstr "Kunde bearbeiten"
+
+msgid "Customer profile has been updated successfully!"
+msgstr "Das Kundenprofil wurde erfolgreich aktualisiert!"
+
+msgid "Username & password can be updated from Admin panel only"
+msgstr "Benutzername und Passwort können nur über das Admin-Panel aktualisiert werden"
+
+msgid "Customer profile has been deleted successfully!"
+msgstr "Kundenprofil wurde erfolgreich gelöscht!"
+
+msgid "Don't have you ID? Contact Support"
+msgstr "Sie haben keinen Ausweis? Kontaktieren Sie Support"
+
+msgid "at contact@simka.solutions"
+msgstr "unter contact@simka.solutions"
+
+msgid "Sign in to account"
+msgstr "Melden Sie sich bei Ihrem Konto an"
+
+
+
+#Notification section
+
+msgid "Notifications"
+msgstr "Benachrichtigungen"
+
+msgid "Notification"
+msgstr "Benachrichtigung"
+
+msgid "All Notifications"
+msgstr "Alle Benachrichtigungen"
+
+msgid "Notification Details"
+msgstr "Benachrichtigungsdetails"
+
+msgid "Subject"
+msgstr "Betreff"
+
+msgid "Body"
+msgstr "Text"
+
+msgid "Sent to"
+msgstr "Gesendet an"
+
+
+msgid "Sent by"
+msgstr "Gesendet von"
+
+msgid "Sent at"
+msgstr "Gesendet am"
+
+msgid "View Notification"
+msgstr "Benachrichtigung anzeigen"
+
+msgid "Delete Notification"
+msgstr "Benachrichtigung löschen"
+
+msgid "Resend Notification"
+msgstr "Benachrichtigung erneut senden"
+
+msgid "Clone Notification"
+msgstr "Benachrichtigung duplizieren"
+
+msgid "Create Notification"
+msgstr "Benachrichtigung erstellen"
+
+msgid "Notification has been deleted successfully!"
+msgstr "Benachrichtigung wurde erfolgreich gelöscht!"
+
+msgid "Notification has been sent to all selected devices!"
+msgstr "Benachrichtigung wurde an alle ausgewählten Geräte gesendet!"
+
+
+msgid "Reminder"
+msgstr "Erinnerung"
+
+msgid "reminder"
+msgstr "erinnerung"
+
+msgid "Announcement"
+msgstr "Ankündigung"
+
+msgid "announcement"
+msgstr "ankündigung"
+
+msgid "System Maintenance"
+msgstr "Systemwartung"
+
+msgid "system maintenance"
+msgstr "systemwartung"
+
+msgid "Are you sure? Notification will be permanently deleted!"
+msgstr "Sind Sie sicher? Die Benachrichtigung wird dauerhaft gelöscht!"
+
+msgid "New Notification"
+msgstr "Neue Benachrichtigung"
+
+msgid "Subject (en)"
+msgstr "Betreff (en)"
+
+msgid "Body (en)"
+msgstr "Text (en)"
+
+msgid "Subject (de)"
+msgstr "Betreff (de)"
+
+msgid "Body (de)"
+msgstr "Text (de)"
+
+msgid "Alert Type"
+msgstr "Alarmtyp"
+
+msgid "Notification Type"
+msgstr "Benachrichtigungstyp"
+
+msgid "Send to"
+msgstr "Senden an"
+
+msgid "other"
+msgstr "andere"
+
+msgid "Other"
+msgstr "Andere"
+
+msgid "Device list will show where if you select 'Selected devices' option above"
+msgstr "Die Geräteliste wird angezeigt, wenn Sie oben die Option 'Ausgewählte Geräte' auswählen"
+
+msgid "Selected devices"
+msgstr "Ausgewählte Geräte"
+
+msgid "All devices"
+msgstr "Alle Geräte"
+
+msgid "Notification will be sent to all ({}) active devices"
+msgstr "Die Benachrichtigung wird an alle ({}) aktiven Geräte gesendet"
+
+msgid "You can't send a notification since no active device exists"
+msgstr "Sie können keine Benachrichtigung senden, da kein aktives Gerät vorhanden ist"
+
+msgid "Select at least 1 device to send notification"
+msgstr "Wählen Sie mindestens 1 Gerät aus, um eine Benachrichtigung zu senden"
+
+msgid "Select"
+msgstr "Auswählen"
+
+msgid "Invalid format for send_to field. Must be comma-separated integers."
+msgstr "Ungültiges Format für das send_to-Feld. Es müssen durch Kommas getrennte Ganzzahlen sein."
+
+msgid "send_to field is required when is_general is False"
+msgstr "Das send_to-Feld ist erforderlich, wenn is_general False ist."
+
+msgid "Notification has been sent successfully!"
+msgstr "Die Benachrichtigung wurde erfolgreich gesendet!"
+
+msgid "Send"
+msgstr "Senden"
+
+msgid "Add Details"
+msgstr "Details hinzufügen"
+
+msgid "Sending..."
+msgstr "Wird gesendet..."
+
+msgid "Logged in as:"
+msgstr "Angemeldet als:"
+
+msgid "Are you sure? Notification will be sent to mentioned receivers!"
+msgstr "Bist du sicher? Die Benachrichtigung erfolgt an die genannten Empfänger"
+
+
+#profile section
+
+msgid "Profile"
+msgstr "Profil"
+
+msgid "Your profile has been updated successfully!"
+msgstr "Ihr Profil wurde erfolgreich aktualisiert!"
+
+msgid "Admin profile can be updated from admin panel only!"
+msgstr "Das Admin-Profil kann nur aus dem Admin-Panel aktualisiert werden!"
+
+msgid "Change password"
+msgstr "Passwort ändern"
+
+msgid "Change Password"
+msgstr "Passwort ändern"
+
+
+msgid "Password has been updated successfully!"
+msgstr "Passwort wurde erfolgreich aktualisiert!"
+
+msgid "Save Profile"
+msgstr "Profil speichern"
+
+msgid "Submit"
+msgstr "Einreichen"
+
+msgid "Confirm Deletion"
+msgstr "Löschung Bestätigen"
+
+
+msgid "Are you sure you want to delete this customer profile?"
+msgstr "Sind Sie sicher, dass Sie dieses Kundenprofil löschen möchten?"
+
+msgid "Delete"
+msgstr "Löschen"
+
+msgid "Cancel"
+msgstr "Stornieren"
+
+msgid "Are you sure you want to delete this device?"
+msgstr "Möchten Sie dieses Gerät wirklich löschen?"
+
+msgid "Invalid form submission"
+msgstr "Ungültige Formularübermittlung"
+
+msgid "Dashboard"
+msgstr "Armaturenbrett"
+
+msgid "You don't have permission to access this resource"
+msgstr "Sie haben keine Berechtigung, auf diese Ressource zuzugreifen"
+
+msgid "Permission Denied"
+msgstr "Zugriff verweigert"
+
+
+msgid "Return to Dashboard"
+msgstr "Zurück zum Dashboard"
+
+msgid "Privacy Policy"
+msgstr "Datenschutzrichtlinie"
+
+msgid "Terms and Conditions"
+msgstr "Geschäftsbedingungen"
+
+msgid "Are you sure you want to delete this notification?"
+msgstr "Sind Sie sicher, dass Sie diese Benachrichtigung löschen möchten?"
+
+msgid "Logout"
+msgstr "Ausloggen"
+
+msgid "YOU"
+msgstr "DU"
+
+
+
+#Pass Key section
+
+msgid "Pass Key"
+msgstr "Passwort"
+
+msgid "Pass Keys"
+msgstr "Passwörter"
+
+msgid "Confirm PassKey Creation"
+msgstr "Bestätige die Erstellung des Passworts"
+
+msgid "Instructions about the pass key"
+msgstr "Anweisungen zum Passwort"
+
+msgid "Are you sure you want to create pass key for this device?"
+msgstr "Sind Sie sicher, dass Sie ein Passwort für dieses Gerät erstellen möchten?"
+
+msgid "Later"
+msgstr "Später"
+
+msgid "Each Pass Key is unique and should never be shared."
+msgstr "Jedes Passwort ist einzigartig und sollte niemals geteilt werden."
+
+msgid "Keep it safe for setting up your device on hardware or a phone."
+msgstr "Bewahren Sie es sicher auf, um Ihr Gerät auf Hardware oder einem Telefon einzurichten."
+
+msgid "Confidentiality is crucial; Don't share the Pass Key."
+msgstr "Vertraulichkeit ist entscheidend; Teilen Sie das Passwort nicht."
+
+msgid "It's for one-time use only; a new key is generated for each setup."
+msgstr "Es ist nur für den einmaligen Gebrauch bestimmt; für jede Einrichtung wird ein neues Passwort generiert."
+
+msgid "Avoid sharing it in public or insecure channels."
+msgstr "Vermeiden Sie es, es in der Öffentlichkeit oder in unsicheren Kanälen zu teilen."
+
+msgid "The Pass Key has a limited validity period for security."
+msgstr "Das Passwort hat eine begrenzte Gültigkeitsdauer aus Sicherheitsgründen."
+
+msgid "Make sure to copy or scan pass key. You won't be able to see it twice."
+msgstr "Stellen Sie sicher, dass Sie das Passwort kopieren oder scannen. Sie werden es nicht zweimal sehen können."
+
+msgid "Confirm"
+msgstr "Bestätigen"
+
+
+msgid "Generate Pass Key for this device to setup."
+msgstr "Generiere ein Passwort für dieses Gerät zur Einrichtung."
+
+msgid "Is used"
+msgstr "Wurde verwendet"
+
+msgid "Is verified"
+msgstr "Wurde überprüft"
+
+msgid "Is expired"
+msgstr "Ist abgelaufen"
+
+msgid "Created by"
+msgstr "Erstellt von"
+
+msgid "Expiration time"
+msgstr "Ablaufzeit"
+
+msgid "Pass key for this device is ready. Click option to view."
+msgstr "Das Passwort für dieses Gerät ist bereit. Klicken Sie auf die Option, um es anzuzeigen."
+
+msgid "Pass key has been expired."
+msgstr "Das Passwort ist abgelaufen."
+
+msgid "It'll be expired in"
+msgstr "Es läuft ab in"
+
+msgid "Pass key for this device has been created. Click option to view."
+msgstr "Das Passwort für dieses Gerät wurde erstellt. Klicken Sie auf die Option, um es anzuzeigen."
+
+msgid "Close"
+msgstr "Schließen"
+
+
+#python manage.py compilemessages
+#python manage.py runserver
+
+
+

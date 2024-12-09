@@ -1,0 +1,364 @@
+[
+    {
+      "name": "Color",
+      "args": {
+        "color": "ffffff"
+      }
+    },
+    {
+      "name": "Cinema brighten lights",
+      "script": "fade.py",
+      "args": {
+        "fade-time": 5,
+        "color-start": [
+          136,
+          97,
+          7
+        ],
+        "color-end": [
+          238,
+          173,
+          47
+        ]
+      }
+    },
+    {
+      "name": "Cinema dim lights",
+      "script": "fade.py",
+      "args": {
+        "fade-time": 5,
+        "color-start": [
+          238,
+          173,
+          47
+        ],
+        "color-end": [
+          136,
+          97,
+          7
+        ]
+      }
+    },
+    {
+      "name": "Knight rider",
+      "script": "knight-rider.py",
+      "args": {
+        "speed": 1,
+        "fadeFactor": 0.7,
+        "color": [
+          255,
+          0,
+          0
+        ]
+      }
+    },
+    {
+      "name": "Blue mood blobs",
+      "script": "mood-blobs.py",
+      "args": {
+        "rotationTime": 60,
+        "color": [
+          0,
+          0,
+          255
+        ],
+        "hueChange": 60,
+        "blobs": 5,
+        "reverse": false
+      }
+    },
+    {
+      "name": "Cold mood blobs",
+      "script": "mood-blobs.py",
+      "args": {
+        "rotationTime": 60,
+        "color": [
+          0,
+          0,
+          255
+        ],
+        "hueChange": 30,
+        "blobs": 5,
+        "reverse": false,
+        "baseChange": true,
+        "baseColorRangeLeft": 160,
+        "baseColorRangeRight": 320,
+        "baseColorChangeRate": 2
+      }
+    },
+    {
+      "name": "Full color mood blobs",
+      "script": "mood-blobs.py",
+      "args": {
+        "rotationTime": 60,
+        "colorRandom": true,
+        "hueChange": 30,
+        "blobs": 5,
+        "reverse": false,
+        "baseChange": true,
+        "baseColorRangeLeft": 0,
+        "baseColorRangeRight": 360,
+        "baseColorChangeRate": 0.2
+      }
+    },
+    {
+      "name": "Green mood blobs",
+      "script": "mood-blobs.py",
+      "args": {
+        "rotationTime": 60,
+        "color": [
+          0,
+          255,
+          0
+        ],
+        "hueChange": 60,
+        "blobs": 5,
+        "reverse": false
+      }
+    },
+    {
+      "name": "Red mood blobs",
+      "script": "mood-blobs.py",
+      "args": {
+        "rotationTime": 60,
+        "color": [
+          255,
+          0,
+          0
+        ],
+        "hueChange": 60,
+        "blobs": 5,
+        "reverse": false
+      }
+    },
+    {
+      "name": "Warm mood blobs",
+      "script": "mood-blobs.py",
+      "args": {
+        "rotationTime": 60,
+        "color": [
+          255,
+          0,
+          0
+        ],
+        "hueChange": 30,
+        "blobs": 5,
+        "reverse": false,
+        "baseChange": true,
+        "baseColorRangeLeft": 333,
+        "baseColorRangeRight": 151,
+        "baseColorChangeRate": 2
+      }
+    },
+    {
+      "name": "Police Lights Single",
+      "script": "police.py",
+      "args": {
+        "rotation-time": 1.5,
+        "color_one": [
+          255,
+          0,
+          0
+        ],
+        "color_two": [
+          0,
+          0,
+          255
+        ],
+        "colors_count": 10,
+        "reverse": false
+      }
+    },
+    {
+      "name": "Police Lights Solid",
+      "script": "police.py",
+      "args": {
+        "rotation-time": 1,
+        "color_one": [
+          255,
+          0,
+          0
+        ],
+        "color_two": [
+          0,
+          0,
+          255
+        ],
+        "reverse": false
+      }
+    },
+    {
+      "name": "Rainbow mood",
+      "script": "rainbow-mood.py",
+      "args": {
+        "rotation-time": 60,
+        "brightness": 1,
+        "reverse": false
+      }
+    },
+    {
+      "name": "Rainbow swirl fast",
+      "script": "rainbow-swirl.py",
+      "args": {
+        "rotation-time": 3,
+        "brightness": 1,
+        "reverse": false
+      }
+    },
+    {
+      "name": "Rainbow swirl",
+      "script": "rainbow-swirl.py",
+      "args": {
+        "rotation-time": 20,
+        "brightness": 1,
+        "reverse": false
+      }
+    },
+    {
+      "name": "Random",
+      "script": "random.py",
+      "args": {
+        "speed": 1,
+        "saturation": 1
+      }
+    },
+    {
+      "name": "Running dots",
+      "script": "running_dots.py",
+      "args": {
+        "speed": 1.5,
+        "whiteLevel": 100,
+        "colorLevel": 230
+      }
+    },
+    {
+      "name": "System Shutdown",
+      "script": "shutdown.py",
+      "args": {
+        "speed": 1.2,
+        "alarm-color": [
+          255,
+          0,
+          0
+        ],
+        "post-color": [
+          255,
+          174,
+          11
+        ],
+        "shutdown-enabled": false
+      }
+    },
+    {
+      "name": "Snake",
+      "script": "snake.py",
+      "args": {
+        "rotation-time": 12,
+        "color": [
+          255,
+          0,
+          0
+        ],
+        "percentage": 10
+      }
+    },
+    {
+      "name": "Sparks Color",
+      "script": "sparks.py",
+      "args": {
+        "rotation-time": 3,
+        "sleep-time": 0.05,
+        "brightness": 1,
+        "saturation": 1,
+        "reverse": false,
+        "color": [
+          255,
+          255,
+          255
+        ],
+        "random-color": true
+      }
+    },
+    {
+      "name": "Sparks",
+      "script": "sparks.py",
+      "args": {
+        "rotation-time": 3,
+        "sleep-time": 0.05,
+        "brightness": 1,
+        "saturation": 1,
+        "reverse": false,
+        "color": [
+          255,
+          255,
+          255
+        ],
+        "random-color": false
+      }
+    },
+    {
+      "name": "Strobe blue",
+      "script": "strobe.py",
+      "args": {
+        "color": [
+          0,
+          0,
+          255
+        ],
+        "frequency": 10
+      }
+    },
+    {
+      "name": "Strobe Raspbmc",
+      "script": "strobe.py",
+      "args": {
+        "color": [
+          188,
+          17,
+          66
+        ],
+        "frequency": 10
+      }
+    },
+    {
+      "name": "Strobe white",
+      "script": "strobe.py",
+      "args": {
+        "color": [
+          255,
+          255,
+          255
+        ],
+        "frequency": 10
+      }
+    },
+    {
+      "name": "Color traces",
+      "script": "traces.py",
+      "args": {
+        "speed": 1
+      }
+    },
+    {
+      "name": "UDP listener",
+      "script": "udp.py",
+      "args": {
+        "ListenPort": 2391
+      }
+    },
+    {
+      "name": "UDP multicast listener",
+      "script": "udp.py",
+      "args": {
+        "ListenPort": 2801,
+        "ListenIP": "239.255.28.01"
+      }
+    },
+    {
+      "name": "X-Mas",
+      "script": "x-mas.py",
+      "args": {
+        "sleepTime": 0.75
+      }
+    }
+  ]

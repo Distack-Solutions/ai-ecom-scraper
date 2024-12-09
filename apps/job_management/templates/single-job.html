@@ -1,0 +1,348 @@
+{% extends 'inc/theme/base.inc.html' %}
+{% load static %}
+{% load my_tags %}
+{% load i18n %}
+{% block title %}{{ job }}{% endblock %}
+
+
+{% block content %}
+
+
+
+<div>
+    <div class="row">
+        
+        <div class="col-sm-8">
+            <div class="mt-4 mb-2">
+                <!-- <h2>Job Details</h2> -->
+                <div class="d-flex align-items-center">
+                    <h2 class="my-0">{{ job }}</h2>
+                    {% with status=job.get_status %}
+                        <span class="badge badge-pill mx-3 bg-{{ status.1 }} radius-100">{{ status.0 }}</span>
+                    {% endwith %}                            
+                </div>
+            </div>
+            <ol class="breadcrumb mb-4">
+                <li class="breadcrumb-item">{% trans 'home' %}</li>
+                <li class="breadcrumb-item ">{% trans 'jobs' %}</li>
+                <li class="breadcrumb-item initial-text">{{ job.number }}</li>
+            </ol>
+        </div>
+
+        <div class="col-sm-4 d-flex align-items-center justify-content-sm-end">
+            <a href="{% url 'job_management:create-job-assignments' %}?job={{job.id}}" class="d-flex align-items-center btn btn-dark px-3" role="button">
+                <i class="material-icons my-0 py-1 fs-5" style="margin-right: 10px;">assignment_add</i>
+                <span>Assign Job</span>
+            </a>
+            
+            <!-- <a title="{% trans 'Edit Device' %}" href="" class="d-flex align-items-center btn btn-secondary m-1" role="button">
+                <i class="material-icons my-0 py-1 fs-5">edit</i>
+            </a>
+
+            <a title="{% trans 'Delete Device' %}" href="" class="d-flex align-items-center btn btn-danger m-1" role="button">
+                <i class="material-icons my-0 py-1 fs-5 ">delete</i>
+            </a> -->
+
+        </div>
+    </div>
+
+
+    <ul class="tab-container mb-4">
+        <li class="tab active" id="job-details" onclick="showTab('job-details')">{% trans 'Job Details' %}</li>
+        <li class="tab" id="assigned-to" onclick="showTab('assigned-to')">{% trans 'Assigned To' %}</li>
+        <li class="tab" id="timesheet" onclick="showTab('timesheet')">{% trans 'Timesheet' %}</li>
+        <!-- {% if not device.is_mobile %}
+            <li class="tab" id="mirror-config" onclick="showTab('mirror-config')">{% trans 'Mirror Configuration' %}</li>
+        {% endif %}
+        <li class="tab" id="pass-keys" onclick="showTab('pass-keys')">{% trans 'Pass Keys' %}</li> -->
+    </ul>
+    
+
+
+    <div id="job-details-container" class="sections">
+        <div class="row">
+            <div class="col-sm-12">
+    
+    
+                <div class="card mb-4  my-shadow">
+                    <!-- <div class="card-header">
+                        <i class="fas fa-table me-1"></i>
+                        Devices belongs to all users are listed
+                    </div> -->
+                    <div class="card-header">
+                        {% trans 'Job Details' %}
+    
+                    </div>
+                    <div class="card-body px-3 p-0 py-1">
+                        <div class="row">
+
+                            {% for field_name, field_value in fields_data.items %}
+                                {% if field_value is not None and field_value %}
+                                    <div class="col-sm-4 my-3">
+                                        
+            
+                                        <div class="my-0">
+                                            <p class="label-title">{{ field_name }}</p>
+                                            <span>
+                                                {{ field_value }}
+                                            </span>
+                                        </div>
+                                    </div>
+                                {% endif %}
+                            {% endfor %}
+                                            
+
+                            
+                        </div>
+    
+                    </div>
+    
+                    
+                </div>
+    
+               
+    
+    
+            </div>
+    
+            <!-- <div class="col-sm-3">
+                <div class="card text-left my-shadow">
+                  <div class="card-header">
+                    Activity
+                  </div>
+                  <div class="card-body py-0">
+                    {% for history in histories %}
+                    <div class="card text-left border-0 p-0 my-3">
+                      <div class="card-body p-0">
+                        <p class="card-text mb-1">
+                            {{ history.history_user.first_name }} 
+                            <b>
+                                {% if history.history_type == "+" %}
+                                    Created
+                                {% elif history.history_type == "-" %}
+                                    Deleted
+                                {% else %}
+                                    Modified
+                                {% endif %}
+                            </b>
+                            Device
+                        </p>
+                        <label for="">{{ history.history_date }}</label>
+                      </div>
+                    </div>
+                    {% endfor %}
+                    
+                   
+                  </div>
+                </div>
+            </div> -->
+        </div>
+    </div>
+
+    
+    <div id="assigned-to-container" class="sections d-none mb-4" >
+
+        <div class="card text-left my-shadow">
+            <div class="card-header">
+                This job has following assignments
+            </div>
+            {% with assignments=job.get_assignments %}
+            <div class="card-body p-0">
+                <table  class="table border mb-0 table-bordered table-striped">
+                    <thead>
+                        <tr>
+                            <th>{% trans 'ID' %}</th>
+                            <th>{% trans 'Employee' %}</th>
+                            <th>{% trans 'Date' %}</th>
+                            <th>{% trans 'Start Time' %}</th>
+                            <th>{% trans 'Finish Time' %}</th>
+                            <th>{% trans 'Actions' %}</th>
+                        </tr>
+                    </thead>
+                  
+                    <tbody>
+                        {% if not assignments %}
+                        <tr class="text-center">
+                            <td colspan="7" class="text-center">
+                                No Assingment Entries
+                            </td>
+                        </tr>
+                        {% endif %}
+    
+                        {% for assignment in assignments %}
+                        
+                            <tr>
+                                <td>{{ assignment.id }}</td>
+                                
+                                <td>{{ assignment.employee }}</td>
+                                <td>{{ assignment.date }}</td>
+                                <td>{{ assignment.start_time }}</td>
+                                <td>{{ assignment.finish_time }}</td>
+                                <td>
+                                    <div class="d-flex align-items-center">
+                                        
+                                        <a href=""  title="{% trans 'View Job' %}" id="" class="d-flex align-items-center btn btn-primary btn-sm mx-1" role="button">
+                                            <i class="material-icons my-0 py-0 fs-6">visibility</i>
+                                        </a>
+                                        <!-- <a href="" title="{% trans 'Edit Device' %}" id="" class="d-flex align-items-center btn btn-secondary btn-sm mx-1" role="button">
+                                            <i class="material-icons my-0 py-0 fs-6">edit</i>
+                                        </a>
+                                        <a href="" title="{% trans 'Delete Device' %}" class="d-flex align-items-center btn btn-outline-danger btn-sm mx-1" role="button">
+                                            <i class="material-icons my-0 py-0 fs-6">delete</i>
+                                        </a> -->
+                                       
+                                        
+                                    </div>
+        
+                                </td>
+                            </tr>
+                        
+        
+                        {% endfor %}
+                        
+                    </tbody>
+                </table>
+                
+                
+            </div>
+            {% endwith %}
+        </div>
+    </div>
+
+    <div id="timesheet-container" class="sections d-none mb-4" >
+
+        <div class="card text-left my-shadow">
+            <div class="card-header">
+                Timesheet
+            </div>
+
+  
+
+            <div class="card-body p-0">
+
+                <!-- <div class="p-3">
+
+
+                    <div class="accordion" id="accordionExample">
+                        {% for group_assignment in group_assignments %}
+                        <div class="accordion-item">
+                            <div class="accordion-header" id="heading{{ forloop.counter }}">
+                                <div class="accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#collapse{{ forloop.counter }}" aria-expanded="false" aria-controls="collapse{{ forloop.counter }}">
+                                    
+                                    <div class="d-flex d-flex align-items-center">
+                                        <div>
+                                            <div class="d-flex align-items-center">
+                                                <i class="material-icons fs-5">person</i>
+                                                <span class="mx-2 fs-6">Syed Maaz Hassan</span>
+                                            </div>                                          
+                                        </div>
+
+                                        <div>
+                                            <div class="d-flex align-items-center mx-5">
+                                                <i class="material-icons fs-5">timer</i>
+                                                <span class="mx-2 fs-6">50 hours worked</span>
+                                            </div>                                          
+                                        </div>
+                                       
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div id="collapse{{ forloop.counter }}" class="accordion-collapse collapse" aria-labelledby="heading{{ forloop.counter }}" data-bs-parent="#accordionExample">
+                                <div class="accordion-body">
+                                    <strong>{{ group_assignment.description }}</strong> 
+                                </div>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+                    
+
+                </div> -->
+
+
+                
+                
+
+
+                <table  class="table mb-0 border table-bordered table-striped">
+                    <thead>
+                        <tr>
+                            <th>{% trans 'Date' %}</th>
+                            <th>{% trans 'Employee' %}</th>
+                            <th>{% trans 'Duration' %}</th>
+                            <th>{% trans 'Logged By' %}</th>
+                            <th>{% trans 'Status' %}</th>
+                            <th>{% trans 'Actions' %}</th>
+                        </tr>
+                    </thead>
+                  
+                    <tbody>
+                        {% if not sessions %}
+                        <tr class="text-center">
+                            <td colspan="6" class="text-center">
+                                No Timesheet Entries
+                            </td>
+                        </tr>
+                        {% endif %}
+    
+                        {% for session in sessions %}
+                        
+                            <tr>
+                                <td>{{ session.end_time.date }}</td>
+                                <td>{{ session.timesheet.assignment.employee }}</td>
+                                <td>{{ session.get_duration }}</td>
+                                <td>{{ session.created_by }}</td>
+                                <td>
+                                    {% if session.timesheet.status == "Pending" %}
+                                        <span class="badge badge-pill badge-primary bg-secondary radius-100">{{ session.timesheet.status }}</span>
+                                    {% else %}
+                                        <span class="badge badge-pill badge-primary bg-success radius-100">{{ session.timesheet.status }}</span>
+                                    {% endif %}
+    
+    
+                                </td>
+                                <td>
+                                    <div class="d-flex align-items-center">
+                                        
+                                        <a href=""  title="{% trans 'View Job' %}" id="" class="d-flex align-items-center btn btn-primary btn-sm mx-1" role="button">
+                                            <i class="material-icons my-0 py-0 fs-6">visibility</i>
+                                        </a>
+                                        <!-- <a href="" title="{% trans 'Edit Device' %}" id="" class="d-flex align-items-center btn btn-secondary btn-sm mx-1" role="button">
+                                            <i class="material-icons my-0 py-0 fs-6">edit</i>
+                                        </a>
+                                        <a href="" title="{% trans 'Delete Device' %}" class="d-flex align-items-center btn btn-outline-danger btn-sm mx-1" role="button">
+                                            <i class="material-icons my-0 py-0 fs-6">delete</i>
+                                        </a> -->
+                                       
+                                        
+                                    </div>
+        
+                                </td>
+                            </tr>
+                        
+        
+                        {% endfor %}
+                        
+                    </tbody>
+                </table>
+                
+                
+            </div>
+
+        </div>
+    </div>
+
+</div>
+
+<script>
+    var is_timesheet = '{{ request.GET.timesheet }}'
+    $(document).ready(function () {
+        if (is_timesheet=='true') {
+            $("#timesheet").click();            
+        }
+    })
+</script>
+
+
+{% endblock content %}

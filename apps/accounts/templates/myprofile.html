@@ -1,0 +1,99 @@
+{% extends 'inc/theme/base.inc.html' %}
+{% load static %}
+{% block title %}My profile{% endblock %}
+{% block content %}
+
+
+<div>
+    <div class="row">
+        
+        <div class="col-sm-8">
+            
+            <div class="d-flex mt-4 mb-2 align-items-center">
+                <!-- <img src="{{ user.profile_picture.url }}" class="bg-white" style="background-color: white; width: 50px; height: 50px; border-radius: 100px;" alt=""> -->
+                
+                <div class="d-flex align-items-center">
+                    <h2 class="my-0">{{ user.first_name }} {{ user.last_name }}</h2>
+                    {% if user.is_staff %}
+                        <span class="badge badge-pill mx-3 bg-success radius-100">Manager</span>
+                    {% else %}
+                        <span class="badge badge-pill mx-3 badge-business radius-100">Employee</span>
+                    {% endif %}
+                </div>
+
+
+            </div>
+            <ol class="breadcrumb mb-4">
+                <li class="breadcrumb-item">home</li>
+                <li class="breadcrumb-item">Profile</li>
+            </ol>
+           
+        </div>
+
+        <div class="col-sm-4 d-flex align-items-center justify-content-sm-end">
+            <a href="{% url 'accounts:change-profile-password' %}" title="Change password" class="d-flex align-items-center btn btn-success m-1" role="button">
+                <i class="material-icons my-0 py-1 fs-5" style="margin-right: 10px;">password</i>
+                Change Password
+            </a>
+            
+            <a href="{% url 'accounts:edit-profile' %}" title="Edit profile" class="d-flex align-items-center btn btn-secondary m-1" role="button">
+                <i class="material-icons my-0 py-1 fs-5" style="margin-right: 10px;">edit</i>
+                Edit Profile
+            </a>
+
+        </div>
+    </div>
+
+
+    <div class="row">
+        <div class="col-sm-12 sections" id="profile-details-container">
+    
+            <div class="card mb-4 my-shadow">
+                <!-- <div class="card-header">
+                    <i class="fas fa-table me-1"></i>
+                    Devices belongs to all users are listed
+                </div> -->
+                <div class="card-header">
+                    Personal Details
+                </div>
+    
+                <div class="card-body">
+                    <div class="row">
+                        {% for field_name, field_value in fields_data.items %}
+        
+                            <div class="col-sm-4 my-3">
+                                <div class="my-0">
+                                    <p class="label-title">{{ field_name }}</p>
+                                    <span class="{{ field_name }}">{{ field_value }}</span>
+                                </div>
+                            </div>
+    
+                        {% endfor %}
+    
+                    </div>
+                </div>
+                
+            </div>
+    
+        </div>
+    
+    
+    
+    
+     
+        
+    
+        
+    
+    
+    
+    
+    </div>
+
+
+
+</div>
+
+
+
+{% endblock content %}

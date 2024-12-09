@@ -1,0 +1,33 @@
+{% for message in messages %}
+    <div class="alert mb-0 my-3 alert-{% if message.tags == 'error' %}danger{% else %}{{ message.tags}}{% endif %} d-flex align-items-center radius-10"
+        role="alert">
+        {% if message.tags == 'error' %}
+        <span class="material-icons text-danger fs-4">
+            error
+        </span>
+        {% endif %}
+
+        {% if message.tags == 'success' %}
+        <span class="material-icons text-success fs-4">
+            check_circle
+        </span>
+        {% endif %}
+
+        {% if message.tags == 'warning' %}
+        <span class="material-icons text-warning fs-4">
+            warning
+        </span>
+        {% endif %}
+
+        <div class="mx-2">
+            {{ message }}
+        </div>
+    </div>
+{% endfor %}
+
+
+<script>
+    setTimeout(() => {
+        $(".alert").remove();
+    }, 5000);
+</script>

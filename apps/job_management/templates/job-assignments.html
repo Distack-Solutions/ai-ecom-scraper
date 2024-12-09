@@ -1,0 +1,171 @@
+{% extends 'inc/theme/base.inc.html' %}
+{% load static %}
+{% load i18n %}
+{% block title %}{% trans 'Assignments'|capfirst %}{% endblock %}
+
+
+{% block content %}
+
+
+<div>
+    <div class="row">
+        <div class="col-sm-7">
+            <h2 class="mt-4">{% trans 'Job Assignments' %}</h2>
+            <ol class="breadcrumb mb-4">
+                <li class="breadcrumb-item">{% trans 'home' %}</li>
+                <li class="breadcrumb-item">{% trans 'Jobs' %}</li>
+                <li class="breadcrumb-item">{% trans 'Assignments' %}</li>
+            </ol>
+        </div>
+        
+
+
+        <div class="col-sm-5 d-flex align-items-center justify-content-end">
+            <form action="" method="get" class="mx-2 w-100">
+                <div class="input-group">
+                    <input type="text" name="q" value="{{ request.GET.q }}" class="form-control" placeholder="Search Assignments"  aria-describedby="button-addon2">
+                    <button class="btn btn-primary d-flex align-items-center" type="submit" id="button-addon2">
+                        <i class="material-icons">search</i>
+                    </button>
+                </div>    
+            </form>
+
+            <a href="{% url 'job_management:create-job-assignments' %}" class="btn btn-dark text-center" style="width: 200px" role="button">
+                <div class="d-flex align-items-center justify-content-center">
+                    <i class="material-icons my-0 py-1 fs-5" style="margin-right: 10px;">assignment_add</i>
+                    <span>Assign Job</span>
+                </div>
+
+            </a>
+            
+            
+        </div>
+
+       
+    </div>
+
+
+
+    <div class="">
+        
+        <div class="table-parent my-shadow">
+           
+
+            <table  class="table">
+                <thead>
+                    <tr>
+                        <th>{% trans 'ID' %}</th>
+                        <th>{% trans 'Job Name' %}</th>
+                        <th>{% trans 'Employee' %}</th>
+                        <th>{% trans 'Date' %}</th>
+                        <th>{% trans 'Start Time' %}</th>
+                        <th>{% trans 'Finish Time' %}</th>
+                        <th>{% trans 'Actions' %}</th>
+                    </tr>
+                </thead>
+              
+                <tbody>
+                    {% if not assignments %}
+                    <tr class="text-center">
+                        <td colspan="7" class="text-center">
+                            No Assingment Entries
+                        </td>
+                    </tr>
+                    {% endif %}
+
+                    {% for assignment in assignments %}
+                    
+                        <tr>
+                            <td>{{ assignment.id }}</td>
+                            <td>
+                                <a class="text-decoration-none text-dark" href="">
+                                    {{ assignment.job }}
+                                </a>
+                            </td>
+                            <td>{{ assignment.employee }}</td>
+                            <td>{{ assignment.date }}</td>
+                            <td>{{ assignment.start_time }}</td>
+                            <td>{{ assignment.finish_time }}</td>
+                            <td>
+                                <div class="d-flex align-items-center">
+                                    
+                                    <a href="{% url 'job_management:single-job-assignment' assignment.id %}"  title="{% trans 'View Job' %}" id="" class="d-flex align-items-center btn btn-primary btn-sm mx-1" role="button">
+                                        <i class="material-icons my-0 py-0 fs-6">visibility</i>
+                                    </a>
+                                    <!-- <a href="" title="{% trans 'Edit Device' %}" id="" class="d-flex align-items-center btn btn-secondary btn-sm mx-1" role="button">
+                                        <i class="material-icons my-0 py-0 fs-6">edit</i>
+                                    </a>
+                                    <a href="" title="{% trans 'Delete Device' %}" class="d-flex align-items-center btn btn-outline-danger btn-sm mx-1" role="button">
+                                        <i class="material-icons my-0 py-0 fs-6">delete</i>
+                                    </a> -->
+                                   
+                                    
+                                </div>
+    
+                            </td>
+                        </tr>
+                    
+    
+                    {% endfor %}
+                    
+                </tbody>
+            </table>
+
+
+            <div class="row px-3">
+                <div class="col-sm-6 d-flex align-items-center">
+                    <p class="my-0">Showing <b>{{ assignments.start_index }} - {{ assignments.end_index }}</b> of {{ assignments.paginator.count }} entries.</p>
+                </div>
+            
+                <div class="col-sm-6 d-flex justify-content-end">
+                    {% if assignments.has_other_pages %}
+                        <nav aria-label="Page navigation">
+                            <ul class="pagination">
+                                {% if assignments.has_previous %}
+                                    <li class="page-item">
+                                        <a class="page-link" href="?q={{ request.GET.q }}&page=1" aria-label="First">
+                                            <span aria-hidden="true">&laquo;</span>
+                                        </a>
+                                    </li>
+                                    <li class="page-item">
+                                        <a class="page-link" href="?q={{ request.GET.q }}&page={{ assignments.previous_page_number }}" aria-label="Previous">
+                                            <span aria-hidden="true">&lsaquo;</span>
+                                        </a>
+                                    </li>
+                                {% endif %}
+            
+                                <li class="page-item disabled"><span class="page-link">Page {{ assignments.number }} of {{ assignments.paginator.num_pages }}</span></li>
+            
+                                {% if assignments.has_next %}
+                                    <li class="page-item">
+                                        <a class="page-link" href="?q={{ request.GET.q }}&page={{ assignments.next_page_number }}" aria-label="Next">
+                                            <span aria-hidden="true">&rsaquo;</span>
+                                        </a>
+                                    </li>
+                                    <li class="page-item">
+                                        <a class="page-link" href="?q={{ request.GET.q }}&page={{ assignments.paginator.num_pages }}" aria-label="Last">
+                                            <span aria-hidden="true">&raquo;</span>
+                                        </a>
+                                    </li>
+                                {% endif %}
+                            </ul>
+                        </nav>
+                    {% endif %}
+                </div>
+            </div>
+            
+
+          
+
+
+            
+        </div>
+    </div>
+
+
+</div>
+
+
+
+
+{% endblock content %}

@@ -1,0 +1,53 @@
+{% load i18n %}
+{% get_current_language as LANGUAGE_CODE %}
+
+<nav class="sb-topnav navbar navbar-expand navbar-dark bg-black">
+    <!-- Navbar Brand-->
+    {% if user.is_authenticated %}
+    <button class="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0  ps-3" id="sidebarToggle" href="#!"><i class="fas fa-bars"></i></button>
+    {% endif %}
+
+    <a class="navbar-brand mx-2">Corboss CRM</a>
+    <!-- Sidebar Toggle-->
+    <!-- Navbar Search-->
+    <div class="d-none d-md-inline-block form-inline ms-auto me-0 me-md-3 my-2 my-md-0">
+        <!-- <div class="input-group">
+            <input class="form-control" type="text" placeholder="Search for..." aria-label="Search for..." aria-describedby="btnNavbarSearch" />
+            <button class="btn btn-primary" id="btnNavbarSearch" type="button"><i class="fas fa-search"></i></button>
+        </div> -->
+        {% load i18n %}
+
+        <!-- <form action="{% url 'set_language' %}" method="post" class="form-inline">{% csrf_token %}
+            <div class="form-group mx-sm-3 mb-0">
+                <input type="hidden" name="text" value="{{ redirect_to }}" class="form-control form-control-sm">
+                <select class="form-control" name="language" id="langselect" onchange="this.form.submit()">
+                    {% get_available_languages as LANGUAGES %}
+                    {% get_language_info_list for LANGUAGES as languages %}
+                    {% for language in languages %}
+                        <option value="{{ language.code }}" {% if language.code == LANGUAGE_CODE %} selected {% endif %}>
+                            {{ language.name_local }} ({{ language.code }})
+                        </option>
+                    {% endfor %}
+                </select>
+              </div>
+        </form>  -->
+
+    </div>
+
+    {% if user.is_authenticated %}
+    <!-- Navbar-->
+    <ul class="navbar-nav ms-auto ms-md-0 me-3 me-lg-4">
+        <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="fas fa-user fa-fw"></i></a>
+            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                <li><a class="dropdown-item" href="{% url 'accounts:profile' %}">{% trans 'Profile' %}</a></li>
+                <li><a class="dropdown-item" href="{% url 'accounts:change-profile-password' %}">{% trans 'Change password' %}</a></li>
+                <!-- <li><a class="dropdown-item" href="#!">{% trans 'Settings' %}</a></li> -->
+                <!-- <li><a class="dropdown-item" href="#!">Activity Log</a></li> -->
+                <li><hr class="dropdown-divider" /></li>
+                <li><a class="dropdown-item" href="{% url 'accounts:logout' %}">{% trans 'Logout' %}</a></li>
+            </ul>
+        </li>
+    </ul>
+    {% endif %}
+</nav>

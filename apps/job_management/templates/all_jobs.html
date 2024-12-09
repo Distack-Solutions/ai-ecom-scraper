@@ -1,0 +1,161 @@
+{% extends 'inc/theme/base.inc.html' %}
+{% load static %}
+{% load i18n %}
+{% block title %}{% trans 'all jobs'|capfirst %}{% endblock %}
+
+
+{% block content %}
+
+
+<div>
+    <div class="row">
+        <div class="col-sm-6">
+            <h2 class="mt-4">{% trans 'all jobs' %}</h2>
+            <ol class="breadcrumb mb-4">
+                <li class="breadcrumb-item">{% trans 'home' %}</li>
+                <li class="breadcrumb-item">{% trans 'jobs' %}</li>
+            </ol>
+        </div>
+
+        <div class="col-sm-6 d-flex align-items-center justify-content-end">
+            <form action="" method="get" class="w-50">
+                <div class="input-group">
+                    <input type="text" name="q" value="{{ request.GET.q }}" class="form-control" placeholder="Search Jobs"  aria-describedby="button-addon2">
+                    <button class="btn btn-primary d-flex align-items-center" type="submit" id="button-addon2">
+                        <i class="material-icons">search</i>
+                    </button>
+                </div>    
+            </form>
+        </div>
+    </div>
+
+
+
+    <div class="">
+        
+        <div class="">
+            
+          
+
+            <div class="table-parent my-shadow">
+
+                <table  class="table">
+                    <thead>
+                        <tr>
+                            <th>{% trans 'ID' %}</th>
+                            <th>{% trans 'Job Name' %}</th>
+                            <th>{% trans 'Customer' %}</th>
+                            <th>{% trans 'Status' %}</th>
+                            <th>{% trans 'Last modified' %}</th>
+                            <th>{% trans 'Actions' %}</th>
+                        </tr>
+                    </thead>
+                
+                    <tbody>
+                        {% if not jobs %}
+                        <tr class="text-center">
+                            <td colspan="6" class="text-center">
+                                No Job Entries
+                            </td>
+                        </tr>
+                        {% endif %}
+
+                        {% for job in jobs %}
+                        
+                            <tr>
+                                <td>{{ job.number }}</td>
+                                <td>
+                                    <a class="text-decoration-none text-dark" href="">
+                                        {{ job }}
+                                    </a>
+                                </td>
+                                <td>{{ job.customer }}</td>
+                                <td>
+                                    {% with status=job.get_status %}
+                                        <span class="badge badge-pill bg-{{ status.1 }} radius-100">{{ status.0 }}</span>
+                                    {% endwith %}                            
+                                </td>
+                                <td>{{ job.last_modified_date.date }}</td>
+                                <td>
+                                    <div class="d-flex align-items-center">
+                                        
+                                        <a href="{% url 'job_management:single-job' job.id %}"  title="{% trans 'View Job' %}" id="" class="d-flex align-items-center btn btn-primary btn-sm mx-1" role="button">
+                                            <i class="material-icons my-0 py-0 fs-6">visibility</i>
+                                        </a>
+                                        <!-- <a href="" title="{% trans 'Edit Device' %}" id="" class="d-flex align-items-center btn btn-secondary btn-sm mx-1" role="button">
+                                            <i class="material-icons my-0 py-0 fs-6">edit</i>
+                                        </a>
+                                        <a href="" title="{% trans 'Delete Device' %}" class="d-flex align-items-center btn btn-outline-danger btn-sm mx-1" role="button">
+                                            <i class="material-icons my-0 py-0 fs-6">delete</i>
+                                        </a> -->
+                                    
+                                        
+                                    </div>
+        
+                                </td>
+                            </tr>
+                        
+        
+                        {% endfor %}
+                        
+                    </tbody>
+                </table>
+
+
+                <div class="row px-3">
+                    <div class="col-sm-6 d-flex align-items-center">
+                        <p class="my-0">Showing <b>{{ jobs.start_index }} - {{ jobs.end_index }}</b> of {{ jobs.paginator.count }} entries.</p>
+                    </div>
+                
+                    <div class="col-sm-6 d-flex justify-content-end">
+                        {% if jobs.has_other_pages %}
+                            <nav aria-label="Page navigation">
+                                <ul class="pagination">
+                                    {% if jobs.has_previous %}
+                                        <li class="page-item">
+                                            <a class="page-link" href="?q={{ request.GET.q }}&page=1" aria-label="First">
+                                                <span aria-hidden="true">&laquo;</span>
+                                            </a>
+                                        </li>
+                                        <li class="page-item">
+                                            <a class="page-link" href="?q={{ request.GET.q }}&page={{ jobs.previous_page_number }}" aria-label="Previous">
+                                                <span aria-hidden="true">&lsaquo;</span>
+                                            </a>
+                                        </li>
+                                    {% endif %}
+                
+                                    <li class="page-item disabled"><span class="page-link">Page {{ jobs.number }} of {{ jobs.paginator.num_pages }}</span></li>
+                
+                                    {% if jobs.has_next %}
+                                        <li class="page-item">
+                                            <a class="page-link" href="?q={{ request.GET.q }}&page={{ jobs.next_page_number }}" aria-label="Next">
+                                                <span aria-hidden="true">&rsaquo;</span>
+                                            </a>
+                                        </li>
+                                        <li class="page-item">
+                                            <a class="page-link" href="?q={{ request.GET.q }}&page={{ jobs.paginator.num_pages }}" aria-label="Last">
+                                                <span aria-hidden="true">&raquo;</span>
+                                            </a>
+                                        </li>
+                                    {% endif %}
+                                </ul>
+                            </nav>
+                        {% endif %}
+                    </div>
+                </div>
+            
+            </div>
+          
+
+
+            
+        </div>
+    </div>
+
+
+</div>
+
+
+
+
+{% endblock content %}

@@ -1,0 +1,84 @@
+<nav id="sidebarMenu" class=" col-md-3 col-lg-2 d-md-block bg-light sidebar collapse">
+
+    <div class="position-sticky pt-4">
+        <ul class="nav flex-column mt-2">
+            
+            <li class="nav-item" title="Home">
+                <a class="nav-link {% if page == 'bays' %} active bg-primary text-white{% endif %}"
+                    href="#">
+                    <div class="d-flex align-items-center">
+                        <span class="material-icons" style="font-size: 20px;">
+                            home
+                        </span>
+                        <span class="mx-2">Dashboard</span>
+            
+                    </div>
+                </a>
+            </li>
+
+            <li class="nav-item" title="Home">
+                <a class="nav-link {% if page == 'bays' %} active bg-primary text-white{% endif %}"
+                    href="#">
+                    <div class="d-flex align-items-center">
+                        <span class="material-icons" style="font-size: 20px;">
+                            add_road
+                        </span>
+                        <span class="mx-2">Bays</span>
+            
+                    </div>
+                </a>
+            </li>
+
+
+            <li class="nav-item" title="Profile">
+                <a class="nav-link {% if page == 'bookings' %} active bg-primary text-white{% endif %}"
+                    href="#">
+                    <div class="d-flex align-items-center">
+                        <span class="material-icons" style="font-size: 20px;">
+                            fact_check
+                        </span>
+                        <span class="mx-2">My Bookings</span>
+            
+                    </div>
+                </a>
+            </li>
+
+
+            <li class="nav-item" title="Profile">
+                <a class="nav-link {% if page == 'profile' %} active bg-primary text-white{% endif %}"
+                    href="#">
+                    <div class="d-flex align-items-center">
+                        <span class="material-icons" style="font-size: 20px;">
+                            person
+                        </span>
+                        <span class="mx-2">Profile</span>
+            
+                    </div>
+                </a>
+            </li>
+            
+        </ul>
+
+ 
+
+        <hr class="mx-3">
+
+        <a href="{% url 'logout' %}" title="Logout" class="text-decoration-none" style="width: 100%;">
+            <div class="d-grid gap-2 px-3">
+                <button class="btn btn-secondary d-flex align-items-center justify-content-center" type="submit">
+                    <div class="d-flex align-items-center">
+                        <i class="material-icons mx-1">logout</i>
+                        Logout
+                    </div>
+                </button>
+            </div>
+        </a>
+    </div>
+</nav>
+
+
+<script>
+    let id = 'folder_{{ folder.id }}';
+    document.getElementById(id).scrollIntoView();
+
+</script>

@@ -1,0 +1,147 @@
+{% load i18n %}
+
+<nav class="sb-sidenav accordion sb-sidenav-light border" id="sidenavAccordion">
+    <div class="sb-sidenav-menu">
+        <div class="nav">
+   
+            <div class="sb-sidenav-menu-heading">{% trans 'Dashboard' %}</div>
+       
+            <a class="nav-link text-decoration-none text-dark {% if page == 'home' %}active-link{% endif %}" href="{% url 'accounts:home' %}">
+                <div class="sb-nav-link-icon  text-decoration-none  {% if page == 'home' %}text-dark{% endif %}"><i class="material-icons mt-1">home</i></div>
+                {% trans 'home' %}
+            </a>
+
+            <a class="nav-link d-flex align-items-center  text-decoration-none text-dark {% if page == 'employee' %}active-link{% endif %}" href="{% url 'accounts:all-employees' %}">
+                <div class="sb-nav-link-icon text-decoration-none {% if page == 'employee' %}text-dark{% endif %}"><i class="material-icons mt-1">diversity_3</i></div>
+                {% trans 'employees' %}
+            </a>
+
+            <a class="nav-link d-flex align-items-center  text-decoration-none text-dark {% if page == 'customer' %}active-link{% endif %}" href="{% url 'accounts:all-customers' %}">
+                <div class="sb-nav-link-icon   text-decoration-none {% if page == 'customer' %}text-dark{% endif %}"><i class="material-icons mt-1">groups</i></div>
+                {% trans 'customers' %}
+            </a>
+
+            <a class="nav-link   text-decoration-none text-dark {% if page == 'job' %}active-link{% endif %}" href="{% url 'job_management:job-home' %}">
+                <div class="sb-nav-link-icon   text-decoration-none  {% if page == 'job' %}text-dark{% endif %}"><i class="material-icons mt-1">work</i></div>
+                {% trans 'Jobs' %}
+            </a>
+
+            <a class="nav-link   text-decoration-none text-dark {% if page == 'assignment' %}active-link{% endif %}" href="{% url 'job_management:job-assignments' %}">
+                <div class="sb-nav-link-icon   text-decoration-none {% if page == 'assignment' %}text-dark{% endif %}"><i class="material-icons mt-1">assignment</i></div>
+                {% trans 'Job Assingments' %}
+            </a>
+
+            <a class="nav-link  text-decoration-none text-dark {% if page == 'timesheet' %}active-link{% endif %}" href="{% url 'work_tracker:timesheet' %}">
+                <div class="sb-nav-link-icon text-decoration-none {% if page == 'timesheet' %}text-dark{% endif %}"><i class="material-icons mt-1">timer</i></div>
+                {% trans 'Timesheet' %}
+            </a>
+            
+            <a class="nav-link d-flex align-items-center text-decoration-none text-dark" href="{% url 'accounts:logout' %}">
+                <div class="sb-nav-link-icon"><i class="material-icons mt-1">logout</i></div>
+                {% trans 'Logout' %}
+            </a>
+<!-- 
+            <div class="sb-sidenav-menu-heading">Interface</div>
+            <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
+                <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
+                Layouts
+                <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+            </a>
+            <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
+                <nav class="sb-sidenav-menu-nested nav">
+                    <a class="nav-link" href="layout-static.html">Static Navigation</a>
+                    <a class="nav-link" href="layout-sidenav-light.html">Light Sidenav</a>
+                </nav>
+            </div>
+            <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapsePages" aria-expanded="false" aria-controls="collapsePages">
+                <div class="sb-nav-link-icon"><i class="fas fa-book-open"></i></div>
+                Pages
+                <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+            </a>
+            <div class="collapse" id="collapsePages" aria-labelledby="headingTwo" data-bs-parent="#sidenavAccordion">
+                <nav class="sb-sidenav-menu-nested nav accordion" id="sidenavAccordionPages">
+                    <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#pagesCollapseAuth" aria-expanded="false" aria-controls="pagesCollapseAuth">
+                        Authentication
+                        <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                    </a>
+                    <div class="collapse" id="pagesCollapseAuth" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordionPages">
+                        <nav class="sb-sidenav-menu-nested nav">
+                            <a class="nav-link" href="login.html">Login</a>
+                            <a class="nav-link" href="register.html">Register</a>
+                            <a class="nav-link" href="password.html">Forgot Password</a>
+                        </nav>
+                    </div>
+                    <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#pagesCollapseError" aria-expanded="false" aria-controls="pagesCollapseError">
+                        Error
+                        <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                    </a>
+                    <div class="collapse" id="pagesCollapseError" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordionPages">
+                        <nav class="sb-sidenav-menu-nested nav">
+                            <a class="nav-link" href="401.html">401 Page</a>
+                            <a class="nav-link" href="404.html">404 Page</a>
+                            <a class="nav-link" href="500.html">500 Page</a>
+                        </nav>
+                    </div>
+                </nav>
+            </div>
+            <div class="sb-sidenav-menu-heading">Addons</div>
+            <a class="nav-link" href="charts.html">
+                <div class="sb-nav-link-icon"><i class="fas fa-chart-area"></i></div>
+                Charts
+            </a>
+            <a class="nav-link" href="tables.html">
+                <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
+                Tables
+            </a> -->
+        </div>
+    </div>
+    <!-- <div class="sb-sidenav-footer">
+        <div class="card text-left mb-2 border-0" style="display: none; color: #005e3e; background-color: #28a77d44;" id="timer-section">
+          <div class="card-body text-center">
+            <div class="d-flex align-items-center text-center justify-content-center">
+                <i class="material-icons fs-5 mx-2">timer</i>
+                <p class="card-text fs-6 my-0 py-0 mx-1 fw-bold" id="timer"></p>
+                <i title="Stop Timer" class="material-icons fs-5 mx-2 text-danger">stop_circle</i>
+            </div>
+          </div>
+        </div>
+
+        <div class="small">{% trans 'Logged in as:' %}</div>
+        {{ user.first_name }}
+    </div> -->
+</nav>
+
+
+<script>
+    // Function to calculate and update timer
+    function updateTimer(startTime) {
+        // Get the current time
+        var currentTime = new Date().getTime();
+
+        // Calculate the time difference
+        var timeDifference = currentTime - startTime;
+
+        // Calculate hours, minutes, and seconds
+        var hours = Math.floor(timeDifference / (1000 * 60 * 60));
+        var minutes = Math.floor((timeDifference % (1000 * 60 * 60)) / (1000 * 60));
+        var seconds = Math.floor((timeDifference % (1000 * 60)) / 1000);
+
+        // Format the hours, minutes, and seconds to always display two digits
+        hours = ('0' + hours).slice(-2);
+        minutes = ('0' + minutes).slice(-2);
+        seconds = ('0' + seconds).slice(-2);
+
+        // Display the timer in the "timer" div
+        document.getElementById("timer").innerHTML = hours + " : " + minutes + " : " + seconds;
+    }
+
+    // Set the start datetime from Django database (replace with your actual datetime string)
+    var startTimeString = "2024-02-18T12:00:00"; // Example datetime string from Django database
+    var startTime = new Date(startTimeString).getTime();
+
+    // Update the timer every second
+    var timerInterval = setInterval(function() {
+        updateTimer(startTime);
+        $("#timer-section").show();
+    }, 1000);
+</script>

@@ -1,0 +1,99 @@
+{% extends 'inc/theme/base.inc.html' %}
+{% load static %}
+{% load i18n %}
+{% load bootstrap5 %}
+{% block title %}Edit profile ({{ agent.full_name }}){% endblock %}
+
+{% block content %}
+
+
+<div>
+    <div class="row">
+        
+        <div class="col-sm-8">
+            
+            <div class="d-flex mt-4 mb-2 align-items-center">
+                <!-- <img src="{{ user.profile_picture.url }}" class="bg-white" style="background-color: white; width: 50px; height: 50px; border-radius: 100px;" alt=""> -->
+                
+                <div class="d-flex align-items-center">
+                    <h2 class="my-0">{{ user.first_name }} {{ user.last_name }}</h2>
+                    <span class="badge badge-pill mx-3 bg-success radius-100">Manager</span>
+                </div>
+
+
+            </div>
+            <ol class="breadcrumb mb-4">
+                <li class="breadcrumb-item">home</li>
+                <li class="breadcrumb-item">Profile</li>
+                <li class="breadcrumb-item">Edit</li>
+            </ol>
+           
+        </div>
+
+
+        <div class="col-sm-4 d-flex align-items-center justify-content-sm-end">
+            <a href="{% url 'accounts:change-profile-password' %}" title="Change password" class="d-flex align-items-center btn btn-success m-1" role="button">
+                <i class="material-icons my-0 py-1 fs-5" style="margin-right: 10px;">password</i>
+                Change Password
+            </a>
+            
+            
+
+        </div>
+
+      
+    </div>
+
+    
+    <form action="" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class="card mb-4 my-shadow">
+            <div class="card-header">
+                Profile Update Form
+            </div>
+            <div class="card-body">
+
+                <div class="row">
+                    {% for field in form %}
+                        <div class="col-sm-6">
+                            {% bootstrap_field field %}
+                        </div>
+                    {% endfor %}
+                </div>
+                
+                <p class="text-dark fw-bold">Note: Username can't be changed</p>
+
+                <button type="submit" name="" id="" class="btn btn-primary ">Save</button>
+                
+            </div>
+        </div>
+
+    </form>
+
+    
+
+
+</div>
+
+
+
+<script>
+    $(".django_bootstrap5-error").addClass("is-invalid");
+    $(".is-valid").removeClass("is-valid");
+    $("input").removeAttr("placeholder");
+    // Move the file input element to the top of its parent container
+    $('#id_profile_picture').insertAfter('.mb-3 label[for="id_profile_picture"]');
+    // Remove the <br> tag
+    $('.mb-3 br').remove();
+    // Remove the word "Change:"
+    $('.mb-3').contents().filter(function() {
+        return this.nodeType === 3 && $(this).text().trim() === 'Change:';
+    }).remove();
+    $("#id_password").parent().parent().remove();
+    // $(document).ready(function() {
+        
+    // });
+    
+</script>
+
+{% endblock content %}

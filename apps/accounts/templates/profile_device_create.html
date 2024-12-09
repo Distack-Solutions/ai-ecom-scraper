@@ -1,0 +1,96 @@
+{% extends 'inc/theme/base.inc.html' %}
+{% load static %}
+{% load i18n %}
+{% load django_bootstrap5 %}
+
+{% block title %}{% trans 'Create Device' %}{% endblock %}
+
+
+{% block content %}
+
+
+<div>
+    <div class="row">
+        
+
+        <div class="col-sm-8">
+            <h2 class="mt-4">{% trans 'Create Device' %}</h2>
+            <ol class="breadcrumb mb-4">
+                <li class="breadcrumb-item">{% trans 'home' %}</li>
+                <li class="breadcrumb-item">{% trans 'Profile' %}</li>
+                <li class="breadcrumb-item">{% trans 'devices' %}</li>
+                <li class="breadcrumb-item">{% trans 'create' %}</li>
+            </ol>
+        </div>
+
+        <div class="col-sm-4 d-flex align-items-center justify-content-sm-end">
+           <!-- <div class="card text-left">
+             <div class="card-body">
+               <p class="my-1 py-0">Selected User</p>
+               <h5>Syed Maaz Hassan</h5>
+             </div>
+           </div> -->
+
+        </div>
+    </div>
+
+ 
+    <div class="row mx-1 mb-3">
+        
+
+        <div class="col-sm-4 px-0">
+            <div class="device-creation-step text-center active" id="device-details-step-header">
+                <p class="step-circle">1</p>
+                <p class="px-3">{% trans 'Add Device Details' %}</p>
+            </div>
+        </div>
+
+        <div class="col-sm-4 px-0">
+            <div class="device-creation-step text-center " id="review-info-step-header">
+                <p class="step-circle">2</p>
+                <p class="px-3">{% trans 'Review Info' %}</p>
+            </div>
+        </div>
+
+        <div class="col-sm-4 px-0">
+            <div class="device-creation-step text-center" id="finish-setup-step-header">
+                <p class="step-circle">3</p>
+                <p class="px-3">{% trans 'Finish Setup' %}</p>
+            </div>
+        </div>
+    </div>
+
+    
+    <form action='{% url "device_management:create-device-details" %}' method="post" id="device-form">
+        {% csrf_token %}
+
+        <!-- Device details -->
+        {% include 'inc/device/device-details.inc.html' %}
+
+        <!-- Review info -->
+        {% include 'inc/device/review-info.inc.html' %}
+            
+    </form>
+
+
+    <!-- Finish setup -->
+    {% include 'inc/device/finish-setup.inc.html' %}
+
+
+
+
+</div>
+
+
+
+
+<script src="{% static 'assets/js/device.js' %}"></script>
+
+<script>
+    $("#device-configuration").hide();
+    selected_user = {{ selected_user|safe }};
+    select_default_user();
+    console.log(selected_user);
+</script>
+
+{% endblock content %}

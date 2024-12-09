@@ -1,0 +1,278 @@
+{% extends 'inc/theme/base.inc.html' %}
+{% load static %}
+{% load i18n %}
+{% block title %}{% trans 'Assignments Details'|capfirst %}{% endblock %}
+
+{% block custom_css %}
+<style>
+    .sessions{
+        transition-duration: 1s;
+    }
+    .highlighted-session {
+        transition-duration: 0.25s;
+        border-color: #f4f4bc;
+        background-color: #f4f4bc !important; /* Yellowish off white */
+        transition: background-color 0.5s ease !important; /* Smooth transition */
+    }
+</style>
+
+
+{% endblock custom_css %}
+
+{% block content %}
+
+
+<div>
+    <div class="row">
+        <div class="col-sm-8">
+            <h2 class="mt-4">{% trans 'Job Assignments Details' %}</h2>
+            <ol class="breadcrumb mb-4">
+                <li class="breadcrumb-item">{% trans 'home' %}</li>
+                <li class="breadcrumb-item">{% trans 'Jobs' %}</li>
+                <li class="breadcrumb-item">{% trans 'Assignments' %}</li>
+                <li class="breadcrumb-item">{{ assignment.id }}</li>
+            </ol>
+        </div>
+
+        {% if timesheet.status and timesheet.status == 'Pending' %}
+        <div class="col-sm-4 d-flex align-items-center justify-content-sm-end">
+            <a href="{% url 'job_management:approve-job-assignment' assignment.id %}" class="d-flex align-items-center btn btn-success px-3" role="button">
+                <i class="material-icons my-0 py-1 fs-5" style="margin-right: 10px;">check_circle</i>
+                <span>Approve</span>
+            </a>
+        </div>
+        {% endif %}
+    </div>
+
+
+    <div class="row align-items-stretch">
+        <div class="col-sm-4">
+            <div class="card text-left my-shadow">
+              <div class="card-header">
+                Job Details
+              </div>
+              <div class="card-body">
+
+                <div class="my-4 mt-2">
+                    <p class="label-title">Job</p>
+                    <span>
+                        {{ assignment.job }}
+                    </span>
+                </div>
+
+                <div class="my-4">
+                    <p class="label-title">Employee</p>
+                    <span>
+                        {{ assignment.employee }}
+                    </span>
+                </div>
+
+                <div class="my-4">
+                    <p class="label-title">Date</p>
+                    <span>
+                        {{ assignment.date }}
+                    </span>
+                </div>
+
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="my-2">
+                            <p class="label-title">Start Time</p>
+                            <span>
+                                {{ assignment.start_time }}
+                            </span>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-6">
+                        <div class="my-2">
+                            <p class="label-title">Finish Time</p>
+                            <span>
+                                {{ assignment.finish_time }}
+                            </span>
+                        </div>
+                    </div>
+                </div>
+
+                
+                <div class="my-4">
+                    <p class="label-title">Assigned By</p>
+                    <span>
+                        {{ assignment.assigned_by }}
+                    </span>
+                </div>
+
+                <div class="my-4 mb-2">
+                    <p class="label-title">Created at</p>
+                    <span>
+                        {{ assignment.created_at }}
+                    </span>
+                </div>
+                
+               
+
+
+              </div>
+            </div>
+        </div>
+
+        <div class="col-sm-8">
+            <div class="h-100">
+              <!-- <div class="card-header">
+                Timesheet Details
+              </div> -->
+              <div class="">
+                    
+                {% if timesheet %}
+                    {% with sessions=timesheet.get_sessions %}
+                        <div>
+                            <div class="row text-dark">
+                                <div class="col-sm-4">
+                                    <div class="card text-left border-0" style="color: #01505d; background-color: #17a3b83e;">
+                                        <div class="card-body">
+                                            <p class="card-text mb-2 d-flex align-items-center">
+                                                <i class="material-icons">timer</i> 
+                                                <span class="mx-2">Total Duration</span>
+                                            </p>
+                                            <h4 class="card-title mb-0" style="text-transform: initial;">{{ timesheet.get_duration }}</h4>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                                <div class="col-sm-4">
+                                    <div class="card text-left border-0" style="color: #320d6e; background-color: #6710f233;">
+                                        <div class="card-body">
+                                            <p class="card-text mb-2 d-flex align-items-center">
+                                                <i class="material-icons">work_history</i> 
+                                                <span class="mx-2">Work Sessions</span>
+                                            </p>
+                                            <h4 class="card-title mb-0" style="text-transform: initial;">{{ sessions.count }}</h4>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="col-sm-4">
+                                {% if timesheet.status == 'Approved' %}
+                                    <div class="card text-left border-0" style="color: #005c15; background-color: #28a74644;">
+                                {% else %}
+                                    <div class="card text-left border-0" style="color: #505050; background-color: #c2c2c291;">
+                                {% endif %}
+                                        <div class="card-body">
+                                            <p class="card-text mb-2 d-flex align-items-center">
+                                                <i class="material-icons">{% if timesheet.status == 'Approved' %}check_circle{% else %}error{% endif %}</i> 
+
+                                                <span class="mx-2">Status</span>
+                                            </p>
+                                            <h4 class="card-title mb-0" style="text-transform: initial;">{{ timesheet.status }}</h4>
+                                        </div>
+                                    </div>
+                                </div>
+                             
+                            
+                                
+                            </div>
+
+                            <div>
+                                <div class="d-flex my-4  align-items-center">
+                                    <i class="material-icons">format_list_bulleted</i>
+                                    <h4 class="mx-2 my-0">Logged Sessions</h4>
+                                </div>
+
+                                <div class="table-parent my-shadow pb-0">
+                                        
+                                    <table  class="table">
+                                        <thead>
+                                            <tr>
+                                                <th>{% trans 'Date' %}</th>
+                                                <th>{% trans 'Duration' %}</th>
+                                                <th>{% trans 'Logged By' %}</th>
+                                                <th>{% trans 'Status' %}</th>
+                                                <!-- <th>{% trans 'Actions' %}</th> -->
+                                            </tr>
+                                        </thead>
+                                    
+                                        <tbody>
+                                            {% if not sessions %}
+                                            <tr class="text-center">
+                                                <td colspan="4" class="text-center">
+                                                    No Timesheet Entries
+                                                </td>
+                                            </tr>
+                                            {% endif %}
+
+                                            {% for session in sessions %}
+                                            
+                                                <tr id="session-{{ session.id }}" class="sessions">
+                                                    <!-- <td>{{ session.id }} {{ request.GET.session }}</td> -->
+                                                    <td>{{ session.end_time.date }}</td>
+                                                    <td>{{ session.get_duration }} 
+                                                        <!-- <br>({{ session.start_time }} - {{ session.end_time }}) -->
+                                                    </td>
+                                                    <td>{{ session.created_by }}</td>
+                                                    <td>
+                                                        {% if session.timesheet.status == "Pending" %}
+                                                            <span class="badge badge-pill badge-primary bg-secondary radius-100">{{ session.timesheet.status }}</span>
+                                                        {% else %}
+                                                            <span class="badge badge-pill badge-primary bg-success radius-100">{{ session.timesheet.status }}</span>
+                                                        {% endif %}
+
+
+                                                    </td>
+                                                    <!-- <td>
+                                                        <div class="d-flex align-items-center">
+                                                            
+                                                            <a href=""  title="{% trans 'View Job' %}" id="" class="d-flex align-items-center btn btn-primary btn-sm mx-1" role="button">
+                                                                <i class="material-icons my-0 py-0 fs-6">visibility</i>
+                                                            </a>
+                                                            
+                                                        
+                                                            
+                                                        </div>
+                            
+                                                    </td> -->
+                                                </tr>
+                                            
+                            
+                                            {% endfor %}
+                                            
+                                        </tbody>
+                                    </table>
+
+                                
+                                </div>
+
+                            </div>
+                            
+                        </div>
+
+                    {% endwith %}
+
+                {% else %}
+                    <div class="text-center mt-5">
+                        <img style="width: 200px;" src="{% static 'img/no-data.webp' %}" alt="">
+                        <h5 class="text-secondary display-1 fs-3">No work session logged under this job assignment</h5>
+                    </div>
+                {% endif %}
+      
+              </div>
+            </div>
+
+        </div>
+    </div>
+
+
+</div>
+
+<script>
+    $(document).ready(function() {
+        let session = '{{ request.GET.session }}';
+        $(`#session-${session}`).addClass('highlighted-session');
+        setTimeout(function() {
+            $('.sessions.highlighted-session').removeClass('highlighted-session'); // Remove highlight after 1 second
+        }, 1500);
+    });
+</script>
+
+
+{% endblock content %}

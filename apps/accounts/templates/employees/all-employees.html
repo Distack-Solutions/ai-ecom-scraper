@@ -1,0 +1,157 @@
+{% extends 'inc/theme/base.inc.html' %}
+{% load static %}
+{% load i18n %}
+{% block title %}{% trans 'all employees'|capfirst %}{% endblock %}
+
+
+{% block content %}
+
+
+<div>
+    <div class="row">
+        <div class="col-sm-6">
+            <h2 class="mt-4">{% trans 'all employees' %}</h2>
+            <ol class="breadcrumb mb-4">
+                <li class="breadcrumb-item">{% trans 'home' %}</li>
+                <li class="breadcrumb-item">{% trans 'employees' %}</li>
+            </ol>
+        </div>
+
+        <div class="col-sm-6 d-flex align-items-center justify-content-sm-end">
+            <form action="" method="get" class="w-50">
+                <div class="input-group">
+                    <input type="text" name="q" value="{{ request.GET.q }}" class="form-control" placeholder="Search Employees"  aria-describedby="button-addon2">
+                    <button class="btn btn-primary d-flex align-items-center" type="submit" id="button-addon2">
+                        <i class="material-icons">search</i>
+                    </button>
+                </div>    
+            </form>
+        </div>
+    </div>
+
+
+
+    <div class="">
+        
+        <div class="table-parent">
+            
+
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>{% trans 'ID' %}</th>
+                        <th>{% trans 'Name' %}</th>
+                        <th>{% trans 'Type' %}</th>
+                        <th>{% trans 'Status' %}</th>
+                        <th>{% trans 'Address' %}</th>
+                        <th>{% trans 'Actions' %}</th>
+                    </tr>
+                </thead>
+                
+                
+                <tbody>
+
+                    {% if not employees %}
+                    <tr class="text-center">
+                        <td colspan="6" class="text-center">
+                            No Employees Entries
+                        </td>
+                    </tr>
+                    {% endif %}
+                    
+                    {% for employee in employees %}
+                    
+                        <tr>
+                            <td>{{ employee.id }}</td>
+                            <td>
+                                <a class="text-decoration-none text-dark" href="">
+                                    {{ employee }}
+                                </a>
+                            </td>
+                            <td>
+                                {% if employee.is_individual %}
+                                    <span class="badge badge-pill radius-100 badge-individual">Individual</span>
+                                {% else %}
+                                    <span class="badge badge-pill radius-100 badge-business">Business</span>
+                                {% endif %}
+
+                            </td>
+                            <td>
+                                {% if employee.is_active %}
+                                    <span class="badge badge-pill radius-100 badge-success bg-success">Active</span>
+                                {% else %}
+                                    <span class="badge badge-pill radius-100 badge-success bg-secondary">Inactive</span>
+                                {% endif %}
+                            </td>
+                            <td>{{ employee.address }}</td>
+                            <td>
+                                <div class="d-flex align-items-center">
+                                    
+                                    <a href="{% url 'accounts:single-employee' employee.id %}"  title="{% trans 'View employee' %}" id="" class="d-flex align-items-center btn btn-primary btn-sm mx-1" role="button">
+                                        <i class="material-icons my-0 py-0 fs-6">visibility</i>
+                                    </a>
+                                   
+                                    
+                                </div>
+    
+                            </td>
+                        </tr>
+                    
+    
+                    {% endfor %}
+                    
+                </tbody>
+            </table>
+
+            <div class="row px-3">
+                <div class="col-sm-6 d-flex align-items-center">
+                    <p class="my-0">Showing <b>{{ employees.start_index }} - {{ employees.end_index }}</b> of {{ employees.paginator.count }} entries.</p>
+                </div>
+            
+                <div class="col-sm-6 d-flex justify-content-end">
+                    {% if employees.has_other_pages %}
+                        <nav aria-label="Page navigation">
+                            <ul class="pagination">
+                                {% if employees.has_previous %}
+                                    <li class="page-item">
+                                        <a class="page-link" href="?q={{ request.GET.q }}&page=1" aria-label="First">
+                                            <span aria-hidden="true">&laquo;</span>
+                                        </a>
+                                    </li>
+                                    <li class="page-item">
+                                        <a class="page-link" href="?q={{ request.GET.q }}&page={{ employees.previous_page_number }}" aria-label="Previous">
+                                            <span aria-hidden="true">&lsaquo;</span>
+                                        </a>
+                                    </li>
+                                {% endif %}
+            
+                                <li class="page-item disabled"><span class="page-link">Page {{ employees.number }} of {{ employees.paginator.num_pages }}</span></li>
+            
+                                {% if employees.has_next %}
+                                    <li class="page-item">
+                                        <a class="page-link" href="?q={{ request.GET.q }}&page={{ employees.next_page_number }}" aria-label="Next">
+                                            <span aria-hidden="true">&rsaquo;</span>
+                                        </a>
+                                    </li>
+                                    <li class="page-item">
+                                        <a class="page-link" href="?q={{ request.GET.q }}&page={{ employees.paginator.num_pages }}" aria-label="Last">
+                                            <span aria-hidden="true">&raquo;</span>
+                                        </a>
+                                    </li>
+                                {% endif %}
+                            </ul>
+                        </nav>
+                    {% endif %}
+                </div>
+            </div>
+            
+        </div>
+    </div>
+
+
+</div>
+
+
+
+
+{% endblock content %}

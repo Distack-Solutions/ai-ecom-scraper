@@ -1,0 +1,48 @@
+{% extends 'inc/theme/base.inc.html' %}
+{% load static %}
+{% load i18n %}
+{% block title %}{{ customer.full_name }}{% endblock %}
+
+{% block content %}
+
+
+<div>
+    <div class="row">
+        
+        <div class="col-sm-8">
+            <div class="d-flex mt-4 mb-2 align-items-center">
+                <img style="border: solid 1px #e3e3e3; width: 45px; height: 45px; border-radius: 100px;" src="{{ customer.profile_picture.url }}" alt="Profile picture">
+                <h2 class="mx-2 my-0">{{ customer.full_name }}</h2>
+            </div>
+            <ol class="breadcrumb mb-4">
+                <li class="breadcrumb-item">{% trans 'home' %}</li>
+                <li class="breadcrumb-item ">{% trans 'Profile' %}</li>
+            </ol>
+        </div>
+
+        <div class="col-sm-4 d-flex align-items-center justify-content-sm-end">
+            <a title="{% trans 'Create Device' %}" href="{% url 'accounts:device_create' %}" class="d-flex align-items-center btn btn-success m-1" role="button">
+                <i class="material-icons my-0 py-1 fs-5">assignment_add</i>
+            </a>
+
+            <a title="{% trans 'Change password' %}" href="{% url 'accounts:password_change' %}" class="d-flex align-items-center btn btn-outline-dark m-1" role="button">
+                <i class="material-icons my-0 py-1 fs-5">password</i>
+            </a>
+            
+            <a title="{% trans 'Edit Profile' %}"  href="{% url 'accounts:profile_edit' %}"  class="d-flex align-items-center btn btn-secondary m-1" role="button">
+                <i class="material-icons my-0 py-1 fs-5">edit</i>
+            </a>
+
+        </div>
+    </div>
+
+
+    {% include 'inc/customer_profile_sections.html' %}
+
+
+</div>
+
+
+
+
+{% endblock content %}

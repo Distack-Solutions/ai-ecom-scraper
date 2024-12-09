@@ -1,0 +1,51 @@
+{% extends 'inc/base.html' %}
+{% load i18n %}
+{% load static %}
+{% load django_bootstrap5 %}
+{% bootstrap_css %}
+{% bootstrap_messages %}
+
+{% bootstrap_javascript %}
+
+
+
+{% block form_title %}
+    {% trans "Sign in to account" %}
+{% endblock form_title %}
+
+{% block content %}
+
+
+
+<div class="container">
+    <div class="row">
+        <div class="col-sm-4"></div>
+        <div class="col-sm-4">
+            <div>
+                {% include 'inc/msgs.html' %}
+            </div>
+
+            <div class="form border p-4 radius-10 background-light">
+                <form action="" method="post">
+                    {% csrf_token %}
+                    <input type="hidden" value="{{ request.GET.next }}" name="next">
+                    {% bootstrap_form form %}
+                    <div class="d-grid gap-2">
+                        <button class="btn btn-dark" type="submit">{% trans 'Log in' %}</button>
+                    </div>
+                </form>
+            </div>
+
+            <div class="card text-center mt-4">
+              <div class="card-body">
+                <p class="card-text">{% trans  "Don't have you ID? Contact Support" %}
+                {% trans "at contact@corboss-crm.com" %}
+                </p>
+              </div>
+            </div>
+        </div>
+        <div class="col-sm-4"></div>
+    </div>
+</div>
+
+{% endblock content %}

@@ -1,0 +1,140 @@
+{% extends 'inc/theme/base.inc.html' %}
+{% load static %}
+{% load my_tags %}
+{% load i18n %}
+{% block title %}{{ employee }}{% endblock %}
+
+
+{% block content %}
+
+
+<div>
+    <div class="row">
+        
+        <div class="col-sm-8">
+            <div class="mt-4 mb-2">
+            
+
+                <div class="d-flex align-items-center">
+                    <h2 class="my-0">{{ employee }}</h2>
+                    {% if employee.is_active %}
+                        <span class="badge mx-3 badge-pill radius-100 badge-success bg-success">Active</span>
+                    {% else %}
+                        <span class="badge mx-3 badge-pill radius-100 badge-success bg-secondary">Inactive</span>
+                    {% endif %}                      
+                </div>
+            </div>
+            <ol class="breadcrumb mb-4">
+                <li class="breadcrumb-item">{% trans 'home' %}</li>
+                <li class="breadcrumb-item ">{% trans 'employees' %}</li>
+                <li class="breadcrumb-item initial-text">{{ employee }}</li>
+            </ol>
+        </div>
+
+        <div class="col-sm-4 d-flex align-items-center justify-content-sm-end">
+            <a href="{% url 'accounts:change-employee-password' employee.id %}" title="Change password" class="d-flex align-items-center btn btn-success m-1" role="button">
+                <i class="material-icons my-0 py-1 fs-5" style="margin-right: 10px;">password</i>
+                Change Password
+            </a>
+           
+
+        </div>
+    </div>
+    
+
+
+    <div id="employee-details-container" class="sections">
+        <div class="row">
+            <div class="col-sm-12">
+    
+    
+                <div class="card mb-4  my-shadow">
+                    <!-- <div class="card-header">
+                        <i class="fas fa-table me-1"></i>
+                        Devices belongs to all users are listed
+                    </div> -->
+                    <div class="card-header">
+                        {% trans 'Employee Details' %}
+    
+                    </div>
+                    <div class="card-body px-3 p-0 py-1">
+                        <div class="row">
+
+                            {% for field_name, field_value in fields_data.items %}
+                                {% if field_value is not None and field_value %}
+                                    <div class="col-sm-4 my-3">
+                                        
+            
+                                        <div class="my-0">
+                                            <p class="label-title">{{ field_name }}</p>
+                                            <span>
+                                                {% if field_name == 'status' %}
+                                                    {% if employee.is_active %}
+                                                        <span class="badge badge-pill radius-100 badge-success bg-success">Active</span>
+                                                    {% else %}
+                                                        <span class="badge badge-pill radius-100 badge-success bg-secondary">Inactive</span>
+                                                    {% endif %} 
+                                                {% else %}
+                                                    {{ field_value }}
+                                                {% endif %}
+                                            </span>
+                                        </div>
+                                    </div>
+                                {% endif %}
+                            {% endfor %}
+                                            
+
+                            
+                        </div>
+    
+                    </div>
+    
+                    
+                </div>
+    
+               
+    
+    
+            </div>
+    
+            <!-- <div class="col-sm-3">
+                <div class="card text-left my-shadow">
+                  <div class="card-header">
+                    Activity
+                  </div>
+                  <div class="card-body py-0">
+                    {% for history in histories %}
+                    <div class="card text-left border-0 p-0 my-3">
+                      <div class="card-body p-0">
+                        <p class="card-text mb-1">
+                            {{ history.history_user.first_name }} 
+                            <b>
+                                {% if history.history_type == "+" %}
+                                    Created
+                                {% elif history.history_type == "-" %}
+                                    Deleted
+                                {% else %}
+                                    Modified
+                                {% endif %}
+                            </b>
+                            Device
+                        </p>
+                        <label for="">{{ history.history_date }}</label>
+                      </div>
+                    </div>
+                    {% endfor %}
+                    
+                   
+                  </div>
+                </div>
+            </div> -->
+        </div>
+    </div>
+
+   
+
+</div>
+
+
+
+{% endblock content %}
