@@ -7,6 +7,11 @@ app_name = "accounts"
 
 urlpatterns = [
     path('', views.home_view, name='home'),
+    path('process_monitoring', views.process_monitoring, name='process_monitoring'),
+    path('initiate_process', views.initiate_process, name='initiate_process'),
+    path('product_detail', views.product_detail, name='product_detail'),
+    path('product', views.product, name='product'),
+
     path('accounts/profile/', views.my_profile, name='profile'),
     path(
         'accounts/profile/change-password', 
