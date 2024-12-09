@@ -1,0 +1,290 @@
+{% extends 'volt/inc/base.html' %} {% block content %}
+<div class="pt-5 pb-2">
+  <div class="d-flex justify-content-between w-100 flex-wrap">
+    <div class="mb-3 mb-lg-0">
+      <h1 class="h4">Products</h1>
+    </div>
+  </div>
+  <div>
+    <p class="text-center">
+      Filters are here to show only approved, blackisted, or pending products
+    </p>
+  </div>
+</div>
+
+<div class="card border-light shadow-sm mb-4">
+  <div class="card-body">
+    <div class="d-flex align-items-center">
+      <form class="navbar-search form-inline w-25 me-2" id="navbar-search-main">
+        <div class="input-group input-group-merge search-bar">
+          <input
+            type="text"
+            class="form-control"
+            id="topbarInputIconLeft"
+            placeholder="Search"
+            aria-label="Search"
+            aria-describedby="topbar-addon"
+          />
+        </div>
+      </form>
+      <button class="btn btn-dark">Filter</button>
+    </div>
+    <div class="row my-3">
+      <div class="col-sm-6 my-auto">Select Checkbox to view more options</div>
+      <div class="col-sm-6 d-flex justify-content-end">
+        <button type="button" class="btn btn-primary px-4">Approve</button>
+        <button type="button" class="btn btn-primary px-4 mx-2">
+          Blacklist
+        </button>
+        <button type="button" class="btn btn-primary px-4">Delete</button>
+      </div>
+    </div>
+    <div class="form-check">
+      <input
+        class="form-check-input"
+        type="checkbox"
+        value=""
+        id="flexCheckDefault"
+      />
+      <label class="form-check-label" for="flexCheckDefault">
+        Select All
+      </label>
+    </div>
+  </div>
+  <div class="">
+    <div class="card-body">
+      <div class="table-responsive">
+        <table class="table table-centered table-nowrap mb-0">
+          <thead class="thead-light">
+            <tr>
+              <th class="border-0" style="width: 5%">
+                <div class="form-check">
+                  <input
+                    class="form-check-input"
+                    type="checkbox"
+                    value=""
+                    id="flexCheckDefault"
+                  />
+                </div>
+              </th>
+              <th class="border-0" style="width: 15%">Photo</th>
+              <th class="border-0">Name</th>
+              <th class="border-0">Status</th>
+              <th class="border-0">Source Website</th>
+              <th class="border-0">View Product</th>
+            </tr>
+          </thead>
+          <tbody>
+            <!-- Item -->
+            <tr class="border-bottom align-middle">
+              <td class="border-0">
+                <div class="form-check">
+                  <input
+                    class="form-check-input"
+                    type="checkbox"
+                    value=""
+                    id="flexCheckDefault"
+                  />
+                </div>
+              </td>
+              <td class="border-0 fw-bold">
+                <img
+                  src="/img/R (3).jpg"
+                  class="img-fluid rounded"
+                  style="width: 100px; height: 100px; object-fit: cover"
+                  alt=""
+                />
+              </td>
+              <td class="border-0 fw-bold">Name</td>
+              <td class="border-0 fw-bold">Status</td>
+              <td class="border-0 fw-bold">Source Website</td>
+              <td class="border-0 fw-bold">View Product</td>
+            </tr>
+
+            <tr class="border-bottom align-middle">
+              <td class="border-0">
+                <div class="form-check">
+                  <input
+                    class="form-check-input"
+                    type="checkbox"
+                    value=""
+                    id="flexCheckDefault"
+                  />
+                </div>
+              </td>
+              <td class="border-0 fw-bold">
+                <img
+                  src="/img/R (3).jpg"
+                  class="img-fluid rounded"
+                  style="width: 100px; height: 100px; object-fit: cover"
+                  alt=""
+                />
+              </td>
+              <td class="border-0 fw-bold">Name</td>
+              <td class="border-0 fw-bold">Status</td>
+              <td class="border-0 fw-bold">Source Website</td>
+              <td class="border-0 fw-bold">View Product</td>
+            </tr>
+            <tr class="border-bottom align-middle">
+              <td class="border-0">
+                <div class="form-check">
+                  <input
+                    class="form-check-input"
+                    type="checkbox"
+                    value=""
+                    id="flexCheckDefault"
+                  />
+                </div>
+              </td>
+              <td class="border-0 fw-bold">
+                <img
+                  src="/img/R (3).jpg"
+                  class="img-fluid rounded"
+                  style="width: 100px; height: 100px; object-fit: cover"
+                  alt=""
+                />
+              </td>
+              <td class="border-0 fw-bold">Name</td>
+              <td class="border-0 fw-bold">Status</td>
+              <td class="border-0 fw-bold">Source Website</td>
+              <td class="border-0 fw-bold">View Product</td>
+            </tr>
+            <tr class="border-bottom align-middle">
+              <td class="border-0">
+                <div class="form-check">
+                  <input
+                    class="form-check-input"
+                    type="checkbox"
+                    value=""
+                    id="flexCheckDefault"
+                  />
+                </div>
+              </td>
+              <td class="border-0 fw-bold">
+                <img
+                  src="/img/R (3).jpg"
+                  class="img-fluid rounded"
+                  style="width: 100px; height: 100px; object-fit: cover"
+                  alt=""
+                />
+              </td>
+              <td class="border-0 fw-bold">Name</td>
+              <td class="border-0 fw-bold">Status</td>
+              <td class="border-0 fw-bold">Source Website</td>
+              <td class="border-0 fw-bold">View Product</td>
+            </tr>
+            <tr class="border-bottom align-middle">
+              <td class="border-0">
+                <div class="form-check">
+                  <input
+                    class="form-check-input"
+                    type="checkbox"
+                    value=""
+                    id="flexCheckDefault"
+                  />
+                </div>
+              </td>
+              <td class="border-0 fw-bold">
+                <img
+                  src="/img/R (3).jpg"
+                  class="img-fluid rounded"
+                  style="width: 100px; height: 100px; object-fit: cover"
+                  alt=""
+                />
+              </td>
+              <td class="border-0 fw-bold">Name</td>
+              <td class="border-0 fw-bold">Status</td>
+              <td class="border-0 fw-bold">Source Website</td>
+              <td class="border-0 fw-bold">View Product</td>
+            </tr>
+            <tr class="border-bottom align-middle">
+              <td class="border-0">
+                <div class="form-check">
+                  <input
+                    class="form-check-input"
+                    type="checkbox"
+                    value=""
+                    id="flexCheckDefault"
+                  />
+                </div>
+              </td>
+              <td class="border-0 fw-bold">
+                <img
+                  src="/img/R (3).jpg"
+                  class="img-fluid rounded"
+                  style="width: 100px; height: 100px; object-fit: cover"
+                  alt=""
+                />
+              </td>
+              <td class="border-0 fw-bold">Name</td>
+              <td class="border-0 fw-bold">Status</td>
+              <td class="border-0 fw-bold">Source Website</td>
+              <td class="border-0 fw-bold">View Product</td>
+            </tr>
+            <!-- End of Item -->
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="theme-settings card pt-2 collapse" id="theme-settings">
+  <div class="card-body pt-4">
+    <button
+      type="button"
+      class="btn-close theme-settings-close"
+      aria-label="Close"
+      data-bs-toggle="collapse"
+      href="#theme-settings"
+      role="button"
+      aria-expanded="false"
+      aria-controls="theme-settings"
+    ></button>
+    <div class="d-flex justify-content-between align-items-center mb-3">
+      <p class="m-0 mb-1 me-4 fs-7">
+        Open source <span role="img" aria-label="gratitude">💛</span>
+      </p>
+      <a
+        class="github-button"
+        href="https://github.com/themesberg/volt-bootstrap-5-dashboard"
+        data-color-scheme="no-preference: dark; light: light; dark: light;"
+        data-icon="octicon-star"
+        data-size="large"
+        data-show-count="true"
+        aria-label="Star themesberg/volt-bootstrap-5-dashboard on GitHub"
+        >Star</a
+      >
+    </div>
+    <a
+      href="https://themesberg.com/product/admin-dashboard/volt-bootstrap-5-dashboard"
+      target="_blank"
+      class="btn btn-primary mb-3 w-100"
+      >Download <i class="fas fa-download ms-2"></i
+    ></a>
+    <p class="fs-7 text-gray-700 text-center">
+      Available in the following technologies:
+    </p>
+    <div class="d-flex justify-content-center">
+      <a
+        class="me-3"
+        href="https://themesberg.com/product/admin-dashboard/volt-bootstrap-5-dashboard"
+        target="_blank"
+      >
+        <img
+          src="../../assets/img/technologies/bootstrap-5-logo.svg"
+          class="image image-xs"
+        />
+      </a>
+      <a
+        href="https://demo.themesberg.com/volt-react-dashboard/#/"
+        target="_blank"
+      >
+        <img
+          src="../../assets/img/technologies/react-logo.svg"
+          class="image image-xs"
+        />
+      </a>
+    </div>
+  </div>
+</div>
+{% endblock content %}

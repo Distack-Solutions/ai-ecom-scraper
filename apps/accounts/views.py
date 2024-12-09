@@ -160,7 +160,7 @@ def home_view(request):
         'page': 'home',
         'form': form
     }
-    return render(request, "volt/home.html", context)
+    return render(request, "volt/dashboard.html", context)
     # return redirect("device_management:home")
 
 @login_required
