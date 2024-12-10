@@ -11,6 +11,7 @@ urlpatterns = [
     path('initiate_process', views.initiate_process, name='initiate_process'),
     path('product_detail', views.product_detail, name='product_detail'),
     path('product', views.product, name='product'),
+    path('signin', views.signin, name='signin'),
 
     path('accounts/profile/', views.my_profile, name='profile'),
     path(
