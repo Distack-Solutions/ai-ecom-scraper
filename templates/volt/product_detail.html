@@ -1,0 +1,221 @@
+{% extends 'volt/inc/base.html' %} {% load static %} {% block content %}
+<div class="row align-items-center pt-4 my-4">
+  <div class="col-md-6 col-12 mb-3 mb-md-0">
+    <h4 class="my-auto">Product > New scrapped plastic product</h4>
+  </div>
+  <div
+    class="col-md-6 col-12 d-flex justify-content-md-end justify-content-center"
+  >
+    <button type="button" class="btn btn-primary px-4">Blacklist</button>
+    <button type="button" class="btn btn-primary mx-2 px-4">Delete</button>
+    <button type="button" class="btn btn-primary px-4">Publish</button>
+  </div>
+</div>
+
+<div class="card card-body shadow-sm mb-4">
+  <div class="container mt-4 p-0">
+    <div class="row">
+      <!-- Left Section: Images -->
+      <div class="col-lg-6 col-md-12">
+        <!-- Main Image -->
+        <img
+          src="/static/volt/img/R (3).jpg"
+          class="img-fluid mb-3"
+          alt="Main Product Image"
+        />
+        <!-- Thumbnail Images -->
+        <div class="row">
+          <div class="col-3">
+            <img
+              src="/static/volt/img/R (3).jpg"
+              class="img-fluid"
+              alt="Thumbnail 1"
+            />
+          </div>
+          <div class="col-3">
+            <img
+              src="/static/volt/img/R (3).jpg"
+              class="img-fluid"
+              alt="Thumbnail 2"
+            />
+          </div>
+          <div class="col-3">
+            <img
+              src="/static/volt/img/R (3).jpg"
+              class="img-fluid"
+              alt="Thumbnail 3"
+            />
+          </div>
+          <div class="col-3">
+            <img
+              src="/static/volt/img/R (3).jpg"
+              class="img-fluid"
+              alt="Thumbnail 4"
+            />
+          </div>
+        </div>
+      </div>
+      <!-- Right Section: Product Details -->
+      <div class="col-lg-6 col-md-12">
+        <h3>Product Title: New scraped plastic product</h3>
+        <p>
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Numquam
+          quidem fuga quas fugit fugiat, cupiditate magnam magni, eaque
+          reprehenderit non expedita rerum recusandae!
+        </p>
+        <p><b>Scraped At:</b> 26 May 2024</p>
+        <p><b>Commercial License:</b> Green Tick Icon</p>
+        <p><b>Category:</b> Stickers</p>
+        <!-- Buttons -->
+        <div class="row">
+          <div class="col-12 col-md-6 mb-2">
+            <button type="button" class="w-100 btn btn-primary">
+              View Screenshot
+            </button>
+          </div>
+          <div class="col-12 col-md-6">
+            <button type="button" class="w-100 btn btn-primary">
+              View Original Product
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="card card-body shadow-sm mb-4">
+  <div class="row align-items-center px-4 my-4">
+    <div class="col-md-6 col-12 mb-3 mb-md-0">
+      <h4 class="my-auto">AI generated Details</h4>
+    </div>
+    <div
+      class="col-md-6 col-12 d-flex justify-content-md-end justify-content-center"
+    >
+      <button type="button" class="btn btn-primary px-4">Save Updates</button>
+    </div>
+  </div>
+
+  <div class="container py-4">
+    <!-- Product Title -->
+    <div class="row mb-3 align-items-center">
+      <div class="col-md-3 col-12">
+        <b>Product Title</b>
+      </div>
+      <div class="col-md-9 col-12">
+        <input
+          type="email"
+          class="form-control w-75"
+          name=""
+          id=""
+          aria-describedby="emailHelpId"
+        />
+      </div>
+    </div>
+
+    <!-- Product Description -->
+    <div class="row mb-3 align-items-center">
+      <div class="col-md-3 col-12">
+        <b>Product Description</b>
+      </div>
+      <div class="col-md-9 col-12">
+        <div class="mb-3">
+          <label for="" class="form-label"></label>
+          <textarea class="form-control" name="" id="" rows="3"></textarea>
+        </div>
+      </div>
+    </div>
+
+    <!-- SEO Title -->
+    <div class="row mb-3 align-items-center">
+      <div class="col-md-3 col-12">
+        <b>SEO Title</b>
+      </div>
+      <div class="col-md-9 col-12">
+        <input
+          type="email"
+          class="form-control w-75"
+          name=""
+          id=""
+          aria-describedby="emailHelpId"
+        />
+      </div>
+    </div>
+
+    <!-- Metadata -->
+    <div class="row align-items-center">
+      <div class="col-md-3 col-12">
+        <b>Metadata</b>
+      </div>
+      <div class="col-md-9 col-12">
+        <input
+          type="email"
+          class="form-control w-75"
+          name=""
+          id=""
+          aria-describedby="emailHelpId"
+        />
+      </div>
+    </div>
+  </div>
+</div>
+<div class="theme-settings card pt-2 collapse" id="theme-settings">
+  <div class="card-body pt-4">
+    <button
+      type="button"
+      class="btn-close theme-settings-close"
+      aria-label="Close"
+      data-bs-toggle="collapse"
+      href="#theme-settings"
+      role="button"
+      aria-expanded="false"
+      aria-controls="theme-settings"
+    ></button>
+    <div class="d-flex justify-content-between align-items-center mb-3">
+      <p class="m-0 mb-1 me-4 fs-7">
+        Open source <span role="img" aria-label="gratitude">💛</span>
+      </p>
+      <a
+        class="github-button"
+        href="https://github.com/themesberg/volt-bootstrap-5-dashboard"
+        data-color-scheme="no-preference: dark; light: light; dark: light;"
+        data-icon="octicon-star"
+        data-size="large"
+        data-show-count="true"
+        aria-label="Star themesberg/volt-bootstrap-5-dashboard on GitHub"
+        >Star</a
+      >
+    </div>
+    <a
+      href="https://themesberg.com/product/admin-dashboard/volt-bootstrap-5-dashboard"
+      target="_blank"
+      class="btn btn-primary mb-3 w-100"
+      >Download <i class="fas fa-download ms-2"></i
+    ></a>
+    <p class="fs-7 text-gray-700 text-center">
+      Available in the following technologies:
+    </p>
+    <div class="d-flex justify-content-center">
+      <a
+        class="me-3"
+        href="https://themesberg.com/product/admin-dashboard/volt-bootstrap-5-dashboard"
+        target="_blank"
+      >
+        <img
+          src="../../assets/img/technologies/bootstrap-5-logo.svg"
+          class="image image-xs"
+        />
+      </a>
+      <a
+        href="https://demo.themesberg.com/volt-react-dashboard/#/"
+        target="_blank"
+      >
+        <img
+          src="../../assets/img/technologies/react-logo.svg"
+          class="image image-xs"
+        />
+      </a>
+    </div>
+  </div>
+</div>
+{% endblock content %}

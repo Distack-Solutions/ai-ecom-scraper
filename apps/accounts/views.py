@@ -160,8 +160,26 @@ def home_view(request):
         'page': 'home',
         'form': form
     }
-    return render(request, "volt/home.html", context)
+    return render(request, "volt/dashboard.html", context)
     # return redirect("device_management:home")
+
+@login_required
+def process_monitoring(request):
+    return render(request, "volt/process_monitoring.html", )
+@login_required
+def initiate_process(request):
+    return render(request, "volt/initiate_process.html", )
+
+@login_required
+def product_detail(request):
+    return render(request, "volt/product_detail.html", )
+
+@login_required
+def product(request):
+    return render(request, "volt/product.html", )
+
+    
+
 
 @login_required
 def all_customers_view(request):
