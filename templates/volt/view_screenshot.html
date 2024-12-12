@@ -1,0 +1,25 @@
+{% extends 'volt/inc/base.html' %}
+
+{% block content %}
+<div class="container my-5">
+  <h2>{{ product.title }} - Screenshot</h2>
+  
+  {% if screenshot_url %}
+    <div class="screenshot-container my-3">
+      {% if is_pdf %}
+        <!-- PDF viewer using iframe -->
+        <iframe src="{{ screenshot_url }}" width="100%" height="600px" class="border"></iframe>
+      {% elif is_image %}
+        <!-- Image viewer -->
+        <img src="{{ screenshot_url }}" alt="Screenshot of {{ product.title }}" class="img-fluid" />
+      {% else %}
+        <p>Unsupported file format. Please upload a valid image or PDF.</p>
+      {% endif %}
+    </div>
+  {% else %}
+    <p>No screenshot available for this product.</p>
+  {% endif %}
+
+  <a href="{% url 'scraper:product_detail' product.id %}" class="btn btn-secondary">Back to Product</a>
+</div>
+{% endblock content %}

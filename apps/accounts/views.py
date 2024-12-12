@@ -157,7 +157,7 @@ def search_employee(request):
 def home_view(request):
     form = AssignmentForm()
     context = {
-        'page': 'home',
+        'page': 'dashboard',
         'form': form
     }
     return render(request, "volt/dashboard.html", context)

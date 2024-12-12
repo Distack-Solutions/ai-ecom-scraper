@@ -1,14 +1,95 @@
-{% extends 'volt/inc/base.html' %} {% block content %}
-<div class="pt-5 pb-2">
+{% extends 'volt/inc/base.html' %}
+
+{% block extra_css %}
+<style>
+  /* Adjusting product title to wrap to a new line */
+  .product-title {
+    max-width: 300px;
+    word-wrap: break-word; /* Break long words if necessary */
+    white-space: normal; /* Allow wrapping of text to the next line */
+  }
+
+  /* Shimmer effect for images */
+  .shimmer {
+    background: linear-gradient(90deg, rgba(255,255,255,0) 0%, rgba(255,255,255,0.4) 50%, rgba(255,255,255,0) 100%);
+    background-size: 200% 100%;
+    animation: shimmer 1.5s infinite;
+  }
+
+  @keyframes shimmer {
+    0% { background-position: -200% 0; }
+    100% { background-position: 200% 0; }
+  }
+
+  .thumbnail-wrapper {
+    width: 100px;
+    height: 100px;
+    overflow: hidden;
+    border-radius: 5px;
+    position: relative;
+  }
+
+  .thumbnail-wrapper img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: none; /* Hide the image initially until it loads */
+  }
+
+  .thumbnail-wrapper.loading {
+    background-color: #e0e0e0;
+    position: relative;
+  }
+
+  /* Status pill colors */
+  .badge.status-draft {
+    background-color: #f0ad4e; /* Orange */
+  }
+  .badge.status-under_review {
+    background-color: #5bc0de; /* Light Blue */
+  }
+  .badge.status-approved {
+    background-color: #5cb85c; /* Green */
+  }
+  .badge.status-published {
+    background-color: #0275d8; /* Blue */
+  }
+  .badge.status-archived {
+    background-color: #d9534f; /* Red */
+  }
+</style>
+{% endblock %}
+
+
+{% block content %}
+
+
+
+<div class="pt-5 pb-4">
   <div class="d-flex justify-content-between w-100 flex-wrap">
     <div class="mb-3 mb-lg-0">
       <h1 class="h4">Products</h1>
     </div>
-  </div>
-  <div>
-    <p class="text-center">
-      Filters are here to show only approved, blackisted, or pending products
-    </p>
+
+    <div class="gap-2 d-flex justify-content-end align-items-center">
+      <button type="button" class="btn btn-primary px-4">Approve</button>
+      <button type="button" class="btn btn-primary px-4 mx-2">Blacklist</button>
+
+      <a 
+        title="Approve"
+        onclick="return confirm('Are you sure you want to publish these products?')" 
+        class="btn btn-success p-1 px-2" href="#" role="button">
+        <i class="material-icons my-0 py-0 align-middle fs-6">done</i>
+      </a>
+
+      <a 
+        title="Delete"
+        onclick="return confirm('Are you sure you want to delete this product?')" 
+        class="btn btn-danger p-1 px-2" href="#" role="button">
+          <i class="material-icons my-0 py-0 align-middle fs-6">delete</i>
+        </a>
+    </div>
+
   </div>
 </div>
 
@@ -29,262 +110,128 @@
       </form>
       <button class="btn btn-dark">Filter</button>
     </div>
-    <div class="row my-3">
-      <div class="col-sm-6 my-auto">Select Checkbox to view more options</div>
-      <div class="col-sm-6 d-flex justify-content-end">
-        <button type="button" class="btn btn-primary px-4">Approve</button>
-        <button type="button" class="btn btn-primary px-4 mx-2">
-          Blacklist
-        </button>
-        <button type="button" class="btn btn-primary px-4">Delete</button>
-      </div>
-    </div>
-    <div class="form-check">
-      <input
-        class="form-check-input"
-        type="checkbox"
-        value=""
-        id="flexCheckDefault"
-      />
-      <label class="form-check-label" for="flexCheckDefault">
-        Select All
-      </label>
-    </div>
+
+
   </div>
+
   <div class="">
-    <div class="card-body">
+    <div class="card-body  border p-0">
       <div class="table-responsive">
         <table class="table table-centered table-nowrap mb-0">
           <thead class="thead-light">
             <tr>
-              <th class="border-0" style="width: 5%">
+              <th class="border-0">
                 <div class="form-check">
-                  <input
-                    class="form-check-input"
-                    type="checkbox"
-                    value=""
-                    id="flexCheckDefault"
-                  />
+                  <input class="form-check-input" type="checkbox" value="" />
                 </div>
               </th>
               <th class="border-0" style="width: 15%">Photo</th>
-              <th class="border-0">Name</th>
+              <th class="border-0" style="max-width: 25%">Name</th>
               <th class="border-0">Status</th>
               <th class="border-0">Source Website</th>
               <th class="border-0">View Product</th>
             </tr>
           </thead>
           <tbody>
-            <!-- Item -->
-            <tr class="border-bottom align-middle">
-              <td class="border-0">
-                <div class="form-check">
-                  <input
-                    class="form-check-input"
-                    type="checkbox"
-                    value=""
-                    id="flexCheckDefault"
-                  />
-                </div>
-              </td>
-              <td class="border-0 fw-bold">
-                <img
-                  src="/img/R (3).jpg"
-                  class="img-fluid rounded"
-                  style="width: 100px; height: 100px; object-fit: cover"
-                  alt=""
-                />
-              </td>
-              <td class="border-0 fw-bold">Name</td>
-              <td class="border-0 fw-bold">Status</td>
-              <td class="border-0 fw-bold">Source Website</td>
-              <td class="border-0 fw-bold">View Product</td>
-            </tr>
+            {% if not products %}
 
             <tr class="border-bottom align-middle">
-              <td class="border-0">
-                <div class="form-check">
-                  <input
-                    class="form-check-input"
-                    type="checkbox"
-                    value=""
-                    id="flexCheckDefault"
-                  />
+              <td class="border-0" colspan="6">
+                <div class="text-center">
+                  <p>No Product Available</p>
                 </div>
               </td>
-              <td class="border-0 fw-bold">
-                <img
-                  src="/img/R (3).jpg"
-                  class="img-fluid rounded"
-                  style="width: 100px; height: 100px; object-fit: cover"
-                  alt=""
-                />
-              </td>
-              <td class="border-0 fw-bold">Name</td>
-              <td class="border-0 fw-bold">Status</td>
-              <td class="border-0 fw-bold">Source Website</td>
-              <td class="border-0 fw-bold">View Product</td>
             </tr>
+            {% endif %}
+
+
+            <!-- Product Items -->
+            {% for product in products %}
             <tr class="border-bottom align-middle">
               <td class="border-0">
                 <div class="form-check">
-                  <input
-                    class="form-check-input"
-                    type="checkbox"
-                    value=""
-                    id="flexCheckDefault"
-                  />
+                  <input class="form-check-input" type="checkbox" value="" />
                 </div>
               </td>
               <td class="border-0 fw-bold">
-                <img
-                  src="/img/R (3).jpg"
-                  class="img-fluid rounded"
-                  style="width: 100px; height: 100px; object-fit: cover"
-                  alt=""
-                />
+                <div class="thumbnail-wrapper loading shimmer">
+                  <img
+                    src="{{ product.thumbnail.url }}"
+                    alt="{{ product.title }}"
+                  />
+                </div>
               </td>
-              <td class="border-0 fw-bold">Name</td>
-              <td class="border-0 fw-bold">Status</td>
-              <td class="border-0 fw-bold">Source Website</td>
-              <td class="border-0 fw-bold">View Product</td>
-            </tr>
-            <tr class="border-bottom align-middle">
+              
+              <td class="border-0 fw-bold">
+                <h5 class="product-title" title="{{ product.title }}">
+                  {{ product.title }}
+                </h5>
+                <div>
+                  {% for category in product.get_categories %}
+                    <span class="badge border bg-primary text-white p-1 px-2">{{category}}</span>  
+                  {% endfor %}
+                </div>
+              </td>
               <td class="border-0">
-                <div class="form-check">
-                  <input
-                    class="form-check-input"
-                    type="checkbox"
-                    value=""
-                    id="flexCheckDefault"
-                  />
-                </div>
+                <span class="badge status-{{ product.status }} p-1 px-2">{{ product.get_status_display }}</span>
               </td>
               <td class="border-0 fw-bold">
-                <img
-                  src="/img/R (3).jpg"
-                  class="img-fluid rounded"
-                  style="width: 100px; height: 100px; object-fit: cover"
-                  alt=""
-                />
-              </td>
-              <td class="border-0 fw-bold">Name</td>
-              <td class="border-0 fw-bold">Status</td>
-              <td class="border-0 fw-bold">Source Website</td>
-              <td class="border-0 fw-bold">View Product</td>
-            </tr>
-            <tr class="border-bottom align-middle">
-              <td class="border-0">
-                <div class="form-check">
-                  <input
-                    class="form-check-input"
-                    type="checkbox"
-                    value=""
-                    id="flexCheckDefault"
-                  />
-                </div>
+                <img style="width: 100px;" src="{{ product.source_website.logo.url }}" alt="">
               </td>
               <td class="border-0 fw-bold">
-                <img
-                  src="/img/R (3).jpg"
-                  class="img-fluid rounded"
-                  style="width: 100px; height: 100px; object-fit: cover"
-                  alt=""
-                />
+                <a class="btn btn-light text-dark p-1 px-2" href="{% url 'scraper:product_detail' product.id %}" role="button">
+                  <i class="material-icons my-0 py-0 align-middle fs-6">visibility</i>
+                </a>
+                <a name="" id="" class="btn btn-light text-success p-1 px-2" href="#" role="button">
+                  <i class="material-icons my-0 py-0 align-middle fs-6">edit</i>
+                </a>
+                <a 
+                onclick="return confirm('Are you sure you want to delete this product?')" 
+                href="{% url 'scraper:delete-product' product.id %}"
+                class="btn btn-light text-danger p-1 px-2" href="#" role="button">
+                  <i class="material-icons my-0 py-0 align-middle fs-6">delete</i>
+                </a>
+                
+
               </td>
-              <td class="border-0 fw-bold">Name</td>
-              <td class="border-0 fw-bold">Status</td>
-              <td class="border-0 fw-bold">Source Website</td>
-              <td class="border-0 fw-bold">View Product</td>
             </tr>
-            <tr class="border-bottom align-middle">
-              <td class="border-0">
-                <div class="form-check">
-                  <input
-                    class="form-check-input"
-                    type="checkbox"
-                    value=""
-                    id="flexCheckDefault"
-                  />
-                </div>
-              </td>
-              <td class="border-0 fw-bold">
-                <img
-                  src="/img/R (3).jpg"
-                  class="img-fluid rounded"
-                  style="width: 100px; height: 100px; object-fit: cover"
-                  alt=""
-                />
-              </td>
-              <td class="border-0 fw-bold">Name</td>
-              <td class="border-0 fw-bold">Status</td>
-              <td class="border-0 fw-bold">Source Website</td>
-              <td class="border-0 fw-bold">View Product</td>
-            </tr>
-            <!-- End of Item -->
+            {% endfor %}
+            <!-- End of Product Items -->
           </tbody>
         </table>
       </div>
     </div>
   </div>
 </div>
-<div class="theme-settings card pt-2 collapse" id="theme-settings">
-  <div class="card-body pt-4">
-    <button
-      type="button"
-      class="btn-close theme-settings-close"
-      aria-label="Close"
-      data-bs-toggle="collapse"
-      href="#theme-settings"
-      role="button"
-      aria-expanded="false"
-      aria-controls="theme-settings"
-    ></button>
-    <div class="d-flex justify-content-between align-items-center mb-3">
-      <p class="m-0 mb-1 me-4 fs-7">
-        Open source <span role="img" aria-label="gratitude">💛</span>
-      </p>
-      <a
-        class="github-button"
-        href="https://github.com/themesberg/volt-bootstrap-5-dashboard"
-        data-color-scheme="no-preference: dark; light: light; dark: light;"
-        data-icon="octicon-star"
-        data-size="large"
-        data-show-count="true"
-        aria-label="Star themesberg/volt-bootstrap-5-dashboard on GitHub"
-        >Star</a
-      >
-    </div>
-    <a
-      href="https://themesberg.com/product/admin-dashboard/volt-bootstrap-5-dashboard"
-      target="_blank"
-      class="btn btn-primary mb-3 w-100"
-      >Download <i class="fas fa-download ms-2"></i
-    ></a>
-    <p class="fs-7 text-gray-700 text-center">
-      Available in the following technologies:
-    </p>
-    <div class="d-flex justify-content-center">
-      <a
-        class="me-3"
-        href="https://themesberg.com/product/admin-dashboard/volt-bootstrap-5-dashboard"
-        target="_blank"
-      >
-        <img
-          src="../../assets/img/technologies/bootstrap-5-logo.svg"
-          class="image image-xs"
-        />
-      </a>
-      <a
-        href="https://demo.themesberg.com/volt-react-dashboard/#/"
-        target="_blank"
-      >
-        <img
-          src="../../assets/img/technologies/react-logo.svg"
-          class="image image-xs"
-        />
-      </a>
-    </div>
-  </div>
-</div>
+
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+  const thumbnails = document.querySelectorAll('.thumbnail-wrapper img');
+
+  thumbnails.forEach(img => {
+    // Listen for image load event
+    img.onload = function() {
+      img.style.display = 'block'; // Show the image when it's loaded
+      const wrapper = img.closest('.thumbnail-wrapper');
+      wrapper.classList.remove('loading'); // Remove loading class
+      wrapper.classList.remove('shimmer'); // Remove shimmer effect
+    };
+
+    // Handle cases where image fails to load
+    img.onerror = function() {
+      const wrapper = img.closest('.thumbnail-wrapper');
+      wrapper.classList.remove('loading'); // Ensure loading class is removed even on error
+      wrapper.classList.remove('shimmer'); // Ensure shimmer effect is removed even on error
+    };
+
+    // In case the image is already cached and loaded
+    if (img.complete) {
+      img.onload();
+    }
+  });
+});
+
+</script>
+
 {% endblock content %}

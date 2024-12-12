@@ -1,11 +1,31 @@
-{% extends 'volt/inc/base.html' %} {% load static %} {% block content %}
+{% extends 'volt/inc/base.html' %}
+{% load static %}
+{% block content %}
+
+<style>
+  #product-description {
+  max-height: 215px;  /* Optional: Limit the height of the description */
+  height: 215px;
+  overflow: auto;
+}
+
+#full-description {
+  display: none !important; /* Initially hidden */
+}
+
+#description-text {
+  display: block;
+  white-space: pre-wrap; /* Keeps formatting intact */
+}
+
+
+</style>
+
 <div class="row align-items-center pt-4 my-4">
   <div class="col-md-6 col-12 mb-3 mb-md-0">
-    <h4 class="my-auto">Product > New scrapped plastic product</h4>
+    <h4 class="my-auto">Product Detail</h4>
   </div>
-  <div
-    class="col-md-6 col-12 d-flex justify-content-md-end justify-content-center"
-  >
+  <div class="col-md-6 col-12 d-flex justify-content-md-end justify-content-center">
     <button type="button" class="btn btn-primary px-4">Blacklist</button>
     <button type="button" class="btn btn-primary mx-2 px-4">Delete</button>
     <button type="button" class="btn btn-primary px-4">Publish</button>
@@ -13,70 +33,73 @@
 </div>
 
 <div class="card card-body shadow-sm mb-4">
-  <div class="container mt-4 p-0">
+  <div class="p-1">
     <div class="row">
       <!-- Left Section: Images -->
       <div class="col-lg-6 col-md-12">
         <!-- Main Image -->
-        <img
-          src="/static/volt/img/R (3).jpg"
-          class="img-fluid mb-3"
-          alt="Main Product Image"
-        />
+        {% if product.thumbnail %}
+          <div class="image-container">
+            {% if product.thumbnail.image %}
+              <img src="{{ product.thumbnail.image.url }}" class="img-fluid mb-0" alt="{{ product.title }}" />
+            {% else %}
+              <img src="{{ product.thumbnail.url }}" class="img-fluid mb-0" alt="{{ product.title }}" />
+            {% endif %}
+          </div>
+
+        {% else %}
+        <img src="{% static 'volt/img/placeholder.jpg' %}" class="img-fluid mb-3" alt="Placeholder" />
+        {% endif %}
+        
         <!-- Thumbnail Images -->
-        <div class="row">
-          <div class="col-3">
-            <img
-              src="/static/volt/img/R (3).jpg"
-              class="img-fluid"
-              alt="Thumbnail 1"
-            />
+        <div class="row mt-4">
+          {% for image in product.images.all %}
+          <div class="col-4">
+            <div class="image-container rounded border shadow-sm">
+              <img src="{% if image.image_file %}{{ image.image_file.url }}{% else %}{{ image.image_url }}{% endif %}" 
+                   class="img-fluid lightbox-image object-fit-cover" 
+                   style="height: 100px; width: 100%;"
+                   alt="Thumbnail {{ forloop.counter }}" 
+                   data-index="{{ forloop.counter }}" />
+            </div>
           </div>
-          <div class="col-3">
-            <img
-              src="/static/volt/img/R (3).jpg"
-              class="img-fluid"
-              alt="Thumbnail 2"
-            />
-          </div>
-          <div class="col-3">
-            <img
-              src="/static/volt/img/R (3).jpg"
-              class="img-fluid"
-              alt="Thumbnail 3"
-            />
-          </div>
-          <div class="col-3">
-            <img
-              src="/static/volt/img/R (3).jpg"
-              class="img-fluid"
-              alt="Thumbnail 4"
-            />
-          </div>
+          {% endfor %}
         </div>
       </div>
+      
       <!-- Right Section: Product Details -->
       <div class="col-lg-6 col-md-12">
-        <h3>Product Title: New scraped plastic product</h3>
-        <p>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Numquam
-          quidem fuga quas fugit fugiat, cupiditate magnam magni, eaque
-          reprehenderit non expedita rerum recusandae!
+        <h3>Product Title: {{ product.title }}</h3>
+        
+        <div id="product-description" class="my-3 bg-light-gray p-2 radius-10 rounded">
+          <span id="description-text">{{ product.description|safe }}</span>
+          <span id="full-description" style="display: none;">{{ product.description|safe }}</span>
+          <!-- <button id="toggle-button" class="btn btn-link text-dark">Show More</button> -->
+        </div>
+        
+        
+        
+        <p><b>Scraped At:</b> {{ product.created_at|date:"d M Y" }}</p>
+        <p><b>Commercial License:</b> 
+          {% if product.is_commercial_allowed %}
+          <span>✅ Allowed</span>
+          {% else %}
+          <span>❌ Not Allowed</span>
+          {% endif %}
         </p>
-        <p><b>Scraped At:</b> 26 May 2024</p>
-        <p><b>Commercial License:</b> Green Tick Icon</p>
-        <p><b>Category:</b> Stickers</p>
+        <p><b>Category:</b> {{ product.category }}</p>
+
         <!-- Buttons -->
         <div class="row">
+          {% if product.page_screenshot  %}
           <div class="col-12 col-md-6 mb-2">
-            <button type="button" class="w-100 btn btn-primary">
-              View Screenshot
-            </button>
+            <a type="button" class="w-100 btn btn-primary" href="{% url 'scraper:view_screenshot' product.id %}">View Screenshot</a>
           </div>
+          {% endif %}
           <div class="col-12 col-md-6">
-            <button type="button" class="w-100 btn btn-primary">
+            <a href="{{ product.source_website.url }}" class="w-100 btn btn-secondary" target="_blank">
               View Original Product
-            </button>
+            </a>
           </div>
         </div>
       </div>
@@ -84,138 +107,77 @@
   </div>
 </div>
 
-<div class="card card-body shadow-sm mb-4">
-  <div class="row align-items-center px-4 my-4">
-    <div class="col-md-6 col-12 mb-3 mb-md-0">
-      <h4 class="my-auto">AI generated Details</h4>
-    </div>
-    <div
-      class="col-md-6 col-12 d-flex justify-content-md-end justify-content-center"
-    >
-      <button type="button" class="btn btn-primary px-4">Save Updates</button>
-    </div>
+<!-- Lightbox Modal (hidden initially) -->
+<div id="lightboxModal" class="lightbox-modal">
+  <span id="closeBtn" class="lightbox-close">&times;</span>
+  <img id="lightboxImage" class="lightbox-content" />
+  <button id="prevBtn" class="lightbox-nav-btn">
+    <i class="material-icons">arrow_left</i>
+  </button>
+  <button id="nextBtn" class="lightbox-nav-btn">
+    <i class="material-icons">arrow_right</i>
+  </button>
+</div>
+
+
+<div class="card shadow-sm mb-4">
+  <!-- Card Header -->
+  <div class="card-header d-flex justify-content-between align-items-center">
+    <h4 class="my-auto">AI Generated Details</h4>
+    <button type="button" class="btn btn-primary px-4">Save Updates</button>
   </div>
 
-  <div class="container py-4">
-    <!-- Product Title -->
-    <div class="row mb-3 align-items-center">
-      <div class="col-md-3 col-12">
-        <b>Product Title</b>
+  <!-- Card Body -->
+  <div class="card-body">
+    <div class="py-2">
+      <!-- Product Title -->
+      <div class="row mb-3 align-items-center">
+        <div class="col-md-3 col-12">
+          <b>Product Title</b>
+        </div>
+        <div class="col-md-9 col-12">
+          <input type="text" class="form-control w-100" value="{{ product.title }}" readonly />
+        </div>
       </div>
-      <div class="col-md-9 col-12">
-        <input
-          type="email"
-          class="form-control w-75"
-          name=""
-          id=""
-          aria-describedby="emailHelpId"
-        />
-      </div>
-    </div>
 
-    <!-- Product Description -->
-    <div class="row mb-3 align-items-center">
-      <div class="col-md-3 col-12">
-        <b>Product Description</b>
+      <!-- Product Description -->
+      <div class="row mb-3 align-items-center">
+        <div class="col-md-3 col-12">
+          <b>Product Description</b>
+        </div>
+        <div class="col-md-9 col-12">
+          <textarea class="form-control" rows="3" readonly>{{ product.description }}</textarea>
+        </div>
       </div>
-      <div class="col-md-9 col-12">
-        <div class="mb-3">
-          <label for="" class="form-label"></label>
-          <textarea class="form-control" name="" id="" rows="3"></textarea>
+
+      <!-- SEO Title -->
+      <div class="row mb-3 align-items-center">
+        <div class="col-md-3 col-12">
+          <b>SEO Title</b>
+        </div>
+        <div class="col-md-9 col-12">
+          <input type="text" class="form-control w-100" value="{{ product.title }}" readonly />
+        </div>
+      </div>
+
+      <!-- Metadata -->
+      <div class="row align-items-center">
+        <div class="col-md-3 col-12">
+          <b>Metadata</b>
+        </div>
+        <div class="col-md-9 col-12">
+          <input type="text" class="form-control w-100" value="{{ product.sku }}" readonly />
         </div>
       </div>
     </div>
-
-    <!-- SEO Title -->
-    <div class="row mb-3 align-items-center">
-      <div class="col-md-3 col-12">
-        <b>SEO Title</b>
-      </div>
-      <div class="col-md-9 col-12">
-        <input
-          type="email"
-          class="form-control w-75"
-          name=""
-          id=""
-          aria-describedby="emailHelpId"
-        />
-      </div>
-    </div>
-
-    <!-- Metadata -->
-    <div class="row align-items-center">
-      <div class="col-md-3 col-12">
-        <b>Metadata</b>
-      </div>
-      <div class="col-md-9 col-12">
-        <input
-          type="email"
-          class="form-control w-75"
-          name=""
-          id=""
-          aria-describedby="emailHelpId"
-        />
-      </div>
-    </div>
   </div>
 </div>
-<div class="theme-settings card pt-2 collapse" id="theme-settings">
-  <div class="card-body pt-4">
-    <button
-      type="button"
-      class="btn-close theme-settings-close"
-      aria-label="Close"
-      data-bs-toggle="collapse"
-      href="#theme-settings"
-      role="button"
-      aria-expanded="false"
-      aria-controls="theme-settings"
-    ></button>
-    <div class="d-flex justify-content-between align-items-center mb-3">
-      <p class="m-0 mb-1 me-4 fs-7">
-        Open source <span role="img" aria-label="gratitude">💛</span>
-      </p>
-      <a
-        class="github-button"
-        href="https://github.com/themesberg/volt-bootstrap-5-dashboard"
-        data-color-scheme="no-preference: dark; light: light; dark: light;"
-        data-icon="octicon-star"
-        data-size="large"
-        data-show-count="true"
-        aria-label="Star themesberg/volt-bootstrap-5-dashboard on GitHub"
-        >Star</a
-      >
-    </div>
-    <a
-      href="https://themesberg.com/product/admin-dashboard/volt-bootstrap-5-dashboard"
-      target="_blank"
-      class="btn btn-primary mb-3 w-100"
-      >Download <i class="fas fa-download ms-2"></i
-    ></a>
-    <p class="fs-7 text-gray-700 text-center">
-      Available in the following technologies:
-    </p>
-    <div class="d-flex justify-content-center">
-      <a
-        class="me-3"
-        href="https://themesberg.com/product/admin-dashboard/volt-bootstrap-5-dashboard"
-        target="_blank"
-      >
-        <img
-          src="../../assets/img/technologies/bootstrap-5-logo.svg"
-          class="image image-xs"
-        />
-      </a>
-      <a
-        href="https://demo.themesberg.com/volt-react-dashboard/#/"
-        target="_blank"
-      >
-        <img
-          src="../../assets/img/technologies/react-logo.svg"
-          class="image image-xs"
-        />
-      </a>
-    </div>
-  </div>
-</div>
+<script src="{% static 'volt/assets/js/imageModal.js' %}"></script>
+
+
+<script>
+</script>
+
+
+
 {% endblock content %}

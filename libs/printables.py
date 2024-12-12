@@ -199,6 +199,7 @@ query SearchModels(
       id
       name
       description
+      pdfFilePath
       category {
         id
         name
@@ -307,7 +308,7 @@ class PrintablesProductScrap:
         if data.get("result") and data.get("result").get("items"):
             self.results = data.get("result").get("items")
         else:
-            raise Exception("Something went wrong.")
+            raise Exception("No results for this query.")
 
     def get_products(self):
         self.__hit_query()
@@ -365,6 +366,6 @@ class PrintablesProductScrap:
 
 
 if __name__ == "__main__":
-    x = PrintablesProductScrap("apple", 5)
+    x = PrintablesProductScrap("asdasdasdasdasdasdsadsadsadsadasds", 5)
     x.get_products()
     x.seve_file()

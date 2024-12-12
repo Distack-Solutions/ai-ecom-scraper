@@ -12,7 +12,7 @@
       <div class="d-flex align-items-center">
         <div class="user-avatar lg-avatar me-4">
           <img
-            src="{% static 'assets/img/team/profile-picture-3.jpg' %}"
+            src="{% static 'volt/assets/img/team/profile-picture-3.jpg' %}"
             class="card-img-top rounded-circle border-white"
             alt="Bonnie Green"
           />
@@ -53,7 +53,7 @@
         </a>
       </li>
 
-      <li class="nav-item active">
+      <li class="nav-item {% if page == 'dashboard' %}active{% endif %}">
         <a href="{% url 'accounts:home' %}" class="nav-link">
           <span class="sidebar-icon"
             ><span class="fas fa-chart-pie"></span
@@ -62,37 +62,39 @@
         </a>
       </li>
 
-      <li class="nav-item">
-        <a href="{% url 'accounts:product' %}" class="nav-link">
+      <li class="nav-item {% if page == 'products' %}active{% endif %}">
+        <a href="{% url 'scraper:products' %}" class="nav-link">
           <span class="sidebar-icon"><span class="fas fa-box"></span></span>
-          <span class="sidebar-text">Product</span>
-        </a>
-      </li>
-      <li class="nav-item">
-        <a href="{% url 'accounts:product_detail' %}" class="nav-link">
-          <span class="sidebar-icon">
-            <span class="fas fa-tag"></span>
-          </span>
-          <span class="sidebar-text">Product Detail Page</span>
+          <span class="sidebar-text">Products</span>
         </a>
       </li>
 
-      <li class="nav-item">
-        <a href="{% url 'accounts:process_monitoring'  %} " class="nav-link">
+      <li class="nav-item {% if page == 'processes' %}active{% endif %}">
+        <a href="{% url 'scraper:processes'  %} " class="nav-link">
           <span class="sidebar-icon">
             <span class="fas fa-server"></span>
           </span>
           <span class="sidebar-text">Process Monitoring</span>
         </a>
       </li>
-      <li class="nav-item">
-        <a href="{% url 'accounts:initiate_process' %}" class="nav-link">
+      <li class="nav-item {% if page == 'initiate-process' %}active{% endif %}">
+        <a href="{% url 'scraper:initiate-process' %}" class="nav-link">
           <span class="sidebar-icon">
             <span class="fas fa-plus-circle"></span>
           </span>
-          <span class="sidebar-text">Initiate Process</span>
+          <span class="sidebar-text">Scrap Products</span>
         </a>
       </li>
+
+      <li class="nav-item">
+        <a href="{% url 'accounts:logout' %}" class="nav-link">
+          <span class="sidebar-icon">
+            <span class="fas fa-sign-out-alt"></span>
+          </span>
+          <span class="sidebar-text">Logout</span>
+        </a>
+      </li>
+
     </ul>
   </div>
 </nav>

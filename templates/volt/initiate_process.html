@@ -1,149 +1,109 @@
-{% extends 'volt/inc/base.html' %} {% block content %}
+{% extends 'volt/inc/base.html' %}
+{% load bootstrap5 %}
+
+{% block extra_css %}
+<style>
+  .marketplace-card {
+    border: 2px solid transparent;
+    cursor: pointer;
+    transition: border-color 0.3s;
+}
+
+.marketplace-card.selected {
+    border: 2px solid #323233;
+    transition: border-color 0.3s;
+}
+</style>
+{% endblock extra_css %}
+
+{% block content %}
+
 <div class="row align-items-center pt-4 my-4">
   <div class="col-md-6 col-12 mb-3 mb-md-0">
     <h4 class="my-auto">Initiate New Scraping Process</h4>
   </div>
 </div>
 
-<h3 class="my-4">Add Details</h3>
+<div class="row">
+  <div class="col-sm-6">
+    <div class="card text-left shadow-sm">
+      <div class="card-header bg-light">
+        <h4 class="card-title my-0">Add Details</h4>
+      </div>
+      <div class="card-body">
+        <form method="POST">
+          {% csrf_token %}
+          
+          <!-- Render search query and other form fields -->
+          <div>
+            {% bootstrap_field form.search_query %}
+            {% bootstrap_field form.max_records %}
+          </div>
+          
+          <!-- Custom Marketplace Selection -->
+          <div class="form-group mb-3">
+            <label for="id_source_websites">Select Marketplaces</label>
+            <div class="marketplace-logos row">
+              {% for website in form.source_websites.field.queryset %}
+                
+                <div class="col-4 text-center">
+                  <div class="card marketplace-card text-left" style="height: 60px;">
+                    <div class="card-body p-2 d-flex align-items-center">
+                      <input 
+                        type="checkbox" 
+                        class="d-none"
+                        name="source_websites" 
+                        value="{{ website.id }}" 
+                        id="marketplace-{{ website.id }}"  
+                      />
+                      <label for="marketplace-{{ website.id }}">
+                      
+                        <div class="marketplace-card">
+                          <img src="{{ website.logo.url }}" alt="{{ website.name }}" class="img-fluid" />
+                        </div>
+                      </label>
+                    </div>
+                  </div>
+                </div>
+              {% endfor %}
+            </div>
+            <p class="text-danger" id="source-website-error"></p>
+          </div>
 
-<div class="card card-body shadow-sm mb-4 w-auto" style="max-width: 600px">
-  <div class="mb-3">
-    <label for="exampleFormControlInput1" class="form-label"
-      >Name of the product</label
-    >
-    <input
-      type="text"
-      class="form-control"
-      id="exampleFormControlInput1"
-      placeholder="Name to search"
-    />
-  </div>
-  <div class="mb-3">
-    <label for="exampleFormControlInput2" class="form-label"
-      >Select Website source (Printables etc)</label
-    >
-    <input
-      type="text"
-      class="form-control"
-      id="exampleFormControlInput2"
-      placeholder="Printables"
-    />
-  </div>
-
-  <div>
-    <p>Checkboxes</p>
-    <div class="form-check">
-      <input
-        class="form-check-input"
-        type="checkbox"
-        value=""
-        id="flexCheckDefault1"
-      />
-      <label class="form-check-label" for="flexCheckDefault1">
-        Product search criteria # 1 to specify the search
-      </label>
-    </div>
-
-    <div class="form-check">
-      <input
-        class="form-check-input"
-        type="checkbox"
-        value=""
-        id="flexCheckDefault2"
-      />
-      <label class="form-check-label" for="flexCheckDefault2">
-        Product search criteria # 2 to specify the search
-      </label>
-    </div>
-
-    <div class="form-check">
-      <input
-        class="form-check-input"
-        type="checkbox"
-        value=""
-        id="flexCheckDefault3"
-      />
-      <label class="form-check-label" for="flexCheckDefault3">
-        Product search criteria # 3 to specify the search
-      </label>
+          <!-- Submit Button -->
+          <button type="submit" class="btn btn-primary w-100">Submit To Start Process</button>
+        </form>
+      </div>
     </div>
   </div>
-
-  <div class="mb-3">
-    <label for="exampleFormControlInput3" class="form-label"
-      >Maximum no. of records to scrap</label
-    >
-    <input
-      type="text"
-      class="form-control"
-      id="exampleFormControlInput3"
-      placeholder="Printables"
-    />
-  </div>
-
-  <button type="button" class="btn btn-primary w-100">
-    Submit To Start Process
-  </button>
+  <div class="col-sm-6"></div>
 </div>
 
-<div class="theme-settings card pt-2 collapse" id="theme-settings">
-  <div class="card-body pt-4">
-    <button
-      type="button"
-      class="btn-close theme-settings-close"
-      aria-label="Close"
-      data-bs-toggle="collapse"
-      href="#theme-settings"
-      role="button"
-      aria-expanded="false"
-      aria-controls="theme-settings"
-    ></button>
-    <div class="d-flex justify-content-between align-items-center mb-3">
-      <p class="m-0 mb-1 me-4 fs-7">
-        Open source <span role="img" aria-label="gratitude">💛</span>
-      </p>
-      <a
-        class="github-button"
-        href="https://github.com/themesberg/volt-bootstrap-5-dashboard"
-        data-color-scheme="no-preference: dark; light: light; dark: light;"
-        data-icon="octicon-star"
-        data-size="large"
-        data-show-count="true"
-        aria-label="Star themesberg/volt-bootstrap-5-dashboard on GitHub"
-        >Star</a
-      >
-    </div>
-    <a
-      href="https://themesberg.com/product/admin-dashboard/volt-bootstrap-5-dashboard"
-      target="_blank"
-      class="btn btn-primary mb-3 w-100"
-      >Download <i class="fas fa-download ms-2"></i
-    ></a>
-    <p class="fs-7 text-gray-700 text-center">
-      Available in the following technologies:
-    </p>
-    <div class="d-flex justify-content-center">
-      <a
-        class="me-3"
-        href="https://themesberg.com/product/admin-dashboard/volt-bootstrap-5-dashboard"
-        target="_blank"
-      >
-        <img
-          src="../../assets/img/technologies/bootstrap-5-logo.svg"
-          class="image image-xs"
-        />
-      </a>
-      <a
-        href="https://demo.themesberg.com/volt-react-dashboard/#/"
-        target="_blank"
-      >
-        <img
-          src="../../assets/img/technologies/react-logo.svg"
-          class="image image-xs"
-        />
-      </a>
-    </div>
-  </div>
-</div>
+<script>
+  $(document).ready(function() {
+    
+    // Toggle the 'selected' class on the marketplace card when the checkbox is clicked
+    $('input[type="checkbox"][name="source_websites"]').on('change', function() {
+      if ($(this).is(':checked')) {
+        $(this).closest('.marketplace-card').addClass('selected');
+      } else {
+        $(this).closest('.marketplace-card').removeClass('selected');
+      }
+    });
+
+
+    // Form submission validation
+    $('form').on('submit', function(event) {
+      var isAnyChecked = $('input[type="checkbox"][name="source_websites"]:checked').length > 0;
+      
+      if (!isAnyChecked) {
+        event.preventDefault(); // Prevent form submission
+        $('#source-website-error').text('Please select at least one website.');
+      } else {
+        $('#source-website-error').text('');
+      }
+    });
+  });
+</script>
+
 {% endblock content %}

@@ -1571,7 +1571,7 @@ progress {
     padding: 0.25rem;
     background-color: #F9FAFB;
     border: 0.0625rem solid #E5E7EB;
-    border-radius: 1rem;
+    border-radius: 0.5rem;
     box-shadow: 0 2px 5px rgba(140, 152, 164, 0.2);
     max-width: 100%;
     height: auto;
@@ -3833,7 +3833,7 @@ progress {
     border: 0.0625rem solid #D1D5DB;
     -webkit-appearance: none;
     appearance: none;
-    border-radius: 1rem;
+    border-radius: 0.5rem;
     box-shadow: inset 0 1px 2px rgba(46, 54, 80, 0.075);
     transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
 }
@@ -3954,7 +3954,7 @@ progress {
     min-height: calc(1.5em + 0.625rem);
     padding: 0.25rem 0.5rem;
     font-size: 0.875rem;
-    border-radius: 1rem;
+    border-radius: 0.5rem;
 }
 
 .form-control-sm::file-selector-button {
@@ -3975,7 +3975,7 @@ progress {
     min-height: calc(1.5em + 1.125rem);
     padding: 0.5rem 1rem;
     font-size: 1.25rem;
-    border-radius: 1rem;
+    border-radius: 0.5rem;
 }
 
 .form-control-lg::file-selector-button {
@@ -4016,12 +4016,12 @@ textarea.form-control-lg {
 
 .form-control-color::-moz-color-swatch {
     height: 1.5em;
-    border-radius: 1rem;
+    border-radius: 0.5rem;
 }
 
 .form-control-color::-webkit-color-swatch {
     height: 1.5em;
-    border-radius: 1rem;
+    border-radius: 0.5rem;
 }
 
 .form-select {
@@ -4039,7 +4039,7 @@ textarea.form-control-lg {
     background-position: right 0.75rem center;
     background-size: 16px 12px;
     border: 0.0625rem solid #D1D5DB;
-    border-radius: 1rem;
+    border-radius: 0.5rem;
     box-shadow: inset 0 1px 2px rgba(46, 54, 80, 0.075);
     -webkit-appearance: none;
     appearance: none;
@@ -4231,7 +4231,7 @@ textarea.form-control-lg {
     margin-top: -0.25rem;
     background-color: #262B40;
     border: 0;
-    border-radius: 1rem;
+    border-radius: 0.5rem;
     box-shadow: 0 0.1rem 0.25rem rgba(46, 54, 80, 0.1);
     -webkit-transition: background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
     transition: background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
@@ -4257,7 +4257,7 @@ textarea.form-control-lg {
     cursor: pointer;
     background-color: #E5E7EB;
     border-color: transparent;
-    border-radius: 1rem;
+    border-radius: 0.5rem;
     box-shadow: inset 0 1px 2px rgba(46, 54, 80, 0.075);
 }
 
@@ -4266,7 +4266,7 @@ textarea.form-control-lg {
     height: 1rem;
     background-color: #262B40;
     border: 0;
-    border-radius: 1rem;
+    border-radius: 0.5rem;
     box-shadow: 0 0.1rem 0.25rem rgba(46, 54, 80, 0.1);
     -moz-transition: background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
     transition: background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
@@ -4291,7 +4291,7 @@ textarea.form-control-lg {
     cursor: pointer;
     background-color: #E5E7EB;
     border-color: transparent;
-    border-radius: 1rem;
+    border-radius: 0.5rem;
     box-shadow: inset 0 1px 2px rgba(46, 54, 80, 0.075);
 }
 
@@ -4422,7 +4422,7 @@ textarea.form-control-lg {
     white-space: nowrap;
     background-color: #F3F4F6;
     border: 0.0625rem solid #D1D5DB;
-    border-radius: 1rem;
+    border-radius: 0.5rem;
 }
 
 .input-group-lg > .form-control,
@@ -4431,7 +4431,7 @@ textarea.form-control-lg {
 .input-group-lg > .btn {
     padding: 0.5rem 1rem;
     font-size: 1.25rem;
-    border-radius: 1rem;
+    border-radius: 0.5rem;
 }
 
 .input-group-sm > .form-control,
@@ -4440,7 +4440,7 @@ textarea.form-control-lg {
 .input-group-sm > .btn {
     padding: 0.25rem 0.5rem;
     font-size: 0.875rem;
-    border-radius: 1rem;
+    border-radius: 0.5rem;
 }
 
 .input-group-lg > .form-select,
@@ -4485,7 +4485,7 @@ textarea.form-control-lg {
     font-size: 0.875rem;
     color: #ffffff;
     background-color: rgba(5, 166, 119, 0.99);
-    border-radius: 1rem;
+    border-radius: 0.5rem;
 }
 
 .was-validated :valid ~ .valid-feedback,
@@ -4566,7 +4566,7 @@ textarea.form-control-lg {
     font-size: 0.875rem;
     color: #ffffff;
     background-color: rgba(250, 82, 82, 0.99);
-    border-radius: 1rem;
+    border-radius: 0.5rem;
 }
 
 .was-validated :invalid ~ .invalid-feedback,
@@ -4643,7 +4643,7 @@ textarea.form-control-lg {
     border: 0.0625rem solid transparent;
     padding: 0.55rem 0.75rem;
     font-size: 1rem;
-    border-radius: 1rem;
+    border-radius: 0.5rem;
     transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
 }
 
@@ -6429,13 +6429,13 @@ textarea.form-control-lg {
 .btn-lg, .btn-group-lg > .btn {
     padding: 0.5rem 1rem;
     font-size: 1.25rem;
-    border-radius: 1rem;
+    border-radius: 0.5rem;
 }
 
 .btn-sm, .btn-group-sm > .btn {
     padding: 0.25rem 0.5rem;
     font-size: 0.875rem;
-    border-radius: 1rem;
+    border-radius: 0.5rem;
 }
 
 .fade {
@@ -6510,7 +6510,7 @@ textarea.form-control-lg {
     background-color: #ffffff;
     background-clip: padding-box;
     border: 0.0625rem solid #D1D5DB;
-    border-radius: 1rem;
+    border-radius: 0.5rem;
     box-shadow: 0 0.5rem 1rem rgba(46, 54, 80, 0.15);
 }
 
@@ -6961,7 +6961,7 @@ textarea.form-control-lg {
 }
 
 .nav-pills .nav-link {
-    border-radius: 1rem;
+    border-radius: 0.5rem;
 }
 
 .nav-pills .nav-link.active,
@@ -7050,7 +7050,7 @@ textarea.form-control-lg {
     line-height: 1;
     background-color: transparent;
     border: 0.0625rem solid transparent;
-    border-radius: 1rem;
+    border-radius: 0.5rem;
     transition: box-shadow 0.15s ease-in-out;
 }
 
@@ -7343,7 +7343,7 @@ textarea.form-control-lg {
     background-color: #ffffff;
     background-clip: border-box;
     border: 0.0625rem solid rgba(46, 54, 80, 0.125);
-    border-radius: 1rem;
+    border-radius: 0.5rem;
 }
 
 .card > hr {
@@ -7639,7 +7639,7 @@ textarea.form-control-lg {
     margin-bottom: 1rem;
     list-style: none;
     background-color: #F3F4F6;
-    border-radius: 1rem;
+    border-radius: 0.5rem;
 }
 
 .breadcrumb-item + .breadcrumb-item {
@@ -7765,7 +7765,7 @@ textarea.form-control-lg {
     text-align: center;
     white-space: nowrap;
     vertical-align: baseline;
-    border-radius: 1rem;
+    border-radius: 0.5rem;
 }
 
 .badge:empty {
@@ -7782,7 +7782,7 @@ textarea.form-control-lg {
     padding: 1rem 1rem;
     margin-bottom: 1rem;
     border: 0.0625rem solid transparent;
-    border-radius: 1rem;
+    border-radius: 0.5rem;
 }
 
 .alert-heading {
@@ -8057,7 +8057,7 @@ textarea.form-control-lg {
     overflow: hidden;
     font-size: 0.75rem;
     background-color: #F3F4F6;
-    border-radius: 1rem;
+    border-radius: 0.5rem;
     box-shadow: inset 0 1px 2px rgba(46, 54, 80, 0.075);
 }
 
@@ -8099,7 +8099,7 @@ textarea.form-control-lg {
     flex-direction: column;
     padding-left: 0;
     margin-bottom: 0;
-    border-radius: 1rem;
+    border-radius: 0.5rem;
 }
 
 .list-group-item-action {
@@ -8742,7 +8742,7 @@ textarea.form-control-lg {
     color: #2e3650;
     background: transparent url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%232e3650'%3e%3cpath d='M.293.293a1 1 0 011.414 0L8 6.586 14.293.293a1 1 0 111.414 1.414L9.414 8l6.293 6.293a1 1 0 01-1.414 1.414L8 9.414l-6.293 6.293a1 1 0 01-1.414-1.414L6.586 8 .293 1.707a1 1 0 010-1.414z'/%3e%3c/svg%3e") center/1em auto no-repeat;
     border: 0;
-    border-radius: 1rem;
+    border-radius: 0.5rem;
     opacity: 0.5;
 }
 
@@ -8779,7 +8779,7 @@ textarea.form-control-lg {
     background-clip: padding-box;
     border: 1px solid rgba(0, 0, 0, 0.1);
     box-shadow: 0 0.5rem 1rem rgba(46, 54, 80, 0.15);
-    border-radius: 1rem;
+    border-radius: 0.5rem;
 }
 
 .toast:not(.showing):not(.show) {
@@ -8897,7 +8897,7 @@ textarea.form-control-lg {
     background-color: #ffffff;
     background-clip: padding-box;
     border: 0.0625rem solid rgba(46, 54, 80, 0.2);
-    border-radius: 1rem;
+    border-radius: 0.5rem;
     box-shadow: 0 2px 5px rgba(140, 152, 164, 0.2);
     outline: 0;
 }
@@ -9275,7 +9275,7 @@ textarea.form-control-lg {
     color: #ffffff;
     text-align: center;
     background-color: #262B40;
-    border-radius: 1rem;
+    border-radius: 0.5rem;
 }
 
 .popover {
@@ -12598,7 +12598,7 @@ textarea.form-control-lg {
 }
 
 .rounded {
-    border-radius: 1rem !important;
+    border-radius: 0.5rem !important;
 }
 
 .rounded-0 {
@@ -12610,7 +12610,7 @@ textarea.form-control-lg {
 }
 
 .rounded-2 {
-    border-radius: 1rem !important;
+    border-radius: 0.5rem !important;
 }
 
 .rounded-3 {
@@ -24859,7 +24859,7 @@ textarea.form-control-lg {
         opacity: 0;
         pointer-events: none;
         margin: 0;
-        border-radius: 1rem;
+        border-radius: 0.5rem;
     }
 
     .navbar-nav .dropdown-menu-end:before {
@@ -24992,7 +24992,7 @@ textarea.form-control-lg {
     .navbar-collapse.collapsing,
   .navbar-collapse.show {
         padding: 1.5rem;
-        border-radius: 1rem;
+        border-radius: 0.5rem;
         background: #ffffff;
         animation: show-navbar-collapse .2s ease forwards;
         box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
@@ -25004,7 +25004,7 @@ textarea.form-control-lg {
 }
 
 .navbar-dashboard {
-    border-radius: 1rem;
+    border-radius: 0.5rem;
 }
 
 .icon-notifications .unread-notifications {
@@ -25378,7 +25378,7 @@ textarea.form-control-lg {
     font-size: 1rem;
     vertical-align: middle;
     padding: 0.55rem 0.75rem;
-    border-radius: 1rem;
+    border-radius: 0.5rem;
 }
 
 .sidebar .nav-link .sidebar-icon {
@@ -28160,7 +28160,7 @@ label {
  * = Input groups
  */
 .input-group {
-    border-radius: 1rem;
+    border-radius: 0.5rem;
     transition: all 0.2s ease;
 }
 
@@ -28179,7 +28179,7 @@ label {
  */
 .list-group-space .list-group-item {
     margin-bottom: 1.5rem;
-    border-radius: 1rem;
+    border-radius: 0.5rem;
 }
 
 .list-group-item {
@@ -28263,7 +28263,7 @@ label {
 
 .modal-content {
     border: 0;
-    border-radius: 1rem;
+    border-radius: 0.5rem;
 }
 
 .modal-fluid .modal-dialog {
@@ -30336,7 +30336,7 @@ label {
     background-position: right 0.75rem center;
     background-size: 16px 12px;
     border: 0.0625rem solid #D1D5DB;
-    border-radius: 1rem;
+    border-radius: 0.5rem;
     box-shadow: inset 0 1px 2px rgba(46, 54, 80, 0.075);
     -webkit-appearance: none;
     appearance: none;
@@ -30383,7 +30383,7 @@ label {
     border: 0.0625rem solid #D1D5DB;
     -webkit-appearance: none;
     appearance: none;
-    border-radius: 1rem;
+    border-radius: 0.5rem;
     box-shadow: inset 0 1px 2px rgba(46, 54, 80, 0.075);
     transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
 }
@@ -30882,7 +30882,7 @@ article .h1, article .h2, article .h3, article .h4, article .h5, article .h6 {
     padding: .5em;
     background: #F3F4F6;
     border: 1px solid #D1D5DB;
-    border-radius: 1rem;
+    border-radius: 0.5rem;
     color: #262B40;
     font-weight: 600;
     text-align: center;
@@ -31144,3 +31144,23 @@ article .h1, article .h2, article .h3, article .h4, article .h5, article .h6 {
 }
 
 /*# sourceMappingURL=volt.css.map */
+
+
+/* Scraping Process Status Pill Colors */
+.badge.status-pending {
+    background-color: #f0ad4e; /* Orange - Pending */
+}
+
+
+
+.badge.status-running {
+    background-color: #0275d8; /* Blue - Running */
+}
+
+.badge.status-completed {
+    background-color: #5cb85c; /* Green - Completed */
+}
+
+.badge.status-failed {
+    background-color: #d9534f; /* Red - Failed */
+}

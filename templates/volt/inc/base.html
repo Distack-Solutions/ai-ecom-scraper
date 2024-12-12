@@ -116,6 +116,23 @@
       rel="stylesheet"
     />
 
+    {% block extra_css %}{% endblock extra_css %}
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+
+
+    <style>
+      img{
+        border-radius: 0.5rem !important;
+      }
+
+      .bg-light-gray{
+        background-color: rgb(241, 241, 241);
+      }
+    </style>
+
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <link rel="stylesheet" href="{% static 'volt/css/imageModal.css' %}">
     <!-- NOTICE: You can use the _analytics.html partial to include production code specific code & trackers -->
   </head>
 
@@ -131,6 +148,9 @@
     <main class="content">
       {% include 'volt/inc/secondnav.html' %}
       <!-- mainbody start -->
+
+      {% include 'volt/inc/msgs.inc.html' %}
+
       {% block content %} {% endblock content %}
       <!-- mainbody ending -->
 
@@ -177,7 +197,7 @@
               target="_blank"
             >
               <img
-                src="../../assets/img/technologies/bootstrap-5-logo.svg"
+                src="{% static 'volt/assets/img/technologies/bootstrap-5-logo.svg' %}"
                 class="image image-xs"
               />
             </a>
@@ -186,7 +206,7 @@
               target="_blank"
             >
               <img
-                src="../../assets/img/technologies/react-logo.svg"
+                src="{% static 'volt/assets/img/technologies/react-logo.svg' %}"
                 class="image image-xs"
               />
             </a>
@@ -283,5 +303,12 @@
 
     <!-- Volt JS -->
     <script src="{% static 'volt/assets/js/volt.js' %}"></script>
+
+    <script>
+      $(document).ready(function () {
+        $(".django_bootstrap5-error").addClass('is-invalid');
+        
+      })
+    </script>
   </body>
 </html>

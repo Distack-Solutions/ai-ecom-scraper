@@ -1,4 +1,7 @@
-{% extends 'volt/inc/base.html' %} {% block content %}
+{% extends 'volt/inc/base.html' %}
+
+{% load static %}
+{% block content %}
 <div class="row align-items-center pt-4 my-4">
   <div class="col-md-6 col-12 mb-3 mb-md-0">
     <h4 class="my-auto">Dashboard</h4>
@@ -300,7 +303,7 @@
           target="_blank"
         >
           <img
-            src="../../assets/img/technologies/bootstrap-5-logo.svg"
+            src="{% static 'volt/assets/img/technologies/bootstrap-5-logo.svg' %}"
             class="image image-xs"
           />
         </a>
@@ -309,7 +312,7 @@
           target="_blank"
         >
           <img
-            src="../../assets/img/technologies/react-logo.svg"
+            src="{% static 'volt/assets/img/technologies/react-logo.svg' %}"
             class="image image-xs"
           />
         </a>

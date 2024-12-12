@@ -1,6 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
-
+from django.utils import timezone
 
 
 # python manage.py makemigrations
@@ -61,6 +61,27 @@ class ScrapingProcess(models.Model):
     started_at = models.DateTimeField(auto_now_add=True, verbose_name="Started At")
     completed_at = models.DateTimeField(null=True, blank=True, verbose_name="Completed At")
 
+    def get_duration(self):
+        """Returns the duration of the scraping process in a human-readable format."""
+        if self.completed_at:
+            # If completed_at is set, return the duration
+            duration = self.completed_at - self.started_at
+        else:
+            # If not completed, return the duration from started_at to the current time
+            duration = timezone.now() - self.started_at
+        
+        # Calculate hours, minutes, and seconds
+        seconds = duration.total_seconds()
+        hours = seconds // 3600
+        minutes = (seconds % 3600) // 60
+        seconds = seconds % 60
+
+        # Format the duration in a human-readable string
+        duration_str = f"{int(hours)}h {int(minutes)}m {int(seconds)}s"
+        
+        return duration_str
+
+
     def __str__(self):
         return f"Scraping {self.search_query} by {self.started_by}"
 
@@ -105,12 +126,16 @@ class Product(models.Model):
     thumbnail = models.OneToOneField(ThumbnailImage, on_delete=models.SET_NULL, null=True, blank=True, verbose_name="Thumbnail")
     source_website = models.ForeignKey(SourceWebsite, on_delete=models.CASCADE, verbose_name="Source Website")
     is_published = models.BooleanField(default=False, verbose_name="Is Published")
-    status = models.CharField(max_length=20, choices=STATUS_CHOICES, default='draft', verbose_name="Status")
+    status = models.CharField(max_length=20, choices=STATUS_CHOICES, default='under_review', verbose_name="Status")
     license = models.OneToOneField(License, on_delete=models.SET_NULL, blank=True, null=True, verbose_name="Product License")
     page_screenshot = models.OneToOneField(PageScreenshot, on_delete=models.SET_NULL, verbose_name="Page Screenshot", null=True, blank=True)
     is_commercial_allowed = models.BooleanField(default=False, verbose_name="Is Commercial Allowed")
     created_at = models.DateTimeField(auto_now_add=True, verbose_name="Created At")
     updated_at = models.DateTimeField(auto_now=True, verbose_name="Updated At")
+
+    def get_categories(self):
+        category_list = self.category.split(",")
+        return category_list
 
     def populate_printables_data(self, products):
         for product in products:
@@ -131,7 +156,7 @@ class Image(models.Model):
     product = models.ForeignKey(Product, on_delete=models.CASCADE, related_name="images", verbose_name="Product")
 
     def __str__(self):
-        return self.name
+        return str(self.product)
 
     class Meta:
         verbose_name = "Image"
