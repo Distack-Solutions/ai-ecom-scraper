@@ -178,6 +178,9 @@ def product_detail(request):
 def product(request):
     return render(request, "volt/product.html", )
 
+@login_required
+def signin(request):
+    return render(request, "volt/signin.html", )
     
 
 
