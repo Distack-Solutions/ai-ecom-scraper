@@ -31164,3 +31164,25 @@ article .h1, article .h2, article .h3, article .h4, article .h5, article .h6 {
 .badge.status-failed {
     background-color: #d9534f; /* Red - Failed */
 }
+
+
+.badge.status-declined {
+    background-color: #b82a17; /* Orange */
+  }
+
+  /* Status pill colors */
+  .badge.status-draft {
+    background-color: #f0ad4e; /* Orange */
+  }
+  .badge.status-under_review {
+    background-color: #5bc0de; /* Light Blue */
+  }
+  .badge.status-approved {
+    background-color: #5cb85c; /* Green */
+  }
+  .badge.status-published {
+    background-color: #0275d8; /* Blue */
+  }
+  .badge.status-archived {
+    background-color: #d9534f; /* Red */
+  }

@@ -114,6 +114,7 @@ class Product(models.Model):
     STATUS_CHOICES = [
         ('draft', 'Draft'),
         ('under_review', 'Under Review'),
+        ('declined', 'Declined'),
         ('approved', 'Approved'),
         ('published', 'Published'),
         ('archived', 'Archived'),
@@ -137,6 +138,41 @@ class Product(models.Model):
         category_list = self.category.split(",")
         return category_list
 
+    def generate_ai_details(self):
+        from apps.ai.libs.openai_generator import AIGenerator
+        ai_generator = AIGenerator(product=self)
+        ai_generator.generate_ai_response()
+        ai_response = ai_generator.get_response_content()
+        return ai_response
+
+    def create_or_update(self, ai_details):
+        from apps.ai.models import ProductAIVersion
+        ai_version, created = ProductAIVersion.objects.get_or_create(
+            product=self,
+            defaults=ai_details
+        )
+
+        if not created:
+            ai_version.title = ai_details.get('title', 'title')
+            ai_version.expanded_description = ai_details.get('expanded_description', 'expanded_description')
+            ai_version.short_description = ai_details.get('short_description', 'short_description')
+            ai_version.meta_description = ai_details.get('meta_description', 'meta_description')
+            ai_version.focus_keyphrase = ai_details.get('focus_keyphrase', 'focus_keyphrase')
+            ai_version.save()
+        return ai_version
+
+    def get_serialized_ai_version(self):
+        if hasattr(self, 'ai_version'):
+            ai_version = getattr(self, 'ai_version')
+            return {
+                'title': ai_version.title, 
+                'expanded_description': ai_version.expanded_description,
+                'short_description':ai_version.short_description,
+                'meta_description':ai_version.meta_description,
+                'focus_keyphrase':ai_version.focus_keyphrase
+            }
+        return None
+
     def populate_printables_data(self, products):
         for product in products:
             print(product)
@@ -145,6 +181,7 @@ class Product(models.Model):
         return self.title
 
     class Meta:
+        ordering = ('-id',)
         verbose_name = "Product"
         verbose_name_plural = "Products"
 

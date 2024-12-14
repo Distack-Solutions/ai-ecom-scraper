@@ -282,12 +282,16 @@ def login_view(request):
             user = form.get_user()
             login(request, user)
             next_path = request.POST.get("next")
+            
+            messages.success(request, "You've been logged successfully.")
             if next_path:
                 return redirect(next_path)
+            
+
             return redirect('accounts:home')
     else:
         form = AuthenticationForm()
-    return render(request, 'login.html', {'form': form})
+    return render(request, 'volt/signin.html', {'form': form})
 
 
 @login_required

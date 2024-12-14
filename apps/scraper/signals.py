@@ -2,7 +2,13 @@ from django.db.models.signals import post_save
 from django.dispatch import receiver
 from .models import ScrapingProcess, Product, License, PageScreenshot, ThumbnailImage, Image
 from django.utils import timezone
-from libs.printables import PrintablesProductScrap
+from .models import Product
+from apps.ai.models import ProductAIVersion
+
+
+
+# models.py (or signals.py)
+
 
 # @receiver(post_save, sender=ScrapingProcess)
 # def process_scraped_products(sender, instance, created, **kwargs):
@@ -23,5 +29,6 @@ from libs.printables import PrintablesProductScrap
 #         fetch_products(instance)
 
 #         print(f"Products processed for ScrapingProcess {instance.id}.")
+
 
 

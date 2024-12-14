@@ -3,6 +3,60 @@
 {% block content %}
 
 <style>
+.thumnail-img img{
+  max-height: 400px;
+  width: 100%;
+}
+
+/* Create the shimmer effect */
+@keyframes shimmer {
+  0% {
+    background-position: -100%;
+  }
+  100% {
+    background-position: 100%;
+  }
+}
+
+.input-shimmer {
+
+}
+
+.input-shimmer input,  .input-shimmer textarea{
+  position: relative;
+  background-color: transparent;
+  border: 1px solid #ccc;
+}
+
+/* Add shimmer effect */
+.input-shimmer input::placeholder, .input-shimmer textarea::placeholder{
+  color: #888;
+}
+
+.input-shimmer input.shimmer-effect, .input-shimmer textarea.shimmer-effect {
+  background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+}
+
+
+/* When 'ai-loading' class is added, rotate the icon */
+.ai-loading #ai-icon {
+    animation: rotate 2s linear infinite;  /* 2s duration, continuous rotation */
+}
+
+/* Keyframes for rotation animation */
+@keyframes rotate {
+    0% {
+        transform: rotate(0deg);  /* Start at 0 degrees */
+    }
+    100% {
+        transform: rotate(360deg);  /* End at 360 degrees */
+    }
+}
+
+
+
   #product-description {
   max-height: 215px;  /* Optional: Limit the height of the description */
   height: 215px;
@@ -25,10 +79,42 @@
   <div class="col-md-6 col-12 mb-3 mb-md-0">
     <h4 class="my-auto">Product Detail</h4>
   </div>
-  <div class="col-md-6 col-12 d-flex justify-content-md-end justify-content-center">
-    <button type="button" class="btn btn-primary px-4">Blacklist</button>
-    <button type="button" class="btn btn-primary mx-2 px-4">Delete</button>
-    <button type="button" class="btn btn-primary px-4">Publish</button>
+  <div class="col-md-6 col-12 d-flex align-items-center  justify-content-md-end justify-content-center gap-2">
+    {% if product.status != 'approved' %}
+    <a 
+      title="Approve"
+      onclick="return confirm('Are you sure you want to approve these products?')" 
+      class="btn btn-success p-2" 
+      href="{% url 'scraper:approve-product' product.id %}" 
+      role="button">
+      <i class="material-icons my-0 py-0 align-middle fs-6">done</i>
+      Approve
+    </a>
+    {% endif %}
+
+    {% if product.status != 'declined' %}
+    <a 
+      title="Decline"
+      onclick="return confirm('Are you sure you want to decline these products?')" 
+      class="btn bg-gray-400 text-gray-800 p-2" 
+      href="{% url 'scraper:decline-product' product.id %}" 
+      role="button">
+      <i class="material-icons my-0 py-0 align-middle fs-6">block</i>
+      Decline
+    </a>
+    {% endif %}
+
+    <a 
+      title="Delete"
+      onclick="return confirm('Are you sure you want to delete this product?')" 
+      class="btn btn-danger p-2" 
+      href="{% url 'scraper:delete-product' product.id %}" 
+      role="button">
+      <i class="material-icons my-0 py-0 align-middle fs-6">delete</i>
+      Delete
+    </a>
+
+    
   </div>
 </div>
 
@@ -39,7 +125,7 @@
       <div class="col-lg-6 col-md-12">
         <!-- Main Image -->
         {% if product.thumbnail %}
-          <div class="image-container">
+          <div class="image-container thumnail-img">
             {% if product.thumbnail.image %}
               <img src="{{ product.thumbnail.image.url }}" class="img-fluid mb-0" alt="{{ product.title }}" />
             {% else %}
@@ -52,9 +138,9 @@
         {% endif %}
         
         <!-- Thumbnail Images -->
-        <div class="row mt-4">
+        <div class="row mt-3">
           {% for image in product.images.all %}
-          <div class="col-4">
+          <div class="col-4 mb-3">
             <div class="image-container rounded border shadow-sm">
               <img src="{% if image.image_file %}{{ image.image_file.url }}{% else %}{{ image.image_url }}{% endif %}" 
                    class="img-fluid lightbox-image object-fit-cover" 
@@ -69,7 +155,8 @@
       
       <!-- Right Section: Product Details -->
       <div class="col-lg-6 col-md-12">
-        <h3>Product Title: {{ product.title }}</h3>
+        <h3 class="gap-2 mb-3 d-flex align-items-center">
+          <span>{{ product.title }}</span> <span class="fs-6 py-1 badge status-{{ product.status }}">{{ product.get_status_display }}</span></h3>
         
         <div id="product-description" class="my-3 bg-light-gray p-2 radius-10 rounded">
           <span id="description-text">{{ product.description|safe }}</span>
@@ -77,16 +164,10 @@
           <!-- <button id="toggle-button" class="btn btn-link text-dark">Show More</button> -->
         </div>
         
+      
         
         
-        <p><b>Scraped At:</b> {{ product.created_at|date:"d M Y" }}</p>
-        <p><b>Commercial License:</b> 
-          {% if product.is_commercial_allowed %}
-          <span>✅ Allowed</span>
-          {% else %}
-          <span>❌ Not Allowed</span>
-          {% endif %}
-        </p>
+        <p><b>Scraped At:</b> {{ product.created_at }}</p>
         <p><b>Category:</b> {{ product.category }}</p>
 
         <!-- Buttons -->
@@ -103,9 +184,69 @@
           </div>
         </div>
       </div>
+
     </div>
   </div>
 </div>
+
+
+<div class="card text-left mb-4 shadow-sm">
+  <div class="card-header d-flex justify-content-between align-items-center">
+    <h4 class="card-title my-0">License</h4>
+    <div class="gap-2">
+      {% if product.status != 'approved' %}
+        <a 
+          title="Approve"
+          onclick="return confirm('Are you sure you want to approve these products?')" 
+          class="btn btn-success p-2 mx-2" 
+          href="{% url 'scraper:approve-product' product.id %}" 
+          role="button">
+          <i class="material-icons my-0 py-0 align-middle fs-6">done</i>
+          Approve
+        </a>
+        {% endif %}
+
+        {% if product.status != 'declined' %}
+        <a 
+          title="Decline"
+          onclick="return confirm('Are you sure you want to decline these products?')" 
+          class="btn bg-gray-400 text-gray-800 p-2" 
+          href="{% url 'scraper:decline-product' product.id %}" 
+          role="button">
+          <i class="material-icons my-0 py-0 align-middle fs-6">block</i>
+          Decline
+        </a>
+        {% endif %}
+    </div>
+  </div>
+
+  <div class="card-body">
+    
+    {% if product.license %}
+      {{ product.license.json.content|safe }}
+    {% else %}
+      {% if product.is_commercial_allowed %}
+
+        <div class="commercial-allowed">
+          <span style="color:green; font-size:1.2em;">✔</span>
+          <span>Commercial use allowed</span>
+        </div>
+
+      {% else %}
+
+        <div class="commercial-not-allowed">
+          <span style="color:red; font-size:1.2em;">✖</span>
+          <span>Commercial use not allowed</span>
+        </div>
+      
+
+
+      {% endif %}
+      
+    {% endif %}
+  </div>
+</div>
+
 
 <!-- Lightbox Modal (hidden initially) -->
 <div id="lightboxModal" class="lightbox-modal">
@@ -120,59 +261,242 @@
 </div>
 
 
-<div class="card shadow-sm mb-4">
-  <!-- Card Header -->
-  <div class="card-header d-flex justify-content-between align-items-center">
-    <h4 class="my-auto">AI Generated Details</h4>
-    <button type="button" class="btn btn-primary px-4">Save Updates</button>
-  </div>
 
-  <!-- Card Body -->
-  <div class="card-body">
-    <div class="py-2">
-      <!-- Product Title -->
-      <div class="row mb-3 align-items-center">
-        <div class="col-md-3 col-12">
-          <b>Product Title</b>
-        </div>
-        <div class="col-md-9 col-12">
-          <input type="text" class="form-control w-100" value="{{ product.title }}" readonly />
-        </div>
-      </div>
 
-      <!-- Product Description -->
-      <div class="row mb-3 align-items-center">
-        <div class="col-md-3 col-12">
-          <b>Product Description</b>
-        </div>
-        <div class="col-md-9 col-12">
-          <textarea class="form-control" rows="3" readonly>{{ product.description }}</textarea>
-        </div>
-      </div>
 
-      <!-- SEO Title -->
-      <div class="row mb-3 align-items-center">
-        <div class="col-md-3 col-12">
-          <b>SEO Title</b>
-        </div>
-        <div class="col-md-9 col-12">
-          <input type="text" class="form-control w-100" value="{{ product.title }}" readonly />
-        </div>
+<form method="POST" action="{% url 'ai:update_ai_details' product.id %}" id="ai-details">
+  
+  {% csrf_token %}
+  <div class="card shadow-sm mb-4">
+    <!-- Card Header -->
+    <div class="card-header d-flex justify-content-between align-items-center">
+      <h4 class="my-auto d-flex align-items-center gap-2">
+        <img src="{% static 'volt/img/ai.png' %}" style="width: 30px;" alt="">
+        AI Generated Details
+      </h4>
+      {% if product.ai_version %}
+      
+      <div class="gap-2">
+        <button type="button" id="regen-btn" class="mx-2 btn bg-secondary regenerate-btn">
+          <img id="ai-icon" src="{% static 'volt/img/ai.png' %}" style="width: 25px; margin-right: 5px;" alt="">
+          Regenerate via AI
+        </button>
+        
+        <button type="submit" class="btn btn-primary px-4">Save Updates</button>  
       </div>
+      
+      {% endif %}
 
-      <!-- Metadata -->
-      <div class="row align-items-center">
-        <div class="col-md-3 col-12">
-          <b>Metadata</b>
-        </div>
-        <div class="col-md-9 col-12">
-          <input type="text" class="form-control w-100" value="{{ product.sku }}" readonly />
-        </div>
-      </div>
+
     </div>
+
+
+      <div class="card-body input-shimmer">
+        {% if product.ai_version %}
+          <div class="py-2">
+        
+            <!-- AI Generated Title -->
+            <div class="row mb-3 align-items-center">
+              <div class="col-md-3 col-12">
+                <b>AI Generated Title</b>
+              </div>
+              <div class="col-md-9 col-12">
+                <input type="text" name="ai_title" id="title" class=" form-control w-100  shimmer-inputs" value="{{ product.ai_version.title }}" />
+              </div>
+            </div>
+        
+            <!-- Expanded Description -->
+            <div class="row mb-3 align-items-center">
+              <div class="col-md-3 col-12">
+                <b>Expanded Description</b>
+              </div>
+              <div class="col-md-9 col-12">
+                <textarea name="ai_expanded_description" id="expanded_description" class=" form-control  shimmer-inputs " rows="3">{{ product.ai_version.expanded_description }}</textarea>
+              </div>
+            </div>
+        
+            <!-- Short Description -->
+            <div class="row mb-3 align-items-center">
+              <div class="col-md-3 col-12">
+                <b>Short Description</b>
+              </div>
+              <div class="col-md-9 col-12">
+                <textarea name="ai_short_description" id="short_description" class="form-control   shimmer-inputs " rows="3">{{ product.ai_version.short_description }}</textarea>
+              </div>
+            </div>
+        
+            <!-- Meta Description -->
+            <div class="row mb-3 align-items-center">
+              <div class="col-md-3 col-12">
+                <b>Meta Description</b>
+              </div>
+              <div class="col-md-9 col-12">
+                <input type="text" name="ai_meta_description" id="meta_description" class="form-control w-100   shimmer-inputs " value="{{ product.ai_version.meta_description }}" />
+              </div>
+            </div>
+        
+            <!-- Focus Keyphrase -->
+            <div class="row mb-3 align-items-center">
+              <div class="col-md-3 col-12">
+                <b>Focus Keyphrase</b>
+              </div>
+              <div class="col-md-9 col-12">
+                <input type="text" name="ai_focus_keyphrase" id="focus_keyphrase" class="form-control w-100 shimmer-inputs" value="{{ product.ai_version.focus_keyphrase }}" />
+              </div>
+            </div>
+        
+        </div>
+      
+
+        {% else %}
+
+          <div>
+            {% include 'volt/inc/notfound.inc.html' with head='AI details not generated' body='Approve the product to view AI generated details' %}            
+          </div>
+          
+        {% endif %}
+      </div>
+    
+    
   </div>
-</div>
+</form>
+
+<!-- <a 
+  id="approve-button" 
+  data-product-id="{{ product.id }}" 
+  title="Approve"
+  class="btn btn-success p-2" 
+  role="button">
+  <i class="material-icons my-0 py-0 align-middle fs-6">done</i>
+  Approve
+
+</a> -->
+
+
+<!-- Regenerate via AI -->
+<script>
+  $(document).ready(function() {
+  // Bind click event to the regenerate button
+  $('#regen-btn').on('click', function() {
+    // Add the ai-loading class to show the rotating icon
+    $('.shimmer-inputs').addClass('shimmer-effect');
+
+    $(this).addClass('ai-loading');
+    $.toast({
+        text: "Regeneration started via AI",
+        position : 'bottom-right'   
+    })
+    // Send AJAX POST request to the view
+    $.ajax({
+      type: 'POST',
+      url: "{% url 'ai:regenerate_ai' product_id=product.id %}",  // Assuming `product.id` is available
+      data: {
+        'csrfmiddlewaretoken': '{{ csrf_token }}',  // Add CSRF token for security
+      },
+      success: function(response) {
+        if (response.success) {
+          // Update the button and any other UI elements with AI-generated results
+          $.toast({
+            text: response.message,
+            position : 'bottom-right',
+            icon: 'success'
+          });
+
+          $('.shimmer-inputs').removeClass('shimmer-effect');
+
+          if (response.ai_details) {
+            Object.entries(response.ai_details).forEach(([key, value]) => {
+              $(`#${key}`).val(value);
+            });            
+          }
+          // Optionally, update the button UI after the process is complete
+          $('#regen-btn').removeClass('ai-loading');  // Remove the ai-loading class
+
+        } else {
+          // Handle errors if any
+          alert('Failed to regenerate AI data.');
+          $('#regen-btn').removeClass('ai-loading');  // Remove the loading class in case of error
+        }
+      },
+      error: function(xhr, errmsg, err) {
+        // Handle AJAX errors
+        alert('Error occurred during the request. Please try again.');
+        $('#regen-btn').removeClass('ai-loading');  // Remove the loading class in case of error
+      }
+    });
+  });
+});
+
+</script>
+
+
+<script>
+  $(document).ready(function() {
+    $('#approve-button').on('click', function(e) {
+      e.preventDefault(); // Prevent the default action (just in case)
+      
+      // Get the product ID from the button's data attribute
+      var productId = $(this).data('product-id');
+
+      // Confirm the action with the user
+      if (!confirm('Are you sure you want to approve this product?')) {
+        return;
+      }
+
+      $.toast({
+        text: "Approving product",
+        position : 'bottom-right'   
+      })
+
+      // Make the AJAX POST request
+      $.ajax({
+        url: '{% url "scraper:approve-product-ajax" 0 %}'.replace('0', productId),  // Dynamic URL for approving
+        type: 'POST',
+        data: {
+          'csrfmiddlewaretoken': '{{ csrf_token }}'  // Include CSRF token for POST request
+        },
+        success: function(response) {
+          
+          // Display success message and update the UI accordingly
+          // alert('Product approved successfully!');
+          $.toast({
+            text: "Product approved & AI details generated",
+            position : 'bottom-right',
+            icon: 'success'
+          })
+          setTimeout(() => {
+            location.reload();            
+          }, 3000);
+          // Optionally, change the status label to 'Approved' dynamically
+          $('.status-label').text('Approved').removeClass('badge-pending').addClass('badge-approved');
+          
+          // Optionally, disable the approve button after approval
+          $('#approve-button').remove();
+        },
+        error: function(xhr, status, error) {
+          // Handle errors
+          alert('Something went wrong. Please try again.');
+        }
+      });
+    });
+  });
+</script>
+
+
 <script src="{% static 'volt/assets/js/imageModal.js' %}"></script>
+<script>
+  // Function to check if a query parameter exists
+  function getQueryParam(param) {
+    const urlParams = new URLSearchParams(window.location.search);
+    return urlParams.has(param);
+  }
+
+  // Check for the 'scroll_to_ai' query parameter
+  if (getQueryParam('scroll_to_ai')) {
+    // Scroll to the AI details section if the parameter exists
+    document.getElementById('ai-details').scrollIntoView({ behavior: 'smooth' });
+  }
+</script>
 
 
 <script>

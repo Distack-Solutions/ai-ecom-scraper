@@ -59,7 +59,7 @@
           <thead class="thead-light">
             <tr>
               <th class="border-0">ID</th>
-              <th class="border-0">Search Name</th>
+              <th class="border-0">Search Query</th>
               <th class="border-0">Max. Records</th>
               <th class="border-0">Website Source</th>
               <th class="border-0">Status</th>
@@ -79,7 +79,10 @@
             {% for process in processes %}
             <tr class="border-bottom">
               <td class="border-0 fw-bold">{{ forloop.counter }}</td>
-              <td class="border-0 fw-bold">{{ process.search_query }}</td>
+              <td class="border-0 fw-bold">
+                
+                <p class=" fs-5">{{ process.search_query }}</p>
+              </td>
               <td class="border-0 fw-bold">{{ process.max_records }}</td>
               <td class="border-0 fw-bold">
                 {% for website in process.source_websites.all %}

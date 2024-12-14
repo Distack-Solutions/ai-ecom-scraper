@@ -23,6 +23,7 @@ urlpatterns = [
     path('i18n/', include('django.conf.urls.i18n')),
     path('admin/', admin.site.urls),
     path('scraper/', include('apps.scraper.urls')),
+    path('ai/', include('apps.ai.urls')),
     path('', include('apps.accounts.urls')),
     path('', include('apps.job_management.urls')),
     path('', include('apps.work_tracker.urls')),

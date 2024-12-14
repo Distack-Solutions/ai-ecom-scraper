@@ -39,17 +39,18 @@
     </div>
 
     <ul class="nav flex-column pt-3 pt-md-0">
-      <li class="nav-item">
-        <a href="" class="nav-link d-flex align-items-center">
-          <span class="sidebar-icon">
-            <img
+      <li class="nav-item mb-3">
+        <a href="" class="align-middle nav-link bg-gray-700 text-white d-flex align-items-center">
+          <span class="sidebar-icon my-0 align-middle ">
+            <!-- <img
               src="{% static 'volt/assets/img/brand/light.svg' %}"
               height="20"
               width="20"
               alt="Volt Logo"
-            />
+            /> -->
+            <i class="material-icons my-0 align-middle ">downloading</i>
           </span>
-          <span class="mt-1 ms-1 sidebar-text">Volt Overview</span>
+          <span class="fs-5 sidebar-text align-middle my-0 py-0">AI Scraper</span>
         </a>
       </li>
 
@@ -95,14 +96,7 @@
         </a>
       </li>
 
-      <li class="nav-item">
-        <a href="{% url 'accounts:signin' %}" class="nav-link">
-          <span class="sidebar-icon">
-            <span class="fas fa-sign-in-alt"></span>
-          </span>
-          <span class="sidebar-text">LogIn</span>
-        </a>
-      </li>
+      
     </ul>
   </div>
 </nav>
