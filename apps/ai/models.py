@@ -13,6 +13,27 @@ class ProductAIVersion(models.Model):
     focus_keyphrase = models.CharField(max_length=255, verbose_name="Focus Keyphrase")
     product = models.OneToOneField(Product, on_delete=models.CASCADE, related_name="ai_version", verbose_name="Product")
 
+    def get_images(self):
+        images = self.product.images.all()
+        wc_images = []
+        i = 1
+        for image in images:
+            image_url = None
+            image_name = f'{self.product.title} - Gallery image {i}'
+            if image.image_file:
+                image_url = image.image_file.url
+            else:
+                image_url = image.image_url
+
+            wc_images.append(
+                {
+                    'name': image_name,
+                    'src': image_url
+                })
+            i+=1
+
+        return wc_images
+
     def __str__(self):
         return f"AI Version of {self.product.title}"
 

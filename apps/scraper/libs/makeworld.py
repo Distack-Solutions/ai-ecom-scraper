@@ -41,6 +41,7 @@ class MakeWorldProductScrap:
     def __hit_query(self):
         self.__set_buildId()
         url = f"https://makerworld.com/_next/data/{self.buildId}/en/search/models.json?keyword={self.query}&limit={self.limit}&offset=0"
+        print(url)
         # Start Playwright
         with sync_playwright() as p:
             browser = p.chromium.launch(
@@ -81,6 +82,7 @@ class MakeWorldProductScrap:
 
 
 if __name__ == "__main__":
+
     x = MakeWorldProductScrap("apple", 20)
     x.get_products()
     x.save_file()

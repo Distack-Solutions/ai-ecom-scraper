@@ -11,13 +11,40 @@ from django.contrib.auth.decorators import login_required
 import os, time
 from django.http import JsonResponse
 
+from django.views.decorators.csrf import csrf_exempt
+from apps.scraper.libs.wc import WooCommerceManager
+
+from django.http import JsonResponse
+from django.views.decorators.csrf import csrf_exempt
+from .models import Product
+from django.http import StreamingHttpResponse
+from time import sleep
+import json
+
 
 # Create your views here.
 @login_required
 def all_products(request):
+    # Retrieve query parameters
+    search_query = request.GET.get('search', '')
+    status_filter = request.GET.get('status', '')
+
+    # Start with all products
+    products = Product.objects.all()
+
+    # Apply search filter
+    if search_query:
+        products = products.filter(title__icontains=search_query)
+
+    # Apply status filter
+    if status_filter and status_filter != 'all':
+        products = products.filter(status=status_filter)
+
     context = {
-        'products': Product.objects.all(),
-        'page': 'products'
+        'products': products,
+        'search_query': search_query,
+        'status_filter': status_filter,
+        'page': 'products',
     }
     return render(request, "volt/product.html", context)
 
@@ -54,7 +81,6 @@ def approve_product_via_ajax(request, product_id):
         # Change the product status to approved
         product.status = 'approved'
         product.save()
-        time.sleep(2)
         # Return JSON response for successful approval
         return JsonResponse({'success': True, 'message': f'Product "{product.title}" has been approved.'})
     
@@ -274,6 +300,12 @@ def initiate_process(request):
 def product_detail(request, product_id):
     # Fetch the product by ID
     product = get_object_or_404(Product, id=product_id)
+
+    # wc_manager = WooCommerceManager()
+    # product = wc_manager.upload_product(product.ai_version)
+    
+
+
     # ai_details = product.generate_ai_details()
     context = {
         'product': product,
@@ -289,3 +321,168 @@ def processes_list(request):
         'processes': ScrapingProcess.objects.all().order_by('-id')
     }
     return render(request, "volt/process_monitoring.html", context)
+
+
+
+def process_products_sse(request):
+    verbs = {
+      'publish': {
+        'doing': 'Publishing',
+        'done': 'Published'
+      },
+      'approve': {
+        'doing': 'Approving',
+        'done': 'Approved'
+      },
+      'decline': {
+        'doing': 'Declining',
+        'done': 'Declined'
+      },
+      'delete': {
+        'doing': 'Deleting',
+        'done': 'Deleted'
+      }
+    }
+    operation = request.GET.get('operation')
+    product_ids = request.GET.get('ids').split(',')
+    total_products = len(product_ids)
+    
+    operationed = verbs[operation]['done']
+    operationing = verbs[operation]['doing']
+
+    def event_stream():
+        for idx, product_id in enumerate(product_ids):
+            done = idx
+            total = total_products
+            output = {
+                'product_id': product_id,
+                'done': done,
+                'total': total
+            }
+            try:
+                product = Product.objects.get(id = product_id)
+                output['status'] = 'progress'
+                output['percent'] = int((done) / total * 100)
+                output['message'] = f'{operationing.capitalize()} product ' + product_id
+                # Simulate operation (replace with actual logic like WooCommerce upload or AI generation)
+                yield f"data: {json.dumps(output)}\n\n"
+
+                # Perform operation
+                if operation == 'delete':
+                    product.delete()
+                
+                if operation == 'approve' and product.status != 'approved':
+                    product.status = 'approved'
+                    product.save()
+
+                if operation == 'publish' and product.status != 'published':
+                    wc_manager = WooCommerceManager()
+                    try:
+                        wc_manager.upload_product(product_ai_version=product.ai_version)
+                        product.status = 'published'
+                        product.save()
+                    except Exception as e:
+                        # Retry once more
+                        output['message'] = "Having problems, retrying without images"
+                        yield f"data: {json.dumps(output)}\n\n"
+
+                        try:
+                            wc_manager.upload_product(
+                                product_ai_version=product.ai_version,
+                                exclude_images=True
+                            )
+                            product.publishing_message = "Published without images"
+                            product.status = 'published'
+                            product.save()
+                        except Exception as second_e:
+                            raise Exception(f"Failed to publish product {product_id} after two attempts: {second_e}")
+
+
+                if operation == 'decline' and product.status != 'declined':
+                    product.status = 'declined'
+                    product.save()
+
+                # Progress percentage
+                done = idx + 1
+                progress = int((done) / total * 100)
+                output['status'] = 'progress'
+                output['percent'] = progress
+                output['message'] = f'{progress}% - {operationed.capitalize()} {done} of {total}'
+
+                yield f"data: {json.dumps(output)}\n\n"
+
+            except Exception as e:
+                progress = int((done) / total * 100)
+                output['status'] = 'error'
+                output['percent'] = progress
+                output['message'] = f'Error {operationing.capitalize()} product {product_id}: {str(e)}'
+                yield f"data: {json.dumps(output)}\n\n"
+                # return  # Stop processing on error
+
+        yield f"data: {json.dumps({'status': 'completed', 'message': f'Products {operationed} successfully'})}\n\n"
+
+    response = StreamingHttpResponse(event_stream(), content_type="text/event-stream")
+    response["Cache-Control"] = "no-cache"
+    response["X-Accel-Buffering"] = "no"  # Allow Stream over NGINX server
+    return response
+
+@csrf_exempt
+def process_products_operation(request):
+    if request.method == 'POST':
+        operation = request.POST.get('operation')
+        product_ids = request.POST.getlist('product_ids[]')
+
+        if not product_ids:
+            return JsonResponse({'success': False, 'message': 'No products selected'})
+
+        try:
+            products = Product.objects.filter(id__in=product_ids)
+            raise Exception("Invalid product ids")
+
+            if operation == 'publish':
+                products.update(status='published')
+            elif operation == 'approve':
+                products.update(status='approved')
+            elif operation == 'decline':
+                products.update(status='declined')
+            elif operation == 'delete':
+                products.delete()
+            else:
+                return JsonResponse({'success': False, 'message': 'Invalid operation'})
+
+            return JsonResponse({'success': True, 'message': f'{operation} operation completed successfully'})
+        except Exception as e:
+            return JsonResponse({'success': False, 'message': str(e)})
+    return JsonResponse({'success': False, 'message': 'Invalid request method'}, status=405)
+
+
+@csrf_exempt
+def ajax_upload_product_to_wc(request):
+    if request.method == 'POST':
+        product_ids = request.POST.getlist('product_ids[]', [])
+
+        if not product_ids:
+            return JsonResponse({"success": False, "message": "No product IDs provided."}, status=400)
+
+        wc_manager = WooCommerceManager()
+        response = None
+        if len(product_ids) > 1:
+            selected_products = Product.objects.filter(id__in = product_ids)
+            products_ai_version = list(map(lambda product: product.ai_version, selected_products))
+            try:
+                response = wc_manager.upload_bulk_products(products_ai_version)
+            except Exception as e:
+                return JsonResponse({"success": False, "message": str(e)}, status=500)
+
+        else:
+            selected_product = Product.objects.filter(id__in = product_ids).first()
+            product_ai_version = selected_product.ai_version
+            try:
+                response = wc_manager.upload_product(product_ai_version)
+            except Exception as e:
+                return JsonResponse({"success": False, "message": str(e)}, status=500)
+
+ 
+        return JsonResponse({"success": True, "message": "All selected products uploaded successfully!", "data": response})
+    else:
+        return JsonResponse({"success": False, "message": "Invalid request method."}, status=405)

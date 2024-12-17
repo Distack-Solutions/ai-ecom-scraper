@@ -15,7 +15,10 @@ import os
 from decouple import config as env
 from django.utils.translation import gettext_lazy as _
 from datetime import timedelta
+from dotenv import load_dotenv
 
+# Load environment variables from .env file
+load_dotenv()
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -248,3 +251,9 @@ handler403 = 'accounts.views.custom_permission_denied'
 
 
 TOTAL_RECORDS_LIMIT = 20
+
+
+# WooCommerce Settings
+WOOCOMMERCE_URL = os.getenv('WOOCOMMERCE_URL')
+WOOCOMMERCE_CONSUMER_KEY = os.getenv('WOOCOMMERCE_CONSUMER_KEY')
+WOOCOMMERCE_CONSUMER_SECRET = os.getenv('WOOCOMMERCE_CONSUMER_SECRET')

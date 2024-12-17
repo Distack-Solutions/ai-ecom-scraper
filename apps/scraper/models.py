@@ -133,6 +133,7 @@ class Product(models.Model):
     is_commercial_allowed = models.BooleanField(default=False, verbose_name="Is Commercial Allowed")
     created_at = models.DateTimeField(auto_now_add=True, verbose_name="Created At")
     updated_at = models.DateTimeField(auto_now=True, verbose_name="Updated At")
+    publishing_message = models.CharField(max_length=255, null=True, blank=True)
 
     def get_categories(self):
         category_list = self.category.split(",")
@@ -179,6 +180,7 @@ class Product(models.Model):
 
     def __str__(self):
         return self.title
+
 
     class Meta:
         ordering = ('-id',)

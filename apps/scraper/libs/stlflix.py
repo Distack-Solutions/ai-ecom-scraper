@@ -303,14 +303,24 @@ class StlflixProductScrap:
                 if c.get('attributes'):
                     categories.append(c['attributes'].get('name'))
             # Parent categories
-            parent_cat_data = attr.get('parent_categories', {}).get('data', [])
+            parent_categories = attr.get('parent_categories', {})
+            parent_cat_data = []
+            if parent_categories:
+              parent_cat_data = parent_categories.get('data', [])
+            
             for pc in parent_cat_data:
-                if pc.get('attributes'):
+                if pc and pc.get('attributes'):
                     categories.append(pc['attributes'].get('name'))
+
             # Sub categories
-            sub_cat_data = attr.get('sub_categories', {}).get('data', [])
+            sub_categories = attr.get('sub_categories', {})
+            sub_cat_data = []
+
+            if sub_categories:
+              sub_cat_data = sub_categories.get('data', [])
+
             for sc in sub_cat_data:
-                if sc.get('attributes'):
+                if sc and sc.get('attributes'):
                     categories.append(sc['attributes'].get('name'))
 
             category_str = ",".join(filter(None, categories)) if categories else None

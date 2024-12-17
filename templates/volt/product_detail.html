@@ -156,7 +156,15 @@
       <!-- Right Section: Product Details -->
       <div class="col-lg-6 col-md-12">
         <h3 class="gap-2 mb-3 d-flex align-items-center">
-          <span>{{ product.title }}</span> <span class="fs-6 py-1 badge status-{{ product.status }}">{{ product.get_status_display }}</span></h3>
+          <span>
+            {{ product.title }}
+
+            {% if product.status == 'published' %}
+              <img title="This product is published on woocommerce" width="30" src="{% static 'img/woocommerce.webp' %}" alt="Published">
+            {% endif %}
+
+          </span> 
+          <span class="fs-6 py-1 badge status-{{ product.status }}">{{ product.get_status_display }}</span></h3>
         
         <div id="product-description" class="my-3 bg-light-gray p-2 radius-10 rounded">
           <span id="description-text">{{ product.description|safe }}</span>
