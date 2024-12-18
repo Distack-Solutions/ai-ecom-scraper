@@ -3,6 +3,10 @@
 Dockerfile*
 docker-compose.yml*
 staticfiles/*
+media
+
+db.sqlite3
+db.sqlite3-journal
 
 ### OSX ###
 .DS_Store
