@@ -5,8 +5,13 @@ from apps.scraper.libs.stlflix import StlflixProductScrap
 from apps.scraper.models import *
 import time
 
-# Get the 'scraper' logger defined in settings.py
-logger = logging.getLogger('scraper')
+logging.basicConfig(
+    level=logging.INFO,
+    format='%(asctime)s - %(levelname)s - %(message)s',
+)
+logger = logging.getLogger(__name__)
+
+
 
 class ProductScraperProcessor:
     def __init__(self, scraping_process):
