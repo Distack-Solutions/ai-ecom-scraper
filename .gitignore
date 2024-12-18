@@ -7,8 +7,8 @@ media
 venv
 
 
-db.sqlite3
-db.sqlite3-journal
+# db.sqlite3
+# db.sqlite3-journal
 
 ### OSX ###
 .DS_Store
