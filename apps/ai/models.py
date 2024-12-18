@@ -17,6 +17,21 @@ class ProductAIVersion(models.Model):
         images = self.product.images.all()
         wc_images = []
         i = 1
+
+        if self.product.thumbnail:
+            thumbnail_url = None
+            if self.product.thumbnail.url:
+                thumbnail_url = self.product.thumbnail.url
+
+            if self.product.thumbnail.image.url:
+                thumbnail_url = self.product.thumbnail.image.url
+
+            if thumbnail_url:
+                wc_images.append({
+                    'name': f"{self.product.title} - Thumbnail",
+                    'src': thumbnail_url
+                })
+
         for image in images:
             image_url = None
             image_name = f'{self.product.title} - Gallery image {i}'

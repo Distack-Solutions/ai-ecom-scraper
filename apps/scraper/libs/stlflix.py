@@ -225,6 +225,10 @@ class StlflixProductScrap:
         self.query = query
         self.limit = limit
         self.results = []
+        self.key = "stlflix"
+
+    def _apply_limit(self):
+        self.results = self.results[:self.limit]
 
     def __hit_query(self):
         payload = json.dumps(
@@ -257,6 +261,7 @@ class StlflixProductScrap:
 
     def get_products(self):
         self.__hit_query()
+        self._apply_limit()
         return self.results
 
     def save_file(self):
@@ -345,7 +350,7 @@ class StlflixProductScrap:
 
             # Build a dictionary that aligns with your Product model fields
             product_data = {
-                'sku': slug or None,
+                'sku': f'{self.key}-{slug}',
                 'title': title or None,
                 'description': description or None,
                 'category': category_str,  # comma-separated categories or None
