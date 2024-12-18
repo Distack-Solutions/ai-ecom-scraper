@@ -61,6 +61,7 @@ class ProductScraperProcessor:
             print(f"Product {internal_product.title} saved successfully.")
 
         except Exception as e:
+            raise Exception(e)
             print(f"Error processing product {product_data.get('sku')}: {e}")
 
     def fetch_and_process(self, scraper_class, website):

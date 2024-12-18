@@ -1,498 +1,947 @@
 [
     {
-        "id": "515068",
-        "name": "Apple",
-        "description": "<p>An apple.</p>\n<h3>Print Settings</h3>\n<p><strong>Printer:</strong></p>\n<p>Anet A8 Plus</p>\n<p class=\"detail-setting rafts\"><strong>Rafts: </strong>\n<div><p>No</p></div>\n<p><strong>Supports:</strong></p>\n<p>Yes</p>\n<p class=\"detail-setting resolution\"><strong>Resolution: </strong>\n<div><p>.2</p></div>\n<p><strong>Infill:</strong></p>\n<p>5%</p>\n<p><strong>Filament:</strong></p>\n<a href=\"http://www.amazon.com/s?url=search-alias&amp;field-keywords=Generic+PLA\" target=\"_blank\">\n Generic PLA </a>\n<p>Red</p>\n<p><br/> <p class=\"detail-setting notes\"><strong>Notes: </strong></p>\n</p><div><p>Printed as oriented in STL, with supports for overhangles of 80 degrees with a density of 5%. Used a brim for better build plate adhesion. Wall thickness and top and bottom thickness of 1.2mm.</p></div>\n</p></p>\n\nCategory: Sculptures",
-        "pdfFilePath": "media/prints/515068/pdfs/515068-apple-ab0cc648-ec46-49d3-ab82-3bd632cd276e.pdf",
-        "category": {
-            "id": "14",
-            "name": "Sculptures",
-            "nameEn": "Sculptures",
-            "__typename": "CategoryType"
-        },
-        "license": {
-            "id": "4",
-            "name": "Creative Commons \u2014 Attribution  \u2014 Noncommercial  \u2014  Share Alike",
-            "abbreviation": "CC-BY-NC-SA",
-            "content": "<a rel=\"license\" target=\"_blank\" href=\"http://creativecommons.org/licenses/by-nc-sa/4.0/\"><img alt=\"Creative Commons License\" style=\"border-width:0\" src=\"https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png\" align=\"right\"/></a>\r\n<br>\r\nThis work is licensed under a \r\n</br>\r\n <a rel=\"license\" target=\"_blank\" href=\"http://creativecommons.org/licenses/by-nc-sa/4.0/\">Creative Commons (4.0 International License)<br><h6>Attribution\u2014Noncommercial\u2014Share Alike</h6></a>\r\n<hr>\r\n<div><span style=\"color:#cb2c2c; font-weight:bold;\">\u2716 </span> | Sharing without ATTRIBUTION </div>\r\n<div><span style=\"color:#5daf0b; font-weight:bold;\">\u2714 </span> | Remix Culture allowed  </div>\r\n<div><span style=\"color:#cb2c2c; font-weight:bold;\">\u2716 </span> | Commercial Use  </div>\r\n<div><span style=\"color:#cb2c2c; font-weight:bold;\">\u2716 </span> | Free Cultural Works  </div>\r\n<div><span style=\"color:#cb2c2c; font-weight:bold;\">\u2716 </span> | Meets Open Definition  </div>",
-            "disallowRemixing": false,
-            "freeModels": true,
-            "storeModels": false,
-            "__typename": "LicenseType"
-        },
-        "image": {
-            "filePath": "media/prints/515068/images/4171832_58333b2b-2bc6-4b61-b488-f86bbabecb99/large_display_img_20220119_231802825_515068.jpg",
-            "__typename": "PrintImageType"
-        },
-        "images": [
-            {
-                "id": "1987666",
-                "filePath": "media/prints/515068/images/4171832_58333b2b-2bc6-4b61-b488-f86bbabecb99/large_display_img_20220119_231802825_515068.jpg",
-                "__typename": "PrintImageType"
+        "id": 252931,
+        "title": "Apple Watch Charging Stand",
+        "titleTranslated": "",
+        "cover": "https://makerworld.bblmw.com/makerworld/model/USe064970f456c22/design/2024-03-13_e312ebc91ffda.jpg",
+        "likeCount": 1031,
+        "collectionCount": 2184,
+        "shareCount": 0,
+        "printCount": 6438,
+        "downloadCount": 7367,
+        "rawModelFileDownloadCount": 642,
+        "commentCount": 68,
+        "readCount": 0,
+        "designCreator": {
+            "uid": 3178909832,
+            "name": "Dan_ID",
+            "avatar": "https://public-cdn.bblmw.com/avatar/3178909832/2024-10-28_c927c53dd2fc1.jpeg",
+            "fanCount": 0,
+            "followCount": 0,
+            "isFollowed": false,
+            "nameHighlight": "",
+            "createTime": "",
+            "publicInstanceUploadCount": 0,
+            "backgroundUrl": "",
+            "mySelectDesign": null,
+            "level": 0,
+            "gradeType": 0,
+            "downloadCount": 17748,
+            "likeCount": 1382,
+            "bannedPermission": {
+                "whole": false,
+                "comment": false,
+                "upload": false,
+                "redeem": false
             },
-            {
-                "id": "1987667",
-                "filePath": "media/prints/515068/images/4171833_a54622c5-9f7c-481e-a48e-b638031b8986/large_display_apple_scan_515068.png",
-                "__typename": "PrintImageType"
-            }
-        ],
-        "previewFile": {
-            "id": "2202758",
-            "filePreviewPath": "media/prints/515068/stls/4171834_86765806-b610-4190-a26d-ef05635463de/apple_scan_preview.png",
-            "__typename": "STLType"
+            "MWCount": {
+                "myDesignDownloadCount": 0,
+                "myInstanceDownloadCount": 0,
+                "designCount": 0
+            },
+            "certificated": false,
+            "hotScore": 0,
+            "score": 0,
+            "handle": "Incremental_Dan"
         },
-        "__typename": "PrintType"
+        "titleHighlight": "Apple Watch Charging Stand",
+        "createTime": "2024-03-14T02:00:51Z",
+        "hotScore": 8.219840334706696e-08,
+        "designScore": 10.274568233782462,
+        "score": 0,
+        "nsfw": false,
+        "status": 1,
+        "hasCollect": false,
+        "hasLike": false,
+        "hasDislike": false,
+        "isStaffPicked": false,
+        "pickReason": "",
+        "is_printable": true,
+        "is_official": false,
+        "is_point_redeemable": false,
+        "isExclusive": true,
+        "license": "Standard Digital File License",
+        "contest": {
+            "contestId": 0,
+            "rank": 0,
+            "status": 0,
+            "contestName": ""
+        },
+        "tags": [
+            "apple",
+            "watch",
+            "apple watch",
+            "charging stand",
+            "home office",
+            "desk accessories"
+        ],
+        "customizedByMakerLab": false,
+        "preset": {
+            "type": "",
+            "filamentConfig": null,
+            "printerConfig": null,
+            "processConfig": null,
+            "printerSettings": [],
+            "file": {
+                "name": "",
+                "size": 0,
+                "url": ""
+            }
+        },
+        "coverLandscape": "",
+        "coverPortrait": "",
+        "boostCnt": 875,
+        "bomsNeeded": false,
+        "modelSource": 1,
+        "ext": "{\"by\":0,\"exp\":0,\"q\":\"apple\",\"qp\":{\"actualQuery\":\"apple\",\"baseEmbedThreshold\":0.74,\"exp\":0,\"query\":\"apple\",\"segWords\":[\"apple\"],\"synSegWords\":{\"apple\":[\"apples\",\"appl\"]}},\"rc\":[\"titleAndTagsSeg|64.06|0.8659|110\",\"titleSeg|54.78|0.8659|60\"],\"rk\":\"110|0\"}"
     },
     {
-        "id": "542603",
-        "name": "Apple",
-        "description": "<p>This is a HD 3D scan of an apple using an Einscan Pro 2X Scanner.</p>",
-        "pdfFilePath": "media/prints/542603/pdfs/542603-apple-0464fed6-c2fd-49b4-9e28-3b724e9dfa13.pdf",
-        "category": {
-            "id": "81",
-            "name": "Props",
-            "nameEn": "Props",
-            "__typename": "CategoryType"
+        "id": 596218,
+        "title": "Teachers Apple",
+        "titleTranslated": "",
+        "cover": "https://makerworld.bblmw.com/makerworld/model/USb5ffc437872569/design/2024-08-19_86a1317df2d1a.jpg",
+        "likeCount": 50,
+        "collectionCount": 108,
+        "shareCount": 0,
+        "printCount": 37,
+        "downloadCount": 179,
+        "rawModelFileDownloadCount": 16,
+        "commentCount": 1,
+        "readCount": 0,
+        "designCreator": {
+            "uid": 955296092,
+            "name": "Ollie",
+            "avatar": "https://public-cdn.bblmw.com/avatar/955296092/2023-11-07_6397059df64e3.jpg",
+            "fanCount": 0,
+            "followCount": 0,
+            "isFollowed": false,
+            "nameHighlight": "",
+            "createTime": "",
+            "publicInstanceUploadCount": 0,
+            "backgroundUrl": "",
+            "mySelectDesign": null,
+            "level": 0,
+            "gradeType": 0,
+            "downloadCount": 4019,
+            "likeCount": 390,
+            "bannedPermission": {
+                "whole": false,
+                "comment": false,
+                "upload": false,
+                "redeem": false
+            },
+            "MWCount": {
+                "myDesignDownloadCount": 0,
+                "myInstanceDownloadCount": 0,
+                "designCount": 0
+            },
+            "certificated": false,
+            "hotScore": 0,
+            "score": 0,
+            "handle": "Ollie13"
         },
-        "license": {
-            "id": "7",
-            "name": "Creative Commons \u2014 Public Domain",
-            "abbreviation": "CC0",
-            "content": "<a rel=\"license\" target=\"_blank\" href=\"https://creativecommons.org/share-your-work/public-domain/cc0/\"><img alt=\"Creative Commons License\" style=\"border-width:0\" src=\"https://licensebuttons.net/p/zero/1.0/88x31.png\" align=\"right\"/></a>\r\n<br>\r\nThis work is licensed under a \r\n</br>\r\n <a rel=\"license\" target=\"_blank\" href=\"https://creativecommons.org/share-your-work/public-domain/cc0/\">Creative Commons (International License)<br><h6>Public Domain</h6></a>\r\n<hr>\r\n<div><span style=\"color:#5daf0b; font-weight:bold;\">\u2714 </span> | Sharing without ATTRIBUTION  </div>\r\n<div><span style=\"color:#5daf0b; font-weight:bold;\">\u2714 </span> | Remix Culture allowed  </div>\r\n<div><span style=\"color:#5daf0b; font-weight:bold;\">\u2714 </span> | Commercial Use  </div>\r\n<div><span style=\"color:#5daf0b; font-weight:bold;\">\u2714 </span> | Free Cultural Works  </div>\r\n<div><span style=\"color:#5daf0b; font-weight:bold;\">\u2714 </span> | Meets Open Definition  </div>",
-            "disallowRemixing": false,
-            "freeModels": true,
-            "storeModels": false,
-            "__typename": "LicenseType"
+        "titleHighlight": "Teachers Apple",
+        "createTime": "2024-08-19T14:10:53Z",
+        "hotScore": 0.0017157985124944964,
+        "designScore": 5.520660597691477,
+        "score": 0,
+        "nsfw": false,
+        "status": 1,
+        "hasCollect": false,
+        "hasLike": false,
+        "hasDislike": false,
+        "isStaffPicked": false,
+        "pickReason": "",
+        "is_printable": true,
+        "is_official": false,
+        "is_point_redeemable": false,
+        "isExclusive": false,
+        "license": "BY-NC",
+        "contest": {
+            "contestId": 0,
+            "rank": 0,
+            "status": 0,
+            "contestName": ""
         },
-        "image": {
-            "filePath": "media/prints/542603/images/4366911_0470d7db-cec2-47bf-b52b-8e41fd9dba95/img_20230803_142229.jpg",
-            "__typename": "PrintImageType"
-        },
-        "images": [
-            {
-                "id": "2075695",
-                "filePath": "media/prints/542603/images/4366911_0470d7db-cec2-47bf-b52b-8e41fd9dba95/img_20230803_142229.jpg",
-                "__typename": "PrintImageType"
-            }
+        "tags": [
+            "teacher",
+            "apple",
+            "teacher appreciation",
+            "teacher appreciation week",
+            "school"
         ],
-        "previewFile": {
-            "id": "2311513",
-            "filePreviewPath": "media/prints/542603/stls/4366863_ec9b1f8c-9d7b-4a69-8452-8606925a9190/apple_preview.png",
-            "__typename": "STLType"
+        "customizedByMakerLab": false,
+        "preset": {
+            "type": "",
+            "filamentConfig": null,
+            "printerConfig": null,
+            "processConfig": null,
+            "printerSettings": [],
+            "file": {
+                "name": "",
+                "size": 0,
+                "url": ""
+            }
         },
-        "__typename": "PrintType"
+        "coverLandscape": "",
+        "coverPortrait": "https://makerworld.bblmw.com/makerworld/model/USb5ffc437872569/design/2024-08-19_54e574dc8f807.jpg",
+        "boostCnt": 9,
+        "bomsNeeded": false,
+        "modelSource": 3,
+        "ext": "{\"by\":0,\"exp\":0,\"q\":\"apple\",\"qp\":{\"actualQuery\":\"apple\",\"baseEmbedThreshold\":0.74,\"exp\":0,\"query\":\"apple\",\"segWords\":[\"apple\"],\"synSegWords\":{\"apple\":[\"apples\",\"appl\"]}},\"rc\":[\"titleAndTagsSeg|74.99|0.5632|109.11\",\"titleAndTagsSyn|224.98|0.5632|11\",\"titleSeg|70.31|0.5632|59.99\",\"titleSyn|210.94|0.5632|11\"],\"rk\":\"109.11|1\"}"
     },
     {
-        "id": "745974",
-        "name": "apple",
-        "description": "",
-        "pdfFilePath": "media/prints/745974/pdfs/745974-apple-0e3dde7b-5153-4d46-9dcc-b860087679a8.pdf",
-        "category": {
-            "id": "14",
-            "name": "Sculptures",
-            "nameEn": "Sculptures",
-            "__typename": "CategoryType"
+        "id": 16970,
+        "title": "Apple AirTag Keyring/Keyring Holder",
+        "titleTranslated": "",
+        "cover": "https://makerworld.bblmw.com/makerworld/model/USa5b9a62aa2d957/design/2023-09-22_08989e84be623.webp",
+        "likeCount": 124,
+        "collectionCount": 275,
+        "shareCount": 0,
+        "printCount": 1013,
+        "downloadCount": 1049,
+        "rawModelFileDownloadCount": 129,
+        "commentCount": 4,
+        "readCount": 0,
+        "designCreator": {
+            "uid": 2035641786,
+            "name": "Ale\u0161 Urb\u00e1nek",
+            "avatar": "https://public-cdn.bblmw.com/avatar/06f9ee50-c813-11ed-8d75-a15c27a45034.jpg",
+            "fanCount": 0,
+            "followCount": 0,
+            "isFollowed": false,
+            "nameHighlight": "",
+            "createTime": "",
+            "publicInstanceUploadCount": 0,
+            "backgroundUrl": "",
+            "mySelectDesign": null,
+            "level": 0,
+            "gradeType": 0,
+            "downloadCount": 399,
+            "likeCount": 185,
+            "bannedPermission": {
+                "whole": false,
+                "comment": false,
+                "upload": false,
+                "redeem": false
+            },
+            "MWCount": {
+                "myDesignDownloadCount": 0,
+                "myInstanceDownloadCount": 0,
+                "designCount": 0
+            },
+            "certificated": false,
+            "hotScore": 0,
+            "score": 0,
+            "handle": "user_2035641786"
         },
-        "license": {
-            "id": "7",
-            "name": "Creative Commons \u2014 Public Domain",
-            "abbreviation": "CC0",
-            "content": "<a rel=\"license\" target=\"_blank\" href=\"https://creativecommons.org/share-your-work/public-domain/cc0/\"><img alt=\"Creative Commons License\" style=\"border-width:0\" src=\"https://licensebuttons.net/p/zero/1.0/88x31.png\" align=\"right\"/></a>\r\n<br>\r\nThis work is licensed under a \r\n</br>\r\n <a rel=\"license\" target=\"_blank\" href=\"https://creativecommons.org/share-your-work/public-domain/cc0/\">Creative Commons (International License)<br><h6>Public Domain</h6></a>\r\n<hr>\r\n<div><span style=\"color:#5daf0b; font-weight:bold;\">\u2714 </span> | Sharing without ATTRIBUTION  </div>\r\n<div><span style=\"color:#5daf0b; font-weight:bold;\">\u2714 </span> | Remix Culture allowed  </div>\r\n<div><span style=\"color:#5daf0b; font-weight:bold;\">\u2714 </span> | Commercial Use  </div>\r\n<div><span style=\"color:#5daf0b; font-weight:bold;\">\u2714 </span> | Free Cultural Works  </div>\r\n<div><span style=\"color:#5daf0b; font-weight:bold;\">\u2714 </span> | Meets Open Definition  </div>",
-            "disallowRemixing": false,
-            "freeModels": true,
-            "storeModels": false,
-            "__typename": "LicenseType"
+        "titleHighlight": "Apple AirTag Keyring/Keyring Holder",
+        "createTime": "2023-09-22T21:06:32Z",
+        "hotScore": 6.316037902983373e-13,
+        "designScore": 8.152198015861787,
+        "score": 0,
+        "nsfw": false,
+        "status": 1,
+        "hasCollect": false,
+        "hasLike": false,
+        "hasDislike": false,
+        "isStaffPicked": false,
+        "pickReason": "",
+        "is_printable": true,
+        "is_official": false,
+        "is_point_redeemable": false,
+        "isExclusive": false,
+        "license": "BY-NC-SA",
+        "contest": {
+            "contestId": 0,
+            "rank": 0,
+            "status": 0,
+            "contestName": ""
         },
-        "image": {
-            "filePath": "media/prints/745974/images/5825745_615983cd-36e5-400f-8245-bc99fff4eebd_d7a10513-3ae9-40d2-b1e7-7dc15cc95c57/snimek-obrazovky-2024-01-31-202816.png",
-            "__typename": "PrintImageType"
-        },
-        "images": [
-            {
-                "id": "2721803",
-                "filePath": "media/prints/745974/images/5825745_615983cd-36e5-400f-8245-bc99fff4eebd_d7a10513-3ae9-40d2-b1e7-7dc15cc95c57/snimek-obrazovky-2024-01-31-202816.png",
-                "__typename": "PrintImageType"
-            }
+        "tags": [
+            "airtag",
+            "apple",
+            "keychai"
         ],
-        "previewFile": {
-            "id": "3162459",
-            "filePreviewPath": "media/prints/745974/stls/5825736_e9477e37-2695-4d55-9c10-27ab130c2b42_e0b15b46-0013-4fc7-85df-cbd2855db2d0/untitled_preview.png",
-            "__typename": "STLType"
+        "customizedByMakerLab": false,
+        "preset": {
+            "type": "",
+            "filamentConfig": null,
+            "printerConfig": null,
+            "processConfig": null,
+            "printerSettings": [],
+            "file": {
+                "name": "",
+                "size": 0,
+                "url": ""
+            }
         },
-        "__typename": "PrintType"
+        "coverLandscape": "",
+        "coverPortrait": "",
+        "boostCnt": 61,
+        "bomsNeeded": false,
+        "modelSource": 1,
+        "ext": "{\"by\":0,\"exp\":0,\"q\":\"apple\",\"qp\":{\"actualQuery\":\"apple\",\"baseEmbedThreshold\":0.74,\"exp\":0,\"query\":\"apple\",\"segWords\":[\"apple\"],\"synSegWords\":{\"apple\":[\"apples\",\"appl\"]}},\"rc\":[\"titleAndTagsSeg|76.73|0.5236|108.98\",\"titleAndTagsSyn|230.18|0.5236|10.99\",\"titleSeg|58.65|0.5236|58.02\"],\"rk\":\"108.98|2\"}"
     },
     {
-        "id": "1057001",
-        "name": "Apple",
-        "description": "<p>A model of an apple with single leaf still attached for pretend play.</p><p>Filament used- Polymaker Polyterra in \u201cFall\u201d and Polylite Green</p><p>Basket in photo was designed by DSK001 and can be found here- https://www.printables.com/model/827473-flat-pack-basket</p><p>For non commercial use.</p><p>&nbsp;</p>",
-        "pdfFilePath": "media/prints/1057001/pdfs/1057001-apple-fc6b2aeb-182a-4da3-bbdf-224ff857cf22.pdf",
-        "category": {
-            "id": "47",
-            "name": "Other Toys & Games",
-            "nameEn": "Other Toys & Games",
-            "__typename": "CategoryType"
-        },
-        "license": {
-            "id": "4",
-            "name": "Creative Commons \u2014 Attribution  \u2014 Noncommercial  \u2014  Share Alike",
-            "abbreviation": "CC-BY-NC-SA",
-            "content": "<a rel=\"license\" target=\"_blank\" href=\"http://creativecommons.org/licenses/by-nc-sa/4.0/\"><img alt=\"Creative Commons License\" style=\"border-width:0\" src=\"https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png\" align=\"right\"/></a>\r\n<br>\r\nThis work is licensed under a \r\n</br>\r\n <a rel=\"license\" target=\"_blank\" href=\"http://creativecommons.org/licenses/by-nc-sa/4.0/\">Creative Commons (4.0 International License)<br><h6>Attribution\u2014Noncommercial\u2014Share Alike</h6></a>\r\n<hr>\r\n<div><span style=\"color:#cb2c2c; font-weight:bold;\">\u2716 </span> | Sharing without ATTRIBUTION </div>\r\n<div><span style=\"color:#5daf0b; font-weight:bold;\">\u2714 </span> | Remix Culture allowed  </div>\r\n<div><span style=\"color:#cb2c2c; font-weight:bold;\">\u2716 </span> | Commercial Use  </div>\r\n<div><span style=\"color:#cb2c2c; font-weight:bold;\">\u2716 </span> | Free Cultural Works  </div>\r\n<div><span style=\"color:#cb2c2c; font-weight:bold;\">\u2716 </span> | Meets Open Definition  </div>",
-            "disallowRemixing": false,
-            "freeModels": true,
-            "storeModels": false,
-            "__typename": "LicenseType"
-        },
-        "image": {
-            "filePath": "media/prints/1057001/images/8009459_c17213fe-ff7c-4ed2-82d1-7bac57f3cca5_9f39fa24-d853-475e-998f-078f7bea6749/img_2624.jpeg",
-            "__typename": "PrintImageType"
-        },
-        "images": [
-            {
-                "id": "3706812",
-                "filePath": "media/prints/1057001/images/8009459_c17213fe-ff7c-4ed2-82d1-7bac57f3cca5_9f39fa24-d853-475e-998f-078f7bea6749/img_2624.jpeg",
-                "__typename": "PrintImageType"
+        "id": 462471,
+        "title": "Stand for Apple HomePod Mini",
+        "titleTranslated": "",
+        "cover": "https://makerworld.bblmw.com/makerworld/model/US1fcb9d40452bf2/design/2024-06-03_e8340b21de91b.png",
+        "likeCount": 90,
+        "collectionCount": 273,
+        "shareCount": 0,
+        "printCount": 314,
+        "downloadCount": 465,
+        "rawModelFileDownloadCount": 52,
+        "commentCount": 3,
+        "readCount": 0,
+        "designCreator": {
+            "uid": 1429432645,
+            "name": "XH_Lab",
+            "avatar": "https://public-cdn.bblmw.com/avatar/1429432645/2023-09-22_aa924815f1ea8.jpeg",
+            "fanCount": 0,
+            "followCount": 0,
+            "isFollowed": false,
+            "nameHighlight": "",
+            "createTime": "",
+            "publicInstanceUploadCount": 0,
+            "backgroundUrl": "",
+            "mySelectDesign": null,
+            "level": 0,
+            "gradeType": 0,
+            "downloadCount": 4046,
+            "likeCount": 502,
+            "bannedPermission": {
+                "whole": false,
+                "comment": false,
+                "upload": false,
+                "redeem": false
             },
-            {
-                "id": "3706810",
-                "filePath": "media/prints/1057001/images/8009457_213488a1-8075-4216-85e5-ac1d0416c373_b7e1f430-827a-449d-b064-602299501f99/img_2630.jpeg",
-                "__typename": "PrintImageType"
+            "MWCount": {
+                "myDesignDownloadCount": 0,
+                "myInstanceDownloadCount": 0,
+                "designCount": 0
             },
-            {
-                "id": "3706811",
-                "filePath": "media/prints/1057001/images/8009458_dc13c1c5-b7f8-41d2-ac7c-3557fa659f6f_f34f7e7f-7664-45d9-aae1-a1f4f5ce305b/img_5088.jpeg",
-                "__typename": "PrintImageType"
-            }
+            "certificated": false,
+            "hotScore": 0,
+            "score": 0,
+            "handle": "XH_Lab"
+        },
+        "titleHighlight": "Stand for Apple HomePod Mini",
+        "createTime": "2024-05-13T04:13:44Z",
+        "hotScore": 3.3606415814445454e-06,
+        "designScore": 7.618742377670413,
+        "score": 0,
+        "nsfw": false,
+        "status": 1,
+        "hasCollect": false,
+        "hasLike": false,
+        "hasDislike": false,
+        "isStaffPicked": false,
+        "pickReason": "",
+        "is_printable": true,
+        "is_official": false,
+        "is_point_redeemable": false,
+        "isExclusive": true,
+        "license": "Standard Digital File License",
+        "contest": {
+            "contestId": 0,
+            "rank": 0,
+            "status": 0,
+            "contestName": ""
+        },
+        "tags": [
+            "homepod",
+            "apple",
+            "stand"
         ],
-        "previewFile": {
-            "id": "4413307",
-            "filePreviewPath": "media/prints/1057001/previews/02452460389290e559d9568c252edfc2c12e1b68.png",
-            "__typename": "STLType"
+        "customizedByMakerLab": false,
+        "preset": {
+            "type": "",
+            "filamentConfig": null,
+            "printerConfig": null,
+            "processConfig": null,
+            "printerSettings": [],
+            "file": {
+                "name": "",
+                "size": 0,
+                "url": ""
+            }
         },
-        "__typename": "PrintType"
+        "coverLandscape": "",
+        "coverPortrait": "https://makerworld.bblmw.com/makerworld/model/US1fcb9d40452bf2/design/2024-06-03_617b362d5a41b.png",
+        "boostCnt": 53,
+        "bomsNeeded": false,
+        "modelSource": 1,
+        "ext": "{\"by\":0,\"exp\":0,\"q\":\"apple\",\"qp\":{\"actualQuery\":\"apple\",\"baseEmbedThreshold\":0.74,\"exp\":0,\"query\":\"apple\",\"segWords\":[\"apple\"],\"synSegWords\":{\"apple\":[\"apples\",\"appl\"]}},\"rc\":[\"titleAndTagsSeg|76.73|0.5038|108.8\",\"titleAndTagsSyn|230.18|0.5038|10.97\",\"titleSeg|58.65|0.5038|57.87\"],\"rk\":\"108.8|3\"}"
     },
     {
-        "id": "948123",
-        "name": "Apple",
-        "description": "<p>Dgjhg</p>",
-        "pdfFilePath": "media/prints/948123/pdfs/948123-apple-81e8a661-ae20-41f4-8718-cd489dd6a311.pdf",
-        "category": {
-            "id": "40",
-            "name": "Accessories",
-            "nameEn": "Accessories",
-            "__typename": "CategoryType"
+        "id": 239862,
+        "title": "Apple TV 4K mount (93x93x31mm)",
+        "titleTranslated": "",
+        "cover": "https://makerworld.bblmw.com/makerworld/model/US48df03a87d4cdf/design/2024-03-09_95a9805b08534.jpg",
+        "likeCount": 63,
+        "collectionCount": 184,
+        "shareCount": 0,
+        "printCount": 254,
+        "downloadCount": 379,
+        "rawModelFileDownloadCount": 28,
+        "commentCount": 4,
+        "readCount": 0,
+        "designCreator": {
+            "uid": 1178125705,
+            "name": "user_1178125705",
+            "avatar": "https://public-cdn.bblmw.com/default/avatar.png",
+            "fanCount": 0,
+            "followCount": 0,
+            "isFollowed": false,
+            "nameHighlight": "",
+            "createTime": "",
+            "publicInstanceUploadCount": 0,
+            "backgroundUrl": "",
+            "mySelectDesign": null,
+            "level": 0,
+            "gradeType": 0,
+            "downloadCount": 877,
+            "likeCount": 63,
+            "bannedPermission": {
+                "whole": false,
+                "comment": false,
+                "upload": false,
+                "redeem": false
+            },
+            "MWCount": {
+                "myDesignDownloadCount": 0,
+                "myInstanceDownloadCount": 0,
+                "designCount": 0
+            },
+            "certificated": false,
+            "hotScore": 0,
+            "score": 0,
+            "handle": "user_1178125705"
         },
-        "license": {
-            "id": "7",
-            "name": "Creative Commons \u2014 Public Domain",
-            "abbreviation": "CC0",
-            "content": "<a rel=\"license\" target=\"_blank\" href=\"https://creativecommons.org/share-your-work/public-domain/cc0/\"><img alt=\"Creative Commons License\" style=\"border-width:0\" src=\"https://licensebuttons.net/p/zero/1.0/88x31.png\" align=\"right\"/></a>\r\n<br>\r\nThis work is licensed under a \r\n</br>\r\n <a rel=\"license\" target=\"_blank\" href=\"https://creativecommons.org/share-your-work/public-domain/cc0/\">Creative Commons (International License)<br><h6>Public Domain</h6></a>\r\n<hr>\r\n<div><span style=\"color:#5daf0b; font-weight:bold;\">\u2714 </span> | Sharing without ATTRIBUTION  </div>\r\n<div><span style=\"color:#5daf0b; font-weight:bold;\">\u2714 </span> | Remix Culture allowed  </div>\r\n<div><span style=\"color:#5daf0b; font-weight:bold;\">\u2714 </span> | Commercial Use  </div>\r\n<div><span style=\"color:#5daf0b; font-weight:bold;\">\u2714 </span> | Free Cultural Works  </div>\r\n<div><span style=\"color:#5daf0b; font-weight:bold;\">\u2714 </span> | Meets Open Definition  </div>",
-            "disallowRemixing": false,
-            "freeModels": true,
-            "storeModels": false,
-            "__typename": "LicenseType"
+        "titleHighlight": "Apple TV 4K mount (93x93x31mm)",
+        "createTime": "2024-03-09T11:40:50Z",
+        "hotScore": 4.297130331521683e-08,
+        "designScore": 7.15305163493748,
+        "score": 0,
+        "nsfw": false,
+        "status": 1,
+        "hasCollect": false,
+        "hasLike": false,
+        "hasDislike": false,
+        "isStaffPicked": false,
+        "pickReason": "",
+        "is_printable": true,
+        "is_official": false,
+        "is_point_redeemable": false,
+        "isExclusive": false,
+        "license": "BY-NC",
+        "contest": {
+            "contestId": 0,
+            "rank": 0,
+            "status": 0,
+            "contestName": ""
         },
-        "image": {
-            "filePath": "media/prints/948123/images/7238090_bcf859e8-987b-4f45-bf2e-586b9905a2ab_fbd4f548-fe33-4b35-a126-b53a3ab846f6/3dmodel.jpg",
-            "__typename": "PrintImageType"
-        },
-        "images": [
-            {
-                "id": "3354730",
-                "filePath": "media/prints/948123/images/7238090_bcf859e8-987b-4f45-bf2e-586b9905a2ab_fbd4f548-fe33-4b35-a126-b53a3ab846f6/3dmodel.jpg",
-                "__typename": "PrintImageType"
-            },
-            {
-                "id": "3354731",
-                "filePath": "media/prints/948123/images/7238090_bcf859e8-987b-4f45-bf2e-586b9905a2ab_585445a9-2b20-4046-bea6-7fbe68b3a044/3dmodel_lowpoly.jpg",
-                "__typename": "PrintImageType"
-            },
-            {
-                "id": "3354757",
-                "filePath": "media/prints/948123/images/7238155_96ae6dee-b936-47e3-a071-c1c0b427c897_4093aeae-b4e2-4591-9e7e-f57aa1cc3627/3dmodel.jpg",
-                "__typename": "PrintImageType"
-            },
-            {
-                "id": "3354758",
-                "filePath": "media/prints/948123/images/7238155_96ae6dee-b936-47e3-a071-c1c0b427c897_d3d9e369-2e0c-4391-9535-5aa159ddd790/3dmodel_lowpoly.jpg",
-                "__typename": "PrintImageType"
-            },
-            {
-                "id": "3354763",
-                "filePath": "media/prints/948123/images/7238167_a8db6c9a-b75b-4e41-95e4-312a9230c440_f16c88be-f646-4a89-ad0a-85cd98602c42/3dmodel.jpg",
-                "__typename": "PrintImageType"
-            },
-            {
-                "id": "3354764",
-                "filePath": "media/prints/948123/images/7238167_a8db6c9a-b75b-4e41-95e4-312a9230c440_b13735eb-57fe-411d-a4e7-313cb8dfcd5f/3dmodel_lowpoly.jpg",
-                "__typename": "PrintImageType"
-            }
+        "tags": [
+            "tv accessories",
+            "tv bracket",
+            "apple accessories",
+            "bracket",
+            "apple",
+            "tv",
+            "monitor accessory"
         ],
-        "previewFile": {
-            "id": "3981742",
-            "filePreviewPath": "media/prints/948123/previews/198a002ef515c4abb3fb293216bf2b344a4e492a.png",
-            "__typename": "STLType"
+        "customizedByMakerLab": false,
+        "preset": {
+            "type": "",
+            "filamentConfig": null,
+            "printerConfig": null,
+            "processConfig": null,
+            "printerSettings": [],
+            "file": {
+                "name": "",
+                "size": 0,
+                "url": ""
+            }
         },
-        "__typename": "PrintType"
+        "coverLandscape": "",
+        "coverPortrait": "",
+        "boostCnt": 15,
+        "bomsNeeded": false,
+        "modelSource": 1,
+        "ext": "{\"by\":0,\"exp\":0,\"q\":\"apple\",\"qp\":{\"actualQuery\":\"apple\",\"baseEmbedThreshold\":0.74,\"exp\":0,\"query\":\"apple\",\"segWords\":[\"apple\"],\"synSegWords\":{\"apple\":[\"apples\",\"appl\"]}},\"rc\":[\"titleAndTagsSeg|70.48|0.5908|108.79\",\"titleSeg|54.78|0.5908|57.99\"],\"rk\":\"108.79|4\"}"
     },
     {
-        "id": "904095",
-        "name": "Apple",
-        "description": "<p>simple model of an apple</p>",
-        "pdfFilePath": "media/prints/904095/pdfs/904095-apple-3b39d628-8af1-4fc8-94c8-c9d9c7f30764.pdf",
-        "category": {
-            "id": "14",
-            "name": "Sculptures",
-            "nameEn": "Sculptures",
-            "__typename": "CategoryType"
-        },
-        "license": {
-            "id": "7",
-            "name": "Creative Commons \u2014 Public Domain",
-            "abbreviation": "CC0",
-            "content": "<a rel=\"license\" target=\"_blank\" href=\"https://creativecommons.org/share-your-work/public-domain/cc0/\"><img alt=\"Creative Commons License\" style=\"border-width:0\" src=\"https://licensebuttons.net/p/zero/1.0/88x31.png\" align=\"right\"/></a>\r\n<br>\r\nThis work is licensed under a \r\n</br>\r\n <a rel=\"license\" target=\"_blank\" href=\"https://creativecommons.org/share-your-work/public-domain/cc0/\">Creative Commons (International License)<br><h6>Public Domain</h6></a>\r\n<hr>\r\n<div><span style=\"color:#5daf0b; font-weight:bold;\">\u2714 </span> | Sharing without ATTRIBUTION  </div>\r\n<div><span style=\"color:#5daf0b; font-weight:bold;\">\u2714 </span> | Remix Culture allowed  </div>\r\n<div><span style=\"color:#5daf0b; font-weight:bold;\">\u2714 </span> | Commercial Use  </div>\r\n<div><span style=\"color:#5daf0b; font-weight:bold;\">\u2714 </span> | Free Cultural Works  </div>\r\n<div><span style=\"color:#5daf0b; font-weight:bold;\">\u2714 </span> | Meets Open Definition  </div>",
-            "disallowRemixing": false,
-            "freeModels": true,
-            "storeModels": false,
-            "__typename": "LicenseType"
-        },
-        "image": {
-            "filePath": "media/prints/904095/images/6912298_588ac103-0ca9-40d5-8490-a95f8ecaae93_5d6e2b3d-af4b-4662-88cc-e4d48e7f3910/schermafbeelding-2024-06-06-om-141737.png",
-            "__typename": "PrintImageType"
-        },
-        "images": [
-            {
-                "id": "3212678",
-                "filePath": "media/prints/904095/images/6912298_588ac103-0ca9-40d5-8490-a95f8ecaae93_5d6e2b3d-af4b-4662-88cc-e4d48e7f3910/schermafbeelding-2024-06-06-om-141737.png",
-                "__typename": "PrintImageType"
+        "id": 792361,
+        "title": "Charging stand Apple Watch",
+        "titleTranslated": "",
+        "cover": "https://makerworld.bblmw.com/makerworld/model/USc246d46e2401b0/design/2024-11-16_3b390d08d720f.jpg",
+        "likeCount": 92,
+        "collectionCount": 264,
+        "shareCount": 0,
+        "printCount": 237,
+        "downloadCount": 339,
+        "rawModelFileDownloadCount": 0,
+        "commentCount": 18,
+        "readCount": 0,
+        "designCreator": {
+            "uid": 4291660597,
+            "name": "Borosan",
+            "avatar": "https://public-cdn.bblmw.com/avatar/4291660597/2024-11-22_badd75652dcfe.jpg",
+            "fanCount": 0,
+            "followCount": 0,
+            "isFollowed": false,
+            "nameHighlight": "",
+            "createTime": "",
+            "publicInstanceUploadCount": 0,
+            "backgroundUrl": "",
+            "mySelectDesign": null,
+            "level": 0,
+            "gradeType": 0,
+            "downloadCount": 1013,
+            "likeCount": 260,
+            "bannedPermission": {
+                "whole": false,
+                "comment": false,
+                "upload": false,
+                "redeem": false
             },
-            {
-                "id": "3212679",
-                "filePath": "media/prints/904095/images/6912299_6292d9fb-253e-442c-a3f4-d67de52e2c30_a225c63a-b646-465b-81f6-5e8ee373f300/schermafbeelding-2024-06-06-om-141755.png",
-                "__typename": "PrintImageType"
-            }
+            "MWCount": {
+                "myDesignDownloadCount": 0,
+                "myInstanceDownloadCount": 0,
+                "designCount": 0
+            },
+            "certificated": false,
+            "hotScore": 0,
+            "score": 0,
+            "handle": "Borosan"
+        },
+        "titleHighlight": "Charging stand Apple Watch",
+        "createTime": "2024-11-16T12:39:31Z",
+        "hotScore": 0.8637674313845676,
+        "designScore": 7.395721608602045,
+        "score": 0,
+        "nsfw": false,
+        "status": 1,
+        "hasCollect": false,
+        "hasLike": false,
+        "hasDislike": false,
+        "isStaffPicked": false,
+        "pickReason": "",
+        "is_printable": true,
+        "is_official": false,
+        "is_point_redeemable": false,
+        "isExclusive": true,
+        "license": "Standard Digital File License",
+        "contest": {
+            "contestId": 0,
+            "rank": 0,
+            "status": 0,
+            "contestName": ""
+        },
+        "tags": [
+            "apple",
+            "watch",
+            "apple watch",
+            "stand",
+            "ball",
+            "charging",
+            "dock",
+            "design"
         ],
-        "previewFile": null,
-        "__typename": "PrintType"
+        "customizedByMakerLab": false,
+        "preset": {
+            "type": "",
+            "filamentConfig": null,
+            "printerConfig": null,
+            "processConfig": null,
+            "printerSettings": [],
+            "file": {
+                "name": "",
+                "size": 0,
+                "url": ""
+            }
+        },
+        "coverLandscape": "https://makerworld.bblmw.com/makerworld/model/USc246d46e2401b0/design/2024-11-16_5126873194295.jpg",
+        "coverPortrait": "",
+        "boostCnt": 34,
+        "bomsNeeded": false,
+        "modelSource": 1,
+        "ext": "{\"by\":0,\"exp\":0,\"q\":\"apple\",\"qp\":{\"actualQuery\":\"apple\",\"baseEmbedThreshold\":0.74,\"exp\":0,\"query\":\"apple\",\"segWords\":[\"apple\"],\"synSegWords\":{\"apple\":[\"apples\",\"appl\"]}},\"rc\":[\"titleAndTagsSeg|67.86|0.5842|108.41\",\"titleSeg|54.33|0.5842|57.87\"],\"rk\":\"108.41|5\"}"
     },
     {
-        "id": "46214",
-        "name": "Apple",
-        "description": "<p>This one is mostly for fun, but also to try out some ideas in 3D CAD as well as printing a multi-part print in multiple colors. There are five parts total for this print.</p>\n<p>The OnShape 3D CAD files for this are here :</p>\n<p><a href=\"https://cad.onshape.com/documents/66c4dd77b613d56d9863a09c/w/b871d4459792e304bf51f918/e/95f6e297d02eba135f73e7ab\">https://cad.onshape.com/documents/66c4dd77b613d56d9863a09c/w/b871d4459792e304bf51f918/e/95f6e297d02eba135f73e7ab</a></p>\n<h3>Print instructions</h3><p>Print in PLA using the 3mf files provided.</p>\n<p>You can of course print in any colors you like, but for a realistic look these are the colors I chose:</p>\n<ul>\n<li>red : apple top and bottom</li>\n<li>brown : stem</li>\n<li>any color : connecting screw</li>\n<li>red and green : leaf</li>\n</ul>\n<p>The leaf can also be printed in all green, but I chose to use two-color printing with filament switching to print the base of the leaf to match the apple top.</p>\n<p>The leaf requires a lot of support material. The leaf stem is delicate so take care removing the support material so as not to break the leaf stem.</p>\n<p>I printed the stem (brown) with a brim, which meant I needed to do a bit of trimming with a razor knife to remove the brim completely. It might be possible to print this without a brim but I did not try this.</p>",
-        "pdfFilePath": "media/prints/46214/pdfs/46214-apple-1ead5d4d-332d-4997-b3bb-234c9a4c6fc6.pdf",
-        "category": {
-            "id": "41",
-            "name": "Other Art & Designs",
-            "nameEn": "Other Art & Designs",
-            "__typename": "CategoryType"
+        "id": 453237,
+        "title": "Magsafe charger stand for iPhone and Apple Watch",
+        "titleTranslated": "",
+        "cover": "https://makerworld.bblmw.com/makerworld/model/US2a64024c45d8c5/design/2024-05-19_7b1ead4782d7b8.jpg",
+        "likeCount": 1072,
+        "collectionCount": 1916,
+        "shareCount": 0,
+        "printCount": 2331,
+        "downloadCount": 3393,
+        "rawModelFileDownloadCount": 320,
+        "commentCount": 61,
+        "readCount": 0,
+        "designCreator": {
+            "uid": 1945930771,
+            "name": "rauwman",
+            "avatar": "https://public-cdn.bblmw.com/avatar/1945930771/2024-05-04_b4c84185b8e8f8.jpg",
+            "fanCount": 0,
+            "followCount": 0,
+            "isFollowed": false,
+            "nameHighlight": "",
+            "createTime": "",
+            "publicInstanceUploadCount": 0,
+            "backgroundUrl": "",
+            "mySelectDesign": null,
+            "level": 0,
+            "gradeType": 0,
+            "downloadCount": 7645,
+            "likeCount": 1129,
+            "bannedPermission": {
+                "whole": false,
+                "comment": false,
+                "upload": false,
+                "redeem": false
+            },
+            "MWCount": {
+                "myDesignDownloadCount": 0,
+                "myInstanceDownloadCount": 0,
+                "designCount": 0
+            },
+            "certificated": false,
+            "hotScore": 0,
+            "score": 0,
+            "handle": "user_1945930771"
         },
-        "license": {
-            "id": "7",
-            "name": "Creative Commons \u2014 Public Domain",
-            "abbreviation": "CC0",
-            "content": "<a rel=\"license\" target=\"_blank\" href=\"https://creativecommons.org/share-your-work/public-domain/cc0/\"><img alt=\"Creative Commons License\" style=\"border-width:0\" src=\"https://licensebuttons.net/p/zero/1.0/88x31.png\" align=\"right\"/></a>\r\n<br>\r\nThis work is licensed under a \r\n</br>\r\n <a rel=\"license\" target=\"_blank\" href=\"https://creativecommons.org/share-your-work/public-domain/cc0/\">Creative Commons (International License)<br><h6>Public Domain</h6></a>\r\n<hr>\r\n<div><span style=\"color:#5daf0b; font-weight:bold;\">\u2714 </span> | Sharing without ATTRIBUTION  </div>\r\n<div><span style=\"color:#5daf0b; font-weight:bold;\">\u2714 </span> | Remix Culture allowed  </div>\r\n<div><span style=\"color:#5daf0b; font-weight:bold;\">\u2714 </span> | Commercial Use  </div>\r\n<div><span style=\"color:#5daf0b; font-weight:bold;\">\u2714 </span> | Free Cultural Works  </div>\r\n<div><span style=\"color:#5daf0b; font-weight:bold;\">\u2714 </span> | Meets Open Definition  </div>",
-            "disallowRemixing": false,
-            "freeModels": true,
-            "storeModels": false,
-            "__typename": "LicenseType"
+        "titleHighlight": "Magsafe charger stand for iPhone and Apple Watch",
+        "createTime": "2024-05-04T13:33:25Z",
+        "hotScore": 2.3936981087254612e-06,
+        "designScore": 9.663388566822505,
+        "score": 0,
+        "nsfw": false,
+        "status": 1,
+        "hasCollect": false,
+        "hasLike": false,
+        "hasDislike": false,
+        "isStaffPicked": false,
+        "pickReason": "",
+        "is_printable": true,
+        "is_official": false,
+        "is_point_redeemable": false,
+        "isExclusive": false,
+        "license": "BY-NC-SA",
+        "contest": {
+            "contestId": 0,
+            "rank": 0,
+            "status": 0,
+            "contestName": ""
         },
-        "image": {
-            "filePath": "media/prints/46214/images/459742_2d24f866-a99f-4488-883b-4872bd069a91/imag2474.jpg",
-            "__typename": "PrintImageType"
-        },
-        "images": [
-            {
-                "id": "220154",
-                "filePath": "media/prints/46214/images/459742_2d24f866-a99f-4488-883b-4872bd069a91/imag2474.jpg",
-                "__typename": "PrintImageType"
-            },
-            {
-                "id": "220145",
-                "filePath": "media/prints/46214/images/459738_fa4369c5-2e45-402d-ad1d-73f6abff8d8b/imag2469.jpg",
-                "__typename": "PrintImageType"
-            },
-            {
-                "id": "220144",
-                "filePath": "media/prints/46214/images/459735_01fb65e8-357b-4925-bbb1-f32064494ea0/imag2467.jpg",
-                "__typename": "PrintImageType"
-            },
-            {
-                "id": "220148",
-                "filePath": "media/prints/46214/images/459736_6903691f-9343-4381-9c4e-373a2969e3d1/imag2468.jpg",
-                "__typename": "PrintImageType"
-            },
-            {
-                "id": "220146",
-                "filePath": "media/prints/46214/images/459739_39afc17e-c17e-4bbd-8f0e-dd94bb102f7c/imag2471.jpg",
-                "__typename": "PrintImageType"
-            },
-            {
-                "id": "220149",
-                "filePath": "media/prints/46214/images/459744_840adeff-8304-4268-b81f-0cb6cad16904/imag2472.jpg",
-                "__typename": "PrintImageType"
-            },
-            {
-                "id": "220150",
-                "filePath": "media/prints/46214/images/459741_31c9a79f-b58e-4fe9-9cbc-2ac4198a9edd/imag2473.jpg",
-                "__typename": "PrintImageType"
-            },
-            {
-                "id": "220147",
-                "filePath": "media/prints/46214/images/459740_9f06558b-28ec-4041-a6ef-c6f9370484e9/imag2470.jpg",
-                "__typename": "PrintImageType"
-            },
-            {
-                "id": "220152",
-                "filePath": "media/prints/46214/images/459746_ea85c548-a91b-49c2-93e8-b8a3fef1777b/screenshot_2020-11-14-apple-apple2.png",
-                "__typename": "PrintImageType"
-            },
-            {
-                "id": "220153",
-                "filePath": "media/prints/46214/images/459745_42c9f716-d50c-4784-92d7-879be541b998/screenshot_2020-11-14-apple-assembly-1.png",
-                "__typename": "PrintImageType"
-            },
-            {
-                "id": "220151",
-                "filePath": "media/prints/46214/images/459743_61eac8af-ffe1-42fe-b69f-8301e78c7831/screenshot_2020-11-14-apple-apple.png",
-                "__typename": "PrintImageType"
-            }
+        "tags": [
+            "apple",
+            "iphone",
+            "applewatch",
+            "magsafe",
+            "standby"
         ],
-        "previewFile": {
-            "id": "189263",
-            "filePreviewPath": "media/prints/46214/stls/459724_de8ae50e-26a4-4d9f-b770-32955473506b/apple-apple-top_preview.png",
-            "__typename": "STLType"
+        "customizedByMakerLab": false,
+        "preset": {
+            "type": "",
+            "filamentConfig": null,
+            "printerConfig": null,
+            "processConfig": null,
+            "printerSettings": [],
+            "file": {
+                "name": "",
+                "size": 0,
+                "url": ""
+            }
         },
-        "__typename": "PrintType"
+        "coverLandscape": "https://makerworld.bblmw.com/makerworld/model/US2a64024c45d8c5/design/2024-05-19_694eb6403cfff.jpg",
+        "coverPortrait": "",
+        "boostCnt": 403,
+        "bomsNeeded": false,
+        "modelSource": 1,
+        "ext": "{\"by\":0,\"exp\":0,\"q\":\"apple\",\"qp\":{\"actualQuery\":\"apple\",\"baseEmbedThreshold\":0.74,\"exp\":0,\"query\":\"apple\",\"segWords\":[\"apple\"],\"synSegWords\":{\"apple\":[\"apples\",\"appl\"]}},\"rc\":[\"titleAndTagsSeg|61.89|0.663|108.23\",\"titleSeg|44.5|0.663|56.92\"],\"rk\":\"108.23|6\"}"
     },
     {
-        "id": "682812",
-        "name": "Apple charger | Apple Watch",
-        "description": "<p>Printed in PETG, 0.2mm, organic supports from the bed are easly removable.</p>",
-        "pdfFilePath": "media/prints/682812/pdfs/682812-apple-charger-apple-watch-e30af850-bdab-4846-a2ba-9405fa3c0b10.pdf",
-        "category": {
-            "id": "28",
-            "name": "Portable Devices",
-            "nameEn": "Portable Devices",
-            "__typename": "CategoryType"
-        },
-        "license": {
-            "id": "4",
-            "name": "Creative Commons \u2014 Attribution  \u2014 Noncommercial  \u2014  Share Alike",
-            "abbreviation": "CC-BY-NC-SA",
-            "content": "<a rel=\"license\" target=\"_blank\" href=\"http://creativecommons.org/licenses/by-nc-sa/4.0/\"><img alt=\"Creative Commons License\" style=\"border-width:0\" src=\"https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png\" align=\"right\"/></a>\r\n<br>\r\nThis work is licensed under a \r\n</br>\r\n <a rel=\"license\" target=\"_blank\" href=\"http://creativecommons.org/licenses/by-nc-sa/4.0/\">Creative Commons (4.0 International License)<br><h6>Attribution\u2014Noncommercial\u2014Share Alike</h6></a>\r\n<hr>\r\n<div><span style=\"color:#cb2c2c; font-weight:bold;\">\u2716 </span> | Sharing without ATTRIBUTION </div>\r\n<div><span style=\"color:#5daf0b; font-weight:bold;\">\u2714 </span> | Remix Culture allowed  </div>\r\n<div><span style=\"color:#cb2c2c; font-weight:bold;\">\u2716 </span> | Commercial Use  </div>\r\n<div><span style=\"color:#cb2c2c; font-weight:bold;\">\u2716 </span> | Free Cultural Works  </div>\r\n<div><span style=\"color:#cb2c2c; font-weight:bold;\">\u2716 </span> | Meets Open Definition  </div>",
-            "disallowRemixing": false,
-            "freeModels": true,
-            "storeModels": false,
-            "__typename": "LicenseType"
-        },
-        "image": {
-            "filePath": "media/prints/682812/images/5365054_4b3a0781-9691-4618-a49e-c590d570990c_b0557afa-5c28-4cb8-9f58-fe8a8d6567f3/20231216_201036.jpg",
-            "__typename": "PrintImageType"
-        },
-        "images": [
-            {
-                "id": "2522741",
-                "filePath": "media/prints/682812/images/5365054_4b3a0781-9691-4618-a49e-c590d570990c_b0557afa-5c28-4cb8-9f58-fe8a8d6567f3/20231216_201036.jpg",
-                "__typename": "PrintImageType"
+        "id": 83212,
+        "title": "Apple",
+        "titleTranslated": "",
+        "cover": "https://makerworld.bblmw.com/makerworld/model/US3181ea1422377a/design/2023-12-04_2a54d94c4e5eb.jpg",
+        "likeCount": 101,
+        "collectionCount": 153,
+        "shareCount": 0,
+        "printCount": 608,
+        "downloadCount": 902,
+        "rawModelFileDownloadCount": 132,
+        "commentCount": 7,
+        "readCount": 0,
+        "designCreator": {
+            "uid": 2184046521,
+            "name": "goodspeedjames6",
+            "avatar": "https://public-cdn.bblmw.com/avatar/2184046521/2023-12-04_e58958a5be637.jpg",
+            "fanCount": 0,
+            "followCount": 0,
+            "isFollowed": false,
+            "nameHighlight": "",
+            "createTime": "",
+            "publicInstanceUploadCount": 0,
+            "backgroundUrl": "",
+            "mySelectDesign": null,
+            "level": 0,
+            "gradeType": 0,
+            "downloadCount": 490,
+            "likeCount": 132,
+            "bannedPermission": {
+                "whole": false,
+                "comment": false,
+                "upload": false,
+                "redeem": false
             },
-            {
-                "id": "2522740",
-                "filePath": "media/prints/682812/images/5365055_1686ab0e-1fb0-4bdd-962e-7a58e6055095_482745ec-977c-441e-bcb8-837bbb563a96/20231216_201016.jpg",
-                "__typename": "PrintImageType"
+            "MWCount": {
+                "myDesignDownloadCount": 0,
+                "myInstanceDownloadCount": 0,
+                "designCount": 0
             },
-            {
-                "id": "2522742",
-                "filePath": "media/prints/682812/images/5365056_1ff47f86-c2ed-40e5-9f0d-c18c6454a9ee_be5c849c-fd05-49ef-ac01-7d4b4c67135a/20231216_201123.jpg",
-                "__typename": "PrintImageType"
+            "certificated": false,
+            "hotScore": 0,
+            "score": 0,
+            "handle": "goodspeedjames6"
+        },
+        "titleHighlight": "Apple",
+        "createTime": "2023-12-04T15:54:43Z",
+        "hotScore": 7.716390441755312e-11,
+        "designScore": 7.700295203420117,
+        "score": 0,
+        "nsfw": false,
+        "status": 1,
+        "hasCollect": false,
+        "hasLike": false,
+        "hasDislike": false,
+        "isStaffPicked": false,
+        "pickReason": "",
+        "is_printable": true,
+        "is_official": false,
+        "is_point_redeemable": false,
+        "isExclusive": true,
+        "license": "Standard Digital File License",
+        "contest": {
+            "contestId": 0,
+            "rank": 0,
+            "status": 0,
+            "contestName": ""
+        },
+        "tags": null,
+        "customizedByMakerLab": false,
+        "preset": {
+            "type": "",
+            "filamentConfig": null,
+            "printerConfig": null,
+            "processConfig": null,
+            "printerSettings": [],
+            "file": {
+                "name": "",
+                "size": 0,
+                "url": ""
             }
-        ],
-        "previewFile": {
-            "id": "2874423",
-            "filePreviewPath": "media/prints/682812/stls/5365028_295db0ce-1ed5-4a37-8624-41b6c76b1a7e_4432d45c-e610-46ff-99e4-425b72514ecb/charging_stand_preview.png",
-            "__typename": "STLType"
         },
-        "__typename": "PrintType"
+        "coverLandscape": "",
+        "coverPortrait": "",
+        "boostCnt": 19,
+        "bomsNeeded": false,
+        "modelSource": 1,
+        "ext": "{\"by\":0,\"exp\":0,\"q\":\"apple\",\"qp\":{\"actualQuery\":\"apple\",\"baseEmbedThreshold\":0.74,\"exp\":0,\"query\":\"apple\",\"segWords\":[\"apple\"],\"synSegWords\":{\"apple\":[\"apples\",\"appl\"]}},\"rc\":[\"titleAndTagBEV|1|0.4317|1\",\"titleAndTagsSeg|76.95|0.4317|108.19\",\"titleAndTagsSyn|230.84|0.4317|10.9\",\"titleSeg|77.66|0.4317|59.67\",\"titleSyn|232.97|0.4317|10.97\"],\"rk\":\"108.19|7\"}"
     },
     {
-        "id": "228977",
-        "name": "APPLE coaster / APPLE podt\u00e1cek",
-        "description": "<p>This 3D printed version is better because it doesnt ruin you!</p><p>Optimal print settings: 0,15mm QUALITY, no supports, infill 15% - 100%</p><p>Set filament change to layer 21</p><p>&nbsp;</p><p>Tato 3D ti\u0161t\u011bn\u00e1 varianta je lep\u0161\u00ed, proto\u017ee V\u00e1s nezruinuje!</p><p>Optim\u00e1ln\u00ed tiskov\u00e9 nastaven\u00ed: 0,15mm QUALITY, bez podp\u011br, v\u00fdpl\u0148 15% - 100%</p><p>Nastavte v\u00fdm\u011bnu filamentu ve 21. vrstv\u011b</p>",
-        "pdfFilePath": "media/prints/228977/pdfs/228977-apple-coaster-apple-podtacek-9a34972b-de09-44bf-a95b-ab8ec3f30634.pdf",
-        "category": {
-            "id": "4",
-            "name": "Kitchen",
-            "nameEn": "Kitchen",
-            "__typename": "CategoryType"
-        },
-        "license": {
-            "id": "3",
-            "name": "Creative Commons \u2014 Attribution  \u2014 Noncommercial",
-            "abbreviation": "CC-BY-NC",
-            "content": "<a rel=\"license\" target=\"_blank\" href=\"http://creativecommons.org/licenses/by-nc/4.0/\">\r\n<img alt=\"Creative Commons License\" style=\"border-width:0\" src=\"https://i.creativecommons.org/l/by-nc/4.0/88x31.png\"  align=\"right\"/></a>\r\n<br>\r\nThis work is licensed under a \r\n</br>\r\n <a rel=\"license\" target=\"_blank\" href=\"http://creativecommons.org/licenses/by-nc/4.0/\">Creative Commons (4.0 International License)<br><h6> Attribution-NonCommercial </h6></a>\r\n<hr>\r\n<div><span style=\"color:#cb2c2c; font-weight:bold;\">\u2716 </span> | Sharing without ATTRIBUTION  </div>\r\n<div><span style=\"color:#5daf0b; font-weight:bold;\">\u2714 </span> | Remix Culture allowed  </div>\r\n<div><span style=\"color:#cb2c2c; font-weight:bold;\">\u2716 </span> | Commercial Use  </div>\r\n<div><span style=\"color:#cb2c2c; font-weight:bold;\">\u2716 </span> | Free Cultural Works  </div>\r\n<div><span style=\"color:#cb2c2c; font-weight:bold;\">\u2716 </span> | Meets Open Definition  </div>",
-            "disallowRemixing": false,
-            "freeModels": true,
-            "storeModels": false,
-            "__typename": "LicenseType"
-        },
-        "image": {
-            "filePath": "media/prints/228977/images/2085807_63f1b839-fdc8-45e5-b3f1-42a79c713521/apple-logo.png",
-            "__typename": "PrintImageType"
-        },
-        "images": [
-            {
-                "id": "1022790",
-                "filePath": "media/prints/228977/images/2085807_63f1b839-fdc8-45e5-b3f1-42a79c713521/apple-logo.png",
-                "__typename": "PrintImageType"
+        "id": 166745,
+        "title": "Apple TV 4K HD Bracket VESA",
+        "titleTranslated": "",
+        "cover": "https://makerworld.bblmw.com/makerworld/model/US53621bfba9c3da/design/2024-02-01_0f026d3624809.jpeg",
+        "likeCount": 90,
+        "collectionCount": 259,
+        "shareCount": 0,
+        "printCount": 300,
+        "downloadCount": 454,
+        "rawModelFileDownloadCount": 37,
+        "commentCount": 2,
+        "readCount": 0,
+        "designCreator": {
+            "uid": 2272274663,
+            "name": "PluNo",
+            "avatar": "https://public-cdn.bblmw.com/avatar/2272274663/2024-01-13_b14dc58f172d48.png",
+            "fanCount": 0,
+            "followCount": 0,
+            "isFollowed": false,
+            "nameHighlight": "",
+            "createTime": "",
+            "publicInstanceUploadCount": 0,
+            "backgroundUrl": "",
+            "mySelectDesign": null,
+            "level": 0,
+            "gradeType": 0,
+            "downloadCount": 1047,
+            "likeCount": 90,
+            "bannedPermission": {
+                "whole": false,
+                "comment": false,
+                "upload": false,
+                "redeem": false
             },
-            {
-                "id": "1022792",
-                "filePath": "media/prints/228977/images/2085810_326938b7-919a-472c-92b7-b5c974afd366/apple.png",
-                "__typename": "PrintImageType"
-            }
-        ],
-        "previewFile": {
-            "id": "966640",
-            "filePreviewPath": "media/prints/228977/stls/2085791_d4b4a5c5-8a7b-4960-acfc-660c3f6e5721/podtacek-apple_preview.png",
-            "__typename": "STLType"
+            "MWCount": {
+                "myDesignDownloadCount": 0,
+                "myInstanceDownloadCount": 0,
+                "designCount": 0
+            },
+            "certificated": false,
+            "hotScore": 0,
+            "score": 0,
+            "handle": "ManNor"
         },
-        "__typename": "PrintType"
+        "titleHighlight": "Apple TV 4K HD Bracket VESA",
+        "createTime": "2024-02-01T18:57:50Z",
+        "hotScore": 3.75628149534029e-09,
+        "designScore": 7.341483852363161,
+        "score": 0,
+        "nsfw": false,
+        "status": 1,
+        "hasCollect": false,
+        "hasLike": false,
+        "hasDislike": false,
+        "isStaffPicked": false,
+        "pickReason": "",
+        "is_printable": true,
+        "is_official": false,
+        "is_point_redeemable": false,
+        "isExclusive": false,
+        "license": "BY-NC-SA",
+        "contest": {
+            "contestId": 0,
+            "rank": 0,
+            "status": 0,
+            "contestName": ""
+        },
+        "tags": [
+            "apple tv",
+            "apple"
+        ],
+        "customizedByMakerLab": false,
+        "preset": {
+            "type": "",
+            "filamentConfig": null,
+            "printerConfig": null,
+            "processConfig": null,
+            "printerSettings": [],
+            "file": {
+                "name": "",
+                "size": 0,
+                "url": ""
+            }
+        },
+        "coverLandscape": "",
+        "coverPortrait": "",
+        "boostCnt": 9,
+        "bomsNeeded": false,
+        "modelSource": 1,
+        "ext": "{\"by\":0,\"exp\":0,\"q\":\"apple\",\"qp\":{\"actualQuery\":\"apple\",\"baseEmbedThreshold\":0.74,\"exp\":0,\"query\":\"apple\",\"segWords\":[\"apple\"],\"synSegWords\":{\"apple\":[\"apples\",\"appl\"]}},\"rc\":[\"titleAndTagsSeg|75.11|0.4444|108.11\",\"titleAndTagsSyn|225.33|0.4444|10.89\",\"titleSeg|51.41|0.4444|56.49\"],\"rk\":\"108.11|8\"}"
     },
     {
-        "id": "166049",
-        "name": "apple",
-        "description": "",
-        "pdfFilePath": "media/prints/166049/pdfs/166049-apple-c91212e8-f759-45ae-98e6-53099529c131.pdf",
-        "category": {
-            "id": "12",
-            "name": "Test Models",
-            "nameEn": "Test Models",
-            "__typename": "CategoryType"
+        "id": 794054,
+        "title": "iPhone dock with Apple watch charger",
+        "titleTranslated": "",
+        "cover": "https://makerworld.bblmw.com/makerworld/model/USa254cbd3bab6b8/design/2024-11-17_807bf0e4d9c4e.jpg",
+        "likeCount": 224,
+        "collectionCount": 461,
+        "shareCount": 0,
+        "printCount": 132,
+        "downloadCount": 351,
+        "rawModelFileDownloadCount": 60,
+        "commentCount": 21,
+        "readCount": 0,
+        "designCreator": {
+            "uid": 2817452611,
+            "name": "Bux",
+            "avatar": "https://public-cdn.bblmw.com/avatar/2817452611/2024-11-08_44e32d1b56e55.jpg",
+            "fanCount": 0,
+            "followCount": 0,
+            "isFollowed": false,
+            "nameHighlight": "",
+            "createTime": "",
+            "publicInstanceUploadCount": 0,
+            "backgroundUrl": "",
+            "mySelectDesign": null,
+            "level": 0,
+            "gradeType": 0,
+            "downloadCount": 1759,
+            "likeCount": 438,
+            "bannedPermission": {
+                "whole": false,
+                "comment": false,
+                "upload": false,
+                "redeem": false
+            },
+            "MWCount": {
+                "myDesignDownloadCount": 0,
+                "myInstanceDownloadCount": 0,
+                "designCount": 0
+            },
+            "certificated": false,
+            "hotScore": 0,
+            "score": 0,
+            "handle": "Buxg"
         },
-        "license": {
-            "id": "3",
-            "name": "Creative Commons \u2014 Attribution  \u2014 Noncommercial",
-            "abbreviation": "CC-BY-NC",
-            "content": "<a rel=\"license\" target=\"_blank\" href=\"http://creativecommons.org/licenses/by-nc/4.0/\">\r\n<img alt=\"Creative Commons License\" style=\"border-width:0\" src=\"https://i.creativecommons.org/l/by-nc/4.0/88x31.png\"  align=\"right\"/></a>\r\n<br>\r\nThis work is licensed under a \r\n</br>\r\n <a rel=\"license\" target=\"_blank\" href=\"http://creativecommons.org/licenses/by-nc/4.0/\">Creative Commons (4.0 International License)<br><h6> Attribution-NonCommercial </h6></a>\r\n<hr>\r\n<div><span style=\"color:#cb2c2c; font-weight:bold;\">\u2716 </span> | Sharing without ATTRIBUTION  </div>\r\n<div><span style=\"color:#5daf0b; font-weight:bold;\">\u2714 </span> | Remix Culture allowed  </div>\r\n<div><span style=\"color:#cb2c2c; font-weight:bold;\">\u2716 </span> | Commercial Use  </div>\r\n<div><span style=\"color:#cb2c2c; font-weight:bold;\">\u2716 </span> | Free Cultural Works  </div>\r\n<div><span style=\"color:#cb2c2c; font-weight:bold;\">\u2716 </span> | Meets Open Definition  </div>",
-            "disallowRemixing": false,
-            "freeModels": true,
-            "storeModels": false,
-            "__typename": "LicenseType"
+        "titleHighlight": "iPhone dock with Apple watch charger",
+        "createTime": "2024-11-16T22:52:17Z",
+        "hotScore": 0.9166391221467047,
+        "designScore": 7.6128310304073565,
+        "score": 0,
+        "nsfw": false,
+        "status": 1,
+        "hasCollect": false,
+        "hasLike": false,
+        "hasDislike": false,
+        "isStaffPicked": false,
+        "pickReason": "",
+        "is_printable": true,
+        "is_official": false,
+        "is_point_redeemable": false,
+        "isExclusive": true,
+        "license": "Standard Digital File License",
+        "contest": {
+            "contestId": 0,
+            "rank": 0,
+            "status": 0,
+            "contestName": ""
         },
-        "image": {
-            "filePath": "media/prints/166049/images/1542296_9eb3afdb-8401-42b9-8a61-d13b6017ba1e/snimek-obrazovky-2022-04-09-201830.png",
-            "__typename": "PrintImageType"
-        },
-        "images": [
-            {
-                "id": "775500",
-                "filePath": "media/prints/166049/images/1542296_9eb3afdb-8401-42b9-8a61-d13b6017ba1e/snimek-obrazovky-2022-04-09-201830.png",
-                "__typename": "PrintImageType"
-            }
+        "tags": [
+            "iphone",
+            "iphone dock",
+            "stand",
+            "charging",
+            "charging station",
+            "charging base",
+            "apple watch"
         ],
-        "previewFile": {
-            "id": "679492",
-            "filePreviewPath": "media/prints/166049/stls/1542295_3313809c-485b-4256-8758-eb2e017d5615/funky-fyyran-stantia_preview.png",
-            "__typename": "STLType"
+        "customizedByMakerLab": false,
+        "preset": {
+            "type": "",
+            "filamentConfig": null,
+            "printerConfig": null,
+            "processConfig": null,
+            "printerSettings": [],
+            "file": {
+                "name": "",
+                "size": 0,
+                "url": ""
+            }
         },
-        "__typename": "PrintType"
+        "coverLandscape": "https://makerworld.bblmw.com/makerworld/model/USa254cbd3bab6b8/design/2024-11-17_6f88f88a954fa.jpg",
+        "coverPortrait": "",
+        "boostCnt": 17,
+        "bomsNeeded": false,
+        "modelSource": 1,
+        "ext": "{\"by\":0,\"exp\":0,\"q\":\"apple\",\"qp\":{\"actualQuery\":\"apple\",\"baseEmbedThreshold\":0.74,\"exp\":0,\"query\":\"apple\",\"segWords\":[\"apple\"],\"synSegWords\":{\"apple\":[\"apples\",\"appl\"]}},\"rc\":[\"titleAndTagsSeg|64.14|0.5952|108.03\",\"titleSeg|51.41|0.5952|57.53\"],\"rk\":\"108.03|9\"}"
     }
 ]
