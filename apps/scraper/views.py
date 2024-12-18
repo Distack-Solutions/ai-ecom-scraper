@@ -4,6 +4,8 @@ from django.shortcuts import render, redirect
 from .forms import ScrapingProcessForm
 from apps.scraper.libs.printables import PrintablesProductScrap
 from apps.scraper.libs.stlflix import StlflixProductScrap
+from apps.scraper.libs.makerworld import MakerWorldProductScrap
+from apps.scraper.libs.scraping_processor import ProductScraperProcessor
 from django.shortcuts import render, get_object_or_404
 from django.contrib import messages
 from django.shortcuts import get_object_or_404, render
@@ -20,17 +22,28 @@ from .models import Product
 from django.http import StreamingHttpResponse
 from time import sleep
 import json
-
-
 # Create your views here.
+from django.core.paginator import Paginator
+from django.shortcuts import render
+
+
+def makerworld(request):
+    scraper = MakerWorldProductScrap(query="apple", limit=10)
+    scraper.get_products()
+    structured_data = scraper.to_model_data()
+    return JsonResponse(structured_data, safe=False)
+
+
 @login_required
 def all_products(request):
+    
+
     # Retrieve query parameters
     search_query = request.GET.get('search', '')
     status_filter = request.GET.get('status', '')
 
     # Start with all products
-    products = Product.objects.all()
+    products = Product.objects.all().order_by('-created_at')
 
     # Apply search filter
     if search_query:
@@ -40,13 +53,20 @@ def all_products(request):
     if status_filter and status_filter != 'all':
         products = products.filter(status=status_filter)
 
+    # Implement pagination
+    paginator = Paginator(products, 10)  # Show 10 products per page
+    page_number = request.GET.get('page')  # Get the page number from the request
+    page_obj = paginator.get_page(page_number)  # Get the relevant page
+
     context = {
-        'products': products,
+        'products': page_obj,  # Pass the paginated products
         'search_query': search_query,
         'status_filter': status_filter,
+        'page_obj': page_obj,  # Pass the Paginator object for navigation
         'page': 'products',
     }
     return render(request, "volt/product.html", context)
+
 
 @login_required
 def delete_product(request, product_id):
@@ -159,56 +179,48 @@ def fetch_products(scraping_process):
                 scraping_process.max_records
             )
             printables_scraper.get_products()
+            structured_products = printables_scraper.to_model_data()
 
-            printables_products = printables_scraper.results
-
-            for product in printables_products:
+            for product in structured_products:
                 try:
                     # Check if the product already exists
-                    existing_product = Product.objects.filter(sku=product.get('id')).first()
+                    existing_product = Product.objects.filter(sku=product['sku']).first()
                     if existing_product:
-                        print(f"Product with SKU {product.get('id')} already exists. Skipping.")
+                        print(f"Product with SKU {product['sku']} already exists. Skipping.")
                         continue
-                    
-                    # Get thumbnail and gallery images
-                    thumbnail = printables_scraper.get_thumnail(product)
-                    gallery_images = printables_scraper.get_gallery_images(product)
 
                     # Create License object if license data is present
-                    license_data = product.get('license')
                     internal_license = None
-                    if license_data:
+                    if product['license']:
                         internal_license = License.objects.create(
-                            json=license_data
+                            json=product['license']
                         )
 
                     # Create Product instance
                     internal_product = Product(
                         scraped_by=scraping_process,
-                        sku=product.get('id'),
-                        title=product.get('name'),
-                        description=product.get('description') or "No description available",
-                        category=product.get('category').get('name') if product.get('category') else None,
+                        sku=product['sku'],
+                        title=product['title'],
+                        description=product['description'],
+                        category=product['category'],
                         source_website=website,
                         license=internal_license,
                     )
 
                     # If there's a thumbnail, associate it with the product
-                    if thumbnail:
-                        internal_product.thumbnail = ThumbnailImage.objects.create(url=thumbnail)
+                    if product['thumbnail_url']:
+                        internal_product.thumbnail = ThumbnailImage.objects.create(url=product['thumbnail_url'])
 
                     # Process the preview file (Page Screenshot)
-                    pdf_file_path = product.get('pdfFilePath')
-                    if pdf_file_path:
-                        pdf_file_path_url = printables_scraper.get_media_url(pdf_file_path)
-                        internal_page_screenshot = PageScreenshot.objects.create(url=pdf_file_path_url)
+                    if product['pdf_file_url']:
+                        internal_page_screenshot = PageScreenshot.objects.create(url=product['pdf_file_url'])
                         internal_product.page_screenshot = internal_page_screenshot
 
                     # Save the product
                     internal_product.save()
 
                     # Now handle the gallery images
-                    for gallery_image_url in gallery_images:
+                    for gallery_image_url in product['images']:
                         Image.objects.create(
                             product=internal_product,
                             image_url=gallery_image_url
@@ -218,8 +230,9 @@ def fetch_products(scraping_process):
 
                 except Exception as e:
                     # Handle any errors that occur during the product processing
-                    print(f"Error processing product {product.get('id')}: {e}")
+                    print(f"Error processing product {product.get('sku')}: {e}")
                     continue
+
 
         if website.script_name == "stlflix.py":
             stlflix_scraper = StlflixProductScrap(
@@ -230,35 +243,90 @@ def fetch_products(scraping_process):
             stlflix_products = stlflix_scraper.to_model_data()
             
             for product in stlflix_products:
-                # Create Product instance
-                internal_product = Product(
-                    scraped_by=scraping_process,
-                    sku=product.get('sku'),
-                    title=product.get('title'),
-                    description=product.get('description') or "No description available",
-                    category=product.get('category'),
-                    is_commercial_allowed=product.get('is_commercial_allowed'),
-                    source_website=website
-                )
-
-                # If there's a thumbnail, associate it with the product
-                if product.get('thumbnail_url'):
-                    internal_product.thumbnail = ThumbnailImage.objects.create(url=product.get('thumbnail_url'))
-
-                # Save the product
-                internal_product.save()
-
-                # Now handle the gallery images
-                for gallery_image_url in product.get('images'):
-                    Image.objects.create(
-                        product=internal_product,
-                        image_url=gallery_image_url
+                try:
+                    # Check if the product already exists
+                    existing_product = Product.objects.filter(sku=product['sku']).first()
+                    if existing_product:
+                        print(f"Product with SKU {product['sku']} already exists. Skipping.")
+                        continue
+                    
+                    # Create Product instance
+                    internal_product = Product(
+                        scraped_by=scraping_process,
+                        sku=product.get('sku'),
+                        title=product.get('title'),
+                        description=product.get('description') or "No description available",
+                        category=product.get('category'),
+                        is_commercial_allowed=product.get('is_commercial_allowed'),
+                        source_website=website
                     )
 
+                    # If there's a thumbnail, associate it with the product
+                    if product.get('thumbnail_url'):
+                        internal_product.thumbnail = ThumbnailImage.objects.create(url=product.get('thumbnail_url'))
+
+                    # Save the product
+                    internal_product.save()
+
+                    # Now handle the gallery images
+                    for gallery_image_url in product.get('images'):
+                        Image.objects.create(
+                            product=internal_product,
+                            image_url=gallery_image_url
+                        )
+
+                except Exception as e:
+                    # Handle any errors that occur during the product processing
+                    print(f"Error processing product {product.get('sku')}: {e}")
+                    continue
 
 
-
+        if website.script_name == "makerworld.py":
+            makerworld_scraper = MakerWorldProductScrap(
+                scraping_process.search_query,
+                scraping_process.max_records
+            )
+            makerworld_scraper.get_products()
+            makerworld_products = makerworld_scraper.to_model_data()
             
+            for product in makerworld_products:
+                try:
+                    # Check if the product already exists
+                    existing_product = Product.objects.filter(sku=product['sku']).first()
+                    if existing_product:
+                        print(f"Product with SKU {product['sku']} already exists. Skipping.")
+                        continue
+
+                    # Create Product instance
+                    internal_product = Product(
+                        scraped_by=scraping_process,
+                        sku=product.get('sku'),
+                        title=product.get('title'),
+                        description=product.get('description') or "No description available",
+                        category=product.get('category'),
+                        is_commercial_allowed=product.get('is_commercial_allowed'),
+                        source_website=website
+                    )
+
+                    # If there's a thumbnail, associate it with the product
+                    if product.get('thumbnail_url'):
+                        internal_product.thumbnail = ThumbnailImage.objects.create(url=product.get('thumbnail_url'))
+
+                    # Save the product
+                    internal_product.save()
+
+                    # Now handle the gallery images
+                    for gallery_image_url in product.get('images'):
+                        Image.objects.create(
+                            product=internal_product,
+                            image_url=gallery_image_url
+                        )
+
+                except Exception as e:
+                    # Handle any errors that occur during the product processing
+                    print(f"Error processing product {product.get('sku')}: {e}")
+                    continue
+
 
 @login_required
 def initiate_process(request):
@@ -269,11 +337,12 @@ def initiate_process(request):
             scraping_process.started_by = request.user  # Set the current user as 'started_by'
             scraping_process.status = 'pending'  # Set initial status
             scraping_process.save()
-            form.save_m2m()  # Save the many-to-many data (source_websites, criterias)
+            form.save_m2m()  
 
             # Fetching products
             try:
-                fetch_products(scraping_process)
+                processor = ProductScraperProcessor(scraping_process)
+                processor.run()
                 scraping_process.status = "completed"
                 scraping_process.save()
                 messages.success(request, "Scraping process has been initiated successfully.")
@@ -296,7 +365,7 @@ def initiate_process(request):
 
 
 
-
+@login_required
 def product_detail(request, product_id):
     # Fetch the product by ID
     product = get_object_or_404(Product, id=product_id)

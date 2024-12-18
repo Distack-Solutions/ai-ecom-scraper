@@ -1,0 +1,125 @@
+import logging
+from apps.scraper.libs.printables import PrintablesProductScrap
+from apps.scraper.libs.makerworld import MakerWorldProductScrap
+from apps.scraper.libs.stlflix import StlflixProductScrap
+from apps.scraper.models import *
+
+# Get the 'scraper' logger defined in settings.py
+logger = logging.getLogger('scraper')
+
+class ProductScraperProcessor:
+    def __init__(self, scraping_process):
+        self.scraping_process = scraping_process
+
+    def process_product(self, product_data, website):
+        """
+        Process and save a single product.
+        """
+        try:
+            logger.info(f"Processing product with SKU: {product_data['sku']}")
+
+            # Check if the product already exists
+            existing_product = Product.objects.filter(sku=product_data['sku']).first()
+            if existing_product:
+                logger.warning(f"Product with SKU {product_data['sku']} already exists. Skipping.")
+                return
+
+            # Create License object if license data is present
+            internal_license = None
+            if product_data.get('license'):
+                internal_license = License.objects.create(json=product_data['license'])
+                logger.info(f"License created for product {product_data['sku']}")
+
+            # Create Product instance
+            internal_product = Product(
+                scraped_by=self.scraping_process,
+                sku=product_data['sku'],
+                title=product_data['title'],
+                description=product_data['description'],
+                category=product_data['category'],
+                source_website=website,
+                license=internal_license,
+                is_commercial_allowed=product_data.get('is_commercial_allowed', False),
+            )
+
+            # If there's a thumbnail, associate it with the product
+            if product_data.get('thumbnail_url'):
+                internal_product.thumbnail = ThumbnailImage.objects.create(
+                    url=product_data['thumbnail_url']
+                )
+                logger.info(f"Thumbnail created for product {product_data['sku']}")
+
+            # Process the preview file (Page Screenshot)
+            if product_data.get('pdf_file_url'):
+                internal_page_screenshot = PageScreenshot.objects.create(
+                    url=product_data['pdf_file_url']
+                )
+                internal_product.page_screenshot = internal_page_screenshot
+                logger.info(f"Page screenshot created for product {product_data['sku']}")
+
+            # Save the product
+            internal_product.save()
+            logger.info(f"Product {internal_product.title} saved successfully.")
+
+            # Now handle the gallery images
+            for gallery_image_url in product_data.get('images', []):
+                Image.objects.create(
+                    product=internal_product,
+                    image_url=gallery_image_url
+                )
+            logger.info(f"Gallery images saved for product {product_data['sku']}")
+
+        except Exception as e:
+            logger.error(f"Error processing product {product_data.get('sku')}: {e}")
+            raise
+
+    def fetch_and_process(self, scraper_class, website):
+        """
+        Fetch and process products using a specific scraper class.
+        """
+        logger.info(f"Starting scraping for website: {website.name}")
+        scraper = scraper_class(
+            query=self.scraping_process.search_query,
+            limit=self.scraping_process.max_records
+        )
+
+        try:
+            scraper.get_products()
+            logger.info(f"Scraping completed for website: {website.name}")
+
+            structured_products = scraper.to_model_data()
+            logger.info(f"Total {len(structured_products)} products fetched from {website.name}")
+
+            for product_data in structured_products:
+                self.process_product(product_data, website)
+
+        except Exception as e:
+            logger.error(f"Error during scraping for website {website.name}: {e}")
+            raise
+
+    def run(self):
+        """
+        Run the scraping and processing workflow for all websites.
+        """
+        logger.info(f"Starting scraping process {self.scraping_process.id}")
+        for website in self.scraping_process.source_websites.all():
+            logger.info(f"Processing website: {website.name}")
+
+            scraper_mapping = {
+                "printables.py": PrintablesProductScrap,
+                "stlflix.py": StlflixProductScrap,
+                "makerworld.py": MakerWorldProductScrap,
+            }
+
+            scraper_class = scraper_mapping.get(website.script_name)
+            if not scraper_class:
+                logger.warning(f"No scraper found for {website.script_name}. Skipping website {website.name}.")
+                continue
+
+            try:
+                self.fetch_and_process(scraper_class, website)
+            except Exception as e:
+                logger.error(f"Failed to process website {website.name}: {e}")
+                continue
+
+        logger.info(f"Scraping process {self.scraping_process.id} completed.")

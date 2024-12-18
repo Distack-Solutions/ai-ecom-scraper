@@ -277,6 +277,7 @@ class PrintablesProductScrap:
         self.limit = limit
         self.media_url = "https://media.printables.com/"
         self.results = []
+        self.key = "printable"
 
     def __hit_query(self):
         # GraphQL query payload
@@ -315,14 +316,14 @@ class PrintablesProductScrap:
         return self.results
 
     def get_thumnail(self, product):
-        thumnail = product.get('image')
-        if not thumnail:
+        thumbnail = product.get("image")
+        if not thumbnail:
             return None
-        return self.get_image_path(thumnail)
+        return self.get_image_path(thumbnail)
 
     def get_gallery_images(self, product):
         gallery_images = []
-        images = product.get('images')
+        images = product.get("images")
         if images:
             for image in images:
                 gallery_image = self.get_image_path(image)
@@ -335,37 +336,75 @@ class PrintablesProductScrap:
         if not imageObject:
             return None
 
-        imagePath = imageObject.get('filePath')
+        imagePath = imageObject.get("filePath")
 
         if not imagePath:
             return None
-        
-        return f'{self.media_url}{imagePath}'
+
+        return f"{self.media_url}{imagePath}"
 
     def get_media_url(self, uri):
         if uri:
             return f"{self.media_url}{uri}"
-        
+
         raise Exception("URI required")
 
     def add_media_domain(self):
         for product in self.results:
             if product.get("image"):
                 existingImageFilePath = product["image"]["filePath"]
-                product["image"]["filePath"] = f"{self.media_url}{existingImageFilePath}" 
+                product["image"]["filePath"] = f"{self.media_url}{existingImageFilePath}"
 
             if product.get("images"):
                 for gallery_image in product["images"]:
                     existingImageFilePath = gallery_image["filePath"]
-                    gallery_image["filePath"] = f"{self.media_url}{existingImageFilePath}" 
+                    gallery_image["filePath"] = f"{self.media_url}{existingImageFilePath}"
 
-
-    def seve_file(self):
+    def save_file(self):
         with open("data.json", "w") as f:
             json.dump(self.results, f, indent=4)
 
+    def to_model_data(self):
+        """
+        Convert scraped data into structured format for model creation.
+
+        Returns:
+            list[dict]: A list of dictionaries representing product data.
+        """
+        structured_data = []
+        for product in self.results:
+            try:
+                # Extract category name
+                category = product.get("category", {}).get("name")
+
+                # Extract license details
+                license_data = product.get("license")
+
+                # Construct the product data
+                product_data = {
+                    "sku": f'{self.key}-{product.get("id")}',
+                    "title": product.get("name"),
+                    "description": product.get("description") or "No description available",
+                    "category": category,
+                    "thumbnail_url": self.get_thumnail(product),
+                    "images": self.get_gallery_images(product),
+                    "license": license_data,
+                    "pdf_file_url": self.get_media_url(product.get("pdfFilePath"))
+                    if product.get("pdfFilePath")
+                    else None,
+                }
+
+                structured_data.append(product_data)
+            except Exception as e:
+                print(f"Error processing product {product.get('id')}: {e}")
+                continue
+
+        return structured_data
+
 
 if __name__ == "__main__":
-    x = PrintablesProductScrap("asdasdasdasdasdasdsadsadsadsadasds", 5)
+    x = PrintablesProductScrap("apple", 10)
     x.get_products()
-    x.seve_file()
+    products = x.to_model_data()
+    print(products)
+    x.save_file()

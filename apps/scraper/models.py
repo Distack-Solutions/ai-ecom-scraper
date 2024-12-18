@@ -136,7 +136,10 @@ class Product(models.Model):
     publishing_message = models.CharField(max_length=255, null=True, blank=True)
 
     def get_categories(self):
-        category_list = self.category.split(",")
+        category_list = []
+        if self.category:
+            category_list = self.category.split(",")
+        
         return category_list
 
     def generate_ai_details(self):
@@ -183,7 +186,7 @@ class Product(models.Model):
 
 
     class Meta:
-        ordering = ('-id',)
+        ordering = ('-created_at', '-updated_at')
         verbose_name = "Product"
         verbose_name_plural = "Products"
 

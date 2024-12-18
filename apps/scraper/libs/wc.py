@@ -39,7 +39,6 @@ class WooCommerceManager:
     def create_product(self, product_data):
         """Create a new product in WooCommerce."""
         wcapi = self.get_client()
-        print(product_data)
         response = wcapi.post("products", product_data)
         if response.status_code == 201:
             return response.json()  # Successfully created product
