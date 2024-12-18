@@ -60,10 +60,9 @@
             <tr>
               <th class="border-0">ID</th>
               <th class="border-0">Search Query</th>
-              <th class="border-0">Max. Records</th>
               <th class="border-0">Website Source</th>
               <th class="border-0">Status</th>
-              <th class="border-0">Actions</th>
+              <th class="border-0">Duration</th>
             </tr>
           </thead>
           <tbody>
@@ -82,18 +81,20 @@
               <td class="border-0 fw-bold">
                 
                 <p class=" fs-5">{{ process.search_query }}</p>
+                (Max record: {{ process.max_records }})
+                (Started By: {{ process.started_by }})
               </td>
-              <td class="border-0 fw-bold">{{ process.max_records }}</td>
               <td class="border-0 fw-bold">
                 {% for website in process.source_websites.all %}
                   <span class="badge bg-gray-700 text-white p-1 px-2">{{ website.name }}</span>
                 {% endfor %}
               </td>
-              <td class="border-0 fw-bold">
+              <td class="border-0 fw-bold my-auto">
                 <span class="badge status-{{ process.status }} p-1 px-2">{{ process.get_status_display }}</span>
               </td>
               <td class="border-0 fw-bold">
-                Actions
+                <p><b>From</b> {{ process.started_at }}</p>
+                <p><b>To</b> {{ process.completed_at }}</p>
               </td>
             </tr>
             {% endfor %}

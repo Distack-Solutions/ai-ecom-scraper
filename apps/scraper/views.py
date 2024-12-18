@@ -25,6 +25,8 @@ import json
 # Create your views here.
 from django.core.paginator import Paginator
 from django.shortcuts import render
+from django.http import StreamingHttpResponse
+from django.contrib import messages
 
 
 def makerworld(request):
@@ -362,6 +364,47 @@ def initiate_process(request):
 
     }
     return render(request, "volt/initiate_process.html", context)
+
+
+def initiate_scraping_process(request):
+    if request.method == 'GET':  # Expecting query parameters in GET request
+        form = ScrapingProcessForm(request.GET)
+        
+        # Validate the form data
+        if not form.is_valid():
+            errors = form.errors.as_json()
+            return JsonResponse({"status": "error", "message": "Invalid form data", "errors": json.loads(errors)}, status=400)
+        
+        scraping_process = form.save(commit=False)
+        scraping_process.started_by = request.user  # Set the current user as 'started_by'
+        scraping_process.status = 'pending'  # Set initial status
+        scraping_process.save()
+        form.save_m2m()  # Save many-to-many relationships like source_websites
+
+        def stream():
+            # Yield the initial message
+            yield f"data: {json.dumps({'status': 'starting', 'progress': 0, 'total': 0, 'in_percent': 0, 'message': 'Initializing scraping process'})}\n\n"
+
+            try:
+                processor = ProductScraperProcessor(scraping_process)
+                for update in processor.run_with_streaming():
+                    yield f"data: {json.dumps(update)}\n\n"
+                scraping_process.status = "completed"
+                scraping_process.completed_at = timezone.now() 
+                scraping_process.save()
+                messages.success(request, "Scraping process has been completed successfully.")
+            except Exception as e:
+                scraping_process.status = "failed"
+                scraping_process.save()
+                yield f"data: {json.dumps({'status': 'error', 'progress': 0, 'total': 0, 'in_percent': 0, 'message': str(e)})}\n\n"
+
+        response = StreamingHttpResponse(stream(), content_type="text/event-stream")
+        response["Cache-Control"] = "no-cache"
+        response["X-Accel-Buffering"] = "no"  # Allow Stream over NGINX server
+        return response
+
+    # Return error for invalid method
+    return JsonResponse({"status": "error", "message": "Invalid request method"}, status=405)
 
 
 

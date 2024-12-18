@@ -7,12 +7,29 @@
     border: 2px solid transparent;
     cursor: pointer;
     transition: border-color 0.3s;
-}
+  }
 
-.marketplace-card.selected {
+  .marketplace-card.selected {
     border: 2px solid #323233;
     transition: border-color 0.3s;
-}
+  }
+
+  .spinner-border {
+    display: inline-block;
+    width: 1.5rem;
+    height: 1.5rem;
+    vertical-align: text-bottom;
+    border: 0.25em solid currentColor;
+    border-right-color: transparent;
+    border-radius: 50%;
+    animation: spinner-border 0.75s linear infinite;
+  }
+
+  @keyframes spinner-border {
+    to {
+      transform: rotate(360deg);
+    }
+  }
 </style>
 {% endblock extra_css %}
 
@@ -31,7 +48,7 @@
         <h4 class="card-title my-0">Add Details</h4>
       </div>
       <div class="card-body">
-        <form method="POST">
+        <form id="scraping-form" method="POST">
           {% csrf_token %}
           
           <!-- Render search query and other form fields -->
@@ -45,7 +62,6 @@
             <label for="id_source_websites">Select Marketplaces</label>
             <div class="marketplace-logos row">
               {% for website in form.source_websites.field.queryset %}
-                
                 <div class="col-4 text-center">
                   <div class="card marketplace-card text-left" style="height: 60px;">
                     <div class="card-body p-2 d-flex align-items-center">
@@ -57,7 +73,6 @@
                         id="marketplace-{{ website.id }}"  
                       />
                       <label for="marketplace-{{ website.id }}">
-                      
                         <div class="marketplace-card">
                           <img src="{{ website.logo.url }}" alt="{{ website.name }}" class="img-fluid" />
                         </div>
@@ -71,8 +86,26 @@
           </div>
 
           <!-- Submit Button -->
-          <button type="submit" class="btn btn-primary w-100">Submit To Start Process</button>
+          <button id="submit-btn" type="button" class="btn btn-primary w-100">
+            <span id="submit-btn-text">Submit To Start Process</span>
+            <span id="submit-spinner" class="spinner-border" style="display: none;"></span>
+          </button>
         </form>
+
+        <!-- Progress Bar -->
+        <div id="progress-bar-container" class="text-left mt-4" style="display: none;">
+          <p class="mb-2" id="info-message"></p>
+          <div class="progress mb-0">
+            <div 
+              class="progress-bar" 
+              role="progressbar" 
+              style="width: 0%;" 
+              aria-valuenow="0" 
+              aria-valuemin="0" 
+              aria-valuemax="100"></div>
+          </div>
+          <p class="mt-2 text-danger" id="error-message"></p>
+        </div>
       </div>
     </div>
   </div>
@@ -80,30 +113,97 @@
 </div>
 
 <script>
-  $(document).ready(function() {
-    
-    // Toggle the 'selected' class on the marketplace card when the checkbox is clicked
-    $('input[type="checkbox"][name="source_websites"]').on('change', function() {
-      if ($(this).is(':checked')) {
-        $(this).closest('.marketplace-card').addClass('selected');
-      } else {
-        $(this).closest('.marketplace-card').removeClass('selected');
-      }
-    });
-
-
-    // Form submission validation
-    $('form').on('submit', function(event) {
-      var isAnyChecked = $('input[type="checkbox"][name="source_websites"]:checked').length > 0;
-      
-      if (!isAnyChecked) {
-        event.preventDefault(); // Prevent form submission
-        $('#source-website-error').text('Please select at least one website.');
-      } else {
-        $('#source-website-error').text('');
-      }
-    });
+  $(document).ready(function () {
+  // Toggle the 'selected' class on the marketplace card when the checkbox is clicked
+  $('input[type="checkbox"][name="source_websites"]').on('change', function () {
+    if ($(this).is(':checked')) {
+      $(this).closest('.marketplace-card').addClass('selected');
+    } else {
+      $(this).closest('.marketplace-card').removeClass('selected');
+    }
   });
-</script>
 
+  // Form submission with progress updates
+  $('#submit-btn').on('click', function () {
+    const searchQuery = $('input[name="search_query"]').val();
+    const maxRecords = $('input[name="max_records"]').val();
+    const selectedWebsites = $('input[type="checkbox"][name="source_websites"]:checked');
+    const progressBarContainer = $('#progress-bar-container');
+    const progressBar = $('.progress-bar');
+    const infoMessage = $('#info-message');
+    const errorMessage = $('#error-message');
+    const submitBtnText = $('#submit-btn-text');
+    const submitSpinner = $('#submit-spinner');
+    const allProductPage = "{% url 'scraper:products' %}";
+
+    // Validate form fields
+    if (!searchQuery) {
+      $('#source-website-error').text('Search query is required.');
+      return;
+    }
+    if (!maxRecords || maxRecords <= 0) {
+      $('#source-website-error').text('Max records must be greater than 0.');
+      return;
+    }
+    if (selectedWebsites.length === 0) {
+      $('#source-website-error').text('Please select at least one website.');
+      return;
+    }
+
+    $('#source-website-error').text(''); // Clear previous errors
+
+    // Serialize form data into query parameters
+    const formData = $('#scraping-form').serialize();
+    const url = "{% url 'scraper:scrape-products-sse' %}?" + formData;
+
+    // Show spinner and hide button text
+    submitBtnText.hide();
+    submitSpinner.show();
+
+    // Show progress bar
+    progressBarContainer.show();
+    progressBar.css('width', '0%').attr('aria-valuenow', '0');
+    infoMessage.text('Starting process...');
+
+    // Start SSE
+    const eventSource = new EventSource(url);
+
+    eventSource.onmessage = function (event) {
+      errorMessage.text(''); // Clear previous errors
+      const data = JSON.parse(event.data);
+      console.log(data);
+      
+      if (data.status === 'progress') {
+        progressBar.css('width', `${data.in_percent}%`).attr('aria-valuenow', data.in_percent);
+        infoMessage.text(data.message);
+      } else if (data.status === 'completed') {
+        progressBar.css('width', '100%').attr('aria-valuenow', 100);
+        infoMessage.text(data.message);
+        eventSource.close();
+        submitBtnText.show();
+        submitSpinner.hide();
+        setTimeout(() => {
+          location.replace(allProductPage);
+        }, 2000);
+      } else if (data.status === 'error') {
+        errorMessage.text(data.message);
+        eventSource.close();
+        submitBtnText.show();
+        submitSpinner.hide();
+        setTimeout(() => {
+          location.replace(allProductPage);
+        }, 2000);
+      }
+    };
+
+    eventSource.onerror = function () {
+      errorMessage.text('An error occurred while processing.');
+      eventSource.close();
+      submitBtnText.show();
+      submitSpinner.hide();
+    };
+  });
+});
+
+</script>
 {% endblock content %}

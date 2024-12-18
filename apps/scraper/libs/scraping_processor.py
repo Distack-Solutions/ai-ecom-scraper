@@ -3,6 +3,7 @@ from apps.scraper.libs.printables import PrintablesProductScrap
 from apps.scraper.libs.makerworld import MakerWorldProductScrap
 from apps.scraper.libs.stlflix import StlflixProductScrap
 from apps.scraper.models import *
+import time
 
 # Get the 'scraper' logger defined in settings.py
 logger = logging.getLogger('scraper')
@@ -10,6 +11,13 @@ logger = logging.getLogger('scraper')
 class ProductScraperProcessor:
     def __init__(self, scraping_process):
         self.scraping_process = scraping_process
+        self.total_websites = self.scraping_process.source_websites.all().count()
+        self.total_products = self.total_websites * self.scraping_process.max_records
+        self.total_progress = 0
+        
+
+    def get_percent(self):
+        return f'{int(self.total_progress/self.total_products * 100)}'
 
     def process_product(self, product_data, website):
         """
@@ -96,6 +104,71 @@ class ProductScraperProcessor:
         except Exception as e:
             logger.error(f"Error during scraping for website {website.name}: {e}")
             raise
+
+    def get_output(self, status, message):
+        return {
+            "status": status,
+            "progress": self.total_progress,
+            "total": self.total_products,
+            "in_percent": self.get_percent(),
+            "message": message
+        }
+
+    def fetch_and_process_sse(self, scraper_class, website):
+        """
+        Fetch and process products using a specific scraper class, with progress updates for SSE.
+        """
+        scraper = scraper_class(
+            query=self.scraping_process.search_query,
+            limit=self.scraping_process.max_records
+        )
+
+        yield self.get_output("progress", f"Scraping for {website.name}")
+
+        try:
+            scraper.get_products()
+            structured_products = scraper.to_model_data()
+
+            yield self.get_output("progress", f"Scraped from {website.name}, Recording in database.")
+
+
+            for idx, product_data in enumerate(structured_products, start=1):
+                self.total_progress += 1
+                try:
+                    self.process_product(product_data, website)
+                    time.sleep(0.5)                   
+                    yield self.get_output(
+                        "progress", 
+                        f"{self.total_progress}/{self.total_products} products processed.")
+
+                except Exception as e:
+                    yield self.get_output("error", f'Error processing product {product_data.get("sku")}. Skipping...')
+                    continue
+
+        except Exception as e:
+            yield self.get_output("error", f"Error during scraping for {website.name}: {str(e)}")
+
+
+    def run_with_streaming(self):
+        """
+        Run the scraping and processing workflow for all websites with streaming updates.
+        """
+        for website in self.scraping_process.source_websites.all():
+            scraper_mapping = {
+                "printables.py": PrintablesProductScrap,
+                "stlflix.py": StlflixProductScrap,
+                "makerworld.py": MakerWorldProductScrap,
+            }
+
+            scraper_class = scraper_mapping.get(website.script_name)
+            if not scraper_class:
+                self.get_output("error", f"No scraper found for {website.script_name}. Skipping {website.name}.")
+                continue
+
+            yield from self.fetch_and_process_sse(scraper_class, website)
+
+        yield self.get_output("completed", "Scraping process completed for all websites.")
+
 
     def run(self):
         """
