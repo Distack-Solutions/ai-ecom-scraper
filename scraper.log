@@ -1,0 +1,14 @@
+2024-12-18 23:08:40,787 INFO scraper Starting scraping process 32
+2024-12-18 23:08:40,790 INFO scraper Processing website: Makerworld
+2024-12-18 23:08:40,790 INFO scraper Starting scraping for website: Makerworld
+2024-12-18 23:08:50,835 INFO scraper Scraping completed for website: Makerworld
+2024-12-18 23:08:50,835 INFO scraper Total 2 products fetched from Makerworld
+2024-12-18 23:08:50,836 INFO scraper Processing product with SKU: makerworld-438005
+2024-12-18 23:08:50,848 INFO scraper Thumbnail created for product makerworld-438005
+2024-12-18 23:08:50,855 INFO scraper Product Nuka-Cola Bottle (from Fallout) saved successfully.
+2024-12-18 23:08:50,864 INFO scraper Gallery images saved for product makerworld-438005
+2024-12-18 23:08:50,865 INFO scraper Processing product with SKU: makerworld-107188
+2024-12-18 23:08:50,875 INFO scraper Thumbnail created for product makerworld-107188
+2024-12-18 23:08:50,883 INFO scraper Product Bongle (20cm) - Turn any bottle into a bong! saved successfully.
+2024-12-18 23:08:50,889 INFO scraper Gallery images saved for product makerworld-107188
+2024-12-18 23:08:50,889 INFO scraper Scraping process 32 completed.
