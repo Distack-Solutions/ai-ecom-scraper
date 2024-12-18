@@ -393,6 +393,7 @@ def initiate_scraping_process(request):
                 scraping_process.completed_at = timezone.now() 
                 scraping_process.save()
                 messages.success(request, "Scraping process has been completed successfully.")
+
             except Exception as e:
                 scraping_process.status = "failed"
                 scraping_process.save()
