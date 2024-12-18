@@ -27,9 +27,17 @@ from django.core.paginator import Paginator
 from django.shortcuts import render
 
 
+def makerworld(request):
+    scraper = MakerWorldProductScrap(query="apple", limit=10)
+    scraper.get_products()
+    structured_data = scraper.to_model_data()
+    return JsonResponse(structured_data, safe=False)
+
 
 @login_required
 def all_products(request):
+    
+
     # Retrieve query parameters
     search_query = request.GET.get('search', '')
     status_filter = request.GET.get('status', '')
