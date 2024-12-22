@@ -1,23 +1,63 @@
 import os, json
 from woocommerce import API
-# from django.conf import settings
+from django.core.cache import cache
+from django.conf import settings
 
+WC_CONFIG_FILE = os.path.join(settings.BASE_DIR, "wc_config.json")
 
 class WooCommerceManager:
     def __init__(self):
         """
-        Initialize WooCommerceManager with credentials from settings.py.
+        Initialize WooCommerceManager with credentials from wc_config.json.
         This class handles connection setup, single product creation, bulk product uploads, and fetching product details.
         """
-        # self.store_url = settings.WOOCOMMERCE_URL
-        # self.consumer_key = settings.WOOCOMMERCE_CONSUMER_KEY
-        # self.consumer_secret = settings.WOOCOMMERCE_CONSUMER_SECRET
-        self.store_url = "https://theproductpit.com"
-        self.consumer_key = "ck_12132560102604c5912db08390704658fe1957bb"
-        self.consumer_secret = "cs_3d54b11d665680064e424c79a6228fec65399942"
+        self.store_url = None
+        self.consumer_key = None
+        self.consumer_secret = None
 
         self.client = None
+        self._load_config()
         self._setup_connection()
+
+    def _load_config(self):
+        """
+        Load WooCommerce configuration from cache or wc_config.json.
+        """
+        store_url = cache.get('store_url')
+        consumer_key = cache.get('consumer_key')
+        consumer_secret = cache.get('consumer_secret')
+
+        # If any parameter is missing in the cache, read from the wc_config.json file
+        if not store_url or not consumer_key or not consumer_secret:
+            print("Reading from file.")
+            if not os.path.exists(WC_CONFIG_FILE):
+                raise FileNotFoundError(f"Configuration file {WC_CONFIG_FILE} not found.")
+
+            with open(WC_CONFIG_FILE, "r") as file:
+                try:
+                    config = json.load(file)
+                    store_url = config.get('store_url', '')
+                    consumer_key = config.get('consumer_key', '')
+                    consumer_secret = config.get('consumer_secret', '')
+
+                    # Cache the individual values
+                    cache.set('store_url', store_url, timeout=None)  # Cache indefinitely
+                    cache.set('consumer_key', consumer_key, timeout=None)  # Cache indefinitely
+                    cache.set('consumer_secret', consumer_secret, timeout=None)  # Cache indefinitely
+                except Exception as e:
+                    raise ValueError(f"Error reading configuration file: {e}")
+        else:
+            print("Reading from cache.")
+
+        # Set the instance variables
+        self.store_url = store_url
+        self.consumer_key = consumer_key
+        self.consumer_secret = consumer_secret
+
+        # Validate the loaded configuration
+        if not self.store_url or not self.consumer_key or not self.consumer_secret:
+            raise ValueError("One or more WooCommerce credentials are missing in the configuration file or cache.")
+
 
     def _setup_connection(self):
         """Sets up the WooCommerce API client connection."""

@@ -4,154 +4,138 @@
 {% block content %}
 <div class="row align-items-center pt-4 my-4">
   <div class="col-md-6 col-12 mb-3 mb-md-0">
-    <h4 class="my-auto">Dashboard</h4>
+    <h1 class="h2">Dashboard</h1>
+  </div>
+</div>
+
+
+<div class="row">
+  <!-- Total Products Card -->
+  <div class="col-12 col-sm-6 col-xl-4 mb-4">
+    <div class="card border-light shadow-sm">
+      <div class="card-body">
+        <div class="row d-block d-xl-flex align-items-center">
+          <div
+            class="col-12 col-xl-5 text-xl-center mb-3 mb-xl-0 d-flex align-items-center justify-content-xl-center"
+          >
+            <div
+              class="icon icon-shape icon-md rounded me-4"
+              style="background-color: #4caf50; color: #fff;"
+            >
+              <span class="material-icons">inventory</span>
+            </div>
+            <div class="d-sm-none">
+              <h2 class="h5">Total Products</h2>
+              <h3 class="mb-1">{{ total_products }}</h3>
+            </div>
+          </div>
+          <div class="col-12 col-xl-7 px-xl-0">
+            <div class="d-none d-sm-block">
+              <h2 class="h5">Total Products</h2>
+              <h3 class="mb-1">{{ total_products }}</h3>
+            </div>
+            <small>All Time Products</small>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Published Products Card -->
+  <div class="col-12 col-sm-6 col-xl-4 mb-4">
+    <div class="card border-light shadow-sm">
+      <div class="card-body">
+        <div class="row d-block d-xl-flex align-items-center">
+          <div
+            class="col-12 col-xl-5 text-xl-center mb-3 mb-xl-0 d-flex align-items-center justify-content-xl-center"
+          >
+            <div
+              class="icon icon-shape icon-md rounded me-4"
+              style="background-color: #2196f3; color: #fff;"
+            >
+              <span class="material-icons">done_all</span>
+            </div>
+            <div class="d-sm-none">
+              <h2 class="h5">Published Products</h2>
+              <h3 class="mb-1">{{ published_products }}</h3>
+            </div>
+          </div>
+          <div class="col-12 col-xl-7 px-xl-0">
+            <div class="d-none d-sm-block">
+              <h2 class="h5">Published Products</h2>
+              <h3 class="mb-1">{{ published_products }}</h3>
+            </div>
+            <small>Approved and Published</small>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Declined Products Card -->
+  <div class="col-12 col-sm-6 col-xl-4 mb-4">
+    <div class="card border-light shadow-sm">
+      <div class="card-body">
+        <div class="row d-block d-xl-flex align-items-center">
+          <div
+            class="col-12 col-xl-5 text-xl-center mb-3 mb-xl-0 d-flex align-items-center justify-content-xl-center"
+          >
+            <div
+              class="icon icon-shape icon-md rounded me-4"
+              style="background-color: #f44336; color: #fff;"
+            >
+              <span class="material-icons">block</span>
+            </div>
+            <div class="d-sm-none">
+              <h2 class="h5">Declined Products</h2>
+              <h3 class="mb-1">{{ declined_products }}</h3>
+            </div>
+          </div>
+          <div class="col-12 col-xl-7 px-xl-0">
+            <div class="d-none d-sm-block">
+              <h2 class="h5">Declined Products</h2>
+              <h3 class="mb-1">{{ declined_products }}</h3>
+            </div>
+            <small>Rejected Products</small>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
 
 <div class="row justify-content-md-center">
-  <div class="row">
-    <div class="col-12 col-sm-6 col-xl-4 mb-4">
-      <div class="card border-light shadow-sm">
-        <div class="card-body px-0">
-          <div class="row d-block px-0 d-xl-flex align-items-center">
-            <div
-              class="col-12 col-xl-5 px-0 text-xl-center mb-3 mb-xl-0 d-flex align-items-center justify-content-xl-center"
-            >
-              <div
-                class="icon icon-shape icon-md icon-shape-primary rounded me-4 me-sm-0"
-              >
-                <span class="fas fa-chart-line"></span>
-              </div>
-              <div class="d-sm-none">
-                <h2 class="h5">Customers</h2>
-                <h3 class="mb-1">345,678</h3>
-              </div>
-            </div>
-            <div class="col-12 col-xl-7 px-xl-0">
-              <div class="d-none d-sm-block">
-                <h2 class="h5">Customers</h2>
-                <h3 class="mb-1">345k</h3>
-              </div>
-              <small
-                >Feb 1 - Apr 1,
-                <span class="icon icon-small"
-                  ><span class="fas fa-globe-europe"></span
-                ></span>
-                WorldWide</small
-              >
-              <div class="small mt-2">
-                <span class="fas fa-angle-up text-success"></span>
-                <span class="text-success fw-bold">18.2%</span> Since last month
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="col-12 col-sm-6 col-xl-4 mb-4">
-      <div class="card border-light shadow-sm">
-        <div class="card-body">
-          <div class="row d-block d-xl-flex align-items-center">
-            <div
-              class="col-12 col-xl-5 text-xl-center mb-3 mb-xl-0 d-flex align-items-center justify-content-xl-center"
-            >
-              <div
-                class="icon icon-shape icon-md icon-shape-secondary rounded me-4"
-              >
-                <span class="fas fa-cash-register"></span>
-              </div>
-              <div class="d-sm-none">
-                <h2 class="h5">Revenue</h2>
-                <h3 class="mb-1">$43,594</h3>
-              </div>
-            </div>
-            <div class="col-12 col-xl-7 px-xl-0">
-              <div class="d-none d-sm-block">
-                <h2 class="h5">Revenue</h2>
-                <h3 class="mb-1">$43,594</h3>
-              </div>
-              <small
-                >Feb 1 - Apr 1,
-                <span class="icon icon-small"
-                  ><span class="fas fa-globe-europe"></span
-                ></span>
-                Worldwide</small
-              >
-              <div class="small mt-2">
-                <span class="fas fa-angle-up text-success"></span>
-                <span class="text-success fw-bold">28.2%</span> Since last month
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="col-12 col-sm-6 col-xl-4 mb-4">
-      <div class="card border-light shadow-sm">
-        <div class="card-body">
-          <div class="row d-block d-xl-flex align-items-center">
-            <div
-              class="col-12 col-xl-5 text-xl-center mb-3 mb-xl-0 d-flex align-items-center justify-content-xl-center"
-            >
-              <div
-                class="ct-chart-traffic-share ct-golden-section ct-series-a"
-              ></div>
-            </div>
-            <div class="col-12 col-xl-7 px-xl-0">
-              <h2 class="h5 mb-3">Traffic Share</h2>
-              <h6 class="fw-normal text-gray">
-                <span class="icon w-20 icon-xs icon-secondary me-1"
-                  ><span class="fas fa-desktop"></span
-                ></span>
-                Desktop <a href="#" class="h6">60%</a>
-              </h6>
-              <h6 class="fw-normal text-gray">
-                <span class="icon w-20 icon-xs icon-primary me-1"
-                  ><span class="fas fa-mobile-alt"></span
-                ></span>
-                Mobile Web <a href="#" class="h6">30%</a>
-              </h6>
-              <h6 class="fw-normal text-gray">
-                <span class="icon w-20 icon-xs icon-tertiary me-1"
-                  ><span class="fas fa-tablet-alt"></span
-                ></span>
-                Tablet Web <a href="#" class="h6">10%</a>
-              </h6>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
   <div>
     <div class="col-12 mb-4">
-      <div class="card bg-secondary-alt shadow-sm">
+      <div class="card shadow-sm">
         <div class="card-header d-sm-flex flex-row align-items-center flex-0">
+          <!-- Header Text -->
           <div class="d-block mb-3 mb-sm-0">
-            <div class="h5 fw-normal mb-2">Sales Value</div>
-            <h2 class="h3">$10,567</h2>
+            <div class="h5 fw-normal mb-2">Products Added in Last 30 Days</div>
+            <h2 class="h3">{{ added_last_30_days }}</h2>
             <div class="small mt-2">
-              <span class="fw-bold me-2">Yesterday</span>
+              <span class="fw-bold me-2">Compared to Previous Period</span>
               <span class="fas fa-angle-up text-success"></span>
-              <span class="text-success fw-bold">10.57%</span>
+              <span class="text-success fw-bold">5.5%</span>
             </div>
           </div>
+          <!-- Timeframe Buttons -->
           <div class="d-flex ms-auto">
-            <a href="#" class="btn btn-secondary text-dark btn-sm me-2"
-              >Month</a
-            >
-            <a href="#" class="btn btn-dark btn-sm me-3">Week</a>
+            <a href="#" class="btn btn-secondary text-dark btn-sm me-2">30 Days</a>
+            <a href="#" class="btn btn-dark btn-sm me-3">This Week</a>
           </div>
         </div>
         <div class="card-body p-2">
-          <div class="ct-chart-sales-value ct-double-octave ct-series-g"></div>
+          <!-- Line Chart -->
+          <canvas id="productsAddedChart" width="500"></canvas>
         </div>
       </div>
     </div>
+    
   </div>
 
   <div class="row">
-    <div class="col-12 col-xl-8 mb-4">
+    <!-- <div class="col-12 col-xl-8 mb-4">
       <div class="row">
         <div class="col-12 mb-4">
           <div class="card border-light shadow-sm">
@@ -227,8 +211,8 @@
           </div>
         </div>
       </div>
-    </div>
-    <div class="col-12 col-xl-4 mb-4">
+    </div> -->
+    <!-- <div class="col-12 col-xl-4 mb-4">
       <div class="col-12 px-0 mb-4">
         <div class="card border-light shadow-sm">
           <div
@@ -258,8 +242,58 @@
           </div>
         </div>
       </div>
-    </div>
+    </div> -->
   </div>
 
 </div>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    const ctx = document.getElementById('productsAddedChart').getContext('2d');
+
+    const chartData = {
+      labels: {{ graph_data.labels|safe }},
+      datasets: [{
+        label: 'Products Added',
+        data: {{ graph_data.data|safe }},
+        backgroundColor: '#f2d3ae',
+        borderColor: '#f3b773',
+        borderWidth: 2,
+        fill: true,
+        tension: 0.4,
+      }]
+    };
+
+    const config = {
+      type: 'line',
+      data: chartData,
+      options: {
+        responsive: true,
+        scales: {
+          x: {
+            title: {
+              display: true,
+              text: 'Date',
+            },
+          },
+          y: {
+            title: {
+              display: true,
+              text: 'Number of Products',
+            },
+            beginAtZero: true,
+          },
+        },
+      },
+    };
+
+    new Chart(ctx, config);
+  });
+</script>
+
+
+
 {% endblock content %}

@@ -4,8 +4,12 @@ import json, time
 from django.core.exceptions import ObjectDoesNotExist
 from .openai_schema import SCHEMA
 import jsonschema
+from collections import defaultdict
+from django.core.cache import cache
+
 
 class AIGenerator:
+
     def __init__(self, product):
         """
         Initialize the Roadmap Generator with the attempt ID and schema.
@@ -13,14 +17,43 @@ class AIGenerator:
         if not product:
             raise ValueError("product must be set before generating the response.")
 
-        
         self.schema = SCHEMA
         self.product = product
         self.response_content = {}
-        self.client = openai.Client(
-            api_key=os.environ["api_key"]
-        )
+        self.api_key, self.prompt = self.load_config()
+        self.client = openai.Client(api_key=self.api_key)
 
+    @staticmethod
+    def _read_config():
+        CONFIG_FILE = "config.json"
+        if not os.path.exists(CONFIG_FILE):
+            with open(CONFIG_FILE, "w") as file:
+                raise FileNotFoundError(f"Configuration file not found.")
+
+        with open(CONFIG_FILE, "r") as file:
+            return json.load(file)
+
+    def load_config(self):
+        """
+        Load the API key and prompt from config.json into Django cache if not already present.
+        If present in the cache, use the cached values.
+        """
+        api_key = cache.get('api_key')
+        prompt = cache.get('prompt')
+
+        if not api_key or not prompt:
+            print("Reading from config file")
+            config = self._read_config()
+            api_key = config.get('api_key', '')
+            prompt = config.get('prompt', '')
+
+            # Save to Django cache
+            cache.set('api_key', api_key, timeout=None)  # Cache indefinitely
+            cache.set('prompt', prompt, timeout=None)
+        else:
+            print("Reading from cache")
+
+        return api_key, prompt
 
     def _validate_response(self, response):
         """
@@ -37,6 +70,16 @@ class AIGenerator:
         except ValidationError as e:
             raise ValueError(f"Invalid AI response: {e.message}")
 
+    def _populate_prompt(self, prompt):
+        data = defaultdict(str, {
+            "product_title": self.product.title,
+            "product_description": self.product.description,
+            "category": self.product.category,
+            "source_website_name": self.product.source_website.name,
+        })
+        
+        return prompt.format_map(data)
+
 
     def _generate_prompt(self):
         """
@@ -45,42 +88,7 @@ class AIGenerator:
         :param serialized_products: A list of products with minimal details to include in the prompt.
         :return: The formatted prompt string.
         """
-
-        prompt = f"""
-            Please generate SEO-optimized content for the following 3D printable product model using the provided product details. The goal is to enhance the visibility and appeal of the 3D model on online marketplaces that specialize in 3D models by creating content that is both user-friendly and optimized for search engines.
-
-            **Product Details:**
-            - Title: {self.product.title}
-            - Description: {self.product.description}
-            - Category: {self.product.category}
-            - Source Website: {self.product.source_website.name}
-
-            ### Content Requirements:
-            1. **SEO-Optimized Title**: 
-            - Generate a clear, concise title that summarizes the 3D model's key features, design elements, or intended use in a way that is optimized for search engines. The title should attract users, be keyword-rich, and accurately reflect the 3D model's characteristics.
-
-            2. **Expanded Product Description**: 
-            - Write a detailed and engaging description of the 3D model. Highlight its design, intended use (e.g., for 3D printing, prototyping, etc.), technical specifications (such as file types, dimensions, and scale), and any unique selling points. Ensure the description is informative and optimized for SEO, focusing on how the 3D model meets the needs of potential buyers.
-
-            3. **Short Product Description**: 
-            - Create a brief and compelling summary that emphasizes the most important features or benefits of the 3D model. This short description should be suitable for quick views or search engine snippets.
-
-            4. **Meta Description**: 
-            - Write a short, SEO-focused description (under 255 characters) for search engine result previews. The meta description should include relevant keywords about the 3D model, its applications, and a call-to-action.
-
-            5. **Focus Keyphrase**: 
-            - Identify and provide the primary keyword or keyphrase that best represents the 3D model and is likely to drive search traffic. Ensure the keyphrase is relevant to the model’s design, its category (e.g., "3D printed model," "3D printable design"), and intended use.
-
-            ### General Guidelines:
-            - Ensure all content is **SEO-optimized** with the proper use of keywords relevant to 3D models and 3D printing.
-            - The descriptions should be **engaging**, **clear**, and **informative** to help users understand the value of the 3D model.
-            - Focus on **benefits over features** to help users visualize how the 3D model can be used or applied in 3D printing projects or other applications.
-            - Use the **product category** and **source website** to inform your SEO strategy and content choices.
-
-            **End Goal:** This optimized content will be used to re-upload the 3D model to online marketplaces and stores, improving its discoverability and increasing the likelihood of conversions from potential buyers.
-
-        """
-        return prompt
+        return self._populate_prompt(self.prompt)
     
 
     def _handle_incomplete_response(self, response):

@@ -7,6 +7,7 @@ app_name = "accounts"
 
 urlpatterns = [
     path('', views.home_view, name='home'),
+    path('settings', views.settings_view, name='settings'),
     path('process_monitoring', views.process_monitoring, name='process_monitoring'),
     path('initiate_process', views.initiate_process, name='initiate_process'),
     path('product_detail', views.product_detail, name='product_detail'),

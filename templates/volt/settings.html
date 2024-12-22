@@ -1,0 +1,55 @@
+{% extends 'volt/inc/base.html' %}
+{% load static %}
+{% load bootstrap5 %}
+
+{% block content %}
+
+<div class="pt-5 pb-4">
+  <div class="d-flex justify-content-between w-100 flex-wrap">
+    <div class="mb-3 mb-lg-0">
+      <h1 class="h2">Settings</h1>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+    <!-- OpenAI Configuration Form -->
+    <div class="col-sm-6">
+        <div class="card text-left shadow-sm">
+            <div class="card-header bg-light">
+                <h4 class="card-title my-0">Update OpenAI Settings</h4>
+            </div>
+            <div class="card-body">
+                <form id="openai-form" method="POST">
+                    {% csrf_token %}
+                    <input type="hidden" name="config_form" value="1">
+                    {% bootstrap_form config_form %}
+                    <button id="openai-submit-btn" type="submit" class="btn btn-primary">
+                        Update OpenAI Settings
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- WooCommerce Configuration Form -->
+    <div class="col-sm-6">
+        <div class="card text-left shadow-sm">
+            <div class="card-header bg-light">
+                <h4 class="card-title my-0">Update WooCommerce Settings</h4>
+            </div>
+            <div class="card-body">
+                <form id="woocommerce-form" method="POST">
+                    {% csrf_token %}
+                    <input type="hidden" name="wc_config_form" value="1">
+                    {% bootstrap_form wc_config_form %}
+                    <button id="woocommerce-submit-btn" type="submit" class="btn btn-primary">
+                        Update WooCommerce Settings
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock content %}

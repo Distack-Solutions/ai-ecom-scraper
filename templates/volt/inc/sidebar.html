@@ -87,16 +87,16 @@
         </a>
       </li>
 
-      <li class="nav-item">
-        <a href="{% url 'accounts:logout' %}" class="nav-link">
+      <li class="nav-item {% if page == 'settings' %}active{% endif %}">
+        <a href="{% url 'accounts:settings' %}" class="nav-link">
           <span class="sidebar-icon">
-            <span class="fas fa-sign-out-alt"></span>
+            <span class="fas fa-cogs"></span>
           </span>
-          <span class="sidebar-text">Logout</span>
+          <span class="sidebar-text">Settings</span>
         </a>
       </li>
 
-      
+
     </ul>
   </div>
 </nav>

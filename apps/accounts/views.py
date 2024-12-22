@@ -23,6 +23,9 @@ from django.contrib.auth.views import PasswordChangeView
 from django.contrib.auth.models import User
 from django.http import Http404
 from .forms import *
+from apps.scraper.models import Product
+from django.db.models import Count, Q
+
 TOTAL_RECORDS_LIMIT = settings.TOTAL_RECORDS_LIMIT
 
 
@@ -153,15 +156,94 @@ def search_employee(request):
         return JsonResponse({'error': 'Invalid request'}, status=400)
 
 
+from django.db.models.functions import TruncDate
+from django.db.models import Count
+from django.utils import timezone
+from datetime import timedelta
+
+
+# Django view
+@login_required
+def settings_view(request):
+    config_form = ConfigForm(request.POST or None)
+    wc_config_form = WoocommerceConfigForm(request.POST or None)
+
+    if request.method == "POST":
+        if 'config_form' in request.POST and config_form.is_valid():
+            config_form.save()
+            messages.success(request, "OpenAI configuration updated successfully.")
+            return redirect('accounts:settings')
+
+        if 'wc_config_form' in request.POST and wc_config_form.is_valid():
+            wc_config_form.save()
+            messages.success(request, "WooCommerce configuration updated successfully.")
+            return redirect('accounts:settings')
+
+    context = {
+        'config_form': config_form,
+        'wc_config_form': wc_config_form,
+        'page': 'settings'
+    }
+    return render(request, "volt/settings.html", context)
+
+
 @login_required
 def home_view(request):
     form = AssignmentForm()
+    total_days = 10
+
+    # Calculate the date total_days ago
+    start_date = (timezone.now() - timedelta(days=total_days)).date()
+    end_date = timezone.now()  # Include up to now
+
+    # Aggregate counts in a single query
+    stats = Product.objects.aggregate(
+        total=Count('id'),
+        published=Count('id', filter=Q(status='published')),
+        declined=Count('id', filter=Q(status='declined')),
+    )
+
+    # Get daily counts for the last total_days
+    daily_counts = (
+        Product.objects.filter(created_at__date__gte=start_date)  # Use `__date` to include today's data
+        .annotate(date=TruncDate('created_at'))
+        .values('date')
+        .annotate(count=Count('id'))
+        .order_by('date')
+    )
+
+    # Prepare labels and default data
+    labels = [(start_date + timedelta(days=i)).strftime('%Y-%m-%d') for i in range(total_days)]
+    data = [0] * total_days
+
+    # Append today's date to labels and data
+    if end_date.strftime('%Y-%m-%d') not in labels:
+        labels.append(end_date.strftime('%Y-%m-%d'))
+        data.append(0)
+
+    # Populate data into the corresponding label index
+    for entry in daily_counts:
+        entry_date = entry['date'].strftime('%Y-%m-%d')
+        if entry_date in labels:
+            date_index = labels.index(entry_date)
+            data[date_index] = entry['count']
+
+    graph_data = {
+        'labels': labels,
+        'data': data,
+    }
+    print(json.dumps(graph_data, indent=4))
+
     context = {
         'page': 'dashboard',
-        'form': form
+        'form': form,
+        'total_products': stats['total'],
+        'published_products': stats['published'],
+        'declined_products': stats['declined'],
+        'graph_data': graph_data,
     }
     return render(request, "volt/dashboard.html", context)
-    # return redirect("device_management:home")
+
 
 @login_required
 def process_monitoring(request):
