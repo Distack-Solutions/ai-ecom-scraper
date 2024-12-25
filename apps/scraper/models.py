@@ -135,6 +135,25 @@ class Product(models.Model):
     updated_at = models.DateTimeField(auto_now=True, verbose_name="Updated At")
     publishing_message = models.CharField(max_length=255, null=True, blank=True)
 
+    def get_website_url(self):
+        url = "#"
+        if self.source_website.name == "Printables":
+            original_sku = self.sku.split("-")[1:]
+            original_sku = "-".join(original_sku)
+            url = f"https://www.printables.com/model/{original_sku}"
+
+        if self.source_website.name == "STLFLIX":
+            original_sku = self.sku.split("-")[1:]
+            original_sku = "-".join(original_sku)
+            url = f"https://platform.stlflix.com/product/{original_sku}"
+            
+        if self.source_website.name == "Makerworld":
+            original_sku = self.sku.split("-")[1:]
+            original_sku = "-".join(original_sku)
+            url = f"https://makerworld.com/en/models/{original_sku}"
+
+        return url
+
     def get_categories(self):
         category_list = []
         if self.category:

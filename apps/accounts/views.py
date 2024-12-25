@@ -24,7 +24,12 @@ from django.contrib.auth.models import User
 from django.http import Http404
 from .forms import *
 from apps.scraper.models import Product
-from django.db.models import Count, Q
+from apps.ai.models import OpenAIAPIUsage
+from django.db.models import Count, Q, Sum
+from django.db.models.functions import TruncDate
+from django.utils import timezone
+from datetime import timedelta
+from apps.scraper.models import ScrapingProcess
 
 TOTAL_RECORDS_LIMIT = settings.TOTAL_RECORDS_LIMIT
 
@@ -156,28 +161,28 @@ def search_employee(request):
         return JsonResponse({'error': 'Invalid request'}, status=400)
 
 
-from django.db.models.functions import TruncDate
-from django.db.models import Count
-from django.utils import timezone
-from datetime import timedelta
 
 
 # Django view
 @login_required
 def settings_view(request):
-    config_form = ConfigForm(request.POST or None)
-    wc_config_form = WoocommerceConfigForm(request.POST or None)
+    config_form = ConfigForm()
+    wc_config_form = WoocommerceConfigForm()
 
     if request.method == "POST":
-        if 'config_form' in request.POST and config_form.is_valid():
-            config_form.save()
-            messages.success(request, "OpenAI configuration updated successfully.")
-            return redirect('accounts:settings')
-
-        if 'wc_config_form' in request.POST and wc_config_form.is_valid():
-            wc_config_form.save()
-            messages.success(request, "WooCommerce configuration updated successfully.")
-            return redirect('accounts:settings')
+        form_type = request.POST.get('form_type')
+        if form_type == 'openai_config':
+            config_form = ConfigForm(request.POST)
+            if config_form.is_valid():
+                config_form.save()
+                messages.success(request, "OpenAI configuration updated successfully.")
+                return redirect('accounts:settings')
+        else:
+            wc_config_form = WoocommerceConfigForm(request.POST)
+            if wc_config_form.is_valid():
+                wc_config_form.save()
+                messages.success(request, "WooCommerce configuration updated successfully.")
+                return redirect('accounts:settings')
 
     context = {
         'config_form': config_form,
@@ -187,60 +192,99 @@ def settings_view(request):
     return render(request, "volt/settings.html", context)
 
 
+
 @login_required
 def home_view(request):
-    form = AssignmentForm()
     total_days = 10
 
-    # Calculate the date total_days ago
+    # Calculate date range
     start_date = (timezone.now() - timedelta(days=total_days)).date()
-    end_date = timezone.now()  # Include up to now
+    end_date = timezone.now().date()  # Explicitly get today's date
 
-    # Aggregate counts in a single query
+    # Aggregate product counts
     stats = Product.objects.aggregate(
         total=Count('id'),
         published=Count('id', filter=Q(status='published')),
         declined=Count('id', filter=Q(status='declined')),
     )
 
-    # Get daily counts for the last total_days
+    # Get daily counts for products
     daily_counts = (
-        Product.objects.filter(created_at__date__gte=start_date)  # Use `__date` to include today's data
+        Product.objects.filter(created_at__date__gte=start_date)
         .annotate(date=TruncDate('created_at'))
         .values('date')
         .annotate(count=Count('id'))
         .order_by('date')
     )
 
-    # Prepare labels and default data
-    labels = [(start_date + timedelta(days=i)).strftime('%Y-%m-%d') for i in range(total_days)]
+    labels = [(start_date + timedelta(days=i+1)).strftime('%Y-%m-%d') for i in range(total_days)]
+    print(labels)
     data = [0] * total_days
 
-    # Append today's date to labels and data
-    if end_date.strftime('%Y-%m-%d') not in labels:
-        labels.append(end_date.strftime('%Y-%m-%d'))
-        data.append(0)
-
-    # Populate data into the corresponding label index
     for entry in daily_counts:
         entry_date = entry['date'].strftime('%Y-%m-%d')
         if entry_date in labels:
             date_index = labels.index(entry_date)
             data[date_index] = entry['count']
 
-    graph_data = {
+    product_graph_data = {
         'labels': labels,
         'data': data,
     }
-    print(json.dumps(graph_data, indent=4))
+
+    # Get OpenAI API usage data
+    openai_daily_usage = (
+        OpenAIAPIUsage.objects.filter(request_timestamp__date__gte=start_date)
+        .annotate(date=TruncDate('request_timestamp'))
+        .values('date')
+        .annotate(
+            total_tokens=Sum('total_tokens'),
+            prompt_tokens=Sum('prompt_tokens'),
+            completion_tokens=Sum('completion_tokens'),
+            response_count=Count('*')  # Count the total number of requests (objects)
+        )
+        .order_by('date')
+    )
+
+    openai_data = {label: {'total': 0, 'prompt': 0, 'completion': 0, 'response_count': 0} for label in labels}
+
+    for usage in openai_daily_usage:
+        entry_date = usage['date'].strftime('%Y-%m-%d')
+        if entry_date in openai_data:
+            openai_data[entry_date] = {
+                'total': usage['total_tokens'],
+                'prompt': usage['prompt_tokens'],
+                'completion': usage['completion_tokens'],
+                'response_count': usage['response_count'],
+            }
+
+    # Populate OpenAI graph data
+    openai_graph_data = {
+        'labels': labels,
+        'total_tokens': [openai_data[date]['total'] for date in labels],
+        'prompt_tokens': [openai_data[date]['prompt'] for date in labels],
+        'completion_tokens': [openai_data[date]['completion'] for date in labels],
+        'response_count': [openai_data[date]['response_count'] for date in labels],
+    }
+
+    # code to caclulate success ratio of scraping process
+    success_ratio = 0
+    total_scraping_process = ScrapingProcess.objects.all().count()
+    if total_scraping_process > 0:
+        completed_scraping_process = ScrapingProcess.objects.filter(status='completed').count()
+        success_ratio = completed_scraping_process / total_scraping_process * 100
+        success_ratio = f'{round(success_ratio, 0)}% ({completed_scraping_process})'
 
     context = {
+        'total_openai_requests': OpenAIAPIUsage.objects.all().count(),
+        'all_scraping_process': total_scraping_process,
+        'scraping_success_ratio': success_ratio,
         'page': 'dashboard',
-        'form': form,
         'total_products': stats['total'],
         'published_products': stats['published'],
         'declined_products': stats['declined'],
-        'graph_data': graph_data,
+        'graph_data': product_graph_data,
+        'openai_graph_data': openai_graph_data,
     }
     return render(request, "volt/dashboard.html", context)
 

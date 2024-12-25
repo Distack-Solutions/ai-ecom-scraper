@@ -100,70 +100,78 @@
 
 {% block content %}
 
-<div class="pt-5 pb-4">
-  <div class="d-flex justify-content-between w-100 flex-wrap">
-    <div class="mb-3 mb-lg-0">
-      <h1 class="h2">Products</h1>
-    </div>
-    <div class="gap-2 d-flex justify-content-end align-items-center">
-      <!-- Filters or other buttons can go here -->
-      <a href="{% url 'scraper:initiate-process' %}" type="button" class="btn btn-primary px-4">
-        Scrap Products
-      </a>
-    </div>
+<div class="row align-items-center pt-4 my-4">
+  <div class="col-md-6">
+    <h1 class="h2 text-primary fw-bold">All Products</h1>
+    <p class="text-muted">Manage your product inventory efficiently.</p>
+  </div>
+  <div class="col-md-6 d-flex justify-content-end">
+    <a href="{% url 'scraper:initiate-process' %}" class="btn btn-primary d-flex align-items-center px-3">
+      <span class="material-icons me-2">autorenew</span> Scrap Products
+    </a>
   </div>
 </div>
 
 <div class="card border-light shadow-sm mb-4">
   <div class="card-body">
-    <div class="d-flex align-items-center w-100">
+    <div class="d-flex align-items-center w-100 flex-wrap">
       <!-- Search Form -->
-      <form method="GET" class="d-flex align-items-center navbar-search form-inline w-25 me-2" id="navbar-search-main">
-        <div class="input-group input-group-merge search-bar">
-          <input
-            type="text"
-            class="form-control"
-            name="search"
-            placeholder="Search"
-            value="{{ search_query }}"
-            aria-label="Search"
-            aria-describedby="topbar-addon"
-          />
-        </div>
-        <button type="submit" class="btn btn-dark mx-2">Search</button>
-        {% if search_query or status_filter %}
-        <a href="{% url 'scraper:products' %}" type="button" class="btn bg-grey-200 px-2 d-flex align-middle">
-          <i class="material-icons">close</i>
-        </a>
-        {% endif %}
-      </form>
-  
-      <!-- Filter Dropdown -->
-      <div class="dropdown ms-auto">
-        <button
-          class="btn btn-secondary dropdown-toggle"
-          type="button"
-          id="filterDropdown"
-          data-bs-toggle="dropdown"
-          aria-expanded="false"
-        >
-          Filter Status: <span class="text-title">{{ status_filter|default:"All" }}</span>
+      <form method="GET" class="d-flex align-items-center w-50">
+        <input
+          type="text"
+          name="search"
+          value="{{ search_query }}"
+          class="form-control me-3"
+          placeholder="Search by title..."
+        />
+        <button type="submit" class="btn btn-primary">
+          Search
         </button>
-        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="filterDropdown">
-          <li><a class="dropdown-item" href="{% url 'scraper:products' %}?status=all&search={{ search_query }}">All</a></li>
-          <li><a class="dropdown-item" href="{% url 'scraper:products' %}?status=draft&search={{ search_query }}">Draft</a></li>
-          <li><a class="dropdown-item" href="{% url 'scraper:products' %}?status=under_review&search={{ search_query }}">Under Review</a></li>
-          <li><a class="dropdown-item" href="{% url 'scraper:products' %}?status=declined&search={{ search_query }}">Declined</a></li>
-          <li><a class="dropdown-item" href="{% url 'scraper:products' %}?status=approved&search={{ search_query }}">Approved</a></li>
-          <li><a class="dropdown-item" href="{% url 'scraper:products' %}?status=published&search={{ search_query }}">Published</a></li>
-          <li><a class="dropdown-item" href="{% url 'scraper:products' %}?status=archived&search={{ search_query }}">Archived</a></li>
-        </ul>
+      </form>
+
+      <!-- Filter and Pagination -->
+      <div class="ms-auto d-flex align-items-center">
+        <!-- Filter Dropdown -->
+        <div class="dropdown me-3">
+          <button
+            class="btn btn-secondary dropdown-toggle"
+            type="button"
+            id="filterDropdown"
+            data-bs-toggle="dropdown"
+            aria-expanded="false"
+          >
+            Filter Status: <span class="fw-bold">{{ status_filter|default:"All" }}</span>
+          </button>
+          <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="filterDropdown">
+            <li><a class="dropdown-item" href="?status=all&search={{ search_query }}&per_page={{ per_page }}">All</a></li>
+            <li><a class="dropdown-item" href="?status=draft&search={{ search_query }}&per_page={{ per_page }}">Draft</a></li>
+            <li><a class="dropdown-item" href="?status=under_review&search={{ search_query }}&per_page={{ per_page }}">Under Review</a></li>
+            <li><a class="dropdown-item" href="?status=declined&search={{ search_query }}&per_page={{ per_page }}">Declined</a></li>
+            <li><a class="dropdown-item" href="?status=approved&search={{ search_query }}&per_page={{ per_page }}">Approved</a></li>
+            <li><a class="dropdown-item" href="?status=published&search={{ search_query }}&per_page={{ per_page }}">Published</a></li>
+            <li><a class="dropdown-item" href="?status=archived&search={{ search_query }}&per_page={{ per_page }}">Archived</a></li>
+          </ul>
+        </div>
+
+        <!-- Per Page Selector -->
+        <form method="GET" class="d-flex align-items-center">
+          <select class="form-select w-auto me-2" name="per_page" onchange="this.form.submit()">
+            <option value="10" {% if per_page == 10 %}selected{% endif %}>10</option>
+            <option value="20" {% if per_page == 20 %}selected{% endif %}>20</option>
+            <option value="50" {% if per_page == 50 %}selected{% endif %}>50</option>
+            <option value="100" {% if per_page == 100 %}selected{% endif %}>100</option>
+          </select>
+          <input type="hidden" name="search" value="{{ search_query }}">
+          <input type="hidden" name="status" value="{{ status_filter }}">
+        </form>
       </div>
     </div>
+    
+
   </div>
 
   <div class="">
-    <div class="card-body border p-0">
+    <div class="border p-0">
       <div class="table-responsive">
         <table class="table table-centered table-nowrap mb-0">
           <thead class="thead-light">
@@ -204,8 +212,11 @@
                 </div>
               </td>
               <td class="border-0 fw-bold">
+                
                 <h5 class="product-title" title="{{ product.title }}">
-                  {{ product.title }}
+                  <a href="{% url 'scraper:product_detail' product.id %}">
+                    {{ product.title }}
+                  </a>
                   {% if product.status == 'published' %}
                     <img title="This product is published on woocommerce" width="30" src="{% static 'img/woocommerce.webp' %}" alt="Published">
                   {% endif %}
@@ -220,7 +231,9 @@
                 <span class="badge status-{{ product.status }} p-1 px-2">{{ product.get_status_display }}</span>
               </td>
               <td class="border-0 fw-bold">
-                <img style="width: 100px;" src="{{ product.source_website.logo.url }}" alt="">
+                <a href="{{ product.get_website_url }}" target="_blank">
+                  <img style="width: 100px;" src="{{ product.source_website.logo.url }}" alt="">                  
+                </a>
               </td>
               <td class="border-0 fw-bold">
                 <a class="btn btn-light text-dark p-1 px-2" href="{% url 'scraper:product_detail' product.id %}" role="button">
@@ -240,57 +253,41 @@
       </div>
     </div>
 
-    <div class="card-footer">
-      <div class="d-flex justify-content-between align-items-center">
-        <div>
-          Showing {{ products.start_index }} to {{ products.end_index }} of {{ products.paginator.count }} products
+    <div class="card-footer bg-white">
+      <div class="row">
+        <div class="col-sm-6 d-flex align-items-center">
+          <p class="my-0 text-muted">
+            Showing <b>{{ products.start_index }}</b> to <b>{{ products.end_index }}</b> of {{ products.paginator.count }} entries.
+          </p>
         </div>
-        <nav aria-label="Page navigation">
-          <ul class="pagination mb-0">
-            {% if products.has_previous %}
-            <li class="page-item">
-              <a class="page-link" href="?page={{ products.previous_page_number }}&search={{ search_query }}&status={{ status_filter }}" aria-label="Previous">
-                <span aria-hidden="true">&laquo;</span>
-              </a>
-            </li>
-            {% else %}
-            <li class="page-item disabled">
-              <span class="page-link" aria-label="Previous">
-                <span aria-hidden="true">&laquo;</span>
-              </span>
-            </li>
-            {% endif %}
-      
-            {% for num in products.paginator.page_range %}
-            {% if products.number == num %}
-            <li class="page-item active">
-              <span class="page-link">{{ num }}</span>
-            </li>
-            {% else %}
-            <li class="page-item">
-              <a class="page-link" href="?page={{ num }}&search={{ search_query }}&status={{ status_filter }}">{{ num }}</a>
-            </li>
-            {% endif %}
-            {% endfor %}
-      
-            {% if products.has_next %}
-            <li class="page-item">
-              <a class="page-link" href="?page={{ products.next_page_number }}&search={{ search_query }}&status={{ status_filter }}" aria-label="Next">
-                <span aria-hidden="true">&raquo;</span>
-              </a>
-            </li>
-            {% else %}
-            <li class="page-item disabled">
-              <span class="page-link" aria-label="Next">
-                <span aria-hidden="true">&raquo;</span>
-              </span>
-            </li>
-            {% endif %}
-          </ul>
-        </nav>
+        <div class="col-sm-6 d-flex justify-content-end">
+          {% if products.has_other_pages %}
+          <nav aria-label="Page navigation">
+            <ul class="pagination pagination-sm mb-0">
+              {% if products.has_previous %}
+              <li class="page-item">
+                <a class="page-link" href="?q={{ search_query }}&per_page={{ per_page }}&page=1" aria-label="First">&laquo;</a>
+              </li>
+              <li class="page-item">
+                <a class="page-link" href="?q={{ search_query }}&per_page={{ per_page }}&page={{ products.previous_page_number }}" aria-label="Previous">&lsaquo;</a>
+              </li>
+              {% endif %}
+              <li class="page-item disabled">
+                <span class="page-link">Page {{ products.number }} of {{ products.paginator.num_pages }}</span>
+              </li>
+              {% if products.has_next %}
+              <li class="page-item">
+                <a class="page-link" href="?q={{ search_query }}&per_page={{ per_page }}&page={{ products.next_page_number }}" aria-label="Next">&rsaquo;</a>
+              </li>
+              <li class="page-item">
+                <a class="page-link" href="?q={{ search_query }}&per_page={{ per_page }}&page={{ products.paginator.num_pages }}" aria-label="Last">&raquo;</a>
+              </li>
+              {% endif %}
+            </ul>
+          </nav>
+          {% endif %}
+        </div>
       </div>
-      
-      
     </div>
   </div>
 </div>

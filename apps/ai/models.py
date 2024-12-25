@@ -1,5 +1,6 @@
 from django.db import models
 from apps.scraper.models import Product
+from django.db import models
 
 # python manage.py makemigrations
 # python manage.py migrate
@@ -55,3 +56,23 @@ class ProductAIVersion(models.Model):
     class Meta:
         verbose_name = "Product AI Version"
         verbose_name_plural = "Product AI Versions"
+
+
+
+
+
+class OpenAIAPIUsage(models.Model):
+    endpoint = models.CharField(max_length=255, help_text="The OpenAI endpoint used, e.g., 'text-davinci-003'.")
+    total_tokens = models.IntegerField(help_text="Total tokens used for the API request.")
+    prompt_tokens = models.IntegerField(help_text="Prompt token used for the API request.")
+    completion_tokens = models.IntegerField(help_text="Completion tokens generated for the API request.")
+    request_timestamp = models.DateTimeField(auto_now_add=True, help_text="The timestamp when the API request was made.")
+    response_time = models.FloatField(null=True, blank=True, help_text="Response time in seconds, if tracked.")
+    
+    class Meta:
+        ordering = ['-request_timestamp']
+        verbose_name = "OpenAI API Usage"
+        verbose_name_plural = "OpenAI API Usages"
+
+    def __str__(self):
+        return f"{self.endpoint} - {self.total_tokens} tokens on {self.request_timestamp}"

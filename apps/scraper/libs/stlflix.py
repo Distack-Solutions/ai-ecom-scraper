@@ -350,7 +350,7 @@ class StlflixProductScrap:
 
             # Build a dictionary that aligns with your Product model fields
             product_data = {
-                'sku': f'{self.key}-{slug}',
+                'sku': f'{self.key}-{slug}',  
                 'title': title or None,
                 'description': description or None,
                 'category': category_str,  # comma-separated categories or None

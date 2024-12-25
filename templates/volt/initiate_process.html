@@ -6,6 +6,7 @@
   .marketplace-card {
     border: 2px solid transparent;
     cursor: pointer;
+    width: 100%;
     transition: border-color 0.3s;
   }
 
@@ -38,6 +39,8 @@
 <div class="row align-items-center pt-4 my-4">
   <div class="col-md-6 col-12 mb-3 mb-md-0">
     <h1 class="h2">Initiate New Scraping Process</h1>
+    <p class="text-muted">Add details and submit the form to initiate the scraping process.</p>
+
   </div>
 </div>
 
@@ -62,8 +65,8 @@
             <label for="id_source_websites">Select Marketplaces</label>
             <div class="marketplace-logos row">
               {% for website in form.source_websites.field.queryset %}
-                <div class="col-4 text-center">
-                  <div class="card marketplace-card text-left" style="height: 60px;">
+                <div class="col-4 text-center mb-3">
+                  <div class="card marketplace-card text-left">
                     <div class="card-body p-2 d-flex align-items-center">
                       <input 
                         type="checkbox" 
@@ -74,7 +77,7 @@
                       />
                       <label for="marketplace-{{ website.id }}">
                         <div class="marketplace-card">
-                          <img src="{{ website.logo.url }}" alt="{{ website.name }}" class="img-fluid" />
+                          <img src="{{ website.logo.url }}" class="object-fit-cover" style="aspect-ratio: 4/1;" alt="{{ website.name }}" class="w-100 h-100" />
                         </div>
                       </label>
                     </div>

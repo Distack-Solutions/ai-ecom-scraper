@@ -8,6 +8,7 @@
   <div class="d-flex justify-content-between w-100 flex-wrap">
     <div class="mb-3 mb-lg-0">
       <h1 class="h2">Settings</h1>
+      <p class="text-muted">Control Credentials of openAI & Wocommerce from here.</p>
     </div>
   </div>
 </div>
@@ -24,7 +25,7 @@
                     {% csrf_token %}
                     <input type="hidden" name="config_form" value="1">
                     {% bootstrap_form config_form %}
-                    <button id="openai-submit-btn" type="submit" class="btn btn-primary">
+                    <button id="openai-submit-btn" name="form_type" value="openai_config" type="submit" class="btn btn-primary">
                         Update OpenAI Settings
                     </button>
                 </form>
@@ -43,7 +44,7 @@
                     {% csrf_token %}
                     <input type="hidden" name="wc_config_form" value="1">
                     {% bootstrap_form wc_config_form %}
-                    <button id="woocommerce-submit-btn" type="submit" class="btn btn-primary">
+                    <button id="woocommerce-submit-btn" name="form_type" value="wc_config" type="submit" class="btn btn-primary">
                         Update WooCommerce Settings
                     </button>
                 </form>

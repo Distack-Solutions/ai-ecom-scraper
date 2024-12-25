@@ -5,6 +5,7 @@
 <div class="row align-items-center pt-4 my-4">
   <div class="col-md-6 col-12 mb-3 mb-md-0">
     <h1 class="h2">Dashboard</h1>
+    <p class="text-muted">Summary & Statistics related to products, scraping of the system.</p>
   </div>
 </div>
 
@@ -16,25 +17,18 @@
       <div class="card-body">
         <div class="row d-block d-xl-flex align-items-center">
           <div
-            class="col-12 col-xl-5 text-xl-center mb-3 mb-xl-0 d-flex align-items-center justify-content-xl-center"
+            class="col-3 text-xl-center mb-3 mb-xl-0 d-flex align-items-center justify-content-xl-center"
           >
             <div
-              class="icon icon-shape icon-md rounded me-4"
+              class="icon icon-shape icon-sm rounded me-2"
               style="background-color: #4caf50; color: #fff;"
             >
-              <span class="material-icons">inventory</span>
-            </div>
-            <div class="d-sm-none">
-              <h2 class="h5">Total Products</h2>
-              <h3 class="mb-1">{{ total_products }}</h3>
+              <span class="material-icons" style="font-size: 24px;">inventory</span>
             </div>
           </div>
-          <div class="col-12 col-xl-7 px-xl-0">
-            <div class="d-none d-sm-block">
-              <h2 class="h5">Total Products</h2>
-              <h3 class="mb-1">{{ total_products }}</h3>
-            </div>
-            <small>All Time Products</small>
+          <div class="col-9">
+            <h2 class="h5">Total Products</h2>
+            <h3 class="mb-1">{{ total_products }}</h3>
           </div>
         </div>
       </div>
@@ -47,25 +41,18 @@
       <div class="card-body">
         <div class="row d-block d-xl-flex align-items-center">
           <div
-            class="col-12 col-xl-5 text-xl-center mb-3 mb-xl-0 d-flex align-items-center justify-content-xl-center"
+            class="col-3 text-xl-center mb-3 mb-xl-0 d-flex align-items-center justify-content-xl-center"
           >
             <div
-              class="icon icon-shape icon-md rounded me-4"
+              class="icon icon-shape icon-sm rounded me-2"
               style="background-color: #2196f3; color: #fff;"
             >
-              <span class="material-icons">done_all</span>
-            </div>
-            <div class="d-sm-none">
-              <h2 class="h5">Published Products</h2>
-              <h3 class="mb-1">{{ published_products }}</h3>
+              <span class="material-icons" style="font-size: 24px;">done_all</span>
             </div>
           </div>
-          <div class="col-12 col-xl-7 px-xl-0">
-            <div class="d-none d-sm-block">
-              <h2 class="h5">Published Products</h2>
-              <h3 class="mb-1">{{ published_products }}</h3>
-            </div>
-            <small>Approved and Published</small>
+          <div class="col-9">
+            <h2 class="h5">Approved Products</h2>
+            <h3 class="mb-1">{{ published_products }}</h3>
           </div>
         </div>
       </div>
@@ -78,25 +65,91 @@
       <div class="card-body">
         <div class="row d-block d-xl-flex align-items-center">
           <div
-            class="col-12 col-xl-5 text-xl-center mb-3 mb-xl-0 d-flex align-items-center justify-content-xl-center"
+            class="col-3 text-xl-center mb-3 mb-xl-0 d-flex align-items-center justify-content-xl-center"
           >
             <div
-              class="icon icon-shape icon-md rounded me-4"
+              class="icon icon-shape icon-sm rounded me-2"
               style="background-color: #f44336; color: #fff;"
             >
-              <span class="material-icons">block</span>
-            </div>
-            <div class="d-sm-none">
-              <h2 class="h5">Declined Products</h2>
-              <h3 class="mb-1">{{ declined_products }}</h3>
+              <span class="material-icons" style="font-size: 24px;">block</span>
             </div>
           </div>
-          <div class="col-12 col-xl-7 px-xl-0">
-            <div class="d-none d-sm-block">
-              <h2 class="h5">Declined Products</h2>
-              <h3 class="mb-1">{{ declined_products }}</h3>
+          <div class="col-9">
+            <h2 class="h5">Declined Products</h2>
+            <h3 class="mb-1">{{ declined_products }}</h3>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Total OpenAI Requests Card -->
+  <div class="col-12 col-sm-6 col-xl-4 mb-4">
+    <div class="card border-light shadow-sm">
+      <div class="card-body">
+        <div class="row d-block d-xl-flex align-items-center">
+          <div
+            class="col-3 text-xl-center mb-3 mb-xl-0 d-flex align-items-center justify-content-xl-center"
+          >
+            <div
+              class="icon icon-shape icon-sm rounded me-2"
+              style="background-color: #ff9800; color: #fff;"
+            >
+              <span class="material-icons" style="font-size: 24px;">query_stats</span>
             </div>
-            <small>Rejected Products</small>
+          </div>
+          <div class="col-9">
+            <h2 class="h5">OpenAI Requests</h2>
+            <h3 class="mb-1">{{ total_openai_requests }}</h3>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Scraping Process Completed Card -->
+  <div class="col-12 col-sm-6 col-xl-4 mb-4">
+    <div class="card border-light shadow-sm">
+      <div class="card-body">
+        <div class="row d-block d-xl-flex align-items-center">
+          <div
+            class="col-3 text-xl-center mb-3 mb-xl-0 d-flex align-items-center justify-content-xl-center"
+          >
+            <div
+              class="icon icon-shape icon-sm rounded me-2"
+              style="background-color: #673ab7; color: #fff;"
+            >
+              <span class="material-icons" style="font-size: 24px;">cloud_done</span>
+            </div>
+          </div>
+          <div class="col-9">
+            <h2 class="h5">Scraping Processes</h2>
+            <h3 class="mb-1">{{ all_scraping_process }}</h3>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Success Ratio of Scraping Processes Card -->
+  <div class="col-12 col-sm-6 col-xl-4 mb-4">
+    <div class="card border-light shadow-sm">
+      <div class="card-body">
+        <div class="row d-block d-xl-flex align-items-center">
+          <div
+            class="col-3 text-xl-center mb-3 mb-xl-0 d-flex align-items-center justify-content-xl-center"
+          >
+            <div
+              class="icon icon-shape icon-sm rounded me-2"
+              style="background-color: #009688; color: #fff;"
+            >
+              <span class="material-icons" style="font-size: 24px;">thumb_up</span>
+            </div>
+          </div>
+          <div class="col-9">
+            <h2 class="h5">Scraping Success Ratio</h2>
+            <h3 class="mb-1">{{ scraping_success_ratio }}</h3>
+            <small></small>
           </div>
         </div>
       </div>
@@ -104,35 +157,51 @@
   </div>
 </div>
 
+
 <div class="row justify-content-md-center">
-  <div>
-    <div class="col-12 mb-4">
-      <div class="card shadow-sm">
-        <div class="card-header d-sm-flex flex-row align-items-center flex-0">
-          <!-- Header Text -->
-          <div class="d-block mb-3 mb-sm-0">
-            <div class="h5 fw-normal mb-2">Products Added in Last 30 Days</div>
-            <h2 class="h3">{{ added_last_30_days }}</h2>
-            <div class="small mt-2">
-              <span class="fw-bold me-2">Compared to Previous Period</span>
-              <span class="fas fa-angle-up text-success"></span>
-              <span class="text-success fw-bold">5.5%</span>
-            </div>
-          </div>
-          <!-- Timeframe Buttons -->
-          <div class="d-flex ms-auto">
-            <a href="#" class="btn btn-secondary text-dark btn-sm me-2">30 Days</a>
-            <a href="#" class="btn btn-dark btn-sm me-3">This Week</a>
+  
+  <div class="col-12 mb-4">
+    <div class="card shadow-sm">
+      <div class="card-header d-sm-flex flex-row align-items-center flex-0">
+        <!-- Header Text -->
+        <div class="d-block mb-3 mb-sm-0">
+          <div class="h5 fw-normal mb-2">Products Added in Last 30 Days</div>
+          <h2 class="h3">{{ added_last_30_days }}</h2>
+          <div class="small mt-2">
+            <span class="fw-bold me-2">Compared to Previous Period</span>
+            <span class="fas fa-angle-up text-success"></span>
+            <span class="text-success fw-bold">5.5%</span>
           </div>
         </div>
-        <div class="card-body p-2">
-          <!-- Line Chart -->
-          <canvas id="productsAddedChart" width="500"></canvas>
+        <!-- Timeframe Buttons -->
+        <div class="d-flex ms-auto">
+          <a href="#" class="btn btn-secondary text-dark btn-sm me-2">30 Days</a>
+          <a href="#" class="btn btn-dark btn-sm me-3">This Week</a>
         </div>
       </div>
+      <div class="card-body p-2">
+        <!-- Line Chart -->
+        <canvas id="productsAddedChart" width="500"></canvas>
+      </div>
     </div>
-    
   </div>
+
+  <div class="col-12 mb-4">
+    <div class="card shadow-sm">
+      <div class="card-header d-sm-flex flex-row align-items-center flex-0">
+        <div class="d-block mb-3 mb-sm-0">
+          <div class="h5 fw-normal mb-2">OpenAI API Usage</div>
+          <small>Token usage and response time over the last {{ graph_data.labels|length }} days</small>
+        </div>
+      </div>
+      <div class="card-body p-2">
+        <canvas id="openaiUsageChart" width="500"></canvas>
+      </div>
+    </div>
+  </div>
+  
+
+  
 
   <div class="row">
     <!-- <div class="col-12 col-xl-8 mb-4">
@@ -248,6 +317,99 @@
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    const ctx = document.getElementById('openaiUsageChart').getContext('2d');
+
+    const chartData = {
+      labels: {{ openai_graph_data.labels|safe }},
+      datasets: [
+        {
+          label: 'Total Tokens',
+          data: {{ openai_graph_data.total_tokens|safe }},
+          backgroundColor: 'rgba(75, 192, 192, 0.5)',
+          borderColor: 'rgba(75, 192, 192, 0.5)',
+          borderWidth: 2,
+          yAxisID: 'y-tokens',  // Attach this dataset to the token axis
+        },
+        {
+          label: 'Prompt Tokens',
+          data: {{ openai_graph_data.prompt_tokens|safe }},
+          backgroundColor: 'rgba(255, 206, 86, 0.5)',
+          borderColor: 'rgba(255, 206, 86, 0.5)',
+          borderWidth: 2,
+          yAxisID: 'y-tokens',
+        },
+        {
+          label: 'Completion Tokens',
+          data: {{ openai_graph_data.completion_tokens|safe }},
+          backgroundColor: 'rgba(153, 102, 255, 0.5)',
+          borderColor: 'rgba(153, 102, 255, 0.5)',
+          borderWidth: 2,
+          yAxisID: 'y-tokens',
+        },
+        {
+          label: 'Total Requests',
+          data: {{ openai_graph_data.response_count|safe }},
+          borderColor: 'rgba(255, 99, 132, 1)',
+          backgroundColor: 'rgba(255, 99, 132, 1)',
+          borderWidth: 2,
+          type: 'line',  // Display requests as a line chart
+          fill: false,
+          tension: 0.4,
+          yAxisID: 'y-requests',  // Attach this dataset to the request axis
+        },
+      ]
+    };
+
+    const config = {
+      type: 'bar',
+      data: chartData,
+      options: {
+        responsive: true,
+        scales: {
+          x: {
+            title: {
+              display: true,
+              text: 'Date',
+            },
+          },
+          'y-tokens': {
+            type: 'linear',
+            position: 'left',
+            title: {
+              display: true,
+              text: 'Total Tokens',
+            },
+            beginAtZero: true,
+          },
+          'y-requests': {
+            type: 'linear',
+            position: 'right',
+            title: {
+              display: true,
+              text: 'Total Requests',
+            },
+            beginAtZero: true,
+            grid: {
+              drawOnChartArea: false,  // Prevent gridlines from overlapping
+            },
+          },
+        },
+        plugins: {
+          tooltip: {
+            mode: 'index',
+            intersect: false,
+          },
+        },
+      },
+    };
+
+    new Chart(ctx, config);
+  });
+</script>
 
 
 <script>

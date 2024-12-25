@@ -6,7 +6,8 @@ from .openai_schema import SCHEMA
 import jsonschema
 from collections import defaultdict
 from django.core.cache import cache
-
+from apps.ai.models import OpenAIAPIUsage
+from datetime import datetime
 
 class AIGenerator:
 
@@ -121,6 +122,7 @@ class AIGenerator:
         prompt = self._generate_prompt()
 
         try:
+            start_time = datetime.now()  # Record the start time for response time calculation
             response = self.client.chat.completions.create(
                 model="gpt-4o-mini",
                 messages=[
@@ -136,10 +138,26 @@ class AIGenerator:
                 ],
                 function_call={"name": "generate_seo_rich_product_copy"},
             )
-
+            end_time = datetime.now()  # Record the end time for response time calculation
+            response_time = (end_time - start_time).total_seconds()
             response_content = json.loads(response.choices[0].message.function_call.arguments)
+            
+            # Create an OpenAIAPIUsage object to log API usage
+            openaiusage_object = OpenAIAPIUsage.objects.create(
+                endpoint="gpt-4o-mini",  # or extract from the response if dynamic
+                total_tokens=response.usage.total_tokens,  # Ensure usage data is included in the response
+                prompt_tokens=response.usage.prompt_tokens,
+                completion_tokens=response.usage.completion_tokens,
+                response_time=response_time,
+            )
+        
+            
             self._validate_response(response_content)
             self.response_content = response_content
+
+            
+
+
             return self.response_content
 
         except ValueError as ve:

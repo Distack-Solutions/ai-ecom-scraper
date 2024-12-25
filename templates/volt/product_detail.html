@@ -3,6 +3,18 @@
 {% block content %}
 
 <style>
+
+.lightbox-image {
+  aspect-ratio: 1.5 / 1; /* Maintain 1.5:1 aspect ratio */
+  object-fit: cover; /* Ensures the image covers the container without distortion */
+  max-width: 100%; /* Prevents the image from exceeding the container's width */
+  max-height: 100%; /* Prevents the image from exceeding the container's height */
+  width: auto; /* Adjust width automatically */
+  height: auto; /* Adjust height automatically */
+  border-radius: 8px; /* Optional: Rounded corners for aesthetic */
+}
+
+
 .thumnail-img img{
   max-height: 400px;
   width: 100%;
@@ -77,9 +89,15 @@
 
 <div class="row align-items-center pt-4 my-4">
   <div class="col-md-6 col-12 mb-3 mb-md-0">
-    <h4 class="my-auto">Product Detail</h4>
+    <h1 class="h2 text-primary fw-bold">Product Detail</h1>
+    <p class="text-muted">View & Manage your product.</p>
   </div>
   <div class="col-md-6 col-12 d-flex align-items-center  justify-content-md-end justify-content-center gap-2">
+    <a class="btn bg-white" href="{{ product.get_website_url }}" target="_blank">
+      <img style="width: 90px;" src="{{ product.source_website.logo.url }}" alt="">
+    </a>
+
+    
     {% if product.status != 'approved' %}
     <a 
       title="Approve"
@@ -144,7 +162,6 @@
             <div class="image-container rounded border shadow-sm">
               <img src="{% if image.image_file %}{{ image.image_file.url }}{% else %}{{ image.image_url }}{% endif %}" 
                    class="img-fluid lightbox-image object-fit-cover" 
-                   style="height: 100px; width: 100%;"
                    alt="Thumbnail {{ forloop.counter }}" 
                    data-index="{{ forloop.counter }}" />
             </div>
@@ -186,7 +203,7 @@
           </div>
           {% endif %}
           <div class="col-12 col-md-6">
-            <a href="{{ product.source_website.url }}" class="w-100 btn btn-secondary" target="_blank">
+            <a href="{{ product.get_website_url }}" class="w-100 btn btn-secondary" target="_blank">
               View Original Product
             </a>
           </div>

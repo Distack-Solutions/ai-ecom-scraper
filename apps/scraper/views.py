@@ -27,6 +27,7 @@ from django.core.paginator import Paginator
 from django.shortcuts import render
 from django.http import StreamingHttpResponse
 from django.contrib import messages
+from django.db.models import Q
 
 
 def makerworld(request):
@@ -38,11 +39,10 @@ def makerworld(request):
 
 @login_required
 def all_products(request):
-    
-
     # Retrieve query parameters
     search_query = request.GET.get('search', '')
     status_filter = request.GET.get('status', '')
+    per_page = int(request.GET.get('per_page', 10))  # Default to 10 products per page
 
     # Start with all products
     products = Product.objects.all().order_by('-created_at')
@@ -56,7 +56,7 @@ def all_products(request):
         products = products.filter(status=status_filter)
 
     # Implement pagination
-    paginator = Paginator(products, 10)  # Show 10 products per page
+    paginator = Paginator(products, per_page)  # Show per_page products per page
     page_number = request.GET.get('page')  # Get the page number from the request
     page_obj = paginator.get_page(page_number)  # Get the relevant page
 
@@ -64,7 +64,7 @@ def all_products(request):
         'products': page_obj,  # Pass the paginated products
         'search_query': search_query,
         'status_filter': status_filter,
-        'page_obj': page_obj,  # Pass the Paginator object for navigation
+        'per_page': per_page,  # Pass per_page for UI controls
         'page': 'products',
     }
     return render(request, "volt/product.html", context)
@@ -427,14 +427,31 @@ def product_detail(request, product_id):
     # Render the product detail page
     return render(request, 'volt/product_detail.html', context)
 
+
+
 @login_required
 def processes_list(request):
+    search_query = request.GET.get('q', '')  # Get search query
+    per_page = int(request.GET.get('per_page', 10))  # Get products per page, default to 10
+
+    # Filter processes based on the search query
+    processes = ScrapingProcess.objects.filter(
+        Q(search_query__icontains=search_query) |
+        Q(status__icontains=search_query)
+    ).distinct().order_by('-id')
+
+    # Paginate the filtered processes
+    paginator = Paginator(processes, per_page)
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
+
     context = {
         'page': 'processes',
-        'processes': ScrapingProcess.objects.all().order_by('-id')
+        'processes': page_obj,
+        'search_query': search_query,
+        'per_page': per_page,
     }
     return render(request, "volt/process_monitoring.html", context)
-
 
 
 def process_products_sse(request):
@@ -483,6 +500,7 @@ def process_products_sse(request):
                 # Perform operation
                 if operation == 'delete':
                     product.delete()
+                    time.sleep(1)
                 
                 if operation == 'approve' and product.status != 'approved':
                     product.status = 'approved'
