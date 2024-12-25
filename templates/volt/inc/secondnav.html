@@ -29,41 +29,45 @@
       </div>
       <!-- Navbar links -->
       <ul class="navbar-nav align-items-center">
-        
         <li class="nav-item dropdown">
           <a
-            class="nav-link dropdown-toggle pt-1 px-0"
+            class="nav-link dropdown-toggle d-flex align-items-center"
             href="#"
             role="button"
             data-bs-toggle="dropdown"
             aria-expanded="false"
           >
-            <div class="media d-flex align-items-center">
-              <i class="material-icons text-primary" style="font-size: 30px;">account_circle</i>
-
-              <div
-                class="media-body ms-2 text-dark align-items-center d-none d-lg-block"
-              >
-                <span class="mb-0 font-small fw-bold">{{ user.username }}</span>
-              </div>
-            </div>
+            <!-- User Icon -->
+            <i class="material-icons text-primary" style="font-size: 30px;">account_circle</i>
+      
+            <!-- Username -->
+            <span class="ms-2 d-none d-lg-block fw-bold text-dark">{{ user.username }}</span>
           </a>
-          <div
-            class="dropdown-menu dashboard-dropdown dropdown-menu-end mt-2 py-0"
-          >
-            <a class="dropdown-item rounded-top fw-bold" href="{% url 'accounts:profile' %}"
-              ><span class="far fa-user-circle"></span>My Profile</a
-            >
-            <a class="dropdown-item fw-bold" href="{% url 'accounts:settings' %}"
-              ><span class="fas fa-cog"></span>Settings</a
-            >
-            <div role="separator" class="dropdown-divider my-0"></div>
-            <a class="dropdown-item rounded-bottom fw-bold" href="{% url 'accounts:logout' %}"
-              ><span class="fas fa-sign-out-alt text-danger"></span>Logout</a
-            >
-          </div>
+      
+          <!-- Dropdown Menu -->
+          <ul class="dropdown-menu dropdown-menu-end">
+            <li>
+              <a class="dropdown-item fw-bold" href="{% url 'accounts:profile' %}">
+                <i class="far fa-user-circle me-2"></i> My Profile
+              </a>
+            </li>
+            <li>
+              <a class="dropdown-item fw-bold" href="{% url 'accounts:settings' %}">
+                <i class="fas fa-cog me-2"></i> Settings
+              </a>
+            </li>
+            <li>
+              <hr class="dropdown-divider" />
+            </li>
+            <li>
+              <a class="dropdown-item fw-bold text-danger" href="{% url 'accounts:logout' %}">
+                <i class="fas fa-sign-out-alt me-2"></i> Logout
+              </a>
+            </li>
+          </ul>
         </li>
       </ul>
+      
     </div>
   </div>
 </nav>
