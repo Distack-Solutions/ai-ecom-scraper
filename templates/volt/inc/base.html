@@ -13,8 +13,11 @@
     <link href="{% static 'volt/vendor/@fortawesome/fontawesome-free/css/all.min.css' %}" rel="stylesheet">
 
     <!-- Stylesheets -->
-    <link href="{% static 'volt/vendor/sweetalert2/dist/sweetalert2.min.css' %}" rel="stylesheet">
+    <!-- <link href="{% static 'volt/vendor/sweetalert2/dist/sweetalert2.min.css' %}" rel="stylesheet">
     <link href="{% static 'volt/vendor/notyf/notyf.min.css' %}" rel="stylesheet">
+    <link href="{% static 'volt/css/volt.css' %}" rel="stylesheet"> -->
+
+    {% include 'volt/inc/head-links.html' %}
     <link href="{% static 'volt/css/volt.css' %}" rel="stylesheet">
     <link href="{% static 'volt/css/imageModal.css' %}" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/jquery-toast-plugin@1.3.2/dist/jquery.toast.min.css" rel="stylesheet">
@@ -27,10 +30,7 @@
       .bg-light-gray {
         background-color: rgb(241, 241, 241);
       }
-      .text-title, .nav-link, h1, h2, h3, h4, .breadcrumb-item, th, .btn {
-        text-transform: capitalize;
-        font-weight: bold;
-      }
+      
       .initial-text {
         text-transform: initial !important;
       }
@@ -82,13 +82,17 @@
     <!-- Scripts -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/jquery-toast-plugin@1.3.2/dist/jquery.toast.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    
+    <!-- <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
     <script src="{% static 'volt/vendor/bootstrap/dist/js/bootstrap.min.js' %}"></script>
     <script src="{% static 'volt/vendor/sweetalert2/dist/sweetalert2.all.min.js' %}"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.27.0/moment.min.js"></script>
     <script src="{% static 'volt/vendor/notyf/notyf.min.js' %}"></script>
-    <script src="{% static 'volt/vendor/chartist/dist/chartist.min.js' %}"></script>
-    <script src="{% static 'volt/assets/js/volt.js' %}"></script>
+    <script src="{% static 'volt/assets/js/volt.js' %}"></script> -->
+
+    {% include 'volt/inc/scripts.html' %}
+    {% block extra_js %}{% endblock extra_js %}
+
 
     <!-- Custom JS -->
     <script>
