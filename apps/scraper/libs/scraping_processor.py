@@ -5,11 +5,8 @@ from apps.scraper.libs.stlflix import StlflixProductScrap
 from apps.scraper.models import *
 import time
 
-logging.basicConfig(
-    level=logging.INFO,
-    format='%(asctime)s - %(levelname)s - %(message)s',
-)
-logger = logging.getLogger(__name__)
+
+logger = logging.getLogger('scraper')
 
 
 
