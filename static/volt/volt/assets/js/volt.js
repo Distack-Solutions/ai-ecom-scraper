@@ -68,21 +68,21 @@ d.addEventListener("DOMContentLoaded", function(event) {
     };
 
     var sidebar = document.getElementById('sidebarMenu')
-    if(sidebar && d.body.clientWidth < breakpoints.lg) {
-        sidebar.addEventListener('shown.bs.collapse', function () {
-            document.querySelector('body').style.position = 'fixed';
-        });
-        sidebar.addEventListener('hidden.bs.collapse', function () {
-            document.querySelector('body').style.position = 'relative';
-        });
-    }
+    // if(sidebar && d.body.clientWidth < breakpoints.lg) {
+    //     sidebar.addEventListener('shown.bs.collapse', function () {
+    //         document.querySelector('body').style.position = 'fixed';
+    //     });
+    //     sidebar.addEventListener('hidden.bs.collapse', function () {
+    //         document.querySelector('body').style.position = 'relative';
+    //     });
+    // }
 
     var iconNotifications = d.querySelector('.notification-bell');
-    if (iconNotifications) {
-        iconNotifications.addEventListener('shown.bs.dropdown', function () {
-            iconNotifications.classList.remove('unread');
-        });
-    }
+    // if (iconNotifications) {
+    //     iconNotifications.addEventListener('shown.bs.dropdown', function () {
+    //         iconNotifications.classList.remove('unread');
+    //     });
+    // }
 
     [].slice.call(d.querySelectorAll('[data-background]')).map(function(el) {
         el.style.background = 'url(' + el.getAttribute('data-background') + ')';
@@ -103,17 +103,17 @@ d.addEventListener("DOMContentLoaded", function(event) {
     });
 
     //Tooltips
-    var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
-    var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
-    return new bootstrap.Tooltip(tooltipTriggerEl)
-    })
+    // var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
+    // var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+    // return new bootstrap.Tooltip(tooltipTriggerEl)
+    // })
 
 
     // Popovers
-    var popoverTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="popover"]'))
-    var popoverList = popoverTriggerList.map(function (popoverTriggerEl) {
-      return new bootstrap.Popover(popoverTriggerEl)
-    })
+    // var popoverTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="popover"]'))
+    // var popoverList = popoverTriggerList.map(function (popoverTriggerEl) {
+    //   return new bootstrap.Popover(popoverTriggerEl)
+    // })
     
 
     // Datepicker
