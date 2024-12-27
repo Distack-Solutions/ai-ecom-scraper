@@ -10,6 +10,7 @@ class ScrapingProcessForm(forms.ModelForm):
             'criterias': forms.CheckboxSelectMultiple(),  # For multiple selections of criteria
         }
 
+
     # Optionally, add validation or custom methods here, for example:
     def clean_max_records(self):
         max_records = self.cleaned_data.get('max_records')
