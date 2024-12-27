@@ -25,6 +25,9 @@ jobs:
             # Navigate to the project directory
             cd ../home/ubuntu/ai-ecom-scraper
 
+            #discard local changes
+            git stash
+
             # Pull the latest changes
             git pull origin master
 

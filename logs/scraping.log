@@ -249,3 +249,20 @@ INFO 2024-12-27 17:53:14,601 basehttp 30700 29368 "GET /scraper/logs/ HTTP/1.1" 
 INFO 2024-12-27 17:53:59,615 autoreload 30700 26376 C:\Users\Syed Maaz Hassan\OneDrive\Documents\GitHub\ai-ecom-scraper\apps\scraper\views.py changed, reloading.
 INFO 2024-12-27 17:54:02,454 autoreload 14208 22272 Watching for file changes with StatReloader
 INFO 2024-12-27 17:54:04,671 basehttp 14208 4420 "GET /scraper/logs/ HTTP/1.1" 200 31648
+INFO 2024-12-27 21:27:48,602 autoreload 30704 17620 Watching for file changes with StatReloader
+INFO 2024-12-27 21:28:01,033 basehttp 30704 10464 "GET / HTTP/1.1" 200 26199
+INFO 2024-12-27 21:28:01,314 basehttp 30704 10464 "GET /static/volt/volt/assets/js/volt.js HTTP/1.1" 304 0
+INFO 2024-12-27 21:28:02,964 basehttp 30704 19192 "GET /scraper/logs/ HTTP/1.1" 200 31648
+INFO 2024-12-27 21:28:40,755 basehttp 30704 5856 "GET /accounts/logout/ HTTP/1.1" 302 0
+INFO 2024-12-27 21:28:40,974 basehttp 30704 5856 "GET /accounts/login/ HTTP/1.1" 200 9937
+INFO 2024-12-27 21:28:42,517 basehttp 30704 20620 "GET /static/volt/vendor/onscreen/dist/on-screen.umd.min.js HTTP/1.1" 200 6714
+INFO 2024-12-27 21:28:42,525 basehttp 30704 28692 "GET /static/volt/vendor/chartist-plugin-tooltips/dist/chartist-plugin-tooltip.min.js HTTP/1.1" 200 3032
+INFO 2024-12-27 21:28:42,536 basehttp 30704 5856 "GET /static/volt/vendor/%40popperjs/core/dist/umd/popper.min.js HTTP/1.1" 200 18453
+INFO 2024-12-27 21:28:42,542 basehttp 30704 21248 "GET /static/volt/vendor/vanillajs-datepicker/dist/js/datepicker.min.js HTTP/1.1" 200 31419
+INFO 2024-12-27 21:28:42,552 basehttp 30704 25432 "GET /static/volt/vendor/smooth-scroll/dist/smooth-scroll.polyfills.min.js HTTP/1.1" 200 6563
+INFO 2024-12-27 21:28:42,561 basehttp 30704 25916 "GET /static/volt/vendor/nouislider/distribute/nouislider.min.js HTTP/1.1" 200 22052
+INFO 2024-12-27 21:28:42,603 basehttp 30704 28692 "GET /static/volt/assets/js/volt.js HTTP/1.1" 200 10034
+INFO 2024-12-27 21:28:42,631 basehttp 30704 20620 "GET /static/volt/vendor/simplebar/dist/simplebar.min.js HTTP/1.1" 200 24410
+INFO 2024-12-27 21:28:42,725 basehttp 30704 20620 "GET /static/volt/assets/img/illustrations/signin.svg HTTP/1.1" 200 67405
+INFO 2024-12-27 21:28:42,851 basehttp 30704 20620 "GET /static/volt/assets/img/favicon/favicon-32x32.png HTTP/1.1" 200 1775
+INFO 2024-12-27 21:28:42,868 basehttp 30704 30316 "GET /static/volt/assets/img/favicon/site.webmanifest HTTP/1.1" 200 465
