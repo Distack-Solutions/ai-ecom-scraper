@@ -1,0 +1,5 @@
+INFO 2024-12-27 16:36:20,613 autoreload 7924 18224 Watching for file changes with StatReloader
+INFO 2024-12-27 16:36:45,272 autoreload 7924 18224 C:\Users\Syed Maaz Hassan\OneDrive\Documents\GitHub\ai-ecom-scraper\software\settings.py changed, reloading.
+INFO 2024-12-27 16:36:47,703 autoreload 19196 13796 Watching for file changes with StatReloader
+INFO 2024-12-27 16:39:37,245 autoreload 13160 3212 Watching for file changes with StatReloader
+INFO 2024-12-27 16:44:10,278 autoreload 13160 3212 C:\Users\Syed Maaz Hassan\OneDrive\Documents\GitHub\ai-ecom-scraper\software\settings.py changed, reloading.
