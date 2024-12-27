@@ -1,3 +1,4 @@
+from pathlib import Path
 from django.contrib.auth.decorators import login_required
 from .models import *
 from django.shortcuts import render, redirect
@@ -28,7 +29,8 @@ from django.shortcuts import render
 from django.http import StreamingHttpResponse
 from django.contrib import messages
 from django.db.models import Q
-
+from django.conf import settings
+from datetime import datetime
 
 def makerworld(request):
     scraper = MakerWorldProductScrap(query="apple", limit=10)
@@ -617,3 +619,38 @@ def ajax_upload_product_to_wc(request):
         return JsonResponse({"success": True, "message": "All selected products uploaded successfully!", "data": response})
     else:
         return JsonResponse({"success": False, "message": "Invalid request method."}, status=405)
+
+
+
+
+def logs_view(request):
+    log_file_path = os.path.join(settings.BASE_DIR, "logs", "scraping.log")
+    logs = []
+
+    try:
+        if os.path.exists(log_file_path):
+            with open(log_file_path, "r") as log_file:
+                for line in log_file:
+                    if 'scraping_process' in line.lower():
+                        parts = line.strip().split(maxsplit=6)  # Split into 7 parts max
+                        if len(parts) >= 6:
+                            log_entry = {
+                                "status": parts[0],
+                                "timestamp": datetime.strptime(f"{parts[1]} {parts[2]}", "%Y-%m-%d %H:%M:%S,%f"),
+                                "module": parts[3],
+                                "process_id": parts[4],
+                                "thread_id": parts[5],
+                                "message": parts[6] if len(parts) > 6 else "",
+                            }
+                            logs.append(log_entry)
+    except Exception as e:
+        logs = [{"status": "ERROR", "timestamp": None, "module": "logs_view", "process_id": "-", "thread_id": "-", "message": f"Error reading log file: {str(e)}"}]
+
+
+    logs = sorted(logs, key=lambda x: x['timestamp'], reverse=True)
+
+    context = {
+        "page": "logs",
+        "logs": logs,
+    }
+    return render(request, "volt/logs.html", context)

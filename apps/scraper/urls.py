@@ -24,6 +24,8 @@ urlpatterns = [
 
     path('ajax/products/operation/sse', views.process_products_sse, name='process-products-sse'),
 
-    path('ajax/products/scraping/sse', views.initiate_scraping_process, name='scrape-products-sse')
+    path('ajax/products/scraping/sse', views.initiate_scraping_process, name='scrape-products-sse'),
+
+    path('logs/', views.logs_view, name='logs-view'),
 
 ]

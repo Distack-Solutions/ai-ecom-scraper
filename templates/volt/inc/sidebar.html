@@ -97,6 +97,17 @@
       </li>
 
 
+      <li class="nav-item {% if page == 'logs' %}active{% endif %}">
+        <a class="nav-link d-flex align-items-center" href="{% url 'scraper:logs-view' %}">
+          <span class="sidebar-icon d-flex align-items-center">
+            <span class="material-icons">receipt_long</span>
+          </span>
+          <span class="sidebar-text">Logs</span>
+        </a>
+      </li>
+      
+
+
     </ul>
   </div>
 </nav>
