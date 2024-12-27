@@ -1,947 +1,292 @@
-[
-    {
-        "id": 252931,
-        "title": "Apple Watch Charging Stand",
-        "titleTranslated": "",
-        "cover": "https://makerworld.bblmw.com/makerworld/model/USe064970f456c22/design/2024-03-13_e312ebc91ffda.jpg",
-        "likeCount": 1031,
-        "collectionCount": 2184,
-        "shareCount": 0,
-        "printCount": 6438,
-        "downloadCount": 7367,
-        "rawModelFileDownloadCount": 642,
-        "commentCount": 68,
-        "readCount": 0,
-        "designCreator": {
-            "uid": 3178909832,
-            "name": "Dan_ID",
-            "avatar": "https://public-cdn.bblmw.com/avatar/3178909832/2024-10-28_c927c53dd2fc1.jpeg",
-            "fanCount": 0,
-            "followCount": 0,
-            "isFollowed": false,
-            "nameHighlight": "",
-            "createTime": "",
-            "publicInstanceUploadCount": 0,
-            "backgroundUrl": "",
-            "mySelectDesign": null,
-            "level": 0,
-            "gradeType": 0,
-            "downloadCount": 17748,
-            "likeCount": 1382,
-            "bannedPermission": {
-                "whole": false,
-                "comment": false,
-                "upload": false,
-                "redeem": false
+{
+    "id": "2035",
+    "attributes": {
+        "name": "Fruit Loop",
+        "slug": "fruit-loop",
+        "description": "<p><span style=\"background-color:transparent;color:hsl(0,0%,0%);\"><strong>3D MODEL DESCRIPTION</strong></span><br>&nbsp;</p><p><span style=\"background-color:transparent;color:hsl(0,0%,0%);\">This will help you stay really tropicalm.</span><br>&nbsp;</p><ul><li><span style=\"background-color:transparent;color:hsl(0,0%,0%);\">This&nbsp;<strong>STL</strong> file is recommended for&nbsp;<strong>FDM</strong> Printers!</span></li><li><span style=\"background-color:transparent;color:hsl(0,0%,0%);\">3D Printing Time Based on&nbsp;<strong>Ender 3</strong>: 16 Hours 03 Minutes&nbsp;<strong>(will vary accord to you printer model)</strong></span></li><li><span style=\"background-color:transparent;color:hsl(0,0%,0%);\">Approximately&nbsp;<strong>Height</strong>: 15 cm</span><br>&nbsp;</li></ul><p><span style=\"background-color:transparent;color:hsl(0,0%,0%);\"><strong>3D PRINT FILE SETTINGS (FOR 0.4 MM NOZZLE)</strong></span><br>&nbsp;</p><ul><li><span style=\"background-color:transparent;color:hsl(0,0%,0%);\"><strong>Line Width/ Nozzle:&nbsp;</strong>0.4 mm</span></li><li><span style=\"background-color:transparent;color:hsl(0,0%,0%);\"><strong>First Layer Line Width:&nbsp;</strong>0.48 mm / 120%</span></li><li><span style=\"background-color:transparent;color:hsl(0,0%,0%);\"><strong>Average Speed:&nbsp;</strong>20mm/s (First Layer) / 50mm/s (All the other layers) | 20 mm/s (First Layer) / 500 mm/s (All the other layers on Bambu Lab)</span></li><li><span style=\"background-color:transparent;color:hsl(0,0%,0%);\"><strong>Recommended Initial Layer Height:&nbsp; </strong>0.16 mm</span></li><li><span style=\"background-color:transparent;color:hsl(0,0%,0%);\"><strong>Recommended Layer Height:&nbsp; </strong>0.16 mm</span></li><li><span style=\"background-color:transparent;color:hsl(0,0%,0%);\"><strong>Recommended Perimeters/ Walls:&nbsp;</strong>3.</span></li><li><span style=\"background-color:transparent;color:hsl(0,0%,0%);\"><strong>Recommended Infill (%):&nbsp;</strong>10% (Gyroid)</span></li><li><span style=\"background-color:transparent;color:hsl(0,0%,0%);\"><strong>Needs Support:&nbsp;</strong>No.</span></li><li><span style=\"background-color:transparent;color:hsl(0,0%,0%);\"><strong>Build Plate Adhesion:&nbsp;</strong>Skirt.</span><br>&nbsp;</li></ul><p><span style=\"background-color:transparent;color:hsl(0,0%,0%);\"><strong>The parameters above are recommendations made by our staff; if you prefer, you can adapt them according to your preferences.</strong></span><br><br><span style=\"background-color:transparent;color:hsl(0,0%,0%);\"><i><strong>Happy Printing!</strong></i></span></p>",
+        "iframe": null,
+        "updatedAt": "2024-12-27T03:41:49.422Z",
+        "release_date": "2024-09-02T13:00:00.000Z",
+        "technical_overview_url": null,
+        "assemble_tutorial_url": null,
+        "change_log": "",
+        "bambu_file": {
+            "data": {
+                "id": "45629",
+                "__typename": "UploadFileEntity"
             },
-            "MWCount": {
-                "myDesignDownloadCount": 0,
-                "myInstanceDownloadCount": 0,
-                "designCount": 0
+            "__typename": "UploadFileEntityResponse"
+        },
+        "stl_file": {
+            "data": null,
+            "__typename": "UploadFileEntityResponse"
+        },
+        "prusa_file": null,
+        "stl_preview": {
+            "data": null,
+            "__typename": "UploadFileEntityResponse"
+        },
+        "thumbnail": {
+            "data": {
+                "attributes": {
+                    "alternativeText": null,
+                    "url": "https://s3.us-east-2.amazonaws.com/static.stlflix.com/thumb_7ae58d7f2b.jpg",
+                    "__typename": "UploadFile"
+                },
+                "__typename": "UploadFileEntity"
             },
-            "certificated": false,
-            "hotScore": 0,
-            "score": 0,
-            "handle": "Incremental_Dan"
+            "__typename": "UploadFileEntityResponse"
         },
-        "titleHighlight": "Apple Watch Charging Stand",
-        "createTime": "2024-03-14T02:00:51Z",
-        "hotScore": 8.219840334706696e-08,
-        "designScore": 10.274568233782462,
-        "score": 0,
-        "nsfw": false,
-        "status": 1,
-        "hasCollect": false,
-        "hasLike": false,
-        "hasDislike": false,
-        "isStaffPicked": false,
-        "pickReason": "",
-        "is_printable": true,
-        "is_official": false,
-        "is_point_redeemable": false,
-        "isExclusive": true,
-        "license": "Standard Digital File License",
-        "contest": {
-            "contestId": 0,
-            "rank": 0,
-            "status": 0,
-            "contestName": ""
+        "hover": {
+            "data": {
+                "attributes": {
+                    "alternativeText": null,
+                    "url": "https://s3.us-east-2.amazonaws.com/static.stlflix.com/Fruit_Loop_f56e222872.webm",
+                    "__typename": "UploadFile"
+                },
+                "__typename": "UploadFileEntity"
+            },
+            "__typename": "UploadFileEntityResponse"
         },
-        "tags": [
-            "apple",
-            "watch",
-            "apple watch",
-            "charging stand",
-            "home office",
-            "desk accessories"
+        "gallery": {
+            "data": [
+                {
+                    "id": "45479",
+                    "attributes": {
+                        "alternativeText": null,
+                        "url": "https://s3.us-east-2.amazonaws.com/static.stlflix.com/1_31598fbb18.jpg",
+                        "__typename": "UploadFile"
+                    },
+                    "__typename": "UploadFileEntity"
+                },
+                {
+                    "id": "45480",
+                    "attributes": {
+                        "alternativeText": null,
+                        "url": "https://s3.us-east-2.amazonaws.com/static.stlflix.com/5_459ffb402b.jpg",
+                        "__typename": "UploadFile"
+                    },
+                    "__typename": "UploadFileEntity"
+                },
+                {
+                    "id": "45484",
+                    "attributes": {
+                        "alternativeText": null,
+                        "url": "https://s3.us-east-2.amazonaws.com/static.stlflix.com/6_e45cee415b.jpg",
+                        "__typename": "UploadFile"
+                    },
+                    "__typename": "UploadFileEntity"
+                },
+                {
+                    "id": "45477",
+                    "attributes": {
+                        "alternativeText": null,
+                        "url": "https://s3.us-east-2.amazonaws.com/static.stlflix.com/2_67e0e10917.jpg",
+                        "__typename": "UploadFile"
+                    },
+                    "__typename": "UploadFileEntity"
+                },
+                {
+                    "id": "45481",
+                    "attributes": {
+                        "alternativeText": null,
+                        "url": "https://s3.us-east-2.amazonaws.com/static.stlflix.com/3_26bc0012d6.jpg",
+                        "__typename": "UploadFile"
+                    },
+                    "__typename": "UploadFileEntity"
+                },
+                {
+                    "id": "45483",
+                    "attributes": {
+                        "alternativeText": null,
+                        "url": "https://s3.us-east-2.amazonaws.com/static.stlflix.com/4_94ae9a3b6b.jpg",
+                        "__typename": "UploadFile"
+                    },
+                    "__typename": "UploadFileEntity"
+                },
+                {
+                    "id": "45482",
+                    "attributes": {
+                        "alternativeText": null,
+                        "url": "https://s3.us-east-2.amazonaws.com/static.stlflix.com/1_wb_63a3c69300.jpg",
+                        "__typename": "UploadFile"
+                    },
+                    "__typename": "UploadFileEntity"
+                },
+                {
+                    "id": "45476",
+                    "attributes": {
+                        "alternativeText": null,
+                        "url": "https://s3.us-east-2.amazonaws.com/static.stlflix.com/2_wb_81bf9132e2.jpg",
+                        "__typename": "UploadFile"
+                    },
+                    "__typename": "UploadFileEntity"
+                },
+                {
+                    "id": "45475",
+                    "attributes": {
+                        "alternativeText": null,
+                        "url": "https://s3.us-east-2.amazonaws.com/static.stlflix.com/3_wb_92894e9513.jpg",
+                        "__typename": "UploadFile"
+                    },
+                    "__typename": "UploadFileEntity"
+                },
+                {
+                    "id": "45478",
+                    "attributes": {
+                        "alternativeText": null,
+                        "url": "https://s3.us-east-2.amazonaws.com/static.stlflix.com/4_wb_3d9ea59983.jpg",
+                        "__typename": "UploadFile"
+                    },
+                    "__typename": "UploadFileEntity"
+                }
+            ],
+            "__typename": "UploadFileRelationResponseCollection"
+        },
+        "keywords": "fidget, twist, spin, swirl, fun, impossible, toy, pineapple\n",
+        "files": [
+            {
+                "text": "PDF",
+                "commercial_only": false,
+                "file": {
+                    "data": {
+                        "id": "45624",
+                        "__typename": "UploadFileEntity"
+                    },
+                    "__typename": "UploadFileEntityResponse"
+                },
+                "__typename": "ComponentPageFiles"
+            },
+            {
+                "text": "FILES",
+                "commercial_only": false,
+                "file": {
+                    "data": {
+                        "id": "45626",
+                        "__typename": "UploadFileEntity"
+                    },
+                    "__typename": "UploadFileEntityResponse"
+                },
+                "__typename": "ComponentPageFiles"
+            },
+            {
+                "text": "SOCIAL",
+                "commercial_only": true,
+                "file": {
+                    "data": {
+                        "id": "45640",
+                        "__typename": "UploadFileEntity"
+                    },
+                    "__typename": "UploadFileEntityResponse"
+                },
+                "__typename": "ComponentPageFiles"
+            }
         ],
-        "customizedByMakerLab": false,
-        "preset": {
-            "type": "",
-            "filamentConfig": null,
-            "printerConfig": null,
-            "processConfig": null,
-            "printerSettings": [],
-            "file": {
-                "name": "",
-                "size": 0,
-                "url": ""
-            }
+        "filaments": {
+            "data": [],
+            "__typename": "FilamentRelationResponseCollection"
         },
-        "coverLandscape": "",
-        "coverPortrait": "",
-        "boostCnt": 875,
-        "bomsNeeded": false,
-        "modelSource": 1,
-        "ext": "{\"by\":0,\"exp\":0,\"q\":\"apple\",\"qp\":{\"actualQuery\":\"apple\",\"baseEmbedThreshold\":0.74,\"exp\":0,\"query\":\"apple\",\"segWords\":[\"apple\"],\"synSegWords\":{\"apple\":[\"apples\",\"appl\"]}},\"rc\":[\"titleAndTagsSeg|64.06|0.8659|110\",\"titleSeg|54.78|0.8659|60\"],\"rk\":\"110|0\"}"
+        "parent_categories": {
+            "data": [
+                {
+                    "id": "3",
+                    "attributes": {
+                        "slug": "toys-and-tabletop-games",
+                        "name": "Toys & Tabletop Games",
+                        "__typename": "ParentCategory"
+                    },
+                    "__typename": "ParentCategoryEntity"
+                }
+            ],
+            "__typename": "ParentCategoryRelationResponseCollection"
+        },
+        "sub_categories": null,
+        "categories": {
+            "data": [
+                {
+                    "id": "80",
+                    "attributes": {
+                        "name": "Fidgets",
+                        "slug": "fidgets",
+                        "__typename": "Category"
+                    },
+                    "__typename": "CategoryEntity"
+                }
+            ],
+            "__typename": "CategoryRelationResponseCollection"
+        },
+        "tags": {
+            "data": [
+                {
+                    "attributes": {
+                        "name": "Filament",
+                        "parent_tag": {
+                            "data": {
+                                "attributes": {
+                                    "name": "Printer Type",
+                                    "__typename": "ParentTag"
+                                },
+                                "__typename": "ParentTagEntity"
+                            },
+                            "__typename": "ParentTagEntityResponse"
+                        },
+                        "__typename": "Tag"
+                    },
+                    "__typename": "TagEntity"
+                },
+                {
+                    "attributes": {
+                        "name": "Intermediate",
+                        "parent_tag": {
+                            "data": {
+                                "attributes": {
+                                    "name": "Difficulty",
+                                    "__typename": "ParentTag"
+                                },
+                                "__typename": "ParentTagEntity"
+                            },
+                            "__typename": "ParentTagEntityResponse"
+                        },
+                        "__typename": "Tag"
+                    },
+                    "__typename": "TagEntity"
+                },
+                {
+                    "attributes": {
+                        "name": "Long (5 hours - 12 hours)",
+                        "parent_tag": {
+                            "data": {
+                                "attributes": {
+                                    "name": "Printing Time",
+                                    "__typename": "ParentTag"
+                                },
+                                "__typename": "ParentTagEntity"
+                            },
+                            "__typename": "ParentTagEntityResponse"
+                        },
+                        "__typename": "Tag"
+                    },
+                    "__typename": "TagEntity"
+                }
+            ],
+            "__typename": "TagRelationResponseCollection"
+        },
+        "original": {
+            "data": null,
+            "__typename": "ProductEntityResponse"
+        },
+        "modified_items": {
+            "data": [],
+            "__typename": "ProductRelationResponseCollection"
+        },
+        "drop": {
+            "data": {
+                "id": "244",
+                "__typename": "DropEntity"
+            },
+            "__typename": "DropEntityResponse"
+        },
+        "__typename": "Product"
     },
-    {
-        "id": 596218,
-        "title": "Teachers Apple",
-        "titleTranslated": "",
-        "cover": "https://makerworld.bblmw.com/makerworld/model/USb5ffc437872569/design/2024-08-19_86a1317df2d1a.jpg",
-        "likeCount": 50,
-        "collectionCount": 108,
-        "shareCount": 0,
-        "printCount": 37,
-        "downloadCount": 179,
-        "rawModelFileDownloadCount": 16,
-        "commentCount": 1,
-        "readCount": 0,
-        "designCreator": {
-            "uid": 955296092,
-            "name": "Ollie",
-            "avatar": "https://public-cdn.bblmw.com/avatar/955296092/2023-11-07_6397059df64e3.jpg",
-            "fanCount": 0,
-            "followCount": 0,
-            "isFollowed": false,
-            "nameHighlight": "",
-            "createTime": "",
-            "publicInstanceUploadCount": 0,
-            "backgroundUrl": "",
-            "mySelectDesign": null,
-            "level": 0,
-            "gradeType": 0,
-            "downloadCount": 4019,
-            "likeCount": 390,
-            "bannedPermission": {
-                "whole": false,
-                "comment": false,
-                "upload": false,
-                "redeem": false
-            },
-            "MWCount": {
-                "myDesignDownloadCount": 0,
-                "myInstanceDownloadCount": 0,
-                "designCount": 0
-            },
-            "certificated": false,
-            "hotScore": 0,
-            "score": 0,
-            "handle": "Ollie13"
-        },
-        "titleHighlight": "Teachers Apple",
-        "createTime": "2024-08-19T14:10:53Z",
-        "hotScore": 0.0017157985124944964,
-        "designScore": 5.520660597691477,
-        "score": 0,
-        "nsfw": false,
-        "status": 1,
-        "hasCollect": false,
-        "hasLike": false,
-        "hasDislike": false,
-        "isStaffPicked": false,
-        "pickReason": "",
-        "is_printable": true,
-        "is_official": false,
-        "is_point_redeemable": false,
-        "isExclusive": false,
-        "license": "BY-NC",
-        "contest": {
-            "contestId": 0,
-            "rank": 0,
-            "status": 0,
-            "contestName": ""
-        },
-        "tags": [
-            "teacher",
-            "apple",
-            "teacher appreciation",
-            "teacher appreciation week",
-            "school"
-        ],
-        "customizedByMakerLab": false,
-        "preset": {
-            "type": "",
-            "filamentConfig": null,
-            "printerConfig": null,
-            "processConfig": null,
-            "printerSettings": [],
-            "file": {
-                "name": "",
-                "size": 0,
-                "url": ""
-            }
-        },
-        "coverLandscape": "",
-        "coverPortrait": "https://makerworld.bblmw.com/makerworld/model/USb5ffc437872569/design/2024-08-19_54e574dc8f807.jpg",
-        "boostCnt": 9,
-        "bomsNeeded": false,
-        "modelSource": 3,
-        "ext": "{\"by\":0,\"exp\":0,\"q\":\"apple\",\"qp\":{\"actualQuery\":\"apple\",\"baseEmbedThreshold\":0.74,\"exp\":0,\"query\":\"apple\",\"segWords\":[\"apple\"],\"synSegWords\":{\"apple\":[\"apples\",\"appl\"]}},\"rc\":[\"titleAndTagsSeg|74.99|0.5632|109.11\",\"titleAndTagsSyn|224.98|0.5632|11\",\"titleSeg|70.31|0.5632|59.99\",\"titleSyn|210.94|0.5632|11\"],\"rk\":\"109.11|1\"}"
-    },
-    {
-        "id": 16970,
-        "title": "Apple AirTag Keyring/Keyring Holder",
-        "titleTranslated": "",
-        "cover": "https://makerworld.bblmw.com/makerworld/model/USa5b9a62aa2d957/design/2023-09-22_08989e84be623.webp",
-        "likeCount": 124,
-        "collectionCount": 275,
-        "shareCount": 0,
-        "printCount": 1013,
-        "downloadCount": 1049,
-        "rawModelFileDownloadCount": 129,
-        "commentCount": 4,
-        "readCount": 0,
-        "designCreator": {
-            "uid": 2035641786,
-            "name": "Ale\u0161 Urb\u00e1nek",
-            "avatar": "https://public-cdn.bblmw.com/avatar/06f9ee50-c813-11ed-8d75-a15c27a45034.jpg",
-            "fanCount": 0,
-            "followCount": 0,
-            "isFollowed": false,
-            "nameHighlight": "",
-            "createTime": "",
-            "publicInstanceUploadCount": 0,
-            "backgroundUrl": "",
-            "mySelectDesign": null,
-            "level": 0,
-            "gradeType": 0,
-            "downloadCount": 399,
-            "likeCount": 185,
-            "bannedPermission": {
-                "whole": false,
-                "comment": false,
-                "upload": false,
-                "redeem": false
-            },
-            "MWCount": {
-                "myDesignDownloadCount": 0,
-                "myInstanceDownloadCount": 0,
-                "designCount": 0
-            },
-            "certificated": false,
-            "hotScore": 0,
-            "score": 0,
-            "handle": "user_2035641786"
-        },
-        "titleHighlight": "Apple AirTag Keyring/Keyring Holder",
-        "createTime": "2023-09-22T21:06:32Z",
-        "hotScore": 6.316037902983373e-13,
-        "designScore": 8.152198015861787,
-        "score": 0,
-        "nsfw": false,
-        "status": 1,
-        "hasCollect": false,
-        "hasLike": false,
-        "hasDislike": false,
-        "isStaffPicked": false,
-        "pickReason": "",
-        "is_printable": true,
-        "is_official": false,
-        "is_point_redeemable": false,
-        "isExclusive": false,
-        "license": "BY-NC-SA",
-        "contest": {
-            "contestId": 0,
-            "rank": 0,
-            "status": 0,
-            "contestName": ""
-        },
-        "tags": [
-            "airtag",
-            "apple",
-            "keychai"
-        ],
-        "customizedByMakerLab": false,
-        "preset": {
-            "type": "",
-            "filamentConfig": null,
-            "printerConfig": null,
-            "processConfig": null,
-            "printerSettings": [],
-            "file": {
-                "name": "",
-                "size": 0,
-                "url": ""
-            }
-        },
-        "coverLandscape": "",
-        "coverPortrait": "",
-        "boostCnt": 61,
-        "bomsNeeded": false,
-        "modelSource": 1,
-        "ext": "{\"by\":0,\"exp\":0,\"q\":\"apple\",\"qp\":{\"actualQuery\":\"apple\",\"baseEmbedThreshold\":0.74,\"exp\":0,\"query\":\"apple\",\"segWords\":[\"apple\"],\"synSegWords\":{\"apple\":[\"apples\",\"appl\"]}},\"rc\":[\"titleAndTagsSeg|76.73|0.5236|108.98\",\"titleAndTagsSyn|230.18|0.5236|10.99\",\"titleSeg|58.65|0.5236|58.02\"],\"rk\":\"108.98|2\"}"
-    },
-    {
-        "id": 462471,
-        "title": "Stand for Apple HomePod Mini",
-        "titleTranslated": "",
-        "cover": "https://makerworld.bblmw.com/makerworld/model/US1fcb9d40452bf2/design/2024-06-03_e8340b21de91b.png",
-        "likeCount": 90,
-        "collectionCount": 273,
-        "shareCount": 0,
-        "printCount": 314,
-        "downloadCount": 465,
-        "rawModelFileDownloadCount": 52,
-        "commentCount": 3,
-        "readCount": 0,
-        "designCreator": {
-            "uid": 1429432645,
-            "name": "XH_Lab",
-            "avatar": "https://public-cdn.bblmw.com/avatar/1429432645/2023-09-22_aa924815f1ea8.jpeg",
-            "fanCount": 0,
-            "followCount": 0,
-            "isFollowed": false,
-            "nameHighlight": "",
-            "createTime": "",
-            "publicInstanceUploadCount": 0,
-            "backgroundUrl": "",
-            "mySelectDesign": null,
-            "level": 0,
-            "gradeType": 0,
-            "downloadCount": 4046,
-            "likeCount": 502,
-            "bannedPermission": {
-                "whole": false,
-                "comment": false,
-                "upload": false,
-                "redeem": false
-            },
-            "MWCount": {
-                "myDesignDownloadCount": 0,
-                "myInstanceDownloadCount": 0,
-                "designCount": 0
-            },
-            "certificated": false,
-            "hotScore": 0,
-            "score": 0,
-            "handle": "XH_Lab"
-        },
-        "titleHighlight": "Stand for Apple HomePod Mini",
-        "createTime": "2024-05-13T04:13:44Z",
-        "hotScore": 3.3606415814445454e-06,
-        "designScore": 7.618742377670413,
-        "score": 0,
-        "nsfw": false,
-        "status": 1,
-        "hasCollect": false,
-        "hasLike": false,
-        "hasDislike": false,
-        "isStaffPicked": false,
-        "pickReason": "",
-        "is_printable": true,
-        "is_official": false,
-        "is_point_redeemable": false,
-        "isExclusive": true,
-        "license": "Standard Digital File License",
-        "contest": {
-            "contestId": 0,
-            "rank": 0,
-            "status": 0,
-            "contestName": ""
-        },
-        "tags": [
-            "homepod",
-            "apple",
-            "stand"
-        ],
-        "customizedByMakerLab": false,
-        "preset": {
-            "type": "",
-            "filamentConfig": null,
-            "printerConfig": null,
-            "processConfig": null,
-            "printerSettings": [],
-            "file": {
-                "name": "",
-                "size": 0,
-                "url": ""
-            }
-        },
-        "coverLandscape": "",
-        "coverPortrait": "https://makerworld.bblmw.com/makerworld/model/US1fcb9d40452bf2/design/2024-06-03_617b362d5a41b.png",
-        "boostCnt": 53,
-        "bomsNeeded": false,
-        "modelSource": 1,
-        "ext": "{\"by\":0,\"exp\":0,\"q\":\"apple\",\"qp\":{\"actualQuery\":\"apple\",\"baseEmbedThreshold\":0.74,\"exp\":0,\"query\":\"apple\",\"segWords\":[\"apple\"],\"synSegWords\":{\"apple\":[\"apples\",\"appl\"]}},\"rc\":[\"titleAndTagsSeg|76.73|0.5038|108.8\",\"titleAndTagsSyn|230.18|0.5038|10.97\",\"titleSeg|58.65|0.5038|57.87\"],\"rk\":\"108.8|3\"}"
-    },
-    {
-        "id": 239862,
-        "title": "Apple TV 4K mount (93x93x31mm)",
-        "titleTranslated": "",
-        "cover": "https://makerworld.bblmw.com/makerworld/model/US48df03a87d4cdf/design/2024-03-09_95a9805b08534.jpg",
-        "likeCount": 63,
-        "collectionCount": 184,
-        "shareCount": 0,
-        "printCount": 254,
-        "downloadCount": 379,
-        "rawModelFileDownloadCount": 28,
-        "commentCount": 4,
-        "readCount": 0,
-        "designCreator": {
-            "uid": 1178125705,
-            "name": "user_1178125705",
-            "avatar": "https://public-cdn.bblmw.com/default/avatar.png",
-            "fanCount": 0,
-            "followCount": 0,
-            "isFollowed": false,
-            "nameHighlight": "",
-            "createTime": "",
-            "publicInstanceUploadCount": 0,
-            "backgroundUrl": "",
-            "mySelectDesign": null,
-            "level": 0,
-            "gradeType": 0,
-            "downloadCount": 877,
-            "likeCount": 63,
-            "bannedPermission": {
-                "whole": false,
-                "comment": false,
-                "upload": false,
-                "redeem": false
-            },
-            "MWCount": {
-                "myDesignDownloadCount": 0,
-                "myInstanceDownloadCount": 0,
-                "designCount": 0
-            },
-            "certificated": false,
-            "hotScore": 0,
-            "score": 0,
-            "handle": "user_1178125705"
-        },
-        "titleHighlight": "Apple TV 4K mount (93x93x31mm)",
-        "createTime": "2024-03-09T11:40:50Z",
-        "hotScore": 4.297130331521683e-08,
-        "designScore": 7.15305163493748,
-        "score": 0,
-        "nsfw": false,
-        "status": 1,
-        "hasCollect": false,
-        "hasLike": false,
-        "hasDislike": false,
-        "isStaffPicked": false,
-        "pickReason": "",
-        "is_printable": true,
-        "is_official": false,
-        "is_point_redeemable": false,
-        "isExclusive": false,
-        "license": "BY-NC",
-        "contest": {
-            "contestId": 0,
-            "rank": 0,
-            "status": 0,
-            "contestName": ""
-        },
-        "tags": [
-            "tv accessories",
-            "tv bracket",
-            "apple accessories",
-            "bracket",
-            "apple",
-            "tv",
-            "monitor accessory"
-        ],
-        "customizedByMakerLab": false,
-        "preset": {
-            "type": "",
-            "filamentConfig": null,
-            "printerConfig": null,
-            "processConfig": null,
-            "printerSettings": [],
-            "file": {
-                "name": "",
-                "size": 0,
-                "url": ""
-            }
-        },
-        "coverLandscape": "",
-        "coverPortrait": "",
-        "boostCnt": 15,
-        "bomsNeeded": false,
-        "modelSource": 1,
-        "ext": "{\"by\":0,\"exp\":0,\"q\":\"apple\",\"qp\":{\"actualQuery\":\"apple\",\"baseEmbedThreshold\":0.74,\"exp\":0,\"query\":\"apple\",\"segWords\":[\"apple\"],\"synSegWords\":{\"apple\":[\"apples\",\"appl\"]}},\"rc\":[\"titleAndTagsSeg|70.48|0.5908|108.79\",\"titleSeg|54.78|0.5908|57.99\"],\"rk\":\"108.79|4\"}"
-    },
-    {
-        "id": 792361,
-        "title": "Charging stand Apple Watch",
-        "titleTranslated": "",
-        "cover": "https://makerworld.bblmw.com/makerworld/model/USc246d46e2401b0/design/2024-11-16_3b390d08d720f.jpg",
-        "likeCount": 92,
-        "collectionCount": 264,
-        "shareCount": 0,
-        "printCount": 237,
-        "downloadCount": 339,
-        "rawModelFileDownloadCount": 0,
-        "commentCount": 18,
-        "readCount": 0,
-        "designCreator": {
-            "uid": 4291660597,
-            "name": "Borosan",
-            "avatar": "https://public-cdn.bblmw.com/avatar/4291660597/2024-11-22_badd75652dcfe.jpg",
-            "fanCount": 0,
-            "followCount": 0,
-            "isFollowed": false,
-            "nameHighlight": "",
-            "createTime": "",
-            "publicInstanceUploadCount": 0,
-            "backgroundUrl": "",
-            "mySelectDesign": null,
-            "level": 0,
-            "gradeType": 0,
-            "downloadCount": 1013,
-            "likeCount": 260,
-            "bannedPermission": {
-                "whole": false,
-                "comment": false,
-                "upload": false,
-                "redeem": false
-            },
-            "MWCount": {
-                "myDesignDownloadCount": 0,
-                "myInstanceDownloadCount": 0,
-                "designCount": 0
-            },
-            "certificated": false,
-            "hotScore": 0,
-            "score": 0,
-            "handle": "Borosan"
-        },
-        "titleHighlight": "Charging stand Apple Watch",
-        "createTime": "2024-11-16T12:39:31Z",
-        "hotScore": 0.8637674313845676,
-        "designScore": 7.395721608602045,
-        "score": 0,
-        "nsfw": false,
-        "status": 1,
-        "hasCollect": false,
-        "hasLike": false,
-        "hasDislike": false,
-        "isStaffPicked": false,
-        "pickReason": "",
-        "is_printable": true,
-        "is_official": false,
-        "is_point_redeemable": false,
-        "isExclusive": true,
-        "license": "Standard Digital File License",
-        "contest": {
-            "contestId": 0,
-            "rank": 0,
-            "status": 0,
-            "contestName": ""
-        },
-        "tags": [
-            "apple",
-            "watch",
-            "apple watch",
-            "stand",
-            "ball",
-            "charging",
-            "dock",
-            "design"
-        ],
-        "customizedByMakerLab": false,
-        "preset": {
-            "type": "",
-            "filamentConfig": null,
-            "printerConfig": null,
-            "processConfig": null,
-            "printerSettings": [],
-            "file": {
-                "name": "",
-                "size": 0,
-                "url": ""
-            }
-        },
-        "coverLandscape": "https://makerworld.bblmw.com/makerworld/model/USc246d46e2401b0/design/2024-11-16_5126873194295.jpg",
-        "coverPortrait": "",
-        "boostCnt": 34,
-        "bomsNeeded": false,
-        "modelSource": 1,
-        "ext": "{\"by\":0,\"exp\":0,\"q\":\"apple\",\"qp\":{\"actualQuery\":\"apple\",\"baseEmbedThreshold\":0.74,\"exp\":0,\"query\":\"apple\",\"segWords\":[\"apple\"],\"synSegWords\":{\"apple\":[\"apples\",\"appl\"]}},\"rc\":[\"titleAndTagsSeg|67.86|0.5842|108.41\",\"titleSeg|54.33|0.5842|57.87\"],\"rk\":\"108.41|5\"}"
-    },
-    {
-        "id": 453237,
-        "title": "Magsafe charger stand for iPhone and Apple Watch",
-        "titleTranslated": "",
-        "cover": "https://makerworld.bblmw.com/makerworld/model/US2a64024c45d8c5/design/2024-05-19_7b1ead4782d7b8.jpg",
-        "likeCount": 1072,
-        "collectionCount": 1916,
-        "shareCount": 0,
-        "printCount": 2331,
-        "downloadCount": 3393,
-        "rawModelFileDownloadCount": 320,
-        "commentCount": 61,
-        "readCount": 0,
-        "designCreator": {
-            "uid": 1945930771,
-            "name": "rauwman",
-            "avatar": "https://public-cdn.bblmw.com/avatar/1945930771/2024-05-04_b4c84185b8e8f8.jpg",
-            "fanCount": 0,
-            "followCount": 0,
-            "isFollowed": false,
-            "nameHighlight": "",
-            "createTime": "",
-            "publicInstanceUploadCount": 0,
-            "backgroundUrl": "",
-            "mySelectDesign": null,
-            "level": 0,
-            "gradeType": 0,
-            "downloadCount": 7645,
-            "likeCount": 1129,
-            "bannedPermission": {
-                "whole": false,
-                "comment": false,
-                "upload": false,
-                "redeem": false
-            },
-            "MWCount": {
-                "myDesignDownloadCount": 0,
-                "myInstanceDownloadCount": 0,
-                "designCount": 0
-            },
-            "certificated": false,
-            "hotScore": 0,
-            "score": 0,
-            "handle": "user_1945930771"
-        },
-        "titleHighlight": "Magsafe charger stand for iPhone and Apple Watch",
-        "createTime": "2024-05-04T13:33:25Z",
-        "hotScore": 2.3936981087254612e-06,
-        "designScore": 9.663388566822505,
-        "score": 0,
-        "nsfw": false,
-        "status": 1,
-        "hasCollect": false,
-        "hasLike": false,
-        "hasDislike": false,
-        "isStaffPicked": false,
-        "pickReason": "",
-        "is_printable": true,
-        "is_official": false,
-        "is_point_redeemable": false,
-        "isExclusive": false,
-        "license": "BY-NC-SA",
-        "contest": {
-            "contestId": 0,
-            "rank": 0,
-            "status": 0,
-            "contestName": ""
-        },
-        "tags": [
-            "apple",
-            "iphone",
-            "applewatch",
-            "magsafe",
-            "standby"
-        ],
-        "customizedByMakerLab": false,
-        "preset": {
-            "type": "",
-            "filamentConfig": null,
-            "printerConfig": null,
-            "processConfig": null,
-            "printerSettings": [],
-            "file": {
-                "name": "",
-                "size": 0,
-                "url": ""
-            }
-        },
-        "coverLandscape": "https://makerworld.bblmw.com/makerworld/model/US2a64024c45d8c5/design/2024-05-19_694eb6403cfff.jpg",
-        "coverPortrait": "",
-        "boostCnt": 403,
-        "bomsNeeded": false,
-        "modelSource": 1,
-        "ext": "{\"by\":0,\"exp\":0,\"q\":\"apple\",\"qp\":{\"actualQuery\":\"apple\",\"baseEmbedThreshold\":0.74,\"exp\":0,\"query\":\"apple\",\"segWords\":[\"apple\"],\"synSegWords\":{\"apple\":[\"apples\",\"appl\"]}},\"rc\":[\"titleAndTagsSeg|61.89|0.663|108.23\",\"titleSeg|44.5|0.663|56.92\"],\"rk\":\"108.23|6\"}"
-    },
-    {
-        "id": 83212,
-        "title": "Apple",
-        "titleTranslated": "",
-        "cover": "https://makerworld.bblmw.com/makerworld/model/US3181ea1422377a/design/2023-12-04_2a54d94c4e5eb.jpg",
-        "likeCount": 101,
-        "collectionCount": 153,
-        "shareCount": 0,
-        "printCount": 608,
-        "downloadCount": 902,
-        "rawModelFileDownloadCount": 132,
-        "commentCount": 7,
-        "readCount": 0,
-        "designCreator": {
-            "uid": 2184046521,
-            "name": "goodspeedjames6",
-            "avatar": "https://public-cdn.bblmw.com/avatar/2184046521/2023-12-04_e58958a5be637.jpg",
-            "fanCount": 0,
-            "followCount": 0,
-            "isFollowed": false,
-            "nameHighlight": "",
-            "createTime": "",
-            "publicInstanceUploadCount": 0,
-            "backgroundUrl": "",
-            "mySelectDesign": null,
-            "level": 0,
-            "gradeType": 0,
-            "downloadCount": 490,
-            "likeCount": 132,
-            "bannedPermission": {
-                "whole": false,
-                "comment": false,
-                "upload": false,
-                "redeem": false
-            },
-            "MWCount": {
-                "myDesignDownloadCount": 0,
-                "myInstanceDownloadCount": 0,
-                "designCount": 0
-            },
-            "certificated": false,
-            "hotScore": 0,
-            "score": 0,
-            "handle": "goodspeedjames6"
-        },
-        "titleHighlight": "Apple",
-        "createTime": "2023-12-04T15:54:43Z",
-        "hotScore": 7.716390441755312e-11,
-        "designScore": 7.700295203420117,
-        "score": 0,
-        "nsfw": false,
-        "status": 1,
-        "hasCollect": false,
-        "hasLike": false,
-        "hasDislike": false,
-        "isStaffPicked": false,
-        "pickReason": "",
-        "is_printable": true,
-        "is_official": false,
-        "is_point_redeemable": false,
-        "isExclusive": true,
-        "license": "Standard Digital File License",
-        "contest": {
-            "contestId": 0,
-            "rank": 0,
-            "status": 0,
-            "contestName": ""
-        },
-        "tags": null,
-        "customizedByMakerLab": false,
-        "preset": {
-            "type": "",
-            "filamentConfig": null,
-            "printerConfig": null,
-            "processConfig": null,
-            "printerSettings": [],
-            "file": {
-                "name": "",
-                "size": 0,
-                "url": ""
-            }
-        },
-        "coverLandscape": "",
-        "coverPortrait": "",
-        "boostCnt": 19,
-        "bomsNeeded": false,
-        "modelSource": 1,
-        "ext": "{\"by\":0,\"exp\":0,\"q\":\"apple\",\"qp\":{\"actualQuery\":\"apple\",\"baseEmbedThreshold\":0.74,\"exp\":0,\"query\":\"apple\",\"segWords\":[\"apple\"],\"synSegWords\":{\"apple\":[\"apples\",\"appl\"]}},\"rc\":[\"titleAndTagBEV|1|0.4317|1\",\"titleAndTagsSeg|76.95|0.4317|108.19\",\"titleAndTagsSyn|230.84|0.4317|10.9\",\"titleSeg|77.66|0.4317|59.67\",\"titleSyn|232.97|0.4317|10.97\"],\"rk\":\"108.19|7\"}"
-    },
-    {
-        "id": 166745,
-        "title": "Apple TV 4K HD Bracket VESA",
-        "titleTranslated": "",
-        "cover": "https://makerworld.bblmw.com/makerworld/model/US53621bfba9c3da/design/2024-02-01_0f026d3624809.jpeg",
-        "likeCount": 90,
-        "collectionCount": 259,
-        "shareCount": 0,
-        "printCount": 300,
-        "downloadCount": 454,
-        "rawModelFileDownloadCount": 37,
-        "commentCount": 2,
-        "readCount": 0,
-        "designCreator": {
-            "uid": 2272274663,
-            "name": "PluNo",
-            "avatar": "https://public-cdn.bblmw.com/avatar/2272274663/2024-01-13_b14dc58f172d48.png",
-            "fanCount": 0,
-            "followCount": 0,
-            "isFollowed": false,
-            "nameHighlight": "",
-            "createTime": "",
-            "publicInstanceUploadCount": 0,
-            "backgroundUrl": "",
-            "mySelectDesign": null,
-            "level": 0,
-            "gradeType": 0,
-            "downloadCount": 1047,
-            "likeCount": 90,
-            "bannedPermission": {
-                "whole": false,
-                "comment": false,
-                "upload": false,
-                "redeem": false
-            },
-            "MWCount": {
-                "myDesignDownloadCount": 0,
-                "myInstanceDownloadCount": 0,
-                "designCount": 0
-            },
-            "certificated": false,
-            "hotScore": 0,
-            "score": 0,
-            "handle": "ManNor"
-        },
-        "titleHighlight": "Apple TV 4K HD Bracket VESA",
-        "createTime": "2024-02-01T18:57:50Z",
-        "hotScore": 3.75628149534029e-09,
-        "designScore": 7.341483852363161,
-        "score": 0,
-        "nsfw": false,
-        "status": 1,
-        "hasCollect": false,
-        "hasLike": false,
-        "hasDislike": false,
-        "isStaffPicked": false,
-        "pickReason": "",
-        "is_printable": true,
-        "is_official": false,
-        "is_point_redeemable": false,
-        "isExclusive": false,
-        "license": "BY-NC-SA",
-        "contest": {
-            "contestId": 0,
-            "rank": 0,
-            "status": 0,
-            "contestName": ""
-        },
-        "tags": [
-            "apple tv",
-            "apple"
-        ],
-        "customizedByMakerLab": false,
-        "preset": {
-            "type": "",
-            "filamentConfig": null,
-            "printerConfig": null,
-            "processConfig": null,
-            "printerSettings": [],
-            "file": {
-                "name": "",
-                "size": 0,
-                "url": ""
-            }
-        },
-        "coverLandscape": "",
-        "coverPortrait": "",
-        "boostCnt": 9,
-        "bomsNeeded": false,
-        "modelSource": 1,
-        "ext": "{\"by\":0,\"exp\":0,\"q\":\"apple\",\"qp\":{\"actualQuery\":\"apple\",\"baseEmbedThreshold\":0.74,\"exp\":0,\"query\":\"apple\",\"segWords\":[\"apple\"],\"synSegWords\":{\"apple\":[\"apples\",\"appl\"]}},\"rc\":[\"titleAndTagsSeg|75.11|0.4444|108.11\",\"titleAndTagsSyn|225.33|0.4444|10.89\",\"titleSeg|51.41|0.4444|56.49\"],\"rk\":\"108.11|8\"}"
-    },
-    {
-        "id": 794054,
-        "title": "iPhone dock with Apple watch charger",
-        "titleTranslated": "",
-        "cover": "https://makerworld.bblmw.com/makerworld/model/USa254cbd3bab6b8/design/2024-11-17_807bf0e4d9c4e.jpg",
-        "likeCount": 224,
-        "collectionCount": 461,
-        "shareCount": 0,
-        "printCount": 132,
-        "downloadCount": 351,
-        "rawModelFileDownloadCount": 60,
-        "commentCount": 21,
-        "readCount": 0,
-        "designCreator": {
-            "uid": 2817452611,
-            "name": "Bux",
-            "avatar": "https://public-cdn.bblmw.com/avatar/2817452611/2024-11-08_44e32d1b56e55.jpg",
-            "fanCount": 0,
-            "followCount": 0,
-            "isFollowed": false,
-            "nameHighlight": "",
-            "createTime": "",
-            "publicInstanceUploadCount": 0,
-            "backgroundUrl": "",
-            "mySelectDesign": null,
-            "level": 0,
-            "gradeType": 0,
-            "downloadCount": 1759,
-            "likeCount": 438,
-            "bannedPermission": {
-                "whole": false,
-                "comment": false,
-                "upload": false,
-                "redeem": false
-            },
-            "MWCount": {
-                "myDesignDownloadCount": 0,
-                "myInstanceDownloadCount": 0,
-                "designCount": 0
-            },
-            "certificated": false,
-            "hotScore": 0,
-            "score": 0,
-            "handle": "Buxg"
-        },
-        "titleHighlight": "iPhone dock with Apple watch charger",
-        "createTime": "2024-11-16T22:52:17Z",
-        "hotScore": 0.9166391221467047,
-        "designScore": 7.6128310304073565,
-        "score": 0,
-        "nsfw": false,
-        "status": 1,
-        "hasCollect": false,
-        "hasLike": false,
-        "hasDislike": false,
-        "isStaffPicked": false,
-        "pickReason": "",
-        "is_printable": true,
-        "is_official": false,
-        "is_point_redeemable": false,
-        "isExclusive": true,
-        "license": "Standard Digital File License",
-        "contest": {
-            "contestId": 0,
-            "rank": 0,
-            "status": 0,
-            "contestName": ""
-        },
-        "tags": [
-            "iphone",
-            "iphone dock",
-            "stand",
-            "charging",
-            "charging station",
-            "charging base",
-            "apple watch"
-        ],
-        "customizedByMakerLab": false,
-        "preset": {
-            "type": "",
-            "filamentConfig": null,
-            "printerConfig": null,
-            "processConfig": null,
-            "printerSettings": [],
-            "file": {
-                "name": "",
-                "size": 0,
-                "url": ""
-            }
-        },
-        "coverLandscape": "https://makerworld.bblmw.com/makerworld/model/USa254cbd3bab6b8/design/2024-11-17_6f88f88a954fa.jpg",
-        "coverPortrait": "",
-        "boostCnt": 17,
-        "bomsNeeded": false,
-        "modelSource": 1,
-        "ext": "{\"by\":0,\"exp\":0,\"q\":\"apple\",\"qp\":{\"actualQuery\":\"apple\",\"baseEmbedThreshold\":0.74,\"exp\":0,\"query\":\"apple\",\"segWords\":[\"apple\"],\"synSegWords\":{\"apple\":[\"apples\",\"appl\"]}},\"rc\":[\"titleAndTagsSeg|64.14|0.5952|108.03\",\"titleSeg|51.41|0.5952|57.53\"],\"rk\":\"108.03|9\"}"
-    }
-]
+    "__typename": "ProductEntity"
+},

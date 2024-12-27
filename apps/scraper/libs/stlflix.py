@@ -264,8 +264,10 @@ class StlflixProductScrap:
         self._apply_limit()
         return self.results
 
-    def save_file(self):
-        modeled_data = self.to_model_data()
+    def save_file(self, is_to_model=True):
+        modeled_data = self.results
+        if is_to_model:
+            modeled_data = self.to_model_data()       
         with open("data.json", "w") as f:
             json.dump(modeled_data, f, indent=4)
 
@@ -367,5 +369,5 @@ class StlflixProductScrap:
 if __name__ == "__main__":
     x = StlflixProductScrap('apple', 5)
     x.get_products()
-    x.save_file()
+    x.save_file(False)
 
