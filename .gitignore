@@ -94,3 +94,13 @@ target/
 __pycache__/
 local_settings.py
 .env
+
+# Ignore logs directory
+logs/*
+# Allow .gitkeep
+!logs/.gitkeep
+
+
+# Ignore config files
+config.json
+wc_config.json
