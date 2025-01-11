@@ -46,9 +46,9 @@ class ProductScraperProcessor:
             internal_product = Product(
                 scraped_by=self.scraping_process,
                 sku=product_data['sku'],
-                title=product_data['title'],
+                title=product_data['title'][:1000],
+                category=product_data['category'][:500],
                 description=product_data['description'],
-                category=product_data['category'],
                 source_website=website,
                 license=internal_license,
                 is_commercial_allowed=product_data.get('is_commercial_allowed', False),

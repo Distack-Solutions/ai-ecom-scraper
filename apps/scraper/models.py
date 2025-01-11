@@ -120,8 +120,8 @@ class Product(models.Model):
     ]
     sku = models.CharField(max_length=50, unique=True, null=True, blank=True)
     scraped_by = models.ForeignKey(ScrapingProcess, on_delete=models.CASCADE, verbose_name="Scraped By")
-    title = models.CharField(max_length=255, verbose_name="Product Title")
-    category = models.CharField(max_length=255, null=True, blank=True, verbose_name="Category")
+    title = models.CharField(max_length=1000, verbose_name="Product Title")
+    category = models.CharField(max_length=500, null=True, blank=True, verbose_name="Category")
     description = models.TextField(verbose_name="Description")
     thumbnail = models.OneToOneField(ThumbnailImage, on_delete=models.SET_NULL, null=True, blank=True, verbose_name="Thumbnail")
     source_website = models.ForeignKey(SourceWebsite, on_delete=models.CASCADE, verbose_name="Source Website")
