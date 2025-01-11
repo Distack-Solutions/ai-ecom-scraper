@@ -33,9 +33,15 @@ SECRET_KEY = 'django-insecure-ax!#8wik1)t9opt4q*#jtv=f1taq$5)@6dzt^s+c_#pak#ysh@
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False if os.environ["DEBUG"] == 'False' else True
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = os.environ.get("ALLOWED_HOSTS", "localhost,127.0.0.1").split(",")
 
-# CSRF_TRUSTED_ORIGINS = ['*']
+# Add the scheme (https://) to the ALLOWED_HOSTS for CSRF_TRUSTED_ORIGINS
+CSRF_TRUSTED_ORIGINS = []
+
+# f"https://{host}" if not host.startswith("http") else host for host in ALLOWED_HOSTS
+for host in ALLOWED_HOSTS:
+    CSRF_TRUSTED_ORIGINS.append(f'http://{host}')
+    CSRF_TRUSTED_ORIGINS.append(f'https://{host}')
 
 # Application definition
 
