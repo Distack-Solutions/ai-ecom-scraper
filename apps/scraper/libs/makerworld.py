@@ -84,7 +84,7 @@ class MakerWorldProductScrap:
                     "sku": f'{self.key}-{str(product.get("id", ""))}',
                     "title": product.get("title", ""),
                     "description": ", ".join(product.get("tags", [])) if product.get("tags") else "No description available",
-                    "category": ", ".join(product.get("tags", [])) if product.get("tags") else None,
+                    "category": ", ".join(product.get("tags", [])) if product.get("tags") else "",
                     "license": license_type,
                     "thumbnail_url": product.get("cover", ""),
                     "images": [product.get("cover")] if product.get("cover") else [],

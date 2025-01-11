@@ -1,6 +1,7 @@
 import requests
 import json
 from django.conf import settings
+import logging
 
 COMMERCIAL_LICENSE_IDS = settings.COMMERCIAL_LICENSE_IDS
 
@@ -272,6 +273,8 @@ HEADERS = {
         "csrftoken=E7hV5lTXu67DdQploe0KTGkMEpZL68vw"
     ),
 }
+logger = logging.getLogger('scraper')
+
 
 
 class PrintablesProductScrap:
@@ -323,6 +326,7 @@ class PrintablesProductScrap:
         if not thumbnail:
             return None
         return self.get_image_path(thumbnail)
+ 
 
     def get_gallery_images(self, product):
         gallery_images = []
@@ -389,7 +393,7 @@ class PrintablesProductScrap:
                     
                 if license_data.get("id") and license_data.get("id").isdigit():
                     if int(license_data.get("id")) not in COMMERCIAL_LICENSE_IDS:
-                        print("Skipping.. since license id is:", license_data.get("id"))
+                        logger.info(f'Skipping product "{product.get("name")}" Since license id is: {license_data.get("id")}')
                         continue
                 else:
                     print("Skipping.. since license id is not a digit")
@@ -400,7 +404,7 @@ class PrintablesProductScrap:
                     "sku": f'{self.key}-{product.get("id")}',
                     "title": product.get("name"),
                     "description": product.get("description") or "No description available",
-                    "category": category,
+                    "category": category if category else "",
                     "thumbnail_url": self.get_thumnail(product),
                     "images": self.get_gallery_images(product),
                     "license": license_data,

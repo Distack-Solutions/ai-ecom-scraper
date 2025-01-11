@@ -51,6 +51,7 @@ class AIGenerator:
             # Save to Django cache
             cache.set('api_key', api_key, timeout=None)  # Cache indefinitely
             cache.set('prompt', prompt, timeout=None)
+
         else:
             print("Reading from cache")
 
@@ -169,9 +170,11 @@ class AIGenerator:
             return self._handle_incomplete_response({}) 
 
         except Exception as e:
+            error_response = e.response.json()
+            error_message = error_response.get('error', {}).get('message', '')
             print(f"Unexpected Error: {e}")
-            return self._handle_incomplete_response({})  # Pass fallback response for unexpected errors
-
+            raise Exception(error_message)
+        
     def get_response_content(self):
         """
         Get the validated AI response content.

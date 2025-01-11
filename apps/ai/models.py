@@ -24,7 +24,7 @@ class ProductAIVersion(models.Model):
             if self.product.thumbnail.url:
                 thumbnail_url = self.product.thumbnail.url
 
-            if self.product.thumbnail.image.url:
+            if self.product.thumbnail.image:
                 thumbnail_url = self.product.thumbnail.image.url
 
             if thumbnail_url:

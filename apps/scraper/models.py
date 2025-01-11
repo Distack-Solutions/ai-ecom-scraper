@@ -200,7 +200,7 @@ class Product(models.Model):
             print(product)
 
     def __str__(self):
-        return self.title
+        return f'{self.id} {self.title} ({self.source_website})'
 
 
     class Meta:

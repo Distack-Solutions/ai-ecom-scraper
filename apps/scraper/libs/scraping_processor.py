@@ -42,6 +42,7 @@ class ProductScraperProcessor:
                 internal_license = License.objects.create(json=product_data['license'])
                 logger.info(f"License created for product {product_data['sku']}")
 
+
             # Create Product instance
             internal_product = Product(
                 scraped_by=self.scraping_process,

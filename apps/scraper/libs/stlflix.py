@@ -330,7 +330,7 @@ class StlflixProductScrap:
                 if sc and sc.get('attributes'):
                     categories.append(sc['attributes'].get('name'))
 
-            category_str = ",".join(filter(None, categories)) if categories else None
+            category_str = ",".join(filter(None, categories)) if categories else ""
 
             # Gallery images
             images = []

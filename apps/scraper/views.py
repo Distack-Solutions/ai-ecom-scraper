@@ -1,3 +1,4 @@
+from django.utils.html import escape
 from pathlib import Path
 from django.contrib.auth.decorators import login_required
 from .models import *
@@ -17,7 +18,7 @@ from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 from apps.scraper.libs.wc import WooCommerceManager
 
-from django.http import JsonResponse
+from django.http import JsonResponse, FileResponse, HttpResponse
 from django.views.decorators.csrf import csrf_exempt
 from .models import Product
 from django.http import StreamingHttpResponse
@@ -84,12 +85,19 @@ def approve_product(request, product_id):
     # Get the product by ID or return a 404 if not found
     product = get_object_or_404(Product, id=product_id)
     
-    # Change the product status to approved
-    product.status = 'approved'
-    product.save()
 
-    # Display a success message
-    messages.success(request, f'Product "{product.title}" has been approved.')
+    # Check if the product is approved and doesn't already have an AI version
+    if not hasattr(product, 'ai_version'):
+        try:
+            ai_details = product.generate_ai_details()
+            ai_object = product.create_or_update(ai_details)
+            # Change the product status to approved
+            product.status = 'approved'
+            product.save()
+            # Display a success message
+            messages.success(request, f'Product "{product.title}" has been approved.')
+        except Exception as e:
+            messages.error(request, f'Error: {e}')
     
     return redirect('scraper:product_detail', product_id=product.id)
     # Redirect to the product list or some other page
@@ -138,24 +146,35 @@ def view_screenshot(request, product_id):
     
     # Initialize variables
     screenshot_url = None
+    file_path = None
     is_pdf = False
     is_image = False
     
-    # Check if the product has a screenshot, and determine the type (image or PDF)
+    # Check if the product has a screenshot and determine the type
     if product.page_screenshot:
         if product.page_screenshot.file:
             screenshot_url = product.page_screenshot.file.url
+            file_path = product.page_screenshot.file.path
         elif product.page_screenshot.url:
             screenshot_url = product.page_screenshot.url
         
-        # Determine the file type based on the extension
+        # Determine the file type
         if screenshot_url:
             file_extension = os.path.splitext(screenshot_url)[1].lower()
             if file_extension == '.pdf':
                 is_pdf = True
             elif file_extension in ['.jpg', '.jpeg', '.png']:
                 is_image = True
-    
+
+    # Serve PDF inline if applicable
+    if is_pdf and screenshot_url:
+        if file_path:
+            try:
+                return FileResponse(open(file_path, 'rb'), content_type='application/pdf')
+            except FileNotFoundError:
+                return HttpResponse("The requested file was not found.", status=404)
+        return HttpResponse(f'<iframe src="{escape(screenshot_url)}" width="100%" height="100%" frameborder="0"></iframe>')
+
     # Pass the product, screenshot URL, and file type to the template
     context = {
         'product': product,
@@ -163,7 +182,6 @@ def view_screenshot(request, product_id):
         'is_pdf': is_pdf,
         'is_image': is_image,
         'page': 'products'
-
     }
     
     return render(request, 'volt/view_screenshot.html', context)
@@ -502,11 +520,20 @@ def process_products_sse(request):
                 # Perform operation
                 if operation == 'delete':
                     product.delete()
-                    time.sleep(1)
+                    # time.sleep(1)
                 
                 if operation == 'approve' and product.status != 'approved':
-                    product.status = 'approved'
-                    product.save()
+                    try:
+                        ai_details = product.generate_ai_details()
+                        ai_object = product.create_or_update(ai_details)
+                        # Change the product status to approved
+                        product.status = 'approved'
+                        product.save()
+                        # Display a success message
+                        output['message'] = 'Product has been approved.'
+                    except Exception as e:
+                        raise Exception(f'{e}')
+                    
 
                 if operation == 'publish' and product.status != 'published':
                     wc_manager = WooCommerceManager()
@@ -552,7 +579,7 @@ def process_products_sse(request):
                 yield f"data: {json.dumps(output)}\n\n"
                 # return  # Stop processing on error
 
-        yield f"data: {json.dumps({'status': 'completed', 'message': f'Products {operationed} successfully'})}\n\n"
+        yield f"data: {json.dumps({'status': 'completed', 'message': f'Products processed successfully'})}\n\n"
 
     response = StreamingHttpResponse(event_stream(), content_type="text/event-stream")
     response["Cache-Control"] = "no-cache"
