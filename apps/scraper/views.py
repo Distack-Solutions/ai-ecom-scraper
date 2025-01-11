@@ -143,8 +143,8 @@ def view_screenshot(request, product_id):
     
     # Check if the product has a screenshot, and determine the type (image or PDF)
     if product.page_screenshot:
-        if product.page_screenshot.image:
-            screenshot_url = product.page_screenshot.image.url
+        if product.page_screenshot.file:
+            screenshot_url = product.page_screenshot.file.url
         elif product.page_screenshot.url:
             screenshot_url = product.page_screenshot.url
         

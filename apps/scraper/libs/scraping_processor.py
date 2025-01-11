@@ -4,7 +4,9 @@ from apps.scraper.libs.makerworld import MakerWorldProductScrap
 from apps.scraper.libs.stlflix import StlflixProductScrap
 from apps.scraper.models import *
 import time
-
+import requests
+from django.core.files.base import ContentFile
+from django.core.files.temp import NamedTemporaryFile
 
 logger = logging.getLogger('scraper')
 
@@ -61,11 +63,29 @@ class ProductScraperProcessor:
 
             # Process the preview file (Page Screenshot)
             if product_data.get('pdf_file_url'):
-                internal_page_screenshot = PageScreenshot.objects.create(
-                    url=product_data['pdf_file_url']
-                )
-                internal_product.page_screenshot = internal_page_screenshot
-                logger.info(f"Page screenshot created for product {product_data['sku']}")
+                try:
+                    # Download the file
+                    response = requests.get(product_data['pdf_file_url'], stream=True)
+                    response.raise_for_status()  # Raise an error for bad status codes
+
+                    # Get the filename from the URL or fallback to a default
+                    filename = product_data['pdf_file_url'].split("/")[-1] or "screenshot.pdf"
+
+                    # Read the file content
+                    file_content = response.content
+
+                    # Create a PageScreenshot instance with the file
+                    internal_page_screenshot = PageScreenshot.objects.create(
+                        file=ContentFile(file_content, name=filename)
+                    )
+                    internal_product.page_screenshot = internal_page_screenshot
+
+                    logger.info(f"Page screenshot saved locally for product {product_data['sku']}")
+
+                except requests.RequestException as e:
+                    logger.error(f"Error downloading file: {e}")
+                except Exception as e:
+                    logger.error(f"Error saving screenshot for product {product_data['sku']}: {e}")
 
             # Save the product
             internal_product.save()

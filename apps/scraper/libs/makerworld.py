@@ -1,7 +1,7 @@
 import requests
 from bs4 import BeautifulSoup
 import json
-
+from django.conf import settings
 
 class MakerWorldProductScrap:
     def __init__(self, query, limit):
@@ -56,7 +56,7 @@ class MakerWorldProductScrap:
 
         :return: List of raw product data.
         """
-        search_url = f"https://makerworld.com/en/search/models?keyword={self.query}"
+        search_url = f"https://makerworld.com/en/search/models?keyword={self.query}&licenses=BY,BY-SA,BY-ND"
         html_content = self._fetch_html_from_microservice(search_url)
         self.results = self._extract_json_from_html(html_content)
         self._apply_limit()
@@ -78,14 +78,17 @@ class MakerWorldProductScrap:
         model_data = []
         for product in self.results:
             try:
+                license_type = product.get("license")
+
                 model = {
                     "sku": f'{self.key}-{str(product.get("id", ""))}',
                     "title": product.get("title", ""),
                     "description": ", ".join(product.get("tags", [])) if product.get("tags") else "No description available",
                     "category": ", ".join(product.get("tags", [])) if product.get("tags") else None,
+                    "license": license_type,
                     "thumbnail_url": product.get("cover", ""),
                     "images": [product.get("cover")] if product.get("cover") else [],
-                    "is_commercial_allowed": product.get("is_printable", False),
+                    "is_commercial_allowed": True,
                 }
                 model_data.append(model)
             except Exception as e:

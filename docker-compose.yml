@@ -1,0 +1,51 @@
+services:
+
+  web:  # Django application
+    build: .
+    ports:
+      - "${HOST_MACHINE_PORT}:8000"
+    env_file:
+      - .env
+    depends_on:
+      - db
+    volumes:
+      - .:/app  # Mount the whole project directory (including staticfiles and media)
+      - ./staticfiles:/app/staticfiles  # Mount static files directory for Nginx
+      - ./media:/app/media  # Mount media directory for uploaded files
+    restart: always  # Restart the container if it crashes
+    command: >
+      sh -c "
+      if [ \"$DEBUG\" = \"True\" ]; then
+        python manage.py runserver 0.0.0.0:8000;
+      else
+        gunicorn software.wsgi:application --bind 0.0.0.0:8000 --workers 3;
+      fi
+      "
+
+  nginx:  # Nginx for reverse proxy and static file serving
+    build:
+      context: .
+      dockerfile: Dockerfile.nginx  # Make sure to use the correct Dockerfile for Nginx
+    ports:
+      - "80:80"  # Expose port 80 for Nginx
+      - "443:443" # Expose HTTPS
+    volumes:
+      - ./staticfiles:/app/staticfiles  # Mount static files directory for Nginx
+      - ./media:/app/media  # Mount media files from local directory
+      - /home/ubuntu/certs:/etc/ssl/private:ro  # Mount SSL certificate and key for Nginx
+    depends_on:
+      - web
+
+  db:  # PostgreSQL database
+    image: postgres:15
+    environment:
+      POSTGRES_USER: django
+      POSTGRES_PASSWORD: django
+      POSTGRES_DB: django_db
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+volumes:
+  postgres_data:

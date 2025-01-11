@@ -1,5 +1,8 @@
 import requests
 import json
+from django.conf import settings
+
+COMMERCIAL_LICENSE_IDS = settings.COMMERCIAL_LICENSE_IDS
 
 # GraphQL endpoint
 url = "https://api.printables.com/graphql/"
@@ -380,6 +383,18 @@ class PrintablesProductScrap:
                 # Extract license details
                 license_data = product.get("license")
 
+                if not license_data:
+                    print("Skipping.. since license not available")
+                    continue
+                    
+                if license_data.get("id") and license_data.get("id").isdigit():
+                    if int(license_data.get("id")) not in COMMERCIAL_LICENSE_IDS:
+                        print("Skipping.. since license id is:", license_data.get("id"))
+                        continue
+                else:
+                    print("Skipping.. since license id is not a digit")
+                    continue
+ 
                 # Construct the product data
                 product_data = {
                     "sku": f'{self.key}-{product.get("id")}',
@@ -389,6 +404,7 @@ class PrintablesProductScrap:
                     "thumbnail_url": self.get_thumnail(product),
                     "images": self.get_gallery_images(product),
                     "license": license_data,
+                    "is_commercial_allowed": True,
                     "pdf_file_url": self.get_media_url(product.get("pdfFilePath"))
                     if product.get("pdfFilePath")
                     else None,

@@ -91,12 +91,11 @@ class ScrapingProcess(models.Model):
 
 
 class PageScreenshot(models.Model):
-    image = models.ImageField(upload_to="page-screenshot", null=True, blank=True)
+    file = models.FileField(upload_to="page-screenshot", null=True, blank=True)
     url = models.URLField(null=True, blank=True)
 
 class License(models.Model):
     json = models.JSONField(null=True, blank=True)
-
 
 class ThumbnailImage(models.Model):
     image = models.ImageField(upload_to='thumbnail_images/', null=True, blank=True, verbose_name="Thumbnail Image")

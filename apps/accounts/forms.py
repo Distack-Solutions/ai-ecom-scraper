@@ -6,6 +6,9 @@ import json
 from django import forms
 from django.conf import settings
 
+CONFIG_FILE = os.path.join(settings.BASE_DIR, "config.json") 
+WC_CONFIG_FILE = os.path.join(settings.BASE_DIR, "wc_config.json")
+
 
 class EditProfileForm(UserChangeForm):
 
@@ -24,10 +27,6 @@ class AdminSetPasswordForm(SetPasswordForm):
     pass
 
 
-# Path to the configuration file
-# Path to the configuration file
-CONFIG_FILE = os.path.join(settings.BASE_DIR, "config.json") 
-WC_CONFIG_FILE = os.path.join(settings.BASE_DIR, "wc_config.json")
 
 class ConfigForm(forms.Form):
     api_key = forms.CharField(label="API Key", max_length=255, required=False)
