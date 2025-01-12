@@ -79,9 +79,11 @@ class MakerWorldProductScrap:
         for product in self.results:
             try:
                 license_type = product.get("license")
+                author_name = product.get("designCreator", {}).get("name", "")
 
                 model = {
                     "sku": f'{self.key}-{str(product.get("id", ""))}',
+                    "author_name": author_name,
                     "title": product.get("title", ""),
                     "description": ", ".join(product.get("tags", [])) if product.get("tags") else "No description available",
                     "category": ", ".join(product.get("tags", [])) if product.get("tags") else "",

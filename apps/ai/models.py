@@ -14,6 +14,42 @@ class ProductAIVersion(models.Model):
     focus_keyphrase = models.CharField(max_length=255, verbose_name="Focus Keyphrase")
     product = models.OneToOneField(Product, on_delete=models.CASCADE, related_name="ai_version", verbose_name="Product")
 
+    def format_description(self):
+        description = f'{self.expanded_description} \n\n'
+        if self.product.author_name:
+            description += f'Design By: {self.product.author_name}\n'
+        description += f'Product Link: {self.product.model_url}\n'
+        return description
+
+    def get_categories(self):
+        category_field = self.product.category
+        main_categories = []
+        if category_field:
+            category_list = category_field.split(",")
+            main_categories = [{'name': category.strip()} for category in category_list if category.strip()]
+        return main_categories
+
+    def get_meta_data(self):
+        meta_fields = [
+            {
+                'key': 'yoast_wpseo_focuskw',
+                'value': self.focus_keyphrase
+            },
+            {
+                'key': 'yoast_wpseo_metadesc',
+                'value': self.meta_description
+            },
+            {
+                'key': 'ModelID',
+                'value': self.product.model_id
+            },
+            {
+                'key': 'ModelURL',
+                'value': self.product.model_url
+            }            
+        ]
+        return meta_fields
+
     def get_images(self):
         images = self.product.images.all()
         wc_images = []

@@ -118,6 +118,11 @@ class Product(models.Model):
         ('published', 'Published'),
         ('archived', 'Archived'),
     ]
+    
+    model_id = models.IntegerField(unique=True, editable=False, null=True, blank=True)
+    model_url = models.URLField(null=True, blank=True)
+    author_name = models.CharField(max_length=255, null=True, blank=True)
+    wocommerce_url = models.URLField(null=True, blank=True)
     sku = models.CharField(max_length=50, unique=True, null=True, blank=True)
     scraped_by = models.ForeignKey(ScrapingProcess, on_delete=models.CASCADE, verbose_name="Scraped By")
     title = models.CharField(max_length=1000, verbose_name="Product Title")
@@ -133,6 +138,19 @@ class Product(models.Model):
     created_at = models.DateTimeField(auto_now_add=True, verbose_name="Created At")
     updated_at = models.DateTimeField(auto_now=True, verbose_name="Updated At")
     publishing_message = models.CharField(max_length=255, null=True, blank=True)
+
+    def get_meta_data(self):
+        meta_fields = [
+            {
+                'key': 'ModelID',
+                'value': self.model_id
+            },
+            {
+                'key': 'ModelURL',
+                'value': self.model_url
+            }
+        ]
+        return meta_fields
 
     def get_website_url(self):
         url = "#"
@@ -198,6 +216,7 @@ class Product(models.Model):
     def populate_printables_data(self, products):
         for product in products:
             print(product)
+
 
     def __str__(self):
         return f'{self.id} {self.title} ({self.source_website})'

@@ -352,13 +352,13 @@ class StlflixProductScrap:
 
             # Build a dictionary that aligns with your Product model fields
             product_data = {
-                'sku': f'{self.key}-{slug}',  
+                'sku': f'{self.key}-{slug}',
                 'title': title or None,
                 'description': description or None,
                 'category': category_str,  # comma-separated categories or None
                 'thumbnail_url': thumbnail_url,  # This can be used to create a ThumbnailImage object later
                 'images': images,  # List of URLs for Image model creation
-                'is_commercial_allowed': is_commercial_allowed,
+                'is_commercial_allowed': True,
             }
 
             products_model_data.append(product_data)

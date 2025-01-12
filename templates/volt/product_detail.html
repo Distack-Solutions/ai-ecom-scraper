@@ -204,10 +204,34 @@
         </div>
         
       
+        <table class="table table-bordered mb-3">
+          <tbody>
+              <tr>
+                  <td><b>Model ID</b></td>
+                  <td>{{ product.model_id }}</td>
+              </tr>
+              <tr>
+                  <td><b>Scraped At</b></td>
+                  <td>{{ product.created_at }}</td>
+              </tr>
+              <tr>
+                  <td><b>Category</b></td>
+                  <td style="word-wrap: break-word; white-space: normal;">{{ product.category }}</td>
+              </tr>
+              <tr>
+                  <td><b>Author Name</b></td>
+                  <td>
+                      {% if product.author_name %}
+                          {{ product.author_name }}
+                      {% else %}
+                          Not Available
+                      {% endif %}
+                  </td>
+              </tr>
+          </tbody>
+      </table>
+  
         
-        
-        <p><b>Scraped At:</b> {{ product.created_at }}</p>
-        <p><b>Category:</b> {{ product.category }}</p>
 
         <!-- Buttons -->
         <div class="row">
@@ -260,9 +284,12 @@
   </div>
 
   <div class="card-body">
-    
     {% if product.license %}
-      {{ product.license.json.content|safe }}
+      {% if product.source_website.script_name == 'printables.py' %}
+        {{ product.license.json.content|safe }}
+      {% else %}
+        {{ product.license.json }}
+      {% endif %}
     {% else %}
       {% if product.is_commercial_allowed %}
 

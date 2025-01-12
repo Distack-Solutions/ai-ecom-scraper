@@ -54,6 +54,9 @@ class ProductScraperProcessor:
                 license=internal_license,
                 is_commercial_allowed=product_data.get('is_commercial_allowed', False),
             )
+            
+            if product_data.get('author_name'):
+                internal_product.author_name = product_data.get('author_name')
 
             # If there's a thumbnail, associate it with the product
             if product_data.get('thumbnail_url'):

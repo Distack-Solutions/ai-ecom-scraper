@@ -233,6 +233,19 @@ query SearchModels(
         ...PreviewFile
         __typename
       }
+      user {
+        id
+        handle
+        verified
+        dateVerified
+        publicUsername
+        avatarFilePath
+        badgesProfileLevel {
+          profileLevel
+          __typename
+        }
+        __typename
+      }
       __typename
     }
     __typename
@@ -384,6 +397,8 @@ class PrintablesProductScrap:
                 # Extract category name
                 category = product.get("category", {}).get("name")
 
+                author_name = product.get("user", {}).get("publicUsername", "")
+
                 # Extract license details
                 license_data = product.get("license")
 
@@ -402,6 +417,7 @@ class PrintablesProductScrap:
                 # Construct the product data
                 product_data = {
                     "sku": f'{self.key}-{product.get("id")}',
+                    "author_name": author_name,
                     "title": product.get("name"),
                     "description": product.get("description") or "No description available",
                     "category": category if category else "",

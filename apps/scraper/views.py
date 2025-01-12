@@ -96,6 +96,12 @@ def approve_product(request, product_id):
             product.save()
             # Display a success message
             messages.success(request, f'Product "{product.title}" has been approved.')
+
+            next_under_review_product = Product.objects.filter(status = 'under_review').first()
+            if next_under_review_product:
+                messages.info(request, f'Next product to approve is: "{next_under_review_product.title}"')
+                return redirect('scraper:product_detail', product_id=next_under_review_product.id)
+
         except Exception as e:
             messages.error(request, f'Error: {e}')
     
@@ -538,7 +544,10 @@ def process_products_sse(request):
                 if operation == 'publish' and product.status != 'published':
                     wc_manager = WooCommerceManager()
                     try:
-                        wc_manager.upload_product(product_ai_version=product.ai_version)
+                        product_wocommerce_response = wc_manager.upload_product(
+                            product_ai_version=product.ai_version
+                        )
+                        product.wocommerce_url = product_wocommerce_response.get('permalink')
                         product.status = 'published'
                         product.save()
                     except Exception as e:
@@ -547,10 +556,11 @@ def process_products_sse(request):
                         yield f"data: {json.dumps(output)}\n\n"
 
                         try:
-                            wc_manager.upload_product(
+                            product_wocommerce_response = wc_manager.upload_product(
                                 product_ai_version=product.ai_version,
                                 exclude_images=True
                             )
+                            product.wocommerce_url = product_wocommerce_response.get('permalink')
                             product.publishing_message = "Published without images"
                             product.status = 'published'
                             product.save()

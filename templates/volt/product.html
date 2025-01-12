@@ -13,7 +13,7 @@
   </div>
   <div class="col-md-6 d-flex justify-content-end">
     <a href="{% url 'scraper:initiate-process' %}" class="btn btn-primary d-flex align-items-center px-3">
-      <span class="material-icons me-2">autorenew</span> Scrape products
+      <span class="material-icons me-2">autorenew</span> New Process
     </a>
   </div>
 </div>
@@ -124,7 +124,14 @@
                     {{ product.title }}
                   </a>
                   {% if product.status == 'published' %}
-                    <img title="This product is published on woocommerce" width="30" src="{% static 'img/woocommerce.webp' %}" alt="Published">
+                    {% if product.wocommerce_url %}
+                      <a href="{{ product.wocommerce_url }}" target="_blank">
+                        <img title="This product is published on woocommerce - Click to view" width="30" src="{% static 'img/woocommerce.webp' %}" alt="Published">                      
+                      </a>
+                    {% else %}
+                      <img title="This product is published on woocommerce" width="30" src="{% static 'img/woocommerce.webp' %}" alt="Published">
+                    {% endif %}
+                    
                   {% endif %}
                 </h5>
                 <div class="categories-container">

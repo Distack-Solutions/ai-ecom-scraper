@@ -67,7 +67,7 @@ class WooCommerceManager:
             consumer_secret=self.consumer_secret,
             wp_api=True,
             version="wc/v3",  # WooCommerce API version
-            timeout=30
+            timeout=150
         )
 
     def get_client(self):
@@ -107,19 +107,25 @@ class WooCommerceManager:
 
     def create_single_product_data(self, ai_version, exclude_images=False):
         """Prepare data to upload product with AI-generated details."""
+        product_meta_fields = ai_version.get_meta_data()
+        product_category_list = ai_version.get_categories()
+        formatted_description = ai_version.format_description()
+
         # Collect product data
         product_data = {
             "name": ai_version.title,
             "type": "simple",
             "regular_price": "0",  # Set this to 0 for testing (draft status)
-            "description": ai_version.expanded_description,  # Use the AI-generated expanded description
+            "description": formatted_description,  # Use the AI-generated expanded description
             "short_description": ai_version.short_description,  # Use the AI-generated short description
-            "categories": [{"id": 9}],  # Example category ID (adjust as needed)
-            "status": "draft"  # Set to 'draft' for testing
+            "categories": product_category_list,  # Example category ID (adjust as needed)
+            "status": "draft",  # Set to 'draft' for testing
+            "meta_data": product_meta_fields
         }
         if not exclude_images:
             product_data['images'] = ai_version.get_images()
 
+        print(json.dumps(product_data, indent=4))
         return product_data
 
     def create_bulk_product_data(self, ai_version_list):
