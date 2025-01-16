@@ -32,6 +32,8 @@ from django.contrib import messages
 from django.db.models import Q
 from django.conf import settings
 from datetime import datetime
+from .forms import ProductFilterForm
+
 
 def makerworld(request):
     scraper = MakerWorldProductScrap(query="apple", limit=10)
@@ -42,10 +44,19 @@ def makerworld(request):
 
 @login_required
 def all_products(request):
-    # Retrieve query parameters
-    search_query = request.GET.get('search', '')
-    status_filter = request.GET.get('status', '')
-    per_page = int(request.GET.get('per_page', 10))  # Default to 10 products per page
+    # Instantiate the form with GET parameters
+    form = ProductFilterForm(request.GET)
+    search_query = ''
+    status_filter = 'all'
+    marketplace_filter = 'all'
+    per_page = 10
+
+    # Validate the form
+    if form.is_valid():
+        search_query = form.cleaned_data.get('search') or ''
+        status_filter = form.cleaned_data.get('status') or 'all'
+        marketplace_filter = form.cleaned_data.get('marketplace') or'all'
+        per_page = form.cleaned_data.get('per_page') or 10
 
     # Start with all products
     products = Product.objects.all().order_by('-created_at')
@@ -55,23 +66,24 @@ def all_products(request):
         products = products.filter(title__icontains=search_query)
 
     # Apply status filter
-    if status_filter and status_filter != 'all':
+    if status_filter != 'all':
         products = products.filter(status=status_filter)
 
+    # Apply marketplace filter
+    if marketplace_filter != 'all':
+        products = products.filter(source_website__name=marketplace_filter)
+
     # Implement pagination
-    paginator = Paginator(products, per_page)  # Show per_page products per page
-    page_number = request.GET.get('page')  # Get the page number from the request
-    page_obj = paginator.get_page(page_number)  # Get the relevant page
+    paginator = Paginator(products, per_page)
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
 
     context = {
-        'products': page_obj,  # Pass the paginated products
-        'search_query': search_query,
-        'status_filter': status_filter,
-        'per_page': per_page,  # Pass per_page for UI controls
+        'products': page_obj,
+        'filter_form': form,  # Pass the form to the template
         'page': 'products',
     }
     return render(request, "volt/product.html", context)
-
 
 @login_required
 def delete_product(request, product_id):
@@ -79,6 +91,24 @@ def delete_product(request, product_id):
     product.delete()
     messages.success(request, "Product has been deleted successfully.")
     return redirect('scraper:products')
+
+
+@login_required
+def next_product(request, product_id):
+    # Get the product by ID or return a 404 if not found
+    product = get_object_or_404(Product, id=product_id)
+
+    if product.status != 'approved':
+        return redirect("scraper:product_detail", product_id=product_id)
+
+    next_under_review_product = Product.objects.filter(status = 'under_review').first()
+    if next_under_review_product:
+        messages.info(request, f'Next product to approve is: "{next_under_review_product.title}"')
+        return redirect('scraper:product_detail', product_id=next_under_review_product.id)
+
+    return redirect("scraper:product_detail", product_id=product_id)
+
+
 
 @login_required
 def approve_product(request, product_id):
@@ -94,20 +124,15 @@ def approve_product(request, product_id):
             # Change the product status to approved
             product.status = 'approved'
             product.save()
+
+
             # Display a success message
             messages.success(request, f'Product "{product.title}" has been approved.')
-
-            next_under_review_product = Product.objects.filter(status = 'under_review').first()
-            if next_under_review_product:
-                messages.info(request, f'Next product to approve is: "{next_under_review_product.title}"')
-                return redirect('scraper:product_detail', product_id=next_under_review_product.id)
 
         except Exception as e:
             messages.error(request, f'Error: {e}')
     
     return redirect('scraper:product_detail', product_id=product.id)
-    # Redirect to the product list or some other page
-    return redirect('scraper:products')  # Adjust URL name accordingly
 
 
 @login_required
@@ -195,7 +220,7 @@ def view_screenshot(request, product_id):
 
 def fetch_products(scraping_process):
     """
-    Fetch products based on the scraping process.
+    Fetch products based on the Process.
     This is just an example function, replace it with actual scraping logic.
     """
     for website in scraping_process.source_websites.all():
@@ -373,14 +398,14 @@ def initiate_process(request):
                 processor.run()
                 scraping_process.status = "completed"
                 scraping_process.save()
-                messages.success(request, "Scraping process has been initiated successfully.")
+                messages.success(request, "Process has been initiated successfully.")
             except Exception as e:
                 scraping_process.status = "failed"
                 scraping_process.save()
                 messages.error(request, str(e))
                 raise Exception(e)
 
-            return redirect('scraper:products')  # Redirect to a page, for example, a list of scraping processes
+            return redirect('scraper:products')  # Redirect to a page, for example, a list of Processes
     else:
         form = ScrapingProcessForm()
 
@@ -409,7 +434,7 @@ def initiate_scraping_process(request):
 
         def stream():
             # Yield the initial message
-            yield f"data: {json.dumps({'status': 'starting', 'progress': 0, 'total': 0, 'in_percent': 0, 'message': 'Initializing scraping process'})}\n\n"
+            yield f"data: {json.dumps({'status': 'starting', 'progress': 0, 'total': 0, 'in_percent': 0, 'message': 'Initializing Process'})}\n\n"
 
             try:
                 processor = ProductScraperProcessor(scraping_process)
@@ -418,7 +443,7 @@ def initiate_scraping_process(request):
                 scraping_process.status = "completed"
                 scraping_process.completed_at = timezone.now() 
                 scraping_process.save()
-                messages.success(request, "Scraping process has been completed successfully.")
+                messages.success(request, "Process has been completed successfully.")
 
             except Exception as e:
                 scraping_process.status = "failed"

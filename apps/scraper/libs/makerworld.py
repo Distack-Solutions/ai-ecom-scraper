@@ -1,7 +1,6 @@
 import requests
 from bs4 import BeautifulSoup
 import json
-from django.conf import settings
 
 class MakerWorldProductScrap:
     def __init__(self, query, limit):
@@ -32,7 +31,7 @@ class MakerWorldProductScrap:
             output = response.json()
             return output.get('content')
         else:
-            raise Exception(f"Failed to scrape the URL. Status code: {response.status_code}, Response: {response.text}")
+            raise Exception(f"Failed to Process the URL. Status code: {response.status_code}, Response: {response.text}")
 
     def _extract_json_from_html(self, html_content):
         """

@@ -427,16 +427,14 @@
   </div>
 </form>
 
-<!-- <a 
-  id="approve-button" 
-  data-product-id="{{ product.id }}" 
-  title="Approve"
-  class="btn btn-success p-2" 
-  role="button">
-  <i class="material-icons my-0 py-0 align-middle fs-6">done</i>
-  Approve
-
-</a> -->
+{% if product.status == 'approved' %}
+<a
+  href="{% url 'scraper:next-product' product.id %}"
+  title="Next product"
+  class="btn btn-primary p-2 mb-4" >
+  Next Product To Review
+</a>
+{% endif %}
 
 <script src="{% static 'volt/assets/js/products_img.js' %}"></script>
 

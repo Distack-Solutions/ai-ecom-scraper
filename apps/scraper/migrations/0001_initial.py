@@ -57,8 +57,8 @@ class Migration(migrations.Migration):
                 ('started_by', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to=settings.AUTH_USER_MODEL, verbose_name='Started By')),
             ],
             options={
-                'verbose_name': 'Scraping Process',
-                'verbose_name_plural': 'Scraping Processes',
+                'verbose_name': 'Process',
+                'verbose_name_plural': 'Processes',
             },
         ),
         migrations.CreateModel(

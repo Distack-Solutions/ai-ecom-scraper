@@ -14,6 +14,9 @@ COPY requirements.txt /app/
 # Install dependencies
 RUN pip install --no-cache-dir -r requirements.txt
 
+# Install Playwright with Firefox browser only
+RUN playwright install firefox --with-deps
+
 # Copy the entire Django project into the container
 COPY . /app/
 

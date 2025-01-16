@@ -1,5 +1,6 @@
 {% extends 'volt/inc/base.html' %}
 {% load static %}
+{% load bootstrap5 %}
 {% block extra_css %}
 <link rel="stylesheet" href="{% static 'volt/css/products.css' %}">
 {% endblock extra_css %}
@@ -20,58 +21,24 @@
 
 <div class="card border-light shadow-sm mb-4">
   <div class="card-body">
-    <div class="d-flex align-items-center w-100 flex-wrap">
-      <!-- Search Form -->
-      <form method="GET" class="d-flex align-items-center w-50">
-        <input
-          type="text"
-          name="search"
-          value="{{ search_query }}"
-          class="form-control me-3"
-          placeholder="Search by title..."
-        />
-        <button type="submit" class="btn btn-primary">
-          Search
-        </button>
-      </form>
+    <div class="">
+      <form method="GET" id="filter-form"  class=" w-100">
+        <div class="row w-100">
+          <div class="col-sm-4">{% bootstrap_field filter_form.search %}</div>
+          <div class="col-sm-2">{% bootstrap_field filter_form.marketplace %}</div>
+          <div class="col-sm-2">{% bootstrap_field filter_form.status %}</div>
+          <div class="col-sm-2">{% bootstrap_field filter_form.per_page %}</div>
+          <div class="col-sm-2 d-flex align-items-center">
+            {% if request.GET %}
+            <a name="" href="{% url 'scraper:products' %}" id="" class="btn btn-light mt-2" href="#" role="button">Remove Filters</a>
+            {% endif %}
+          </div>
 
-      <!-- Filter and Pagination -->
-      <div class="ms-auto d-flex align-items-center">
-        <!-- Filter Dropdown -->
-        <div class="dropdown me-3">
-          <button
-            class="btn btn-secondary dropdown-toggle"
-            type="button"
-            id="filterDropdown"
-            data-bs-toggle="dropdown"
-            aria-expanded="false"
-          >
-            Filter Status: <span class="fw-bold">{{ status_filter|default:"All" }}</span>
-          </button>
-          <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="filterDropdown">
-            <li><a class="dropdown-item" href="?status=all&search={{ search_query }}&per_page={{ per_page }}">All</a></li>
-            <li><a class="dropdown-item" href="?status=draft&search={{ search_query }}&per_page={{ per_page }}">Draft</a></li>
-            <li><a class="dropdown-item" href="?status=under_review&search={{ search_query }}&per_page={{ per_page }}">Under Review</a></li>
-            <li><a class="dropdown-item" href="?status=declined&search={{ search_query }}&per_page={{ per_page }}">Declined</a></li>
-            <li><a class="dropdown-item" href="?status=approved&search={{ search_query }}&per_page={{ per_page }}">Approved</a></li>
-            <li><a class="dropdown-item" href="?status=published&search={{ search_query }}&per_page={{ per_page }}">Published</a></li>
-            <li><a class="dropdown-item" href="?status=archived&search={{ search_query }}&per_page={{ per_page }}">Archived</a></li>
-          </ul>
         </div>
-
-        <!-- Per Page Selector -->
-        <form method="GET" class="d-flex align-items-center">
-          <select class="form-select w-auto me-2" name="per_page" onchange="this.form.submit()">
-            <option value="10" {% if per_page == 10 %}selected{% endif %}>10</option>
-            <option value="20" {% if per_page == 20 %}selected{% endif %}>20</option>
-            <option value="50" {% if per_page == 50 %}selected{% endif %}>50</option>
-            <option value="100" {% if per_page == 100 %}selected{% endif %}>100</option>
-          </select>
-          <input type="hidden" name="search" value="{{ search_query }}">
-          <input type="hidden" name="status" value="{{ status_filter }}">
-        </form>
-      </div>
+      </form>
     </div>
+
+    
     
 
   </div>
@@ -546,6 +513,8 @@
       });
     }
   });
+
+  
 </script>
 
 

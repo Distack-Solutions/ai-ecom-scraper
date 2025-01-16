@@ -7,10 +7,11 @@ from django.utils import timezone
 # python manage.py migrate
 
 
+
 class SourceWebsite(models.Model):
     name = models.CharField(max_length=255, verbose_name="Website Name")
     logo = models.ImageField(upload_to='website_logos/', verbose_name="Website Logo")
-    script_name = models.CharField(max_length=255, verbose_name="Scraper Script Name")
+    script_name = models.CharField(max_length=255, verbose_name="Script Name")
     url = models.URLField(max_length=255, verbose_name="Website URL")
 
     def __str__(self):
@@ -62,7 +63,7 @@ class ScrapingProcess(models.Model):
     completed_at = models.DateTimeField(null=True, blank=True, verbose_name="Completed At")
 
     def get_duration(self):
-        """Returns the duration of the scraping process in a human-readable format."""
+        """Returns the duration of the Process in a human-readable format."""
         if self.completed_at:
             # If completed_at is set, return the duration
             duration = self.completed_at - self.started_at
@@ -86,13 +87,16 @@ class ScrapingProcess(models.Model):
         return f"Scraping {self.search_query} by {self.started_by}"
 
     class Meta:
-        verbose_name = "Scraping Process"
-        verbose_name_plural = "Scraping Processes"
+        verbose_name = "Process"
+        verbose_name_plural = "Processes"
 
 
 class PageScreenshot(models.Model):
     file = models.FileField(upload_to="page-screenshot", null=True, blank=True)
     url = models.URLField(null=True, blank=True)
+
+    class Meta:
+        ordering = ("-id",)
 
 class License(models.Model):
     json = models.JSONField(null=True, blank=True)

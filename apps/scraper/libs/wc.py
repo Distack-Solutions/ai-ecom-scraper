@@ -67,7 +67,7 @@ class WooCommerceManager:
             consumer_secret=self.consumer_secret,
             wp_api=True,
             version="wc/v3",  # WooCommerce API version
-            timeout=150
+            timeout=250
         )
 
     def get_client(self):

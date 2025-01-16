@@ -1,12 +1,15 @@
 import logging
 from apps.scraper.libs.printables import PrintablesProductScrap
 from apps.scraper.libs.makerworld import MakerWorldProductScrap
+from apps.scraper.libs.makerworld3 import MakerWorldProductScraper
 from apps.scraper.libs.stlflix import StlflixProductScrap
 from apps.scraper.models import *
 import time
 import requests
 from django.core.files.base import ContentFile
 from django.core.files.temp import NamedTemporaryFile
+from asgiref.sync import async_to_sync
+from django.core.files import File
 
 logger = logging.getLogger('scraper')
 
@@ -42,7 +45,7 @@ class ProductScraperProcessor:
                 internal_license = License.objects.create(json=product_data['license'])
                 logger.info(f"License created for product {product_data['sku']}")
 
-
+            print("product_data", product_data)
             # Create Product instance
             internal_product = Product(
                 scraped_by=self.scraping_process,
@@ -54,6 +57,20 @@ class ProductScraperProcessor:
                 license=internal_license,
                 is_commercial_allowed=product_data.get('is_commercial_allowed', False),
             )
+
+            if product_data.get('screenshot_info'):
+                screenshot = product_data.get('screenshot_info')
+                path = screenshot.get('path')
+                filename = screenshot.get('filename')
+                
+                screenshot_obj = PageScreenshot()
+                with open(path, "rb") as f:
+                    screenshot_obj.file.save(filename, File(f))
+                screenshot_obj.save()
+
+                internal_product.page_screenshot = screenshot_obj
+                
+                logger.info(f"Screenshot created for product {product_data['sku']}")
             
             if product_data.get('author_name'):
                 internal_product.author_name = product_data.get('author_name')
@@ -119,6 +136,7 @@ class ProductScraperProcessor:
 
         try:
             scraper.get_products()
+            scraper.get_products() #changed from async to sync
             logger.info(f"Scraping completed for website: {website.name}")
 
             structured_products = scraper.to_model_data()
@@ -157,7 +175,7 @@ class ProductScraperProcessor:
 
             yield self.get_output("progress", f"Scraped from {website.name}, Recording in database.")
 
-
+    
             for idx, product_data in enumerate(structured_products, start=1):
                 self.total_progress += 1
                 try:
@@ -183,7 +201,7 @@ class ProductScraperProcessor:
             scraper_mapping = {
                 "printables.py": PrintablesProductScrap,
                 "stlflix.py": StlflixProductScrap,
-                "makerworld.py": MakerWorldProductScrap,
+                "makerworld.py": MakerWorldProductScraper,
             }
 
             scraper_class = scraper_mapping.get(website.script_name)
@@ -193,14 +211,14 @@ class ProductScraperProcessor:
 
             yield from self.fetch_and_process_sse(scraper_class, website)
 
-        yield self.get_output("completed", "Scraping process completed for all websites.")
+        yield self.get_output("completed", "Process completed for all websites.")
 
 
     def run(self):
         """
         Run the scraping and processing workflow for all websites.
         """
-        logger.info(f"Starting scraping process {self.scraping_process.id}")
+        logger.info(f"Starting Process {self.scraping_process.id}")
         for website in self.scraping_process.source_websites.all():
             logger.info(f"Processing website: {website.name}")
 
@@ -221,4 +239,4 @@ class ProductScraperProcessor:
                 logger.error(f"Failed to process website {website.name}: {e}")
                 continue
 
-        logger.info(f"Scraping process {self.scraping_process.id} completed.")
+        logger.info(f"Process {self.scraping_process.id} completed.")

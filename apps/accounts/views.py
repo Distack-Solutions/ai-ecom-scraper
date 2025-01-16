@@ -267,7 +267,7 @@ def home_view(request):
         'response_count': [openai_data[date]['response_count'] for date in labels],
     }
 
-    # code to caclulate success ratio of scraping process
+    # code to caclulate success ratio of Process
     success_ratio = 0
     total_scraping_process = ScrapingProcess.objects.all().count()
     if total_scraping_process > 0:
