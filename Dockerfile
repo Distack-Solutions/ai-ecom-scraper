@@ -30,35 +30,34 @@ RUN apt-get update && apt-get install -y \
     dbus \
     fontconfig \
     wget \
+    dos2unix \ 
     && rm -rf /var/lib/apt/lists/*
-
-# Create a non-root user
-RUN useradd -m -u 1000 playwright-user
 
 WORKDIR /app
 
+# Copy requirements first to leverage Docker cache
 COPY requirements.txt /app/
-
-# Install Python dependencies
 RUN pip install --no-cache-dir -r requirements.txt
 
-# Install playwright and its dependencies with specific browser version
+# Install playwright and its dependencies
 RUN pip install --no-cache-dir playwright==1.41.1 \
     && playwright install firefox --with-deps
 
-# Copy the project files
+# Copy the entrypoint script first and set permissions
+COPY entrypoint.sh /app/
+RUN dos2unix /app/entrypoint.sh && \
+    chmod +x /app/entrypoint.sh
+
+# Copy the rest of the application
 COPY . /app/
 
-# Copy and set permissions for the entrypoint script
-COPY entrypoint.sh /app/entrypoint.sh
-RUN chmod +x /app/entrypoint.sh
+# Create a non-root user and switch to it
+RUN useradd -m -u 1000 playwright-user && \
+    chown -R playwright-user:playwright-user /app
 
-# Set permissions for the playwright-user
-RUN chown -R playwright-user:playwright-user /app
 USER playwright-user
 
 ENV STATIC_ROOT /static
-
 EXPOSE 8000
 
 ENTRYPOINT ["/app/entrypoint.sh"]

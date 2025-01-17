@@ -1,18 +1,20 @@
 #!/bin/bash
-
-# Exit immediately if a command exits with a non-zero status
 set -e
 
-# Run database migrations
-echo "Applying database migrations..."
-python manage.py migrate --noinput
+# Wait for database
+python manage.py wait_for_db
 
-# Collect static files in production
-python manage.py collectstatic --noinput
+# Apply database migrations
+python manage.py migrate
+
+# Collect static files if not in debug mode
+if [ "$DEBUG" != "True" ]; then
+    python manage.py collectstatic --noinput
+fi
 
 # Start Xvfb (virtual framebuffer)
 Xvfb :99 -screen 0 1024x768x16 &
 export DISPLAY=:99
 
-# Execute the CMD provided in the Dockerfile or docker-compose
+# Execute the main command
 exec "$@"
