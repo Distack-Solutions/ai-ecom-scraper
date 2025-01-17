@@ -30,7 +30,7 @@ RUN apt-get update && apt-get install -y \
     dbus \
     fontconfig \
     wget \
-    dos2unix \ 
+    dos2unix \
     && rm -rf /var/lib/apt/lists/*
 
 WORKDIR /app
@@ -51,11 +51,9 @@ RUN dos2unix /app/entrypoint.sh && \
 # Copy the rest of the application
 COPY . /app/
 
-# Create a non-root user and switch to it
-RUN useradd -m -u 1000 playwright-user && \
-    chown -R playwright-user:playwright-user /app
-
-USER playwright-user
+# Create necessary directories and set permissions
+RUN mkdir -p /app/logs /app/media /app/staticfiles && \
+    chmod 777 /app/logs /app/media /app/staticfiles
 
 ENV STATIC_ROOT /static
 EXPOSE 8000
