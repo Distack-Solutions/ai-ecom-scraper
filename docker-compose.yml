@@ -18,7 +18,7 @@ services:
       if [ \"$DEBUG\" = \"True\" ]; then
         python manage.py runserver 0.0.0.0:8000;
       else
-        gunicorn software.wsgi:application --bind 0.0.0.0:8000 --workers 3;
+        gunicorn software.wsgi:application --bind 0.0.0.0:8000 --workers 3 --timeout 120 --threads 2
       fi
       "
 
