@@ -1,64 +1,65 @@
-# Use an official Python runtime as a base image
 FROM python:3.11-slim
 
-# Set environment variables to ensure Python behaves consistently
 ENV PYTHONDONTWRITEBYTECODE=1
 ENV PYTHONUNBUFFERED=1
-
+ENV DEBIAN_FRONTEND=noninteractive
 
 # Install system dependencies
-RUN apt-get update && apt-get install -y --no-install-recommends \
-    build-essential \
+RUN apt-get update && apt-get install -y \
+    firefox-esr \
+    xvfb \
     libx11-xcb1 \
+    libxcb1 \
     libxcomposite1 \
     libxcursor1 \
     libxdamage1 \
-    libxrandr2 \
-    libxkbcommon0 \
-    libasound2 \
-    libatk1.0-0 \
-    libatk-bridge2.0-0 \
-    libcups2 \
-    libdbus-1-3 \
-    libfontconfig1 \
-    libgbm1 \
-    libgtk-3-0 \
-    libnspr4 \
+    libxext6 \
+    libxi6 \
+    libxtst6 \
     libnss3 \
+    libcups2 \
+    libxss1 \
+    libxrandr2 \
+    libasound2 \
+    libpangocairo-1.0-0 \
     libpango-1.0-0 \
-    libxshmfence1 \
-    libcairo-gobject2 \
-    libgdk-pixbuf2.0-0 && \
-    apt-get clean && rm -rf /var/lib/apt/lists/*
+    libcairo2 \
+    libgdk-pixbuf2.0-0 \
+    libgtk-3-0 \
+    libgbm1 \
+    dbus \
+    fontconfig \
+    wget \
+    && rm -rf /var/lib/apt/lists/*
 
-# Set the working directory inside the container
+# Create a non-root user
+RUN useradd -m -u 1000 playwright-user
+
 WORKDIR /app
 
-# Copy the requirements file into the container
 COPY requirements.txt /app/
 
-# Install dependencies
+# Install Python dependencies
 RUN pip install --no-cache-dir -r requirements.txt
 
-# Install Playwright with Firefox browser only
-RUN playwright install firefox --with-deps
+# Install playwright and its dependencies with specific browser version
+RUN pip install --no-cache-dir playwright==1.41.1 \
+    && playwright install firefox --with-deps
 
-# Copy the entire Django project into the container
+# Copy the project files
 COPY . /app/
 
-# Copy the entrypoint script
+# Copy and set permissions for the entrypoint script
 COPY entrypoint.sh /app/entrypoint.sh
-
-# Make the entrypoint script executable
 RUN chmod +x /app/entrypoint.sh
 
-# Use the entrypoint script
-ENTRYPOINT ["/app/entrypoint.sh"]
+# Set permissions for the playwright-user
+RUN chown -R playwright-user:playwright-user /app
+USER playwright-user
 
 ENV STATIC_ROOT /static
 
-# Expose the port Django runs on (default: 8000)
 EXPOSE 8000
 
-# Run the Django development server
+ENTRYPOINT ["/app/entrypoint.sh"]
 CMD ["gunicorn", "software.wsgi:application", "--bind", "0.0.0.0:8000", "--workers", "3"]

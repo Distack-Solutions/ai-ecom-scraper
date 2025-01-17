@@ -28,12 +28,29 @@ class MakerWorldProductScraper:
         """
         try:
             with sync_playwright() as p:
-                browser = p.firefox.launch(headless=True)
+                browser = p.firefox.launch(
+                    headless=True,
+                    args=[
+                        '--no-sandbox',
+                        '--disable-setuid-sandbox',
+                        '--disable-dev-shm-usage',
+                    ]
+                )
                 context = browser.new_context()
                 page = context.new_page()
+                
+                # Add logging
+                page.on("console", lambda msg: print(f"Browser console: {msg.text}"))
+                page.on("pageerror", lambda err: print(f"Page error: {err}"))
 
-                # Navigate to the search page
+                # Set a longer timeout and add logging
+                print(f"Navigating to: {self.search_url}")
                 page.goto(self.search_url, timeout=60000)
+                print("Page loaded successfully")
+
+                # Wait for the content to load
+                page.wait_for_selector("div.design-cover-wrap", timeout=30000)
+                print("Content loaded successfully")
 
                 # Extract all <a> links within div.design-cover-wrap
                 elements = page.query_selector_all("div.design-cover-wrap a")
@@ -44,12 +61,16 @@ class MakerWorldProductScraper:
 
                 # Limit the results based on the provided limit
                 self.results = self.results[:self.limit]
+                print(f"Found {len(self.results)} results")
 
                 # Close the browser
                 browser.close()
 
         except Exception as e:
-            self.error = f"Failed to fetch search results: {e}"
+            import traceback
+            print(f"Error in _fetch_search_results: {str(e)}")
+            print(traceback.format_exc())
+            self.error = f"Failed to fetch search results: {str(e)}"
 
     def _process_and_save_screenshot(self, page, product_id):
         """
@@ -82,17 +103,31 @@ class MakerWorldProductScraper:
         """
         try:
             with sync_playwright() as p:
-                print("Fetching product", product_url)
-                browser = p.firefox.launch(headless=True)
+                print(f"Fetching product: {product_url}")
+                browser = p.firefox.launch(
+                    headless=True,
+                    args=[
+                        '--no-sandbox',
+                        '--disable-setuid-sandbox',
+                        '--disable-dev-shm-usage',
+                    ]
+                )
                 context = browser.new_context()
                 page = context.new_page()
 
-                # Navigate to the product page
+                # Add logging
+                page.on("console", lambda msg: print(f"Browser console: {msg.text}"))
+                page.on("pageerror", lambda err: print(f"Page error: {err}"))
+
+                # Navigate to the product page with logging
+                print(f"Navigating to product page: {product_url}")
                 page.goto(product_url, timeout=60000)
+                print("Product page loaded successfully")
 
                 # Extract JSON data from <script> tag with id "__NEXT_DATA__"
                 script_tag = page.query_selector("script#__NEXT_DATA__")
                 if not script_tag:
+                    print("No script tag found on page")
                     return {"url": product_url, "error": "No script tag found"}
 
                 json_content = script_tag.text_content()
@@ -102,13 +137,31 @@ class MakerWorldProductScraper:
                 screenshot = self._process_and_save_screenshot(page, product_data["id"])
                 if screenshot:
                     product_data["screenshot_info"] = screenshot
-              
 
                 return product_data
 
         except Exception as e:
+            import traceback
+            print(f"Error scraping product page {product_url}: {str(e)}")
+            print(traceback.format_exc())
             return {"url": product_url, "error": str(e)}
-
+        
+    def _check_environment(self):
+        """
+        Check if the environment is properly set up for scraping.
+        """
+        try:
+            with sync_playwright() as p:
+                browser = p.firefox.launch(headless=True)
+                context = browser.new_context()
+                page = context.new_page()
+                page.goto("about:blank")
+                browser.close()
+                return True
+        except Exception as e:
+            print(f"Environment check failed: {str(e)}")
+            return False
+   
     def _process_json_data(self, json_content):
         """
         Parse and process JSON data from the script tag.
@@ -142,6 +195,9 @@ class MakerWorldProductScraper:
         """
         Fetch search results and scrape each product page.
         """
+        if not self._check_environment():
+            raise Exception("Browser environment is not properly configured")
+
         self._fetch_search_results()
         self._apply_limit()
 

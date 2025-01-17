@@ -12,6 +12,10 @@ services:
       - .:/app  # Mount the whole project directory (including staticfiles and media)
       - ./staticfiles:/app/staticfiles  # Mount static files directory for Nginx
       - ./media:/app/media  # Mount media directory for uploaded files
+      - /dev/shm:/dev/shm  # Add shared memory volume
+    shm_size: 2gb  # Increase shared memory size
+    environment:
+      - PYTHONUNBUFFERED=1
     restart: always  # Restart the container if it crashes
     command: >
       sh -c "
