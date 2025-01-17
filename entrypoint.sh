@@ -1,9 +1,6 @@
 #!/bin/bash
 set -e
 
-# Wait for database
-python manage.py wait_for_db
-
 # Apply database migrations
 python manage.py migrate
 
