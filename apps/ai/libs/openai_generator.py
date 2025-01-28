@@ -127,7 +127,7 @@ class AIGenerator:
             response = self.client.chat.completions.create(
                 model="gpt-4o-mini",
                 messages=[
-                    {"role": "system", "content": "You are an expert in generating SEO rich product copies."},
+                    {"role": "system", "content": "You are an expert content writer specializing in SEO for eCommerce platforms. Your primary goal is to generate compelling product content that excludes any mention of '3D models,' 'makerworld', 'STLFlix', 'printables,' 'files,' or 'downloads.' Focus only on describing the finished product."},
                     {"role": "user", "content": prompt},
                 ],
                 functions=[
